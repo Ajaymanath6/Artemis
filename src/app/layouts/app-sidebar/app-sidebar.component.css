@@ -1,0 +1,86 @@
+/* App Sidebar Component Styles */
+
+/* Smooth sidebar transitions */
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Collapsible sections animation */
+.max-h-0 {
+  max-height: 0;
+  opacity: 0;
+}
+
+.max-h-96 {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+/* Custom scrollbar for sidebar */
+aside::-webkit-scrollbar {
+  width: 4px;
+}
+
+aside::-webkit-scrollbar-track {
+  background: #f8f9fb;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background: #adb4cc;
+  border-radius: 2px;
+}
+
+aside::-webkit-scrollbar-thumb:hover {
+  background: #69718c;
+}
+
+/* Rotate animation for chevron */
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+/* Active link styling */
+.router-link-active {
+  background-color: rgba(47, 85, 217, 0.05);
+  color: #2F55D9;
+  border-right: 2px solid #2F55D9;
+}
+
+/* Ensure proper spacing for nested items */
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  aside {
+    transform: translateX(-100%);
+  }
+  
+  aside:not(.-translate-x-full) {
+    transform: translateX(0);
+  }
+}
+
+/* Hover effects for better user experience */
+.group:hover svg {
+  transform: scale(1.05);
+}
+
+/* Focus states for accessibility */
+button:focus,
+a:focus {
+  outline: 2px solid rgba(47, 85, 217, 0.2);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Footer positioning */
+.absolute.bottom-0 {
+  box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 0 rgba(0, 0, 0, 0.06);
+}

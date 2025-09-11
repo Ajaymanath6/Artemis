@@ -1,0 +1,113 @@
+<!-- App Sidebar - Side Navigation Menu -->
+<aside 
+  class="fixed left-0 top-16 bottom-0 z-40 w-64 bg-white border-r border-stroke-weak transition-transform duration-300 ease-in-out overflow-y-auto"
+  [class."-translate-x-full"]="!isSidebarOpen">
+  
+  <!-- Sidebar Header -->
+  <div class="p-4 border-b border-stroke-weak">
+    <div class="flex items-center justify-between">
+      <h2 class="text-lg font-semibold text-text-strong">Navigation</h2>
+      <button 
+        (click)="toggleSidebar()"
+        class="p-1 rounded-md text-text-weak hover:text-text-strong hover:bg-hover-bg md:hidden">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="p-4">
+    <ul class="space-y-2">
+      <li *ngFor="let item of navigationItems">
+        
+        <!-- Menu Item without Children -->
+        <div *ngIf="!item.children">
+          <a 
+            [routerLink]="item.route"
+            routerLinkActive="bg-blue-fill text-brand border-r-2 border-brand"
+            class="flex items-center space-x-3 px-3 py-2 rounded-lg text-text-weak hover:text-text-strong hover:bg-hover-bg transition-colors group">
+            <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" [innerHTML]="getIconSvg(item.icon)">
+            </svg>
+            <span class="font-medium">{{ item.name }}</span>
+          </a>
+        </div>
+
+        <!-- Menu Item with Children -->
+        <div *ngIf="item.children">
+          <!-- Parent Item -->
+          <button 
+            (click)="toggleSection(item)"
+            class="w-full flex items-center justify-between space-x-3 px-3 py-2 rounded-lg text-text-weak hover:text-text-strong hover:bg-hover-bg transition-colors group">
+            <div class="flex items-center space-x-3">
+              <svg class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" [innerHTML]="getIconSvg(item.icon)">
+              </svg>
+              <span class="font-medium">{{ item.name }}</span>
+            </div>
+            <svg 
+              class="h-4 w-4 transition-transform duration-200"
+              [class.rotate-90]="item.isExpanded"
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <!-- Children Items -->
+          <div 
+            class="mt-2 ml-6 space-y-1 overflow-hidden transition-all duration-300"
+            [class.max-h-0]="!item.isExpanded"
+            [class.max-h-96]="item.isExpanded">
+            <a 
+              *ngFor="let child of item.children"
+              [routerLink]="child.route"
+              routerLinkActive="bg-blue-fill text-brand border-r-2 border-brand"
+              class="flex items-center space-x-3 px-3 py-2 rounded-lg text-text-weak hover:text-text-strong hover:bg-hover-bg transition-colors text-sm">
+              <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" [innerHTML]="getIconSvg(child.icon)">
+              </svg>
+              <span>{{ child.name }}</span>
+            </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-stroke-weak bg-white">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-fill rounded-full flex items-center justify-center">
+        <span class="text-text-strong font-medium text-sm">JD</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium text-text-strong truncate">John Doe</p>
+        <p class="text-xs text-text-weak truncate">john.doe@legalscope.com</p>
+      </div>
+      <a 
+        routerLink="/settings"
+        class="p-1 rounded-md text-text-weak hover:text-text-strong hover:bg-hover-bg">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- Overlay for mobile -->
+<div 
+  *ngIf="isSidebarOpen" 
+  (click)="toggleSidebar()"
+  class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"></div>
+
+<!-- Sidebar Toggle Button (Mobile) -->
+<button 
+  (click)="toggleSidebar()"
+  class="fixed top-20 left-4 z-50 p-2 bg-white rounded-md border border-stroke-weak shadow-sm md:hidden">
+  <svg class="h-5 w-5 text-text-strong" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</button>

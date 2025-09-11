@@ -1,0 +1,44 @@
+<!-- Search Bar Component -->
+<div class="relative w-full max-w-md">
+  <!-- Search Input -->
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <app-phosphor-icon
+        name="magnifying-glass"
+        [size]="20"
+        weight="bold"
+        color="currentColor"
+        className="text-text-weak">
+      </app-phosphor-icon>
+    </div>
+
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (keyup)="onKeyPress($event)"
+      placeholder="Search projects, cases, attorneys..."
+      class="w-full pl-10 pr-10 py-3 border border-stroke-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-transparent placeholder-text-weak bg-white"
+    />
+
+    <!-- Clear Button -->
+    <button
+      *ngIf="searchQuery"
+      (click)="clearSearch()"
+      class="absolute inset-y-0 right-0 pr-3 flex items-center">
+      <app-phosphor-icon
+        name="x"
+        [size]="20"
+        weight="bold"
+        color="currentColor"
+        className="text-text-weak hover:text-text-strong">
+      </app-phosphor-icon>
+    </button>
+  </div>
+
+  <!-- Search Button -->
+  <button
+    (click)="onSearch()"
+    class="absolute right-2 top-2 px-4 py-1.5 bg-brand text-white rounded-md hover:bg-blue-text-strong focus:outline-none focus:ring-2 focus:ring-focus-ring transition-colors text-sm font-medium">
+    Search
+  </button>
+</div>

@@ -1,0 +1,86 @@
+<!-- Dashboard Page -->
+<div class="min-h-screen bg-fill">
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Header Section -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-text-strong mb-2">Dashboard</h1>
+      <p class="text-text-weak">Welcome back! Here's an overview of your recent projects and activities.</p>
+    </div>
+
+    <!-- Search and Create Section -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+      <!-- Search Bar -->
+      <div class="flex-1">
+        <app-search-bar (search)="onSearch($event)"></app-search-bar>
+      </div>
+
+      <!-- Create Project Button -->
+      <button
+        (click)="onCreateProject()"
+        class="px-6 py-3 bg-brand text-white font-medium rounded-lg hover:bg-blue-text-strong focus:outline-none focus:ring-2 focus:ring-focus-ring transition-colors flex items-center space-x-2">
+        <app-phosphor-icon
+          name="plus"
+          [size]="20"
+          weight="bold">
+        </app-phosphor-icon>
+        <span>Create New Project</span>
+      </button>
+    </div>
+
+    <!-- Recent Projects Section -->
+    <div class="mb-8">
+      <!-- Section Header -->
+      <div class="flex items-center space-x-3 mb-6">
+        <app-phosphor-icon
+          name="clock"
+          [size]="24"
+          weight="bold"
+          color="currentColor"
+          className="text-text-strong">
+        </app-phosphor-icon>
+        <h2 class="text-xl font-semibold text-text-strong">Recent Projects</h2>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <app-project-card
+          *ngFor="let project of recentProjects"
+          [project]="project"
+          (edit)="onEditProject($event)"
+          (view)="onViewProject($event)">
+        </app-project-card>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-stroke-weak my-8"></div>
+
+    <!-- Pinned Projects Section -->
+    <div class="mb-8">
+      <!-- Section Header -->
+      <div class="flex items-center space-x-3 mb-6">
+        <app-phosphor-icon
+          name="pin"
+          [size]="24"
+          weight="bold"
+          color="currentColor"
+          className="text-text-strong">
+        </app-phosphor-icon>
+        <h2 class="text-xl font-semibold text-text-strong">Pinned Projects</h2>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <app-project-card
+          *ngFor="let project of pinnedProjects"
+          [project]="project"
+          (edit)="onEditProject($event)"
+          (view)="onViewProject($event)">
+        </app-project-card>
+      </div>
+    </div>
+
+  </div>
+</div>

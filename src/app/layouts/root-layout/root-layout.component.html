@@ -1,0 +1,30 @@
+<!-- Root Layout - Base App Shell -->
+<div class="min-h-screen bg-gray-50">
+  
+  <!-- App Header -->
+  <app-header></app-header>
+  
+  <!-- App Sidebar -->
+  <app-sidebar></app-sidebar>
+  
+  <!-- Main Content Area -->
+  <main class="ml-64 pt-0 transition-all duration-300 ease-in-out">
+    <div class="p-6">
+      <!-- Breadcrumb will go here -->
+      <nav class="mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm">
+          <li>
+            <a routerLink="/dashboard" class="text-text-weak hover:text-text-strong">Dashboard</a>
+          </li>
+          <!-- Dynamic breadcrumb items will be added here -->
+        </ol>
+      </nav>
+      
+      <!-- Page Content -->
+      <div class="bg-white rounded-lg shadow-sm border border-stroke-weak min-h-[calc(100vh-8rem)]">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </main>
+  
+</div>

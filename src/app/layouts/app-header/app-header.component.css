@@ -1,0 +1,53 @@
+/* App Header Component Styles */
+
+/* Ensure dropdowns appear above other content */
+.z-50 {
+  z-index: 50;
+}
+
+/* Smooth transitions for dropdown animations */
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+/* Active navigation link styling */
+.router-link-active {
+  color: var(--brand-color);
+  border-bottom-color: var(--brand-color);
+}
+
+/* Custom scrollbar for notifications */
+.max-h-96::-webkit-scrollbar {
+  width: 4px;
+}
+
+.max-h-96::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.max-h-96::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.max-h-96::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Logo styling */
+.h-8 {
+  height: 2rem; /* 32px - perfect for header */
+}
+
+/* Ensure logo maintains aspect ratio */
+img {
+  max-width: 100%;
+  height: auto;
+}

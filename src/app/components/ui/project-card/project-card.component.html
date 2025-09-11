@@ -1,0 +1,69 @@
+<!-- Project Card Component -->
+<div class="bg-white rounded-xl border border-stroke-weak p-6 hover:shadow-lg transition-shadow cursor-pointer"
+     (click)="onViewClick()">
+
+  <!-- Header with Status -->
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex-1">
+      <h3 class="text-lg font-semibold text-text-strong mb-2 line-clamp-2">
+        {{ project.name }}
+      </h3>
+
+      <!-- Status Badge -->
+      <div class="inline-flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium {{ getStatusColor() }}">
+        <app-phosphor-icon
+          [name]="getStatusIcon()"
+          [size]="14"
+          weight="bold">
+        </app-phosphor-icon>
+        <span class="capitalize">{{ project.status }}</span>
+      </div>
+    </div>
+
+    <!-- Edit Button -->
+    <button
+      (click)="onEditClick(); $event.stopPropagation()"
+      class="p-2 text-text-weak hover:text-brand hover:bg-hover-bg rounded-lg transition-colors">
+      <app-phosphor-icon
+        name="pencil-simple"
+        [size]="20"
+        weight="bold">
+      </app-phosphor-icon>
+    </button>
+  </div>
+
+  <!-- Description -->
+  <p class="text-text-weak text-sm mb-4 line-clamp-3">
+    {{ project.description }}
+  </p>
+
+  <!-- Footer with Metadata -->
+  <div class="flex items-center justify-between text-xs text-text-weak">
+    <div class="flex items-center space-x-4">
+      <!-- Case Count -->
+      <div class="flex items-center space-x-1" *ngIf="project.caseCount !== undefined">
+        <app-phosphor-icon
+          name="folder"
+          [size]="14"
+          weight="regular">
+        </app-phosphor-icon>
+        <span>{{ project.caseCount }} cases</span>
+      </div>
+
+      <!-- Created Date -->
+      <div class="flex items-center space-x-1">
+        <app-phosphor-icon
+          name="calendar"
+          [size]="14"
+          weight="regular">
+        </app-phosphor-icon>
+        <span>{{ project.createdDate | date:'MMM dd, yyyy' }}</span>
+      </div>
+    </div>
+
+    <!-- Updated Date -->
+    <div class="text-xs text-text-weak">
+      Updated {{ project.updatedDate | date:'MMM dd' }}
+    </div>
+  </div>
+</div>

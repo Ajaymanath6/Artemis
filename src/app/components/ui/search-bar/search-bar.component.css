@@ -1,0 +1,27 @@
+/* Search Bar Component Styles */
+
+:host {
+  display: block;
+}
+
+/* Input focus effects */
+input:focus {
+  box-shadow: 0 0 0 3px rgba(47, 85, 217, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .max-w-md {
+    max-width: 100%;
+  }
+
+  input {
+    padding-right: 3rem;
+  }
+
+  .absolute.right-2 {
+    position: static;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}

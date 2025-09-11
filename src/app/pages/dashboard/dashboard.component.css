@@ -1,0 +1,58 @@
+/* Dashboard Component Styles */
+
+:host {
+  display: block;
+}
+
+/* Section spacing */
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+/* Grid responsive adjustments */
+@media (max-width: 768px) {
+  .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Header styling */
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+/* Button hover effects */
+.bg-brand:hover {
+  background-color: #2F55D9;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 640px) {
+  .px-4.sm\\:px-6.lg\\:px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .py-8 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

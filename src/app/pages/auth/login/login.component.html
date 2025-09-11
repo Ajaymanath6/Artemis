@@ -1,0 +1,41 @@
+<!-- Login Page -->
+<div class="min-h-screen bg-white flex flex-col">
+  
+  <!-- App Header -->
+  <app-header></app-header>
+  
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md">
+      
+      <!-- Logo Section -->
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-text-strong">UniCourt</h1>
+        <p class="text-text-weak mt-1">Professional Legal Research Platform</p>
+      </div>
+
+      <!-- Auth Form -->
+      <div class="bg-white rounded-2xl shadow-lg border border-stroke-weak p-8">
+        <app-auth-form 
+          formType="login"
+          [isLoading]="false"
+          (socialLogin)="onSocialLogin($event)"
+          (formSubmit)="onFormSubmit($event)">
+        </app-auth-form>
+      </div>
+
+      <!-- Additional Links -->
+      <div class="text-center mt-6 space-y-2">
+        <p class="text-sm text-text-weak">
+          Need help? 
+          <a href="#" class="text-brand hover:text-blue-text-weak">Contact Support</a>
+        </p>
+        <p class="text-xs text-text-weak">
+          © 2024 LegalScope. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+  </main>
+  
+</div>
