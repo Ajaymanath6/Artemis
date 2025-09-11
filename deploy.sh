@@ -5,8 +5,8 @@
 
 echo "🚀 Building UniCourt for production..."
 
-# Build the application
-npm run build --prod
+# Build the application with correct base href for GitHub Pages
+npm run build --prod -- --base-href="/Artemis/"
 
 # Check if build was successful
 if [ $? -eq 0 ]; then
