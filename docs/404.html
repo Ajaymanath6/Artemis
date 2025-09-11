@@ -4,11 +4,15 @@
   <meta charset="utf-8">
   <title>UniCourt - Legal Research Platform</title>
   <script>
-    // Store the current path for Angular to handle after redirect
-    sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+    // Handle GitHub Pages routing by redirecting to the correct path
+    var path = location.pathname + location.search + location.hash;
+    // Remove the repository name from the path since we're redirecting to root
+    path = path.replace('/Artemis', '') || '/dashboard';
+    // Store for Angular to handle
+    sessionStorage.setItem('redirect', path);
+    // Redirect to the root
+    window.location.href = '/Artemis/';
   </script>
-  <!-- Redirect to the root with the repository base href -->
-  <meta http-equiv="refresh" content="0; URL='/Artemis/'">
 </head>
 <body>
   <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">

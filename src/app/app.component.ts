@@ -15,12 +15,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     initFlowbite();
-    
+
     // Handle GitHub Pages routing redirect
     const redirect = sessionStorage.getItem('redirect');
     if (redirect) {
       sessionStorage.removeItem('redirect');
-      this.router.navigateByUrl(redirect);
+      // Use setTimeout to ensure routing is ready
+      setTimeout(() => {
+        this.router.navigateByUrl(redirect).catch(() => {
+          // If navigation fails, try again with the dashboard as fallback
+          this.router.navigateByUrl('/dashboard');
+        });
+      }, 100);
     }
   }
 }
