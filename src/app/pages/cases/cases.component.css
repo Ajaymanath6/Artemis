@@ -1,0 +1,55 @@
+/* Cases Component Styles */
+
+:host {
+  display: block;
+}
+
+/* Header styling */
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+/* Search bar container */
+.max-w-md {
+  max-width: 28rem;
+}
+
+/* Content area */
+.bg-white {
+  background-color: white;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-stroke-weak {
+  border-color: #e5e7eb;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}

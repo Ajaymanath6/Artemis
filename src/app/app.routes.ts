@@ -28,6 +28,12 @@ export const routes: Routes = [
     ]
   },
 
+  // Cases page
+  {
+    path: 'cases',
+    loadComponent: () => import('./pages/cases/cases.component').then(m => m.CasesComponent)
+  },
+
   // Wildcard route - must be last
   { path: '**', redirectTo: '/dashboard' }
 ];

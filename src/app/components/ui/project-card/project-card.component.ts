@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { PhosphorIconComponent } from '../phosphor-icon/phosphor-icon.component';
 
 export interface Project {
@@ -24,12 +25,16 @@ export class ProjectCardComponent {
   @Output() edit = new EventEmitter<string>();
   @Output() view = new EventEmitter<string>();
 
+  constructor(private router: Router) {}
+
   onEditClick(): void {
     this.edit.emit(this.project.id);
   }
 
   onViewClick(): void {
-    this.view.emit(this.project.id);
+    // Navigate to loading page first, then to cases
+    sessionStorage.setItem('nextRoute', '/cases');
+    this.router.navigate(['/loading']);
   }
 
   getStatusColor(): string {
