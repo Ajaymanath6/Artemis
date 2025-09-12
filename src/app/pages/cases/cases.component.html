@@ -1,8 +1,12 @@
 <!-- Cases Page with Layout -->
 <div class="min-h-screen bg-fill">
   
-  <!-- App Header -->
-  <app-header></app-header>
+  <!-- App Header with User Profile -->
+  <app-header 
+    [showUserProfile]="true"
+    [showCollapseButton]="true"
+    (collapseToggle)="onToggleSideNav()">
+  </app-header>
   
   <!-- Main Layout Container -->
   <div class="flex h-[calc(100vh-4rem)]">

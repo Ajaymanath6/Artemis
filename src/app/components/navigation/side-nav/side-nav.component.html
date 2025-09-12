@@ -20,8 +20,9 @@
       <!-- Collapse Toggle Button -->
       <button 
         (click)="onToggleCollapse()"
-        class="p-2 rounded-lg hover:bg-fill transition-colors"
-        [class.ml-auto]="!isCollapsed">
+        class="p-2 rounded-lg hover:bg-fill transition-colors border border-stroke-weak"
+        [class.ml-auto]="!isCollapsed"
+        title="Toggle sidebar">
         <app-phosphor-icon
           [name]="isCollapsed ? 'caret-right' : 'caret-left'"
           [size]="16"
@@ -30,6 +31,22 @@
         </app-phosphor-icon>
       </button>
     </div>
+  </div>
+
+  <!-- Dedicated Collapse Button (Always Visible) -->
+  <div class="px-3 py-2 border-b border-stroke-weak">
+    <button 
+      (click)="onToggleCollapse()"
+      class="w-full flex items-center justify-center p-2 rounded-lg hover:bg-fill transition-colors border border-stroke-weak"
+      title="Toggle sidebar">
+      <app-phosphor-icon
+        [name]="isCollapsed ? 'arrows-out' : 'arrows-in'"
+        [size]="18"
+        weight="bold"
+        color="currentColor">
+      </app-phosphor-icon>
+      <span *ngIf="!isCollapsed" class="ml-2 text-sm font-medium text-text-strong">Collapse</span>
+    </button>
   </div>
 
   <!-- Navigation Items -->

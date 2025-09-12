@@ -25,18 +25,18 @@ export class SideNavComponent {
   @Output() itemClick = new EventEmitter<NavItem>();
 
   constructor(private router: Router) {
-    // Default navigation items
+    // Default navigation items with appropriate Phosphor icons
     this.navItems = [
       {
         id: 'dashboard',
         label: 'Dashboard',
-        icon: 'house',
+        icon: 'squares-four',
         route: '/dashboard'
       },
       {
         id: 'cases',
         label: 'Cases',
-        icon: 'folder',
+        icon: 'folder-open',
         route: '/cases'
       },
       {
@@ -44,9 +44,11 @@ export class SideNavComponent {
         label: 'Search',
         icon: 'magnifying-glass',
         children: [
-          { id: 'search-cases', label: 'Cases', icon: 'folder', route: '/search/cases' },
-          { id: 'search-attorneys', label: 'Attorneys', icon: 'user', route: '/search/attorneys' },
-          { id: 'search-judges', label: 'Judges', icon: 'scales', route: '/search/judges' }
+          { id: 'search-cases', label: 'Cases', icon: 'folder-open', route: '/search/cases' },
+          { id: 'search-attorneys', label: 'Attorneys', icon: 'user-circle', route: '/search/attorneys' },
+          { id: 'search-judges', label: 'Judges', icon: 'scales', route: '/search/judges' },
+          { id: 'search-law-firms', label: 'Law Firms', icon: 'buildings', route: '/search/law-firms' },
+          { id: 'search-documents', label: 'Documents', icon: 'file-text', route: '/search/documents' }
         ]
       },
       {
@@ -58,25 +60,25 @@ export class SideNavComponent {
       {
         id: 'bookmarks',
         label: 'Bookmarks',
-        icon: 'bookmark',
+        icon: 'bookmark-simple',
         route: '/bookmarks'
       },
       {
         id: 'tracking',
         label: 'Tracking',
-        icon: 'chart-line',
+        icon: 'chart-line-up',
         route: '/tracking'
       },
       {
         id: 'templates',
         label: 'Templates',
-        icon: 'file-text',
+        icon: 'file-doc',
         route: '/templates'
       },
       {
         id: 'settings',
         label: 'Settings',
-        icon: 'gear',
+        icon: 'gear-six',
         route: '/settings'
       }
     ];

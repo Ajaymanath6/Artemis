@@ -3,27 +3,143 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       
-      <!-- Left Section: Logo + Brand -->
+      <!-- Left Section: Logo + Brand + Collapse Button -->
       <div class="flex items-center space-x-4">
+        <!-- Sidebar Collapse Button (when enabled) -->
+        <button
+          *ngIf="showCollapseButton"
+          (click)="onCollapseClick()"
+          class="p-2 rounded-lg hover:bg-fill transition-colors lg:hidden">
+          <app-phosphor-icon
+            name="list"
+            [size]="20"
+            weight="bold"
+            color="currentColor">
+          </app-phosphor-icon>
+        </button>
+
         <!-- Logo -->
         <div class="flex items-center">
           <img src="assets/images/logo1.svg"
                alt="UniCourt Logo"
                class="h-8 w-auto" />
         </div>
-
-        <!-- Main Navigation (Desktop) - Removed navigation items -->
       </div>
 
-      <!-- Right Section: Help Button -->
-      <div class="flex items-center">
+      <!-- Right Section: User Profile + Notifications OR Help Button -->
+      <div class="flex items-center space-x-4">
+        
+        <!-- User Profile Variant -->
+        <div *ngIf="showUserProfile" class="flex items-center space-x-4">
+          
+          <!-- Notifications -->
+          <div class="relative">
+            <button
+              (click)="toggleNotifications()"
+              class="p-2 rounded-lg hover:bg-fill transition-colors relative">
+              <app-phosphor-icon
+                name="bell"
+                [size]="20"
+                weight="regular"
+                color="currentColor">
+              </app-phosphor-icon>
+              <!-- Notification Badge -->
+              <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+            </button>
+
+            <!-- Notifications Dropdown -->
+            <div *ngIf="isNotificationsOpen" 
+                 class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-stroke-weak z-50">
+              <div class="p-4 border-b border-stroke-weak">
+                <h3 class="text-sm font-semibold text-text-strong">Notifications</h3>
+              </div>
+              <div class="max-h-64 overflow-y-auto">
+                <div class="p-3 hover:bg-fill cursor-pointer border-b border-stroke-weak">
+                  <p class="text-sm text-text-strong">New case update available</p>
+                  <p class="text-xs text-text-weak mt-1">2 minutes ago</p>
+                </div>
+                <div class="p-3 hover:bg-fill cursor-pointer border-b border-stroke-weak">
+                  <p class="text-sm text-text-strong">Document uploaded successfully</p>
+                  <p class="text-xs text-text-weak mt-1">1 hour ago</p>
+                </div>
+                <div class="p-3 hover:bg-fill cursor-pointer">
+                  <p class="text-sm text-text-strong">Project deadline reminder</p>
+                  <p class="text-xs text-text-weak mt-1">3 hours ago</p>
+                </div>
+              </div>
+              <div class="p-3 border-t border-stroke-weak">
+                <button class="text-sm text-brand hover:text-blue-text-strong">View all notifications</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Profile -->
+          <div class="relative">
+            <button
+              (click)="toggleUserMenu()"
+              class="flex items-center space-x-3 p-2 rounded-lg hover:bg-fill transition-colors">
+              <div class="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
+                <app-phosphor-icon
+                  name="user"
+                  [size]="16"
+                  weight="bold"
+                  color="white">
+                </app-phosphor-icon>
+              </div>
+              <div class="hidden md:block text-left">
+                <p class="text-sm font-medium text-text-strong">Legal User</p>
+                <p class="text-xs text-text-weak">user&#64;unicourt.com</p>
+              </div>
+              <app-phosphor-icon
+                name="caret-down"
+                [size]="16"
+                weight="bold"
+                color="currentColor">
+              </app-phosphor-icon>
+            </button>
+
+            <!-- User Menu Dropdown -->
+            <div *ngIf="isUserMenuOpen" 
+                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-stroke-weak z-50">
+              <div class="py-2">
+                <a href="#" class="flex items-center px-4 py-2 text-sm text-text-strong hover:bg-fill">
+                  <app-phosphor-icon name="user" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+                  Profile
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm text-text-strong hover:bg-fill">
+                  <app-phosphor-icon name="gear" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+                  Settings
+                </a>
+                <hr class="my-2 border-stroke-weak">
+                <button (click)="onSignOut()" class="w-full flex items-center px-4 py-2 text-sm text-text-strong hover:bg-fill">
+                  <app-phosphor-icon name="sign-out" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Help Button (default variant) -->
         <button
+          *ngIf="!showUserProfile"
           (click)="onHelpClick()"
-          class="flex items-center space-x-2 px-4 py-2 border border-stroke-strong rounded-lg text-text-strong hover:bg-hover-bg focus:outline-none focus:ring-2 focus:ring-focus-ring transition-colors">
+          class="flex items-center space-x-2 px-4 py-2 border border-stroke-strong rounded-lg text-text-strong hover:bg-fill focus:outline-none focus:ring-2 focus:ring-brand transition-colors">
+          <app-phosphor-icon
+            name="question"
+            [size]="16"
+            weight="bold"
+            color="currentColor">
+          </app-phosphor-icon>
           <span class="text-sm font-medium">Need Help?</span>
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Overlay to close dropdowns -->
+  <div *ngIf="isUserMenuOpen || isNotificationsOpen" 
+       (click)="closeMenus()"
+       class="fixed inset-0 z-40"></div>
 </header>
 
