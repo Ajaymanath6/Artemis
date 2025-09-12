@@ -6,7 +6,7 @@ import { PhosphorIconComponent } from '../../components/ui/phosphor-icon/phospho
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, PhosphorIconComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.css'
 })

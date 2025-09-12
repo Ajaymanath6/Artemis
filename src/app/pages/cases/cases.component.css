@@ -4,6 +4,23 @@
   display: block;
 }
 
+/* Layout utilities */
+.h-\[calc\(100vh-4rem\)\] {
+  height: calc(100vh - 4rem);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
 /* Header styling */
 .text-3xl {
   font-size: 1.875rem;
