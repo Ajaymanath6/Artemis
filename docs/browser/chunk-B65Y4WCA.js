@@ -17,6 +17,18 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -28223,6 +28235,7 @@ function booleanOrUrlAttribute(value) {
 export {
   __spreadValues,
   __spreadProps,
+  __objRest,
   __export,
   Subscription,
   pipe,
@@ -28300,6 +28313,7 @@ export {
   APP_ID,
   PLATFORM_INITIALIZER,
   PLATFORM_ID,
+  ANIMATION_MODULE_TYPE,
   CSP_NONCE,
   TracingService,
   performanceMarkFeature,
@@ -28366,6 +28380,7 @@ export {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵProvidersFeature,
+  ɵɵpureFunction2,
   ɵɵpipe,
   ɵɵpipeBind1,
   ɵsetClassDebugInfo,
@@ -28397,6 +28412,7 @@ export {
   PathLocationStrategy,
   Location,
   HashLocationStrategy,
+  NgClass,
   NgForOf,
   NgIf,
   TitleCasePipe,
@@ -28439,4 +28455,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-T43XKO7X.js.map
+//# sourceMappingURL=chunk-B65Y4WCA.js.map

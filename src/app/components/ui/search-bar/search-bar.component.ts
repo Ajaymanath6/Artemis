@@ -1,13 +1,30 @@
 import { Component, EventEmitter, Output, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.css'],
+  animations: [
+    trigger('slideIn', [
+      state('out', style({
+        transform: 'translateX(100%)'
+      })),
+      state('in', style({
+        transform: 'translateX(0)'
+      })),
+      transition('out => in', [
+        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+      ]),
+      transition('in => out', [
+        animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+      ])
+    ])
+  ]
 })
 export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();

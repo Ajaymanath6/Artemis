@@ -1,10 +1,11 @@
 import {
   SearchBarComponent
-} from "./chunk-BI3V3TU4.js";
-import "./chunk-E4BREK47.js";
+} from "./chunk-SM73MB3V.js";
+import "./chunk-53JHYZBU.js";
+import "./chunk-EU5GNIRH.js";
 import {
   PhosphorIconComponent
-} from "./chunk-PSIVKUHD.js";
+} from "./chunk-VQXXG4MF.js";
 import {
   CommonModule,
   Component,
@@ -30,7 +31,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1
-} from "./chunk-T43XKO7X.js";
+} from "./chunk-B65Y4WCA.js";
 
 // src/app/pages/dashboard/dashboard.component.ts
 function DashboardComponent_div_20_Template(rf, ctx) {
@@ -370,4 +371,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-4MFPWSDE.js.map
+//# sourceMappingURL=chunk-NHK72V4D.js.map

@@ -146,7 +146,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-T43XKO7X.js";
+} from "./chunk-B65Y4WCA.js";
 
 // node_modules/@angular/platform-browser/fesm2022/dom_renderer-DGKzginR.mjs
 var EVENT_MANAGER_PLUGINS = new InjectionToken(ngDevMode ? "EventManagerPlugins" : "");
@@ -7583,7 +7583,9 @@ function provideRouterInitializer() {
 var VERSION2 = new Version("19.2.15");
 
 export {
+  DomRendererFactory2,
   bootstrapApplication,
+  BrowserModule,
   RouterOutlet,
   Router,
   provideRouter,
@@ -7603,4 +7605,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-IVA26WHO.js.map
+//# sourceMappingURL=chunk-MF67DGBZ.js.map

@@ -1,6 +1,6 @@
 import {
   Router
-} from "./chunk-IVA26WHO.js";
+} from "./chunk-MF67DGBZ.js";
 import {
   CommonModule,
   Component,
@@ -12,7 +12,7 @@ import {
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵtext
-} from "./chunk-T43XKO7X.js";
+} from "./chunk-B65Y4WCA.js";
 
 // src/app/pages/loading/loading.component.ts
 var LoadingComponent = class _LoadingComponent {
@@ -66,4 +66,4 @@ var LoadingComponent = class _LoadingComponent {
 export {
   LoadingComponent
 };
-//# sourceMappingURL=chunk-ABF4YSKA.js.map
+//# sourceMappingURL=chunk-2A2VJ5CK.js.map

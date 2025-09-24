@@ -104,22 +104,32 @@
     </div>
   </div>
 
-  <!-- Filter Side Panel - positioned relative to parent container -->
+  <!-- Filter Side Panel - full overlay -->
   <div 
-    *ngIf="isFilterPanelOpen"
-    class="fixed inset-0 z-50 overflow-hidden"
-    style="left: 206px; top: 64px;">
+    class="fixed inset-0 z-50 overflow-hidden transition-opacity duration-300"
+    [ngClass]="{
+      'opacity-100 pointer-events-auto': isFilterPanelOpen,
+      'opacity-0 pointer-events-none': !isFilterPanelOpen
+    }">
     
     <!-- Backdrop -->
     <div 
-      class="absolute inset-0 bg-gray-900 bg-opacity-10 transition-opacity"
+      class="absolute inset-0 bg-gray-900 bg-opacity-10 transition-opacity duration-300"
+      [ngClass]="{
+        'opacity-100': isFilterPanelOpen,
+        'opacity-0': !isFilterPanelOpen
+      }"
       (click)="closeFilterPanel()">
     </div>
     
     <!-- Side Panel -->
-    <div class="absolute right-0 top-0 h-full w-80 bg-white shadow-xl transform transition-all duration-300 ease-in-out"
-         [class.translate-x-0]="isFilterPanelOpen"
-         [class.translate-x-full]="!isFilterPanelOpen">
+    <div 
+      class="absolute right-0 top-0 h-full w-80 bg-white shadow-xl transition-transform duration-500 ease-out"
+      [ngClass]="{
+        'translate-x-0': isFilterPanelOpen,
+        'translate-x-full': !isFilterPanelOpen
+      }"
+      [@slideIn]="isFilterPanelOpen ? 'in' : 'out'">
       
       <!-- Panel Header -->
       <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
