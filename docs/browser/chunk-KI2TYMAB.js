@@ -1,6 +1,6 @@
 import {
   SearchBarComponent
-} from "./chunk-NX7YKP7S.js";
+} from "./chunk-AKBHH5PF.js";
 import "./chunk-PBPJDBEJ.js";
 import {
   PhosphorIconComponent
@@ -370,4 +370,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-QGYEP2QA.js.map
+//# sourceMappingURL=chunk-KI2TYMAB.js.map

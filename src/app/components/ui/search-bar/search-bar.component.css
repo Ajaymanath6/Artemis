@@ -122,8 +122,47 @@ input[type="radio"] {
 /* Additional Remix icons */
 .ri-sparkling-fill,
 .ri-user-line,
-.ri-vip-crown-line {
+.ri-flow-chart,
+.ri-arrow-down-s-line,
+.ri-arrow-right-long-line {
   font-size: 1.125rem;
+}
+
+/* Remove focus ring from search container */
+.focus-within\:ring-2:focus-within {
+  box-shadow: none;
+}
+
+/* Remove input focus styles completely */
+input:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Placeholder opacity */
+.placeholder-opacity-30::placeholder {
+  opacity: 0.3;
+}
+
+/* Button dimensions */
+.w-9 {
+  width: 2.25rem; /* 36px */
+}
+
+.h-9 {
+  height: 2.25rem; /* 36px */
+}
+
+/* Light border for dropdown */
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Text styling for arrow icon */
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 /* Text sizing */

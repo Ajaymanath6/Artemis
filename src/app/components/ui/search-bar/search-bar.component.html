@@ -3,26 +3,17 @@
   <!-- Main Search Container -->
   <div class="relative">
     <!-- Search Input Area -->
-    <div class="bg-white border border-stroke-weak rounded-lg focus-within:ring-2 focus-within:ring-focus-ring">
+    <div class="bg-white border border-stroke-weak rounded-lg">
       
       <!-- Top Section - Search Input -->
       <div class="flex items-center px-4 py-4">
         <div class="flex-1 relative">
-          <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-            <app-phosphor-icon
-              name="magnifying-glass"
-              [size]="20"
-              weight="bold"
-              color="#69718C">
-            </app-phosphor-icon>
-          </div>
-          
           <input
             type="text"
             [(ngModel)]="searchQuery"
             (keyup)="onKeyPress($event)"
             placeholder="Ask the researcher"
-            class="w-full pl-8 pr-4 py-2 bg-transparent focus:outline-none placeholder-text-weak text-lg border-none"
+            class="w-full pr-4 py-2 bg-transparent focus:outline-none placeholder-opacity-30 text-lg border-none"
           />
         </div>
       </div>
@@ -36,57 +27,52 @@
             class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0" 
             style="outline: none; border: #00000000;">
             <i class="ri-sparkling-fill text-lg" style="color: #147885;"></i>
-            <span class="underline text-sm font-medium">Pro</span>
-            <app-phosphor-icon
-              name="caret-down"
-              [size]="14"
-              weight="bold"
-              color="#353D59">
-            </app-phosphor-icon>
+            <span class="underline text-sm font-medium">Natural Language</span>
+            <i class="ri-arrow-down-s-line" style="color: #353D59; font-size: 14px;"></i>
           </button>
 
           <!-- Pro Dropdown -->
           <div 
             *ngIf="isProDropdownOpen"
-            class="absolute top-full left-0 mt-2 w-80 bg-white border border-stroke-weak rounded-lg shadow-lg z-50">
+            class="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
             
             <!-- Option 1 -->
-            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('basic')">
+            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('natural')">
               <div class="flex items-center space-x-3">
                 <div class="flex items-center space-x-3 flex-1">
-                  <i class="ri-user-line text-lg" style="color: #69718C;"></i>
+                  <i class="ri-sparkling-fill text-lg" style="color: #69718C;"></i>
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-text-strong">Basic Plan</h4>
-                    <p class="text-xs text-text-weak">Standard features and support</p>
+                    <h4 class="text-sm font-medium text-text-strong">Natural Language</h4>
+                    <p class="text-xs text-text-weak">Standard natural language processing</p>
                   </div>
                 </div>
                 <div class="flex items-center">
                   <input 
                     type="radio" 
                     name="proOption" 
-                    value="basic"
-                    [checked]="selectedProOption === 'basic'"
+                    value="natural"
+                    [checked]="selectedProOption === 'natural'"
                     class="w-4 h-4 text-brand focus:ring-brand border-gray-300">
                 </div>
               </div>
             </div>
 
             <!-- Option 2 -->
-            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('premium')">
+            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('advanced')">
               <div class="flex items-center space-x-3">
                 <div class="flex items-center space-x-3 flex-1">
-                  <i class="ri-vip-crown-line text-lg" style="color: #69718C;"></i>
+                  <i class="ri-flow-chart text-lg" style="color: #69718C;"></i>
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-text-strong">Premium Plan</h4>
-                    <p class="text-xs text-text-weak">Advanced features and priority support</p>
+                    <h4 class="text-sm font-medium text-text-strong">Advanced</h4>
+                    <p class="text-xs text-text-weak">Advanced AI features and capabilities</p>
                   </div>
                 </div>
                 <div class="flex items-center">
                   <input 
                     type="radio" 
                     name="proOption" 
-                    value="premium"
-                    [checked]="selectedProOption === 'premium'"
+                    value="advanced"
+                    [checked]="selectedProOption === 'advanced'"
                     class="w-4 h-4 text-brand focus:ring-brand border-gray-300">
                 </div>
               </div>
@@ -106,17 +92,9 @@
           <button 
             [disabled]="!searchQuery || searchQuery.trim().length === 0"
             (click)="onSearch()"
-            class="px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
-            [class]="searchQuery && searchQuery.trim().length > 0 ? 
-              'bg-brand text-white hover:bg-teal-700' : 
-              'text-white cursor-not-allowed'"
+            class="w-9 h-9 rounded-lg transition-colors flex items-center justify-center"
             [style.background-color]="searchQuery && searchQuery.trim().length > 0 ? '#147885' : 'rgba(20, 120, 133, 0.5)'">
-            <app-phosphor-icon
-              name="arrow-right"
-              [size]="16"
-              weight="bold"
-              color="white">
-            </app-phosphor-icon>
+            <i class="ri-arrow-right-long-line text-white text-lg"></i>
           </button>
         </div>
       </div>

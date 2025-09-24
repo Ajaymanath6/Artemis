@@ -35,14 +35,14 @@ var routes = [
     children: [
       {
         path: "",
-        loadComponent: () => import("./chunk-QGYEP2QA.js").then((m3) => m3.DashboardComponent)
+        loadComponent: () => import("./chunk-KI2TYMAB.js").then((m3) => m3.DashboardComponent)
       }
     ]
   },
   // Cases page
   {
     path: "cases",
-    loadComponent: () => import("./chunk-D3VWWEDP.js").then((m3) => m3.CasesComponent)
+    loadComponent: () => import("./chunk-BN77QRYD.js").then((m3) => m3.CasesComponent)
   },
   // Wildcard route - must be last
   { path: "**", redirectTo: "/dashboard" }
