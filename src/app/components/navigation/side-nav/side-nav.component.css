@@ -25,6 +25,10 @@ nav {
 }
 
 /* Width classes for responsive behavior */
+.w-sidebar {
+  width: 206px; /* Fixed width for large desktop screens */
+}
+
 .w-64 {
   width: 16rem; /* 256px */
 }
@@ -35,15 +39,19 @@ nav {
 
 /* Active state styling */
 .bg-brand {
-  background-color: #2F55D9;
+  background-color: #147885;
 }
 
 .text-brand {
-  color: #2F55D9;
+  color: #147885;
 }
 
 .bg-blue-fill {
   background-color: rgba(47, 85, 217, 0.05);
+}
+
+.bg-gray-light {
+  background-color: #f3f4f6;
 }
 
 /* Hover states */
@@ -52,7 +60,7 @@ nav {
 }
 
 .hover\:text-brand:hover {
-  color: #2F55D9;
+  color: #147885;
 }
 
 .hover\:text-text-strong:hover {
@@ -125,7 +133,7 @@ button {
 }
 
 button:focus {
-  outline: 2px solid #2F55D9;
+  outline: 2px solid #147885;
   outline-offset: 2px;
 }
 

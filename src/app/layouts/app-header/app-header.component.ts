@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PhosphorIconComponent } from '../../components/ui/phosphor-icon/phosphor-icon.component';
 
 @Component({
@@ -17,6 +17,8 @@ export class AppHeaderComponent implements OnInit {
   
   isUserMenuOpen = false;
   isNotificationsOpen = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -48,6 +50,17 @@ export class AppHeaderComponent implements OnInit {
     // Clear any stored data and redirect to login
     sessionStorage.clear();
     localStorage.clear();
-    window.location.href = '/Artemis/login';
+    
+    // Close the dropdown first
+    this.closeMenus();
+    
+    // Navigate to login page using Angular router
+    this.router.navigate(['/login']).then(() => {
+      console.log('Successfully navigated to login page');
+    }).catch((error) => {
+      console.error('Navigation to login failed:', error);
+      // Fallback to window location if router fails
+      window.location.href = '/Artemis/login';
+    });
   }
 }

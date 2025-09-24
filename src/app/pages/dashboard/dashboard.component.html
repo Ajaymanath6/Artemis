@@ -45,12 +45,33 @@
 
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <app-project-card
+        <div
           *ngFor="let project of recentProjects"
-          [project]="project"
-          (edit)="onEditProject($event)"
-          (view)="onViewProject($event)">
-        </app-project-card>
+          class="bg-white rounded-xl border border-stroke-weak p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          (click)="onViewProject(project.id)">
+          
+          <!-- Project Header -->
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-text-strong mb-2 line-clamp-2">{{ project.name }}</h3>
+              <p class="text-text-weak text-sm line-clamp-3">{{ project.description }}</p>
+            </div>
+          </div>
+          
+          <!-- Project Stats -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span 
+                class="px-2 py-1 text-xs font-medium rounded-full"
+                [class]="project.status === 'active' ? 'bg-green-100 text-green-800' : 
+                         project.status === 'completed' ? 'bg-blue-100 text-blue-800' : 
+                         'bg-gray-100 text-gray-800'">
+                {{ project.status | titlecase }}
+              </span>
+            </div>
+            <span class="text-sm text-text-weak">{{ project.caseCount }} cases</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -73,12 +94,40 @@
 
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <app-project-card
+        <div
           *ngFor="let project of pinnedProjects"
-          [project]="project"
-          (edit)="onEditProject($event)"
-          (view)="onViewProject($event)">
-        </app-project-card>
+          class="bg-white rounded-xl border border-stroke-weak p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          (click)="onViewProject(project.id)">
+          
+          <!-- Project Header -->
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-text-strong mb-2 line-clamp-2">{{ project.name }}</h3>
+              <p class="text-text-weak text-sm line-clamp-3">{{ project.description }}</p>
+            </div>
+            <app-phosphor-icon
+              name="pin"
+              [size]="16"
+              weight="bold"
+              color="#147885"
+              className="flex-shrink-0 ml-2">
+            </app-phosphor-icon>
+          </div>
+          
+          <!-- Project Stats -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span 
+                class="px-2 py-1 text-xs font-medium rounded-full"
+                [class]="project.status === 'active' ? 'bg-green-100 text-green-800' : 
+                         project.status === 'completed' ? 'bg-blue-100 text-blue-800' : 
+                         'bg-gray-100 text-gray-800'">
+                {{ project.status | titlecase }}
+              </span>
+            </div>
+            <span class="text-sm text-text-weak">{{ project.caseCount }} cases</span>
+          </div>
+        </div>
       </div>
     </div>
 

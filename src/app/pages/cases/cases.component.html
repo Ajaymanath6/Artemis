@@ -4,8 +4,7 @@
   <!-- App Header with User Profile -->
   <app-header 
     [showUserProfile]="true"
-    [showCollapseButton]="true"
-    (collapseToggle)="onToggleSideNav()">
+    [showCollapseButton]="false">
   </app-header>
   
   <!-- Main Layout Container -->
@@ -13,8 +12,6 @@
     
     <!-- Side Navigation -->
     <app-side-nav
-      [isCollapsed]="isSideNavCollapsed"
-      (toggleCollapse)="onToggleSideNav()"
       (itemClick)="onNavItemClick($event)">
     </app-side-nav>
     
@@ -24,24 +21,17 @@
 
         <!-- Header Section -->
         <div class="mb-8">
-          <h1 class="text-3xl font-bold text-text-strong mb-2">Cases</h1>
-          <p class="text-text-weak">Search and manage legal cases in your project.</p>
+          <!-- <h1 class="text-3xl font-bold text-text-strong mb-2">Cases</h1>
+          <p class="text-text-weak">Search and manage legal cases in your project.</p> -->
         </div>
 
         <!-- Search Section -->
         <div class="mb-8">
-          <div class="max-w-md">
-            <app-search-bar (search)="onSearch($event)"></app-search-bar>
-          </div>
+          <app-search-bar (search)="onSearch($event)"></app-search-bar>
         </div>
 
         <!-- Cases Content Area -->
-        <div class="bg-white rounded-xl border border-stroke-weak p-8">
-          <div class="text-center py-12">
-            <p class="text-text-weak text-lg">Cases functionality coming soon...</p>
-            <p class="text-text-weak mt-2">Use the search bar above to find cases.</p>
-          </div>
-        </div>
+        
 
       </div>
     </main>

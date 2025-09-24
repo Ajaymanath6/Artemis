@@ -1,44 +1,125 @@
 <!-- Search Bar Component -->
-<div class="relative w-full max-w-md">
-  <!-- Search Input -->
+<div class="w-4/5 mx-auto">
+  <!-- Main Search Container -->
   <div class="relative">
-    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-      <app-phosphor-icon
-        name="magnifying-glass"
-        [size]="20"
-        weight="bold"
-        color="currentColor"
-        className="text-text-weak">
-      </app-phosphor-icon>
+    <!-- Search Input Area -->
+    <div class="bg-white border border-stroke-weak rounded-lg focus-within:ring-2 focus-within:ring-focus-ring">
+      
+      <!-- Top Section - Search Input -->
+      <div class="flex items-center px-4 py-4">
+        <div class="flex-1 relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+            <app-phosphor-icon
+              name="magnifying-glass"
+              [size]="20"
+              weight="bold"
+              color="#69718C">
+            </app-phosphor-icon>
+          </div>
+          
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (keyup)="onKeyPress($event)"
+            placeholder="Ask the researcher"
+            class="w-full pl-8 pr-4 py-2 bg-transparent focus:outline-none placeholder-text-weak text-lg border-none"
+          />
+        </div>
+      </div>
+
+      <!-- Pro and Filter Section - Same Line -->
+      <div class="flex items-center justify-between px-4 pb-4 relative">
+        <!-- Pro Section -->
+        <div class="relative">
+          <button 
+            (click)="toggleProDropdown()"
+            class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0" 
+            style="outline: none; border: #00000000;">
+            <i class="ri-sparkling-fill text-lg" style="color: #147885;"></i>
+            <span class="underline text-sm font-medium">Pro</span>
+            <app-phosphor-icon
+              name="caret-down"
+              [size]="14"
+              weight="bold"
+              color="#353D59">
+            </app-phosphor-icon>
+          </button>
+
+          <!-- Pro Dropdown -->
+          <div 
+            *ngIf="isProDropdownOpen"
+            class="absolute top-full left-0 mt-2 w-80 bg-white border border-stroke-weak rounded-lg shadow-lg z-50">
+            
+            <!-- Option 1 -->
+            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('basic')">
+              <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-3 flex-1">
+                  <i class="ri-user-line text-lg" style="color: #69718C;"></i>
+                  <div class="flex-1">
+                    <h4 class="text-sm font-medium text-text-strong">Basic Plan</h4>
+                    <p class="text-xs text-text-weak">Standard features and support</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <input 
+                    type="radio" 
+                    name="proOption" 
+                    value="basic"
+                    [checked]="selectedProOption === 'basic'"
+                    class="w-4 h-4 text-brand focus:ring-brand border-gray-300">
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="px-4 py-3 hover:bg-gray-50 cursor-pointer" (click)="selectProOption('premium')">
+              <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-3 flex-1">
+                  <i class="ri-vip-crown-line text-lg" style="color: #69718C;"></i>
+                  <div class="flex-1">
+                    <h4 class="text-sm font-medium text-text-strong">Premium Plan</h4>
+                    <p class="text-xs text-text-weak">Advanced features and priority support</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <input 
+                    type="radio" 
+                    name="proOption" 
+                    value="premium"
+                    [checked]="selectedProOption === 'premium'"
+                    class="w-4 h-4 text-brand focus:ring-brand border-gray-300">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter and Search Section -->
+        <div class="flex items-center space-x-3">
+          <!-- Filter Section -->
+          <button class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0" style="outline: none; border: #00000000;">
+            <i class="ri-filter-line text-lg" style="color: #147885;"></i>
+            <span class="underline text-sm font-medium">Filter</span>
+          </button>
+
+          <!-- Search Button -->
+          <button 
+            [disabled]="!searchQuery || searchQuery.trim().length === 0"
+            (click)="onSearch()"
+            class="px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+            [class]="searchQuery && searchQuery.trim().length > 0 ? 
+              'bg-brand text-white hover:bg-teal-700' : 
+              'text-white cursor-not-allowed'"
+            [style.background-color]="searchQuery && searchQuery.trim().length > 0 ? '#147885' : 'rgba(20, 120, 133, 0.5)'">
+            <app-phosphor-icon
+              name="arrow-right"
+              [size]="16"
+              weight="bold"
+              color="white">
+            </app-phosphor-icon>
+          </button>
+        </div>
+      </div>
     </div>
-
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      (keyup)="onKeyPress($event)"
-      placeholder="Search projects, cases, attorneys..."
-      class="w-full pl-10 pr-10 py-3 border border-stroke-strong rounded-lg focus:outline-none focus:ring-2 focus:ring-focus-ring focus:border-transparent placeholder-text-weak bg-white"
-    />
-
-    <!-- Clear Button -->
-    <button
-      *ngIf="searchQuery"
-      (click)="clearSearch()"
-      class="absolute inset-y-0 right-0 pr-3 flex items-center">
-      <app-phosphor-icon
-        name="x"
-        [size]="20"
-        weight="bold"
-        color="currentColor"
-        className="text-text-weak hover:text-text-strong">
-      </app-phosphor-icon>
-    </button>
   </div>
-
-  <!-- Search Button -->
-  <button
-    (click)="onSearch()"
-    class="absolute right-2 top-2 px-4 py-1.5 bg-brand text-white rounded-md hover:bg-blue-text-strong focus:outline-none focus:ring-2 focus:ring-focus-ring transition-colors text-sm font-medium">
-    Search
-  </button>
 </div>

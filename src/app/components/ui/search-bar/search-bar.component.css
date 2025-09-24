@@ -2,25 +2,154 @@
 
 :host {
   display: block;
+  width: 100%;
+}
+
+/* Width utilities */
+.w-4\/5 {
+  width: 80%;
+}
+
+/* Enhanced search container */
+.focus-within\:ring-2:focus-within {
+  box-shadow: 0 0 0 2px rgba(20, 120, 133, 0.1);
 }
 
 /* Input focus effects */
 input:focus {
-  box-shadow: 0 0 0 3px rgba(47, 85, 217, 0.1);
+  outline: none;
+}
+
+/* Button hover effects */
+.hover\:bg-blue-600:hover {
+  background-color: #0F5F66;
+}
+
+/* Brand colors */
+.text-brand {
+  color: #147885;
+}
+
+.hover\:text-brand:hover {
+  color: #147885;
+}
+
+.bg-brand {
+  background-color: #147885;
+}
+
+/* Enhanced styling for search bar */
+.rounded-r-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.border-l {
+  border-left-width: 1px;
+}
+
+/* Border styling */
+.border-stroke-weak {
+  border-color: #ADB4CC;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-none {
+  border: none;
+}
+
+/* Text decoration */
+.underline {
+  text-decoration: underline;
+}
+
+/* Layout utilities */
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Spacing utilities */
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+/* Remix Icons styling */
+.ri-filter-line {
+  font-size: 1.125rem; /* 18px */
+}
+
+/* Secondary button styling */
+.border-0 {
+  border: none !important;
+  outline: none !important;
+}
+
+.border-0:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+/* Dropdown styling */
+.z-50 {
+  z-index: 50;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  accent-color: #147885;
+}
+
+/* Disabled button styling */
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+/* Additional Remix icons */
+.ri-sparkling-fill,
+.ri-user-line,
+.ri-vip-crown-line {
+  font-size: 1.125rem;
+}
+
+/* Text sizing */
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 /* Responsive adjustments */
-@media (max-width: 640px) {
-  .max-w-md {
-    max-width: 100%;
+@media (max-width: 768px) {
+  .w-4\/5 {
+    width: 95%;
+    padding: 0 1rem;
   }
-
-  input {
-    padding-right: 3rem;
+  
+  .flex {
+    flex-direction: column;
   }
-
-  .absolute.right-2 {
-    position: static;
+  
+  .border-l {
+    border-left: none;
+    border-top: 1px solid;
+  }
+  
+  .rounded-r-lg {
+    border-radius: 0.5rem;
     margin-top: 0.5rem;
     width: 100%;
   }

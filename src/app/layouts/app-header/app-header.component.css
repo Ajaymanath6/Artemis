@@ -1,5 +1,14 @@
 /* App Header Component Styles */
 
+/* Remove all shadows and ensure no hover effects create shadows */
+header {
+  box-shadow: none !important;
+}
+
+header:hover {
+  box-shadow: none !important;
+}
+
 /* Ensure dropdowns appear above other content */
 .z-50 {
   z-index: 50;
@@ -50,4 +59,22 @@
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Remove any button shadows on hover */
+button {
+  box-shadow: none !important;
+}
+
+button:hover {
+  box-shadow: none !important;
+}
+
+button:focus {
+  box-shadow: none !important;
+}
+
+/* Remove any div shadows that might appear */
+div:hover {
+  box-shadow: none !important;
 }

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/cases/cases.component.css"],
+  "sourcesContent": ["/* Cases Component Styles */\n\n:host {\n  display: block;\n}\n\n/* Layout utilities */\n.h-\\[calc\\(100vh-4rem\\)\\] {\n  height: calc(100vh - 4rem);\n}\n\n.flex {\n  display: flex;\n}\n\n.flex-1 {\n  flex: 1 1 0%;\n}\n\n.overflow-y-auto {\n  overflow-y: auto;\n}\n\n/* Header styling */\n.text-3xl {\n  font-size: 1.875rem;\n  line-height: 2.25rem;\n}\n\n/* Search bar container */\n.max-w-md {\n  max-width: 28rem;\n}\n\n/* Content area */\n.bg-white {\n  background-color: white;\n}\n\n.rounded-xl {\n  border-radius: 0.75rem;\n}\n\n.border {\n  border-width: 1px;\n}\n\n.border-stroke-weak {\n  border-color: #e5e7eb;\n}\n\n.p-8 {\n  padding: 2rem;\n}\n\n.py-12 {\n  padding-top: 3rem;\n  padding-bottom: 3rem;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-lg {\n  font-size: 1.125rem;\n  line-height: 1.75rem;\n}\n\n.mt-2 {\n  margin-top: 0.5rem;\n}\n"],
+  "mappings": ";AAEA;AACE,WAAS;AACX;AAGA,CAAC;AACC,UAAQ,KAAK,MAAM,EAAE;AACvB;AAEA,CAAC;AACC,WAAS;AACX;AAEA,CAAC;AACC,QAAM,EAAE,EAAE;AACZ;AAEA,CAAC;AACC,cAAY;AACd;AAGA,CAAC;AACC,aAAW;AACX,eAAa;AACf;AAGA,CAAC;AACC,aAAW;AACb;AAGA,CAAC;AACC,oBAAkB;AACpB;AAEA,CAAC;AACC,iBAAe;AACjB;AAEA,CAAC;AACC,gBAAc;AAChB;AAEA,CAAC;AACC,gBAAc;AAChB;AAEA,CAAC;AACC,WAAS;AACX;AAEA,CAAC;AACC,eAAa;AACb,kBAAgB;AAClB;AAEA,CAAC;AACC,cAAY;AACd;AAEA,CAAC;AACC,aAAW;AACX,eAAa;AACf;AAEA,CAAC;AACC,cAAY;AACd;",
+  "names": []
+}

@@ -1,40 +1,84 @@
 <!-- Login Page -->
-<div class="min-h-screen bg-white flex flex-col">
+<div class="min-h-screen bg-blue-fill flex flex-col">
   
-  <!-- App Header -->
+  <!-- App Header (without border) -->
   <app-header></app-header>
   
   <!-- Main Content -->
   <main class="flex-1 flex items-center justify-center px-4 py-12">
+    
     <div class="w-full max-w-md">
       
-      <!-- Logo Section -->
+      <!-- Header Section -->
       <div class="text-center mb-8">
-        <img src="assets/images/logo1.svg"
-             alt="UniCourt Logo"
-             class="h-12 w-auto mb-4 mx-auto" />
-        <h1 class="text-2xl font-bold text-text-strong">UniCourt</h1>
-        <p class="text-text-weak mt-1">Professional Legal Research Platform</p>
+        <h1 class="text-3xl font-bold text-text-strong mb-3">Log in or Sign up</h1>
+        <p class="text-text-weak text-lg">Get better legal insights with comprehensive case research, attorney analytics & more.</p>
       </div>
 
-      <!-- Auth Form -->
-      <div class="bg-white rounded-2xl shadow-lg border border-stroke-weak p-8">
-        <app-auth-form 
-          formType="login"
-          [isLoading]="false"
-          (socialLogin)="onSocialLogin($event)"
-          (formSubmit)="onFormSubmit($event)">
-        </app-auth-form>
+      <!-- Simple Login Form -->
+      <div class="bg-white rounded-2xl border border-stroke-weak p-8">
+        <form (ngSubmit)="onLogin()" class="space-y-6">
+          
+          <!-- Email Input -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-text-strong mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              name="email"
+              class="w-full px-4 py-3 border border-stroke-weak rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+              placeholder="Enter your email"
+              required>
+          </div>
+
+          <!-- Password Input -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-text-strong mb-2">Password</label>
+            <input
+              type="password"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              class="w-full px-4 py-3 border border-stroke-weak rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+              placeholder="Enter your password"
+              required>
+          </div>
+
+          <!-- Login Button -->
+          <button
+            type="submit"
+            class="w-full py-3 px-4 bg-brand text-white font-medium rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-brand transition-colors">
+            Log in
+          </button>
+
+          <!-- Social Login Buttons -->
+          <div class="mt-6">
+            <div class="text-center text-text-weak text-sm mb-4">or continue with</div>
+            <div class="grid grid-cols-2 gap-4">
+              <button
+                type="button"
+                (click)="onSocialLogin('google')"
+                class="flex items-center justify-center py-3 px-4 border border-stroke-weak rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand transition-colors">
+                <span class="text-sm font-medium">Google</span>
+              </button>
+              <button
+                type="button"
+                (click)="onSocialLogin('microsoft')"
+                class="flex items-center justify-center py-3 px-4 border border-stroke-weak rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand transition-colors">
+                <span class="text-sm font-medium">Microsoft</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
       </div>
 
       <!-- Additional Links -->
       <div class="text-center mt-6 space-y-2">
         <p class="text-sm text-text-weak">
-          Need help? 
-          <a href="#" class="text-brand hover:text-blue-text-weak">Contact Support</a>
-        </p>
-        <p class="text-xs text-text-weak">
-          © 2024 LegalScope. All rights reserved.
+          Have a question? 
+          <a href="#" class="text-brand hover:text-teal-600">Contact us</a>
         </p>
       </div>
 

@@ -1,5 +1,7 @@
 <!-- App Header - Top Navigation Bar -->
-<header class="bg-white border-b border-stroke-weak shadow-sm sticky top-0 z-50">
+<header class="bg-white sticky top-0 z-50" 
+        [class.border-b]="showUserProfile"
+        [class.border-stroke-weak]="showUserProfile">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       
@@ -49,7 +51,7 @@
 
             <!-- Notifications Dropdown -->
             <div *ngIf="isNotificationsOpen" 
-                 class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-stroke-weak z-50">
+                 class="absolute right-0 mt-2 w-80 bg-white rounded-lg border border-stroke-weak z-50">
               <div class="p-4 border-b border-stroke-weak">
                 <h3 class="text-sm font-semibold text-text-strong">Notifications</h3>
               </div>
@@ -100,7 +102,7 @@
 
             <!-- User Menu Dropdown -->
             <div *ngIf="isUserMenuOpen" 
-                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-stroke-weak z-50">
+                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-stroke-weak z-50">
               <div class="py-2">
                 <a href="#" class="flex items-center px-4 py-2 text-sm text-text-strong hover:bg-fill">
                   <app-phosphor-icon name="user" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
@@ -124,7 +126,7 @@
         <button
           *ngIf="!showUserProfile"
           (click)="onHelpClick()"
-          class="flex items-center space-x-2 px-4 py-2 border border-stroke-strong rounded-lg text-text-strong hover:bg-fill focus:outline-none focus:ring-2 focus:ring-brand transition-colors">
+          class="flex items-center space-x-2 px-4 py-2 border border-stroke-strong rounded-lg text-text-strong hover:bg-fill focus:outline-none transition-colors">
           <app-phosphor-icon
             name="question"
             [size]="16"

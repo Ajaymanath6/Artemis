@@ -5,9 +5,9 @@
   min-height: 100vh;
 }
 
-/* Form container shadow */
+/* Remove all shadows */
 .shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: none !important;
 }
 
 /* Logo animation on hover */
@@ -32,10 +32,13 @@ img {
   background: linear-gradient(135deg, #E6E8F2 0%, #F8F9FB 100%);
 }
 
-/* Form container hover effect */
+/* Form container - no hover effects */
+.bg-white {
+  box-shadow: none !important;
+}
+
 .bg-white:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: none !important;
 }
 
 /* Responsive adjustments */
@@ -49,7 +52,20 @@ img {
   }
 }
 
-/* Smooth transitions */
+/* Remove all shadows from any element */
 * {
-  transition: all 0.2s ease-in-out;
+  box-shadow: none !important;
+}
+
+*:hover {
+  box-shadow: none !important;
+}
+
+*:focus {
+  box-shadow: none !important;
+}
+
+/* Smooth transitions (without shadows) */
+* {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }

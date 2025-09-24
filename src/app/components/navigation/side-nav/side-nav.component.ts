@@ -19,9 +19,7 @@ export interface NavItem {
   styleUrl: './side-nav.component.css'
 })
 export class SideNavComponent {
-  @Input() isCollapsed = false;
   @Input() navItems: NavItem[] = [];
-  @Output() toggleCollapse = new EventEmitter<void>();
   @Output() itemClick = new EventEmitter<NavItem>();
 
   constructor(private router: Router) {
@@ -84,9 +82,7 @@ export class SideNavComponent {
     ];
   }
 
-  onToggleCollapse(): void {
-    this.toggleCollapse.emit();
-  }
+  // Removed collapse functionality
 
   onItemClick(item: NavItem): void {
     if (item.children) {
