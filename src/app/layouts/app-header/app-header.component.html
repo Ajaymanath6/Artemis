@@ -24,7 +24,8 @@
         <div class="flex items-center">
           <img src="assets/images/logo1.svg"
                alt="UniCourt Logo"
-               class="h-8 w-auto" />
+               class="h-8 w-auto" 
+               style="filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(160deg) brightness(90%) contrast(90%);" />
         </div>
       </div>
 
@@ -34,46 +35,7 @@
         <!-- User Profile Variant -->
         <div *ngIf="showUserProfile" class="flex items-center space-x-4">
           
-          <!-- Notifications -->
-          <div class="relative">
-            <button
-              (click)="toggleNotifications()"
-              class="p-2 rounded-lg hover:bg-fill transition-colors relative">
-              <app-phosphor-icon
-                name="bell"
-                [size]="20"
-                weight="regular"
-                color="currentColor">
-              </app-phosphor-icon>
-              <!-- Notification Badge -->
-              <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
-            </button>
-
-            <!-- Notifications Dropdown -->
-            <div *ngIf="isNotificationsOpen" 
-                 class="absolute right-0 mt-2 w-80 bg-white rounded-lg border border-stroke-weak z-50">
-              <div class="p-4 border-b border-stroke-weak">
-                <h3 class="text-sm font-semibold text-text-strong">Notifications</h3>
-              </div>
-              <div class="max-h-64 overflow-y-auto">
-                <div class="p-3 hover:bg-fill cursor-pointer border-b border-stroke-weak">
-                  <p class="text-sm text-text-strong">New case update available</p>
-                  <p class="text-xs text-text-weak mt-1">2 minutes ago</p>
-                </div>
-                <div class="p-3 hover:bg-fill cursor-pointer border-b border-stroke-weak">
-                  <p class="text-sm text-text-strong">Document uploaded successfully</p>
-                  <p class="text-xs text-text-weak mt-1">1 hour ago</p>
-                </div>
-                <div class="p-3 hover:bg-fill cursor-pointer">
-                  <p class="text-sm text-text-strong">Project deadline reminder</p>
-                  <p class="text-xs text-text-weak mt-1">3 hours ago</p>
-                </div>
-              </div>
-              <div class="p-3 border-t border-stroke-weak">
-                <button class="text-sm text-brand hover:text-blue-text-strong">View all notifications</button>
-              </div>
-            </div>
-          </div>
+          
 
           <!-- User Profile -->
           <div class="relative">
@@ -89,15 +51,10 @@
                 </app-phosphor-icon>
               </div>
               <div class="hidden md:block text-left">
-                <p class="text-sm font-medium text-text-strong">Legal User</p>
-                <p class="text-xs text-text-weak">user&#64;unicourt.com</p>
+                <p class="text-sm font-medium text-text-strong">Ajay</p>
+                <p class="text-xs text-text-weak">ajaym&#64;unicourt.com</p>
               </div>
-              <app-phosphor-icon
-                name="caret-down"
-                [size]="16"
-                weight="bold"
-                color="currentColor">
-              </app-phosphor-icon>
+              <i class="ri-arrow-down-s-line hidden md:block" style="color: #353D59; font-size: 14px;"></i>
             </button>
 
             <!-- User Menu Dropdown -->

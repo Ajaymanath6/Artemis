@@ -161,6 +161,11 @@ img {
   line-height: 1.75rem;
 }
 
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -169,6 +174,28 @@ img {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+/* Remix Icon styling */
+.ri-dashboard-line,
+.ri-folder-open-line,
+.ri-search-line,
+.ri-folder-line,
+.ri-user-line,
+.ri-scales-line,
+.ri-building-line,
+.ri-file-text-line,
+.ri-briefcase-line,
+.ri-bookmark-line,
+.ri-line-chart-line,
+.ri-notification-line,
+.ri-file-chart-line,
+.ri-settings-line,
+.ri-arrow-down-s-line,
+.ri-arrow-right-s-line {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
 }
 
 /* Font weights */
