@@ -3,17 +3,18 @@
   
   <!-- Search Type Selection -->
   <div class="mb-6">
-    <h2 class="text-xl font-bold text-gray-900 mb-4 uppercase">Search For</h2>
-    <div class="flex items-center space-x-6">
+    <h2 class="text-sm font-bold text-gray-900 mb-4 uppercase">Search For</h2>
+    <div class="flex items-center space-x-4">
       <button
         *ngFor="let type of searchTypes"
         (click)="selectSearchType(type)"
-        class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors border"
+        class="flex items-center space-x-2 h-9 px-4 py-3 rounded-lg transition-colors"
         [class]="selectedSearchType.id === type.id ? 
-          'bg-brand text-white border-brand' : 
-          'text-gray-700 hover:bg-gray-50 border-gray-300'">
-        <i [class]="'ri-' + type.icon + ' text-lg'"></i>
-        <span class="font-medium">{{ type.label }}</span>
+          'bg-gray-light text-gray-700' : 
+          'text-gray-700 hover:bg-gray-100'">
+        <i [class]="'ri-' + type.icon + ' text-base'" 
+           [style.color]="'#374151'"></i>
+        <span class="font-medium text-sm">{{ type.label }}</span>
       </button>
     </div>
   </div>

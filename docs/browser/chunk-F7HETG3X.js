@@ -1,6 +1,6 @@
 import {
   SearchBarComponent
-} from "./chunk-IN3Q27K6.js";
+} from "./chunk-52HNIJEH.js";
 import "./chunk-53JHYZBU.js";
 import "./chunk-EU5GNIRH.js";
 import {
@@ -371,4 +371,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-WLFZJND4.js.map
+//# sourceMappingURL=chunk-F7HETG3X.js.map

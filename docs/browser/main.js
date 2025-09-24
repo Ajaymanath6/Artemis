@@ -4207,14 +4207,14 @@ var routes = [
     children: [
       {
         path: "",
-        loadComponent: () => import("./chunk-WLFZJND4.js").then((m3) => m3.DashboardComponent)
+        loadComponent: () => import("./chunk-F7HETG3X.js").then((m3) => m3.DashboardComponent)
       }
     ]
   },
   // Cases page
   {
     path: "cases",
-    loadComponent: () => import("./chunk-ICFBW7PG.js").then((m3) => m3.CasesComponent)
+    loadComponent: () => import("./chunk-62HJ7GJ4.js").then((m3) => m3.CasesComponent)
   },
   // Wildcard route - must be last
   { path: "**", redirectTo: "/dashboard" }
