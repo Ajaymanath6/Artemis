@@ -81,6 +81,10 @@ nav {
   border-color: #ADB4CC;
 }
 
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
 /* Scrollbar styling */
 .overflow-y-auto::-webkit-scrollbar {
   width: 4px;
@@ -196,6 +200,16 @@ img {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
+}
+
+/* Hover effects */
+.hover\:bg-gray-100:hover {
+  background-color: #f3f4f6;
+}
+
+/* Collapsed width */
+.w-16 {
+  width: 4rem;
 }
 
 /* Font weights */

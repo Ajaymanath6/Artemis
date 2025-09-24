@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
+interface SearchType {
+  id: string;
+  label: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-search-bar',
   standalone: true,
@@ -33,6 +39,16 @@ export class SearchBarComponent {
   isProDropdownOpen: boolean = false;
   selectedProOption: string = 'natural';
   isFilterPanelOpen: boolean = false;
+  
+  searchTypes: SearchType[] = [
+    { id: 'cases', label: 'Cases', icon: 'folder-open-line' },
+    { id: 'attorneys', label: 'Attorneys', icon: 'user-line' },
+    { id: 'law-firms', label: 'Law Firms', icon: 'building-line' },
+    { id: 'judges', label: 'Judges', icon: 'scales-line' },
+    { id: 'parties', label: 'Parties', icon: 'team-line' }
+  ];
+  
+  selectedSearchType: SearchType = this.searchTypes[0]; // Default to Cases
 
   onSearch(): void {
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
@@ -49,6 +65,13 @@ export class SearchBarComponent {
   clearSearch(): void {
     this.searchQuery = '';
     this.search.emit('');
+  }
+  
+  selectSearchType(type: SearchType): void {
+    this.selectedSearchType = type;
+    console.log('Selected search type:', type);
+    // Update placeholder or search behavior based on type
+    // Frontend prototype - no backend integration
   }
 
   toggleProDropdown(): void {

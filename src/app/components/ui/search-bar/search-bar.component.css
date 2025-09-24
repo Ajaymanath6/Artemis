@@ -15,9 +15,12 @@
   box-shadow: 0 0 0 2px rgba(20, 120, 133, 0.1);
 }
 
-/* Input focus effects */
+/* Input focus effects - Remove all focus outlines and borders */
 input:focus {
-  outline: none;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  ring: none !important;
 }
 
 /* Button hover effects */
@@ -122,7 +125,13 @@ input[type="radio"] {
 /* Additional Remix icons */
 .ri-sparkling-fill,
 .ri-user-line,
-.ri-vip-crown-line {
+.ri-vip-crown-line,
+.ri-folder-open-line,
+.ri-building-line,
+.ri-scales-line,
+.ri-team-line,
+.ri-arrow-left-s-line,
+.ri-arrow-right-s-line {
   font-size: 1.125rem;
 }
 
@@ -130,6 +139,70 @@ input[type="radio"] {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+/* Search Type Button Styles */
+.space-x-6 > * + * {
+  margin-left: 1.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-gray-900 {
+  color: #111827;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.border-brand {
+  border-color: #147885;
+}
+
+.border-gray-300 {
+  border-color: #d1d5db;
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 /* Smooth Animation Styles */

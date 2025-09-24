@@ -20,6 +20,8 @@ export interface NavItem {
 export class SideNavComponent {
   @Input() navItems: NavItem[] = [];
   @Output() itemClick = new EventEmitter<NavItem>();
+  
+  isCollapsed: boolean = false;
 
   constructor(private router: Router) {
     // Default navigation items with appropriate Remix icons
@@ -89,9 +91,21 @@ export class SideNavComponent {
 
   // Removed collapse functionality
 
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+    // Close all expanded items when collapsing
+    if (this.isCollapsed) {
+      this.navItems.forEach(item => {
+        if (item.children) {
+          item.isExpanded = false;
+        }
+      });
+    }
+  }
+
   onItemClick(item: NavItem): void {
-    if (item.children) {
-      // Toggle expansion for items with children
+    if (item.children && !this.isCollapsed) {
+      // Toggle expansion for items with children (only when not collapsed)
       item.isExpanded = !item.isExpanded;
     } else if (item.route) {
       // Navigate to route

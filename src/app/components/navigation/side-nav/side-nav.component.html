@@ -1,5 +1,29 @@
 <!-- Side Navigation Component -->
-<nav class="bg-white border-r border-stroke-weak h-full flex flex-col w-sidebar">
+<nav class="bg-white border-r border-gray-200 h-full flex flex-col" 
+     [class.w-sidebar]="!isCollapsed" 
+     [class.w-16]="isCollapsed">
+
+  <!-- Header with Logo and Collapse Button -->
+  <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+    <!-- Logo -->
+    <div class="flex items-center" [class.hidden]="isCollapsed">
+      <img src="assets/images/logo1.svg"
+           alt="UniCourt Logo"
+           class="h-8 w-auto" 
+           style="filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(160deg) brightness(90%) contrast(90%);" />
+    </div>
+    
+    <!-- Collapse/Expand Button -->
+    <button
+      (click)="toggleCollapse()"
+      class="p-2 rounded-lg hover:bg-gray-100 transition-colors ml-auto">
+      <i 
+        [class]="isCollapsed ? 'ri-arrow-right-s-line' : 'ri-arrow-left-s-line'"
+        class="text-lg"
+        style="color: #9CA3AF;">
+      </i>
+    </button>
+  </div>
 
   <!-- Navigation Items -->
   <div class="flex-1 overflow-y-auto py-4">
@@ -21,19 +45,19 @@
               [style.color]="isActiveRoute(item.route || '') ? '#147885' : '#9CA3AF'">
             </i>
 
-            <!-- Label -->
-            <span class="ml-3 truncate">{{ item.label }}</span>
+            <!-- Label (hidden when collapsed) -->
+            <span class="ml-3 truncate" [class.hidden]="isCollapsed">{{ item.label }}</span>
 
-            <!-- Expand/Collapse Arrow (for items with children) -->
+            <!-- Expand/Collapse Arrow (for items with children, hidden when collapsed) -->
             <i
-              *ngIf="item.children"
+              *ngIf="item.children && !isCollapsed"
               [class]="'ri-arrow-' + (item.isExpanded ? 'down' : 'right') + '-s-line text-base ml-auto flex-shrink-0'"
               [style.color]="isActiveRoute(item.route || '') ? '#147885' : '#9CA3AF'">
             </i>
           </button>
 
-          <!-- Sub-navigation Items (when expanded) -->
-          <ul *ngIf="item.children && item.isExpanded"
+          <!-- Sub-navigation Items (when expanded and not collapsed) -->
+          <ul *ngIf="item.children && item.isExpanded && !isCollapsed"
               class="mt-1 ml-6 space-y-1">
             <li *ngFor="let child of item.children">
               <button
@@ -58,13 +82,13 @@
   </div>
 
   <!-- Navigation Footer -->
-  <div class="p-4 border-t border-stroke-weak">
+  <div class="p-4 border-t border-gray-200">
     <div class="flex items-center">
       <div class="flex items-center space-x-3">
         <div class="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
           <i class="ri-user-line text-base text-white"></i>
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="flex-1 min-w-0" [class.hidden]="isCollapsed">
           <p class="text-sm font-medium text-text-strong truncate">Legal User</p>
           <p class="text-xs text-text-weak truncate">user&#64;unicourt.com</p>
         </div>

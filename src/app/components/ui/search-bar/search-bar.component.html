@@ -1,5 +1,23 @@
 <!-- Search Bar Component -->
 <div class="w-4/5 mx-auto">
+  
+  <!-- Search Type Selection -->
+  <div class="mb-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-4 uppercase">Search For</h2>
+    <div class="flex items-center space-x-6">
+      <button
+        *ngFor="let type of searchTypes"
+        (click)="selectSearchType(type)"
+        class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors border"
+        [class]="selectedSearchType.id === type.id ? 
+          'bg-brand text-white border-brand' : 
+          'text-gray-700 hover:bg-gray-50 border-gray-300'">
+        <i [class]="'ri-' + type.icon + ' text-lg'"></i>
+        <span class="font-medium">{{ type.label }}</span>
+      </button>
+    </div>
+  </div>
+
   <!-- Main Search Container -->
   <div class="relative">
     <!-- Search Input Area -->
