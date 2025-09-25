@@ -1,5 +1,5 @@
 <!-- Side Navigation Component -->
-<nav class="bg-white border-r border-gray-200 h-screen flex flex-col" 
+<nav class="bg-white border-r border-gray-200 h-screen flex flex-col fixed left-0 top-0 z-40" 
      [class.w-sidebar]="!isCollapsed" 
      [class.w-16]="isCollapsed">
 
@@ -10,7 +10,7 @@
       <img src="assets/images/logo1.svg"
            alt="UniCourt Logo"
            class="h-8 w-auto" 
-           style="filter: brightness(0) saturate(100%) invert(30%) sepia(100%) saturate(500%) hue-rotate(160deg) brightness(90%) contrast(90%);" />
+           style="" />
     </div>
     
     <!-- Collapse/Expand Button -->
@@ -18,8 +18,7 @@
       (click)="toggleCollapse()"
       class="p-2 rounded-lg hover:bg-gray-100 transition-colors ml-auto">
       <i 
-        [class]="isCollapsed ? 'ri-arrow-right-s-line' : 'ri-arrow-left-s-line'"
-        class="text-lg"
+        class="ri-layout-right-line text-lg"
         style="color: #9CA3AF;">
       </i>
     </button>

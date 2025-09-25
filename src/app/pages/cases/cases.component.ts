@@ -15,6 +15,7 @@ export class CasesComponent implements OnInit {
   isSearching: boolean = false;
   hasSearched: boolean = false;
   skeletonCards = Array(10).fill(0); // Create array for 10 skeleton cards
+  isSidebarCollapsed: boolean = false;
   
   constructor() {}
 
@@ -33,5 +34,9 @@ export class CasesComponent implements OnInit {
 
   onNavItemClick(item: NavItem): void {
     console.log('Navigation item clicked:', item);
+  }
+
+  onSidebarToggle(): void {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 }

@@ -7,17 +7,12 @@
       
       <!-- Left Section: Logo + Brand + Collapse Button -->
       <div class="flex items-center space-x-4">
-        <!-- Sidebar Collapse Button (when enabled) -->
+        <!-- Sidebar Collapse Button (when sidebar is collapsed) -->
         <button
           *ngIf="showCollapseButton"
           (click)="onCollapseClick()"
-          class="p-2 rounded-lg hover:bg-fill transition-colors lg:hidden">
-          <app-phosphor-icon
-            name="list"
-            [size]="20"
-            weight="bold"
-            color="currentColor">
-          </app-phosphor-icon>
+          class="p-2 rounded-lg hover:bg-gray-50 transition-colors">
+          <i class="ri-layout-left-line text-lg" style="color: #9CA3AF;"></i>
         </button>
 
         <!-- Logo removed - moved to sidebar -->
@@ -35,7 +30,7 @@
           <div class="relative">
             <button
               (click)="toggleUserMenu()"
-              class="flex items-center space-x-3 p-2 rounded-lg hover:bg-fill transition-colors">
+              class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
               <div class="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
                 <app-phosphor-icon
                   name="user"

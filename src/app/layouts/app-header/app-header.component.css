@@ -78,3 +78,8 @@ button:focus {
 div:hover {
   box-shadow: none !important;
 }
+
+/* Hover background matching search bar buttons */
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}

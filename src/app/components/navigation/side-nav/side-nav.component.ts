@@ -13,15 +13,16 @@ export interface NavItem {
 
 @Component({
   selector: 'app-side-nav',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css'
 })
 export class SideNavComponent {
   @Input() navItems: NavItem[] = [];
+  @Input() isCollapsed: boolean = false;
   @Output() itemClick = new EventEmitter<NavItem>();
-  
-  isCollapsed: boolean = false;
+  @Output() sidebarToggle = new EventEmitter<void>();
 
   constructor(private router: Router) {
     // Default navigation items with appropriate Remix icons
@@ -92,7 +93,7 @@ export class SideNavComponent {
   // Removed collapse functionality
 
   toggleCollapse(): void {
-    this.isCollapsed = !this.isCollapsed;
+    this.sidebarToggle.emit();
     // Close all expanded items when collapsing
     if (this.isCollapsed) {
       this.navItems.forEach(item => {
