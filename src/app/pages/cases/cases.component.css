@@ -4,13 +4,74 @@
   display: block;
 }
 
+/* Cases page specific background */
+.bg-cases-page {
+  background-color: #f8f8f7;
+}
+
+/* Skeleton loading animations */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Skeleton card spacing */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+/* Skeleton elements */
+.w-18 {
+  width: 4.5rem;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-1\/3 {
+  width: 33.333333%;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+.bg-gray-200 {
+  background-color: #e5e7eb;
+}
+
+.bg-gray-300 {
+  background-color: #d1d5db;
+}
+
 /* Layout utilities */
-.h-\[calc\(100vh-4rem\)\] {
-  height: calc(100vh - 4rem);
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .flex {
   display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .flex-1 {

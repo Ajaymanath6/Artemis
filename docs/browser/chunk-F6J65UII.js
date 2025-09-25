@@ -1,8 +1,8 @@
 import {
   SearchBarComponent
-} from "./chunk-52HNIJEH.js";
+} from "./chunk-25ZXTJYY.js";
 import "./chunk-53JHYZBU.js";
-import "./chunk-EU5GNIRH.js";
+import "./chunk-IUM32HU6.js";
 import {
   PhosphorIconComponent
 } from "./chunk-VQXXG4MF.js";
@@ -171,7 +171,7 @@ var DashboardComponent = class _DashboardComponent {
   static \u0275fac = function DashboardComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _DashboardComponent)();
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DashboardComponent, selectors: [["app-dashboard"]], decls: 29, vars: 5, consts: [[1, "min-h-screen", "bg-fill"], [1, "max-w-7xl", "mx-auto", "px-4", "sm:px-6", "lg:px-8", "py-8"], [1, "mb-8"], [1, "text-3xl", "font-bold", "text-text-strong", "mb-2"], [1, "text-text-weak"], [1, "flex", "flex-col", "sm:flex-row", "gap-4", "mb-8"], [1, "flex-1"], [3, "search"], [1, "px-6", "py-3", "bg-brand", "text-white", "font-medium", "rounded-lg", "hover:bg-blue-text-strong", "focus:outline-none", "focus:ring-2", "focus:ring-focus-ring", "transition-colors", "flex", "items-center", "space-x-2", 3, "click"], ["name", "plus", "weight", "bold", 3, "size"], [1, "flex", "items-center", "space-x-3", "mb-6"], ["name", "clock", "weight", "bold", "color", "currentColor", "className", "text-text-strong", 3, "size"], [1, "text-xl", "font-semibold", "text-text-strong"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-3", "gap-6"], ["class", "bg-white rounded-xl border border-stroke-weak p-6 hover:shadow-lg transition-shadow cursor-pointer", 3, "click", 4, "ngFor", "ngForOf"], [1, "border-t", "border-stroke-weak", "my-8"], ["name", "pin", "weight", "bold", "color", "currentColor", "className", "text-text-strong", 3, "size"], [1, "bg-white", "rounded-xl", "border", "border-stroke-weak", "p-6", "hover:shadow-lg", "transition-shadow", "cursor-pointer", 3, "click"], [1, "flex", "items-start", "justify-between", "mb-4"], [1, "text-lg", "font-semibold", "text-text-strong", "mb-2", "line-clamp-2"], [1, "text-text-weak", "text-sm", "line-clamp-3"], [1, "flex", "items-center", "justify-between"], [1, "flex", "items-center", "space-x-2"], [1, "px-2", "py-1", "text-xs", "font-medium", "rounded-full"], [1, "text-sm", "text-text-weak"], ["name", "pin", "weight", "bold", "color", "#147885", "className", "flex-shrink-0 ml-2", 3, "size"]], template: function DashboardComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DashboardComponent, selectors: [["app-dashboard"]], decls: 29, vars: 5, consts: [[1, "min-h-screen", "bg-fill"], [1, "max-w-7xl", "mx-auto", "px-4", "sm:px-6", "lg:px-8", "py-8"], [1, "mb-8"], [1, "text-3xl", "font-bold", "text-text-strong", "mb-2"], [1, "text-text-weak"], [1, "flex", "flex-col", "sm:flex-row", "gap-4", "mb-8"], [1, "flex-1"], [3, "search"], [1, "px-6", "py-3", "bg-brand", "text-white", "font-medium", "rounded-lg", "hover:bg-blue-text-strong", "focus:outline-none", "focus:ring-2", "focus:ring-focus-ring", "transition-colors", "flex", "items-center", "space-x-2", 3, "click"], ["name", "plus", "weight", "bold", 3, "size"], [1, "flex", "items-center", "space-x-3", "mb-6"], ["name", "clock", "weight", "bold", "color", "currentColor", "className", "text-text-strong", 3, "size"], [1, "text-xl", "font-semibold", "text-text-strong"], [1, "grid", "grid-cols-1", "md:grid-cols-2", "lg:grid-cols-3", "gap-6"], ["class", "bg-white rounded-xl border border-stroke-weak p-6 hover:shadow-lg transition-shadow cursor-pointer", 3, "click", 4, "ngFor", "ngForOf"], [1, "border-t", "border-stroke-weak", "my-8"], ["name", "pin", "weight", "bold", "color", "currentColor", "className", "text-text-strong", 3, "size"], [1, "bg-white", "rounded-xl", "border", "border-stroke-weak", "p-6", "hover:shadow-lg", "transition-shadow", "cursor-pointer", 3, "click"], [1, "flex", "items-start", "justify-between", "mb-4"], [1, "text-lg", "font-semibold", "text-text-strong", "mb-2", "line-clamp-2"], [1, "text-text-weak", "text-sm", "line-clamp-3"], [1, "flex", "items-center", "justify-between"], [1, "flex", "items-center", "space-x-2"], [1, "px-2", "py-1", "text-xs", "font-medium", "rounded-full"], [1, "text-sm", "text-text-weak"], ["name", "pin", "weight", "bold", "color", "#146B85", "className", "flex-shrink-0 ml-2", 3, "size"]], template: function DashboardComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h1", 3);
       \u0275\u0275text(4, "Dashboard");
@@ -338,7 +338,7 @@ var DashboardComponent = class _DashboardComponent {
               name="pin"
               [size]="16"
               weight="bold"
-              color="#147885"
+              color="#146B85"
               className="flex-shrink-0 ml-2">
             </app-phosphor-icon>
           </div>
@@ -371,4 +371,4 @@ var DashboardComponent = class _DashboardComponent {
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-F7HETG3X.js.map
+//# sourceMappingURL=chunk-F6J65UII.js.map

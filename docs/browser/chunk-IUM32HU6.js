@@ -6506,6 +6506,7 @@ export {
   NgForm,
   NgModel,
   ɵNgNoValidate,
+  SelectControlValueAccessor,
   NgSelectOption,
   ɵNgSelectMultipleOption,
   RequiredValidator,
@@ -6520,4 +6521,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-EU5GNIRH.js.map
+//# sourceMappingURL=chunk-IUM32HU6.js.map

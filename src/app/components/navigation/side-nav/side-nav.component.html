@@ -1,5 +1,5 @@
 <!-- Side Navigation Component -->
-<nav class="bg-white border-r border-gray-200 h-full flex flex-col" 
+<nav class="bg-white border-r border-gray-200 h-screen flex flex-col" 
      [class.w-sidebar]="!isCollapsed" 
      [class.w-16]="isCollapsed">
 
@@ -42,7 +42,7 @@
             <!-- Icon -->
             <i 
               [class]="'ri-' + item.icon + ' text-lg flex-shrink-0'"
-              [style.color]="isActiveRoute(item.route || '') ? '#147885' : '#9CA3AF'">
+              [style.color]="isActiveRoute(item.route || '') ? '#146B85' : '#9CA3AF'">
             </i>
 
             <!-- Label (hidden when collapsed) -->
@@ -52,7 +52,7 @@
             <i
               *ngIf="item.children && !isCollapsed"
               [class]="'ri-arrow-' + (item.isExpanded ? 'down' : 'right') + '-s-line text-base ml-auto flex-shrink-0'"
-              [style.color]="isActiveRoute(item.route || '') ? '#147885' : '#9CA3AF'">
+              [style.color]="isActiveRoute(item.route || '') ? '#146B85' : '#9CA3AF'">
             </i>
           </button>
 
@@ -69,7 +69,7 @@
 
                 <i 
                   [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
-                  [style.color]="isActiveRoute(child.route || '') ? '#147885' : '#9CA3AF'">
+                  [style.color]="isActiveRoute(child.route || '') ? '#146B85' : '#9CA3AF'">
                 </i>
 
                 <span class="ml-3 truncate">{{ child.label }}</span>

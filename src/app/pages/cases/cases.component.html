@@ -1,21 +1,21 @@
 <!-- Cases Page with Layout -->
-<div class="min-h-screen bg-fill">
+<div class="flex min-h-screen">
   
-  <!-- App Header with User Profile -->
-  <app-header 
-    [showUserProfile]="true"
-    [showCollapseButton]="false">
-  </app-header>
+  <!-- Side Navigation - Full Height -->
+  <app-side-nav
+    (itemClick)="onNavItemClick($event)">
+  </app-side-nav>
   
-  <!-- Main Layout Container -->
-  <div class="flex h-[calc(100vh-4rem)]">
+  <!-- Main Content Area with Header -->
+  <div class="flex-1 flex flex-col bg-cases-page">
     
-    <!-- Side Navigation -->
-    <app-side-nav
-      (itemClick)="onNavItemClick($event)">
-    </app-side-nav>
+    <!-- App Header with User Profile -->
+    <app-header 
+      [showUserProfile]="true"
+      [showCollapseButton]="false">
+    </app-header>
     
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
@@ -31,7 +31,64 @@
         </div>
 
         <!-- Cases Content Area -->
-        
+        <div *ngIf="hasSearched" class="space-y-4">
+          <!-- Skeleton Loader Cards -->
+          <div *ngFor="let card of skeletonCards" 
+               class="bg-white rounded-lg border border-gray-200 p-6 animate-pulse">
+            
+            <!-- Heading with Left Icon -->
+            <div class="flex items-center mb-4">
+              <div class="w-6 h-6 bg-gray-300 rounded-full mr-3"></div>
+              <div class="h-6 bg-gray-300 rounded w-1\/3"></div>
+            </div>
+            
+            <!-- First Row: Badges -->
+            <div class="flex items-center space-x-2 mb-3">
+              <div class="h-6 bg-gray-200 rounded-full px-3 py-1 w-16"></div>
+              <div class="h-6 bg-gray-200 rounded-full px-3 py-1 w-20"></div>
+              <div class="h-6 bg-gray-200 rounded-full px-3 py-1 w-24"></div>
+            </div>
+            
+            <!-- Second Row: Badges with Content Same Line -->
+            <div class="flex items-center space-x-4 mb-3">
+              <div class="flex items-center space-x-2">
+                <div class="h-5 bg-gray-200 rounded-full w-12"></div>
+                <div class="h-5 bg-gray-300 rounded w-24"></div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="h-5 bg-gray-200 rounded-full w-16"></div>
+                <div class="h-5 bg-gray-300 rounded w-32"></div>
+              </div>
+            </div>
+            
+            <!-- Third Row: Another Badges with Content Same Line -->
+            <div class="flex items-center space-x-4 mb-3">
+              <div class="flex items-center space-x-2">
+                <div class="h-5 bg-gray-200 rounded-full w-14"></div>
+                <div class="h-5 bg-gray-300 rounded w-28"></div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="h-5 bg-gray-200 rounded-full w-18"></div>
+                <div class="h-5 bg-gray-300 rounded w-36"></div>
+              </div>
+            </div>
+            
+            <!-- Fourth Row: Badge Content Below -->
+            <div class="mb-2">
+              <div class="h-5 bg-gray-200 rounded-full w-20 mb-2"></div>
+              <div class="h-4 bg-gray-300 rounded w-full"></div>
+              <div class="h-4 bg-gray-300 rounded w-3\/4 mt-1"></div>
+            </div>
+            
+            <!-- Fifth Row: Badge Content Below -->
+            <div>
+              <div class="h-5 bg-gray-200 rounded-full w-24 mb-2"></div>
+              <div class="h-4 bg-gray-300 rounded w-full"></div>
+              <div class="h-4 bg-gray-300 rounded w-2\/3 mt-1"></div>
+            </div>
+            
+          </div>
+        </div>
 
       </div>
     </main>

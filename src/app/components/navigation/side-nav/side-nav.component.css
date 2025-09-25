@@ -37,13 +37,17 @@ nav {
   width: 4rem; /* 64px */
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 /* Active state styling */
 .bg-brand {
-  background-color: #147885;
+  background-color: #146B85;
 }
 
 .text-brand {
-  color: #147885;
+  color: #146B85;
 }
 
 .bg-blue-fill {
@@ -60,7 +64,7 @@ nav {
 }
 
 .hover\:text-brand:hover {
-  color: #147885;
+  color: #146B85;
 }
 
 .hover\:text-text-strong:hover {
@@ -137,7 +141,7 @@ button {
 }
 
 button:focus {
-  outline: 2px solid #147885;
+  outline: 2px solid #146B85;
   outline-offset: 2px;
 }
 

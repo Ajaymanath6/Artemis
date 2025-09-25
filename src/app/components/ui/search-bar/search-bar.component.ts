@@ -9,6 +9,57 @@ interface SearchType {
   icon: string;
 }
 
+interface CaseFilters {
+  caseName: string;
+  caseNumber: string;
+  filingDateFrom: string;
+  filingDateTo: string;
+  docketText: string;
+  docketDate: string;
+}
+
+interface JudgeFilters {
+  judgeName: string;
+  judgeAddress: string;
+  judgeEmail: string;
+}
+
+interface AttorneyFilters {
+  attorneyName: string;
+  barNumber: string;
+  attorneyEmail: string;
+  attorneyAddress: string;
+}
+
+interface PartyFilters {
+  partyName: string;
+  partyAddress: string;
+  partyRoleGroup: string;
+  partyEmail: string;
+  partyRole: string;
+}
+
+interface DocumentFilters {
+  documentName: string;
+  documentType: string;
+  documentDate: string;
+}
+
+interface OtherFilters {
+  court: string;
+  caseType: string;
+  caseStatus: string;
+}
+
+interface ExpandedSections {
+  case: boolean;
+  judge: boolean;
+  attorney: boolean;
+  party: boolean;
+  document: boolean;
+  other: boolean;
+}
+
 @Component({
   selector: 'app-search-bar',
   standalone: true,
@@ -49,10 +100,81 @@ export class SearchBarComponent {
   ];
   
   selectedSearchType: SearchType = this.searchTypes[0]; // Default to Cases
+  
+  // Filter properties
+  anywhereSearch: string = '';
+  
+  expandedSections: ExpandedSections = {
+    case: false,
+    judge: false,
+    attorney: false,
+    party: false,
+    document: false,
+    other: false
+  };
+  
+  caseFilters: CaseFilters = {
+    caseName: '',
+    caseNumber: '',
+    filingDateFrom: '',
+    filingDateTo: '',
+    docketText: '',
+    docketDate: ''
+  };
+  
+  judgeFilters: JudgeFilters = {
+    judgeName: '',
+    judgeAddress: '',
+    judgeEmail: ''
+  };
+  
+  attorneyFilters: AttorneyFilters = {
+    attorneyName: '',
+    barNumber: '',
+    attorneyEmail: '',
+    attorneyAddress: ''
+  };
+  
+  partyFilters: PartyFilters = {
+    partyName: '',
+    partyAddress: '',
+    partyRoleGroup: '',
+    partyEmail: '',
+    partyRole: ''
+  };
+  
+  documentFilters: DocumentFilters = {
+    documentName: '',
+    documentType: '',
+    documentDate: ''
+  };
+  
+  otherFilters: OtherFilters = {
+    court: '',
+    caseType: '',
+    caseStatus: ''
+  };
+  
+  // Store original filter values for cancel functionality
+  private originalFilters: any = {};
+  
+  // Filter counter for badge
+  activeFilterCount: number = 0;
+  
+  // Search state management
+  isSearching: boolean = false;
+  isSearchCollapsed: boolean = false;
 
   onSearch(): void {
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
+      this.isSearching = true;
+      this.isSearchCollapsed = true;
       this.search.emit(this.searchQuery);
+      
+      // Simulate search completion after 2 seconds
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
     }
   }
 
@@ -64,7 +186,14 @@ export class SearchBarComponent {
 
   clearSearch(): void {
     this.searchQuery = '';
+    this.isSearching = false;
+    this.isSearchCollapsed = false;
     this.search.emit('');
+  }
+  
+  expandSearchBar(): void {
+    this.isSearchCollapsed = false;
+    this.isSearching = false;
   }
   
   selectSearchType(type: SearchType): void {
@@ -85,22 +214,151 @@ export class SearchBarComponent {
   }
 
   toggleFilterPanel(): void {
+    if (!this.isFilterPanelOpen) {
+      // Store original filter values when opening and update count
+      this.storeOriginalFilters();
+      this.updateActiveFilterCount();
+    }
     this.isFilterPanelOpen = !this.isFilterPanelOpen;
   }
 
   closeFilterPanel(): void {
     this.isFilterPanelOpen = false;
   }
+  
+  toggleFilterSection(section: keyof ExpandedSections): void {
+    this.expandedSections[section] = !this.expandedSections[section];
+  }
+  
+  storeOriginalFilters(): void {
+    this.originalFilters = {
+      anywhereSearch: this.anywhereSearch,
+      caseFilters: { ...this.caseFilters },
+      judgeFilters: { ...this.judgeFilters },
+      attorneyFilters: { ...this.attorneyFilters },
+      partyFilters: { ...this.partyFilters },
+      documentFilters: { ...this.documentFilters },
+      otherFilters: { ...this.otherFilters }
+    };
+  }
+  
+  restoreOriginalFilters(): void {
+    if (this.originalFilters) {
+      this.anywhereSearch = this.originalFilters.anywhereSearch || '';
+      this.caseFilters = { ...this.originalFilters.caseFilters };
+      this.judgeFilters = { ...this.originalFilters.judgeFilters };
+      this.attorneyFilters = { ...this.originalFilters.attorneyFilters };
+      this.partyFilters = { ...this.originalFilters.partyFilters };
+      this.documentFilters = { ...this.originalFilters.documentFilters };
+      this.otherFilters = { ...this.originalFilters.otherFilters };
+    }
+  }
 
-  clearFilters(): void {
-    console.log('Clearing all filters');
-    // Frontend prototype - no backend integration
+  clearAllFilters(): void {
+    this.anywhereSearch = '';
+    this.caseFilters = {
+      caseName: '',
+      caseNumber: '',
+      filingDateFrom: '',
+      filingDateTo: '',
+      docketText: '',
+      docketDate: ''
+    };
+    this.judgeFilters = {
+      judgeName: '',
+      judgeAddress: '',
+      judgeEmail: ''
+    };
+    this.attorneyFilters = {
+      attorneyName: '',
+      barNumber: '',
+      attorneyEmail: '',
+      attorneyAddress: ''
+    };
+    this.partyFilters = {
+      partyName: '',
+      partyAddress: '',
+      partyRoleGroup: '',
+      partyEmail: '',
+      partyRole: ''
+    };
+    this.documentFilters = {
+      documentName: '',
+      documentType: '',
+      documentDate: ''
+    };
+    this.otherFilters = {
+      court: '',
+      caseType: '',
+      caseStatus: ''
+    };
+    
+    this.updateActiveFilterCount();
+    console.log('All filters cleared');
+  }
+  
+  updateActiveFilterCount(): void {
+    let count = 0;
+    
+    // Count anywhere search - only if not empty
+    if (this.anywhereSearch && this.anywhereSearch.trim()) count++;
+    
+    // Count case filters - only if not empty
+    Object.values(this.caseFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    // Count judge filters - only if not empty
+    Object.values(this.judgeFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    // Count attorney filters - only if not empty
+    Object.values(this.attorneyFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    // Count party filters - only if not empty
+    Object.values(this.partyFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    // Count document filters - only if not empty
+    Object.values(this.documentFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    // Count other filters - only if not empty
+    Object.values(this.otherFilters).forEach(value => {
+      if (value && value.toString().trim()) count++;
+    });
+    
+    this.activeFilterCount = count;
+  }
+  
+  resetFilters(): void {
+    this.clearAllFilters();
+    this.isFilterPanelOpen = false;
+    console.log('All filters reset');
   }
 
   applyFilters(): void {
-    console.log('Applying filters');
+    this.updateActiveFilterCount();
+    
+    console.log('Applying advanced filters:', {
+      anywhereSearch: this.anywhereSearch,
+      caseFilters: this.caseFilters,
+      judgeFilters: this.judgeFilters,
+      attorneyFilters: this.attorneyFilters,
+      partyFilters: this.partyFilters,
+      documentFilters: this.documentFilters,
+      otherFilters: this.otherFilters,
+      activeFilterCount: this.activeFilterCount
+    });
+    
     this.isFilterPanelOpen = false;
     // Frontend prototype - no backend integration
+    // In a real application, this would trigger a search with the applied filters
   }
 
   // Close dropdown when clicking outside

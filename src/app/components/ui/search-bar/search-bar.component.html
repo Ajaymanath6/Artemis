@@ -1,8 +1,8 @@
 <!-- Search Bar Component -->
-<div class="w-4/5 mx-auto">
+<div class="w-full mx-auto">
   
-  <!-- Search Type Selection -->
-  <div class="mb-6">
+  <!-- Search Type Selection - Only show when not collapsed -->
+  <div class="mb-6" *ngIf="!isSearchCollapsed">
     <h2 class="text-sm font-bold text-gray-900 mb-4 uppercase">Search For</h2>
     <div class="flex items-center space-x-4">
       <button
@@ -19,8 +19,23 @@
     </div>
   </div>
 
-  <!-- Main Search Container -->
-  <div class="relative">
+  <!-- Collapsed Search Bar -->
+  <div *ngIf="isSearchCollapsed" class="mb-8">
+    <div class="bg-white border border-stroke-weak rounded-lg px-4 py-3">
+      <div class="flex items-center justify-between">
+        <span class="text-gray-700 cursor-pointer" (click)="expandSearchBar()">{{ searchQuery }}</span>
+        <div class="flex items-center space-x-2">
+          <div *ngIf="isSearching" class="animate-spin rounded-full h-5 w-5 border-b-2 border-brand"></div>
+          <button (click)="clearSearch()" class="text-gray-500 hover:text-gray-700">
+            <i class="ri-close-line text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Search Container - Only show when not collapsed -->
+  <div class="relative" *ngIf="!isSearchCollapsed">
     <!-- Search Input Area -->
     <div class="bg-white border border-stroke-weak rounded-lg">
       
@@ -45,7 +60,7 @@
             (click)="toggleProDropdown()"
             class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50" 
             style="outline: none; border: #00000000;">
-            <i class="ri-sparkling-fill text-lg" style="color: #147885;"></i>
+            <i class="ri-sparkling-fill text-lg" style="color: #146B85;"></i>
             <span class="underline text-sm font-medium">Natural Language</span>
             <i class="ri-arrow-down-s-line" style="color: #353D59; font-size: 14px;"></i>
           </button>
@@ -104,10 +119,15 @@
           <!-- Filter Section -->
           <button 
             (click)="toggleFilterPanel()"
-            class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50" 
+            class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50 relative" 
             style="outline: none; border: #00000000;">
-            <i class="ri-filter-line text-lg" style="color: #147885;"></i>
+            <i class="ri-filter-line text-lg" style="color: #146B85;"></i>
             <span class="underline text-sm font-medium">Filter</span>
+            <span 
+              *ngIf="activeFilterCount > 0"
+              class="absolute -top-1 -right-1 bg-brand text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+              {{ activeFilterCount }}
+            </span>
           </button>
 
           <!-- Search Button -->
@@ -115,7 +135,7 @@
             [disabled]="!searchQuery || searchQuery.trim().length === 0"
             (click)="onSearch()"
             class="w-9 h-9 rounded-lg transition-colors flex items-center justify-center ml-3"
-            [style.background-color]="searchQuery && searchQuery.trim().length > 0 ? '#147885' : 'rgba(20, 120, 133, 0.5)'">
+            [style.background-color]="searchQuery && searchQuery.trim().length > 0 ? '#146B85' : 'rgba(20, 120, 133, 0.5)'">
             <i class="ri-arrow-right-long-line text-white text-lg"></i>
           </button>
         </div>
@@ -143,7 +163,7 @@
     
     <!-- Side Panel -->
     <div 
-      class="absolute right-0 top-0 h-full w-80 bg-white shadow-xl transition-transform duration-500 ease-out"
+      class="absolute right-0 top-0 h-full w-90 bg-white shadow-xl transition-transform duration-500 ease-out"
       [ngClass]="{
         'translate-x-0': isFilterPanelOpen,
         'translate-x-full': !isFilterPanelOpen
@@ -160,68 +180,208 @@
         </button>
       </div>
       
-      <!-- Panel Content -->
-      <div class="p-6">
-        <div class="space-y-6">
+      <!-- Panel Content - Filter Categories -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="space-y-4">
           
-          <!-- Date Range Filter -->
-          <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-3">Date Range</h3>
-            <div class="space-y-2">
-              <input 
-                type="date" 
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
-              <input 
-                type="date" 
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              <!-- Anywhere Keyword Search - Always Open -->
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-900 mb-3">"Anywhere" Keyword Search</h3>
+                <input 
+                  type="text" 
+                  [(ngModel)]="anywhereSearch"
+                  (input)="updateActiveFilterCount()"
+                  placeholder="Enter general search term..."
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              </div>
+
+          <!-- Case Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('case')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Case Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.case ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.case" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <input type="text" [(ngModel)]="caseFilters.caseName" (input)="updateActiveFilterCount()" placeholder="Case Name..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="caseFilters.caseNumber" (input)="updateActiveFilterCount()" placeholder="Case Number..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="date" [(ngModel)]="caseFilters.filingDateFrom" (input)="updateActiveFilterCount()" placeholder="Filing Date From..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="date" [(ngModel)]="caseFilters.filingDateTo" (input)="updateActiveFilterCount()" placeholder="Filing Date To..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="caseFilters.docketText" (input)="updateActiveFilterCount()" placeholder="Docket Text..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="date" [(ngModel)]="caseFilters.docketDate" (input)="updateActiveFilterCount()" placeholder="Docket Date..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              </div>
             </div>
           </div>
-          
-          <!-- Case Type Filter -->
-          <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-3">Case Type</h3>
-            <div class="space-y-2">
-              <label class="flex items-center">
-                <input type="checkbox" class="rounded border-gray-300 text-brand focus:ring-brand">
-                <span class="ml-2 text-sm text-gray-700">Civil</span>
-              </label>
-              <label class="flex items-center">
-                <input type="checkbox" class="rounded border-gray-300 text-brand focus:ring-brand">
-                <span class="ml-2 text-sm text-gray-700">Criminal</span>
-              </label>
-              <label class="flex items-center">
-                <input type="checkbox" class="rounded border-gray-300 text-brand focus:ring-brand">
-                <span class="ml-2 text-sm text-gray-700">Corporate</span>
-              </label>
+
+          <!-- Judge Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('judge')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Judge Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.judge ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.judge" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <input type="text" [(ngModel)]="judgeFilters.judgeName" (input)="updateActiveFilterCount()" placeholder="Judge Name..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="judgeFilters.judgeAddress" (input)="updateActiveFilterCount()" placeholder="Judge Address..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="email" [(ngModel)]="judgeFilters.judgeEmail" (input)="updateActiveFilterCount()" placeholder="Judge Email..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              </div>
             </div>
           </div>
-          
-          <!-- Jurisdiction Filter -->
-          <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-3">Jurisdiction</h3>
-            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
-              <option>All Jurisdictions</option>
-              <option>Federal</option>
-              <option>State</option>
-              <option>Local</option>
-            </select>
+
+          <!-- Attorney Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('attorney')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Attorney Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.attorney ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.attorney" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <input type="text" [(ngModel)]="attorneyFilters.attorneyName" (input)="updateActiveFilterCount()" placeholder="Attorney Name..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="attorneyFilters.barNumber" (input)="updateActiveFilterCount()" placeholder="Bar Number..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="email" [(ngModel)]="attorneyFilters.attorneyEmail" (input)="updateActiveFilterCount()" placeholder="Attorney Email..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="attorneyFilters.attorneyAddress" (input)="updateActiveFilterCount()" placeholder="Attorney Address..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              </div>
+            </div>
+          </div>
+
+          <!-- Party Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('party')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Party Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.party ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.party" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <input type="text" [(ngModel)]="partyFilters.partyName" (input)="updateActiveFilterCount()" placeholder="Party Name..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <input type="text" [(ngModel)]="partyFilters.partyAddress" (input)="updateActiveFilterCount()" placeholder="Party Address..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <select [(ngModel)]="partyFilters.partyRoleGroup" (change)="updateActiveFilterCount()" 
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                  <option value="">Select a rolegroup...</option>
+                  <option value="plaintiff">Plaintiff</option>
+                  <option value="defendant">Defendant</option>
+                  <option value="witness">Witness</option>
+                </select>
+                <input type="email" [(ngModel)]="partyFilters.partyEmail" (input)="updateActiveFilterCount()" placeholder="Party Email..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <select [(ngModel)]="partyFilters.partyRole" (change)="updateActiveFilterCount()" 
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                  <option value="">Select a role...</option>
+                  <option value="lead">Lead</option>
+                  <option value="co-counsel">Co-Counsel</option>
+                  <option value="local-counsel">Local Counsel</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('document')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Document Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.document ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.document" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <input type="text" [(ngModel)]="documentFilters.documentName" (input)="updateActiveFilterCount()" placeholder="Document Name..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                <select [(ngModel)]="documentFilters.documentType" (change)="updateActiveFilterCount()" 
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                  <option value="">Select Document Type...</option>
+                  <option value="motion">Motion</option>
+                  <option value="brief">Brief</option>
+                  <option value="order">Order</option>
+                  <option value="transcript">Transcript</option>
+                </select>
+                <input type="date" [(ngModel)]="documentFilters.documentDate" (input)="updateActiveFilterCount()" placeholder="Document Date..." 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Filters -->
+          <div class="border border-gray-200 rounded-lg">
+            <button 
+              (click)="toggleFilterSection('other')"
+              class="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span class="text-sm font-medium text-gray-900">Other Filters</span>
+              <i [class]="'ri-arrow-' + (expandedSections.other ? 'up' : 'down') + '-s-line text-lg text-gray-500'"></i>
+            </button>
+            <div *ngIf="expandedSections.other" class="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+              <div class="space-y-3 pt-3">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Court Filters</label>
+                  <select [(ngModel)]="otherFilters.court" (change)="updateActiveFilterCount()" 
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                    <option value="">Select Court...</option>
+                    <option value="district">District Court</option>
+                    <option value="appellate">Appellate Court</option>
+                    <option value="supreme">Supreme Court</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Case Type</label>
+                  <select [(ngModel)]="otherFilters.caseType" (change)="updateActiveFilterCount()" 
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                    <option value="">Select Case Type...</option>
+                    <option value="civil">Civil</option>
+                    <option value="criminal">Criminal</option>
+                    <option value="corporate">Corporate</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Case Status</label>
+                  <select [(ngModel)]="otherFilters.caseStatus" (change)="updateActiveFilterCount()" 
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                    <option value="">Select Status...</option>
+                    <option value="active">Active</option>
+                    <option value="closed">Closed</option>
+                    <option value="pending">Pending</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           
         </div>
       </div>
       
-      <!-- Panel Footer -->
-      <div class="absolute bottom-0 left-0 right-0 px-6 py-4 border-t border-gray-200 bg-white">
+      <!-- Panel Footer - Action Buttons -->
+      <div class="px-6 py-4 border-t border-gray-200 bg-white">
         <div class="flex space-x-3">
           <button 
-            (click)="clearFilters()"
-            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
-            Clear All
+            (click)="resetFilters()"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium">
+            Reset
           </button>
           <button 
             (click)="applyFilters()"
-            class="flex-1 px-4 py-2 bg-brand text-white rounded-lg hover:bg-teal-700 transition-colors">
-            Apply Filters
+            class="flex-1 px-4 py-2 bg-brand text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium">
+            Apply {{ activeFilterCount > 0 ? '(' + activeFilterCount + ')' : '' }}
           </button>
         </div>
       </div>

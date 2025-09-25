@@ -12,13 +12,23 @@ import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/
   styleUrls: ['./cases.component.css']
 })
 export class CasesComponent implements OnInit {
+  isSearching: boolean = false;
+  hasSearched: boolean = false;
+  skeletonCards = Array(10).fill(0); // Create array for 10 skeleton cards
+  
   constructor() {}
 
   ngOnInit(): void {}
 
   onSearch(query: string): void {
     console.log('Searching cases for:', query);
-    // Implement case search functionality
+    this.isSearching = true;
+    this.hasSearched = true;
+    
+    // Simulate search with loading
+    setTimeout(() => {
+      this.isSearching = false;
+    }, 2000);
   }
 
   onNavItemClick(item: NavItem): void {
