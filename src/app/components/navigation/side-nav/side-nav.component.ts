@@ -28,74 +28,23 @@ export class SideNavComponent {
     // Default navigation items with appropriate Remix icons
     this.navItems = [
       {
-        id: 'project',
-        label: 'NY Judgment Tracking',
-        icon: 'folder-open-fill',
-        children: [
-          { id: 'project-overview', label: 'Project Overview', icon: 'eye-line', route: '/project/overview' },
-          { id: 'project-settings', label: 'Project Settings', icon: 'settings-3-line', route: '/project/settings' },
-          { id: 'project-members', label: 'Team Members', icon: 'team-line', route: '/project/members' }
-        ]
-      },
-      {
-        id: 'dashboard',
-        label: 'Dashboard',
-        icon: 'dashboard-line',
+        id: 'all-projects',
+        label: 'All Projects',
+        icon: 'folders-line',
         route: '/dashboard'
       },
       {
-        id: 'cases',
-        label: 'Cases',
-        icon: 'folder-open-line',
-        route: '/cases'
-      },
-      {
-        id: 'search',
-        label: 'Advanced Search',
-        icon: 'search-line',
+        id: 'project',
+        label: 'NY Judgment Tracking',
+        icon: 'folder-open-fill',
+        isExpanded: true,
         children: [
-          { id: 'search-cases', label: 'Cases', icon: 'folder-line', route: '/search/cases' },
-          { id: 'search-attorneys', label: 'Attorneys', icon: 'user-line', route: '/search/attorneys' },
-          { id: 'search-judges', label: 'Judges', icon: 'scales-line', route: '/search/judges' },
-          { id: 'search-law-firms', label: 'Law Firms', icon: 'building-line', route: '/search/law-firms' },
-          { id: 'search-documents', label: 'Documents', icon: 'file-text-line', route: '/search/documents' }
+          { id: 'project-home', label: 'Project Home', icon: 'home-line', route: '/cases' },
+          { id: 'project-search', label: 'Search', icon: 'search-line', route: '/project/search' },
+          { id: 'project-tracking', label: 'Tracking', icon: 'time-line', route: '/tracking' },
+          { id: 'project-bookmarks', label: 'Bookmarks', icon: 'bookmark-line', route: '/bookmarks' },
+          { id: 'project-manage', label: 'Manage Project', icon: 'edit-line', route: '/project/manage' }
         ]
-      },
-      {
-        id: 'projects',
-        label: 'Projects',
-        icon: 'briefcase-line',
-        route: '/projects'
-      },
-      {
-        id: 'bookmarks',
-        label: 'Saved Items',
-        icon: 'bookmark-line',
-        route: '/bookmarks'
-      },
-      {
-        id: 'analytics',
-        label: 'Analytics',
-        icon: 'line-chart-line',
-        route: '/analytics'
-      },
-      {
-        id: 'notifications',
-        label: 'Notifications',
-        icon: 'notification-line',
-        route: '/notifications'
-      },
-      {
-        id: 'reports',
-        label: 'Reports',
-        icon: 'file-chart-line',
-        route: '/reports'
-      },
-      {
-        id: 'settings',
-        label: 'Settings',
-        icon: 'settings-line',
-        route: '/settings'
       }
     ];
   }

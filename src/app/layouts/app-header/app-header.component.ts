@@ -37,12 +37,22 @@ export class AppHeaderComponent implements OnInit {
 
   onProjectClick(): void {
     this.projectClick.emit();
+    this.scrollToSearchBar();
     console.log('Project clicked:', this.projectName);
   }
 
   onSearchQueryClick(): void {
     this.searchQueryClick.emit();
+    this.scrollToSearchBar();
     console.log('Search query clicked:', this.searchQuery);
+  }
+
+  private scrollToSearchBar(): void {
+    // Scroll to top of the page where search bar is located
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   toggleUserMenu(): void {

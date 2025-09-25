@@ -1,8 +1,8 @@
-<!-- App Header - Top Navigation Bar -->
+<!-- App Header - Sticky Top Navigation Bar -->
 <header class="bg-white sticky top-0 z-50" 
         [class.border-b]="showUserProfile"
         [class.border-stroke-weak]="showUserProfile">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="px-8">
     <div class="flex items-center justify-between h-16">
       
       <!-- Left Section: Collapse Button + Project Title + Search Query -->
@@ -21,7 +21,7 @@
           <button 
             *ngIf="projectName"
             (click)="onProjectClick()"
-            class="text-gray-600 hover:text-brand transition-colors focus:outline-none font-medium truncate">
+            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate">
             {{ projectName }}
           </button>
           
@@ -32,7 +32,7 @@
           <button 
             *ngIf="searchQuery"
             (click)="onSearchQueryClick()"
-            class="text-gray-900 hover:text-brand transition-colors focus:outline-none font-normal truncate">
+            class="text-gray-900 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-normal truncate">
             {{ searchQuery }}
           </button>
           

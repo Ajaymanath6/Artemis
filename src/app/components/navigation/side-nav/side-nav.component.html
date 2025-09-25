@@ -27,21 +27,17 @@
 
   <!-- Navigation Items -->
   <div class="flex-1 overflow-y-auto py-4">
-    <ul class="space-y-1" [class.px-3]="!isCollapsed" [class.px-1]="isCollapsed">
+    <ul class="space-y-2" [class.px-3]="!isCollapsed" [class.px-2]="isCollapsed">
       <li *ngFor="let item of navItems">
 
         <!-- Main Navigation Item -->
         <div>
           <button
             (click)="onItemClick(item)"
-            class="w-full flex items-center text-sm font-medium rounded-lg transition-colors group"
+            class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group"
             [class]="isActiveRoute(item.route || '') ?
               'bg-gray-light text-text-strong' :
               'text-text-strong hover:bg-fill hover:text-brand'"
-            [class.px-3]="!isCollapsed"
-            [class.py-2]="!isCollapsed"
-            [class.px-2]="isCollapsed"
-            [class.py-2]="isCollapsed"
             [class.justify-center]="isCollapsed">
 
             <!-- Icon -->
@@ -63,7 +59,7 @@
 
           <!-- Sub-navigation Items (when expanded and not collapsed) -->
           <ul *ngIf="item.children && item.isExpanded && !isCollapsed"
-              class="mt-1 ml-6 space-y-1">
+              class="mt-2 ml-6 space-y-1">
             <li *ngFor="let child of item.children">
               <button
                 (click)="onItemClick(child)"

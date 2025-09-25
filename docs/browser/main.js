@@ -4193,7 +4193,7 @@ var routes = [
   // Authentication routes
   {
     path: "login",
-    loadComponent: () => import("./chunk-U7RYNNP6.js").then((m3) => m3.LoginComponent)
+    loadComponent: () => import("./chunk-WGSP45ZU.js").then((m3) => m3.LoginComponent)
   },
   // Loading page for authentication
   {
@@ -4203,7 +4203,7 @@ var routes = [
   // Dashboard routes with layout
   {
     path: "dashboard",
-    loadComponent: () => import("./chunk-UNT6LRIN.js").then((m3) => m3.DashboardLayoutComponent),
+    loadComponent: () => import("./chunk-XGF6QVQJ.js").then((m3) => m3.DashboardLayoutComponent),
     children: [
       {
         path: "",
@@ -4214,7 +4214,7 @@ var routes = [
   // Cases page
   {
     path: "cases",
-    loadComponent: () => import("./chunk-UA2AFQM7.js").then((m3) => m3.CasesComponent)
+    loadComponent: () => import("./chunk-UD2OCA6P.js").then((m3) => m3.CasesComponent)
   },
   // Wildcard route - must be last
   { path: "**", redirectTo: "/dashboard" }

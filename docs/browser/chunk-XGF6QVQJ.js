@@ -1,6 +1,6 @@
 import {
   AppHeaderComponent
-} from "./chunk-TYKDBJTZ.js";
+} from "./chunk-3RNL552V.js";
 import {
   RouterOutlet
 } from "./chunk-5EKLBSZZ.js";
@@ -49,4 +49,4 @@ var DashboardLayoutComponent = class _DashboardLayoutComponent {
 export {
   DashboardLayoutComponent
 };
-//# sourceMappingURL=chunk-UNT6LRIN.js.map
+//# sourceMappingURL=chunk-XGF6QVQJ.js.map

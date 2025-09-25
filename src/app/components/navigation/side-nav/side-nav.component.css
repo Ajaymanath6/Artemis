@@ -207,20 +207,13 @@ img {
 }
 
 /* Remix Icon styling */
-.ri-dashboard-line,
-.ri-folder-open-line,
+.ri-folders-line,
+.ri-folder-open-fill,
+.ri-home-line,
 .ri-search-line,
-.ri-folder-line,
-.ri-user-line,
-.ri-scales-line,
-.ri-building-line,
-.ri-file-text-line,
-.ri-briefcase-line,
+.ri-time-line,
 .ri-bookmark-line,
-.ri-line-chart-line,
-.ri-notification-line,
-.ri-file-chart-line,
-.ri-settings-line,
+.ri-edit-line,
 .ri-arrow-down-s-line,
 .ri-arrow-right-s-line {
   font-style: normal;
