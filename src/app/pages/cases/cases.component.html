@@ -13,7 +13,7 @@
     [isSidebarCollapsed]="isSidebarCollapsed"
     [projectName]="projectName"
     [currentSearchQuery]="currentSearchQuery"
-    [hasSearched]="hasSearched"
+    [hasSearched]="hasSearched && !isSearchBarExpanded"
     (sidebarToggle)="onSidebarToggle()"
     (projectClick)="onProjectClick()"
     (searchQueryClick)="onSearchQueryClick()"
@@ -23,12 +23,12 @@
   
   <!-- Main Content Area -->
   <div class="flex flex-col min-h-screen pt-header-height bg-cases-page" 
-       [class.ml-sidebar]="!isSidebarCollapsed" 
-       [class.ml-16]="isSidebarCollapsed">
-
+           [class.ml-sidebar]="!isSidebarCollapsed" 
+           [class.ml-16]="isSidebarCollapsed">
+  
 
     <!-- Empty State (when no search performed) -->
-    <div *ngIf="!hasSearched" class="flex-1 bg-cases-page flex items-center justify-center min-h-empty-state">
+    <div *ngIf="!hasSearched && !isSearchBarExpanded" class="flex-1 bg-cases-page flex items-center justify-center min-h-empty-state">
       <div class="text-center">
         <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-gray-100 mb-6">
           <i class="ri-search-line text-2xl text-gray-400"></i>
@@ -37,15 +37,15 @@
         <p class="text-gray-500 mb-8 max-w-sm mx-auto">
           Enter your search terms above to find cases, attorneys, law firms, judges, or parties.
         </p>
-      </div>
-    </div>
+          </div>
+        </div>
 
     <!-- Results Section (scrollable) -->
     <app-cases-layout 
       *ngIf="hasSearched"
       [viewMode]="viewMode"
       (viewModeChange)="toggleViewMode($event)">
-      <!-- Cases Content Area -->
+        <!-- Cases Content Area -->
           
           <!-- Skeleton Loader Cards (while loading) -->
           <div *ngIf="isSearching">
@@ -82,7 +82,7 @@
                   <div class="w-4 h-4 bg-gray-300 rounded"></div>
                   <div class="h-4 bg-gray-300 rounded w-10"></div>
                   <div class="h-4 bg-gray-300 rounded w-24"></div>
-                </div>
+              </div>
                 <div class="flex items-center space-x-2">
                   <div class="w-4 h-4 bg-gray-300 rounded"></div>
                   <div class="h-4 bg-gray-300 rounded w-10"></div>
@@ -104,359 +104,359 @@
             <!-- Result Card 1 -->
             <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
                   AMBER LAUREL BAPTISTE VS MICHAEL LEWIS GOGUEN
                 </h3>
               </div>
-              <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
-                  </div>
-                </span>
-              </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">CIV537691</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">California Superior Courts - San Mateo County Superior Court</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">8 March 2016</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Civil</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Judgment Entered</span></div>
               </div>
+              <div class="flex flex-wrap gap-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-check-line text-sm mr-2"></i>STATUS
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-government-line text-sm mr-2"></i>COURT
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  </div>
+                </span>
+              </div>
             </div>
 
             <!-- Result Card 2 -->
             <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
                   JOHNSON MANUFACTURING INC VS STATE OF NEW YORK
                 </h3>
               </div>
-              <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
-                  </div>
-                </span>
-              </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">COM892345</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">New York State Supreme Court - Commercial Division</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">15 January 2017</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Commercial</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">In Progress</span></div>
               </div>
+              <div class="flex flex-wrap gap-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-check-line text-sm mr-2"></i>STATUS
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-government-line text-sm mr-2"></i>COURT
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  </div>
+                </span>
+              </div>
             </div>
 
             <!-- Result Cards 3-10 (simplified for brevity) -->
             <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">WILSON ESTATES LLC VS CITY PLANNING COMMISSION</h3>
               </div>
-              <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
-                  </div>
-                </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
-                  </div>
-                </span>
-              </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">ADM778912</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Administrative Court - Planning Division</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">22 September 2018</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Administrative</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Closed</span></div>
               </div>
-            </div>
-
-            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
-              <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
-                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">MARTINEZ FAMILY TRUST VS THOMPSON HOLDINGS</h3>
-              </div>
-              <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex flex-wrap gap-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
                 </span>
               </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+            </div>
+
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
+              <div class="flex items-start space-x-3 mb-4">
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">MARTINEZ FAMILY TRUST VS THOMPSON HOLDINGS</h3>
+              </div>
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">PRB445621</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Probate Court - Estate Division</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">7 March 2019</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Probate</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Pending</span></div>
               </div>
-            </div>
-
-            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
-              <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
-                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">RODRIGUEZ CONSTRUCTION VS UNION WORKERS LOCAL 247</h3>
-              </div>
-              <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex flex-wrap gap-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
                 </span>
               </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+            </div>
+
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
+              <div class="flex items-start space-x-3 mb-4">
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">RODRIGUEZ CONSTRUCTION VS UNION WORKERS LOCAL 247</h3>
+              </div>
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">LAB334128</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Labor Relations Court</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">14 November 2020</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Labor</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Arbitration</span></div>
               </div>
-            </div>
-
-            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
-              <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
-                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ANDERSON MEDICAL GROUP VS HEALTH INSURANCE CORP</h3>
-              </div>
-              <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex flex-wrap gap-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
                 </span>
               </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+            </div>
+
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
+              <div class="flex items-start space-x-3 mb-4">
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ANDERSON MEDICAL GROUP VS HEALTH INSURANCE CORP</h3>
+              </div>
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">COM567891</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Commercial Court - Healthcare Division</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">3 June 2021</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Commercial</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Settlement</span></div>
               </div>
-            </div>
-
-            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
-              <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
-                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">TECH INNOVATIONS INC VS PATENT OFFICE</h3>
-              </div>
-              <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex flex-wrap gap-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
                 </span>
               </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+            </div>
+
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
+              <div class="flex items-start space-x-3 mb-4">
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">TECH INNOVATIONS INC VS PATENT OFFICE</h3>
+              </div>
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">IP223467</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Federal Circuit Court - IP Division</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">18 August 2022</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Intellectual Property</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Appeal Filed</span></div>
               </div>
-            </div>
-
-            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
-              <div class="flex items-start space-x-3 mb-4">
-                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
-                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ENVIRONMENTAL PROTECTION AGENCY VS CHEMICAL CORP</h3>
-              </div>
-              <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex flex-wrap gap-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
-                    <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
                 </span>
               </div>
-              <div class="flex flex-wrap gap-6 text-sm text-gray-700">
+            </div>
+
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
+              <div class="flex items-start space-x-3 mb-4">
+                <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+                <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ENVIRONMENTAL PROTECTION AGENCY VS CHEMICAL CORP</h3>
+              </div>
+              <div class="flex flex-wrap gap-6 text-sm text-gray-700 mb-4">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">ENV445123</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-government-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span><span class="font-medium">Environmental Court</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-calendar-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span><span class="font-medium">29 April 2023</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Environmental</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Investigation</span></div>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-check-line text-sm mr-2"></i>STATUS
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
+                  <i class="ri-government-line text-sm mr-2"></i>COURT
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                  </div>
+                </span>
               </div>
             </div>
 
@@ -504,9 +504,9 @@
               </div>
             </div>
             
-          </div>
-      
-    </app-cases-layout>
+        </div>
 
+    </app-cases-layout>
+    
   </div>
 </div>
