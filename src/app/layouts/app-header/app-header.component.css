@@ -1,12 +1,11 @@
 /* App Header Component Styles */
 
-/* Remove all shadows and ensure no hover effects create shadows */
+/* Header only spans main content area, sticky within content */
 header {
-  box-shadow: none !important;
-}
-
-header:hover {
-  box-shadow: none !important;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: white;
 }
 
 /* Ensure dropdowns appear above other content */

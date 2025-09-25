@@ -66,6 +66,14 @@
   min-height: 100vh;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
+.min-h-\[60vh\] {
+  min-height: 60vh;
+}
+
 .flex {
   display: flex;
 }
@@ -78,8 +86,154 @@
   flex: 1 1 0%;
 }
 
-.overflow-y-auto {
-  overflow-y: auto;
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+/* Border utilities */
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Button and badge utilities */
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.bg-brand {
+  background-color: #146B85;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.hover\:bg-gray-200:hover {
+  background-color: #e5e7eb;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Icon utilities */
+.h-24 {
+  height: 6rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* Spacing utilities */
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+/* Text utilities */
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 /* Header styling */
@@ -663,6 +817,11 @@
   /* Group utility for hover effects */
 }
 
+/* Card background colors */
+.bg-zinc-200 {
+  background-color: rgba(249, 250, 251, 0.8); /* Very light gray, almost white */
+}
+
 /* Additional utilities for data section */
 .uppercase {
   text-transform: uppercase;
@@ -721,6 +880,11 @@
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+/* Top padding for fixed header */
+.pt-32 {
+  padding-top: 8rem; /* 128px - space for fixed header */
 }
 
 /* Responsive utilities */

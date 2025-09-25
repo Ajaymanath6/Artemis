@@ -34,7 +34,7 @@
         <div>
           <button
             (click)="onItemClick(item)"
-            class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group"
+            class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group focus:outline-none"
             [class]="isActiveRoute(item.route || '') ?
               'bg-gray-light text-text-strong' :
               'text-text-strong hover:bg-fill hover:text-brand'"
@@ -63,7 +63,7 @@
             <li *ngFor="let child of item.children">
               <button
                 (click)="onItemClick(child)"
-                class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors"
+                class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
                 [class]="isActiveRoute(child.route || '') ?
                   'bg-blue-fill text-brand font-medium' :
                   'text-text-weak hover:bg-fill hover:text-text-strong'">

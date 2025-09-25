@@ -1,0 +1,23 @@
+<!-- Combined Header and Search Bar Component -->
+<div class="sticky-header">
+  <!-- App Header -->
+  <app-header 
+    [showUserProfile]="true"
+    [showCollapseButton]="isSidebarCollapsed"
+    [projectName]="projectName"
+    [searchQuery]="currentSearchQuery"
+    (collapseToggle)="onSidebarToggle()"
+    (projectClick)="onProjectClick()"
+    (searchQueryClick)="onSearchQueryClick()">
+  </app-header>
+
+  <!-- Search Bar Section -->
+  <div class="bg-cases-page border-b border-gray-200 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Search Input -->
+      <div class="mb-4">
+        <app-search-bar (search)="onSearch($event)"></app-search-bar>
+      </div>
+    </div>
+  </div>
+</div>

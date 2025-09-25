@@ -122,6 +122,15 @@ input[type="radio"] {
   cursor: not-allowed;
 }
 
+/* Layout utilities */
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 /* Additional Remix icons */
 .ri-sparkling-fill,
 .ri-user-line,

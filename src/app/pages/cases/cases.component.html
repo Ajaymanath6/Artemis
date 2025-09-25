@@ -8,76 +8,49 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-      <!-- Main Content Area with Header -->
-      <div class="flex flex-col bg-cases-page min-h-screen" 
-           [class.ml-sidebar]="!isSidebarCollapsed" 
-           [class.ml-16]="isSidebarCollapsed">
-        
-        <!-- App Header with User Profile -->
-        <app-header 
-          [showUserProfile]="true"
-          [showCollapseButton]="isSidebarCollapsed"
-          [projectName]="projectName"
-          [searchQuery]="currentSearchQuery"
-          (collapseToggle)="onSidebarToggle()"
-          (projectClick)="onProjectClick()"
-          (searchQueryClick)="onSearchQueryClick()">
-        </app-header>
-    
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <!-- Main Content Area -->
+  <div class="flex flex-col min-h-screen" 
+       [class.ml-sidebar]="!isSidebarCollapsed" 
+       [class.ml-16]="isSidebarCollapsed">
 
-        <!-- Header Section -->
-        <div class="mb-8">
-          <!-- <h1 class="text-3xl font-bold text-text-strong mb-2">Cases</h1>
-          <p class="text-text-weak">Search and manage legal cases in your project.</p> -->
-        </div>
+    <!-- Sticky Header Component -->
+    <app-cases-header
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      [projectName]="projectName"
+      [currentSearchQuery]="currentSearchQuery"
+      (sidebarToggle)="onSidebarToggle()"
+      (projectClick)="onProjectClick()"
+      (searchQueryClick)="onSearchQueryClick()"
+      (search)="onSearch($event)">
+    </app-cases-header>
 
-        <!-- Search Section -->
-        <div class="mb-8">
-          <app-search-bar (search)="onSearch($event)"></app-search-bar>
-        </div>
 
-        <!-- Results Controls -->
-        <div *ngIf="hasSearched">
-          <!-- Divider Line -->
-          <div class="border-t border-gray-200 "></div>
-          
-          <!-- Controls Row -->
-          <div class="flex items-center justify-between border-b border-gray-200 py-2.5">
-            <!-- Results Text -->
-            <div class="flex items-center space-x-2">
-              <span class="text-gray-700 font-semibold">Results</span>
-            </div>
-            
-            <!-- View Toggle Buttons -->
-            <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-              <button 
-                (click)="toggleViewMode('grid')"
-                class="px-3 py-2 flex items-center space-x-2 transition-colors"
-                [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-                <i class="ri-layout-grid-line text-base"></i>
-                <span class="text-sm font-medium">Grid</span>
-              </button>
-              <button 
-                (click)="toggleViewMode('table')"
-                class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-                [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-                <i class="ri-layout-row-line text-base"></i>
-                <span class="text-sm font-medium">Table</span>
-              </button>
-            </div>
+    <!-- Empty State (when no search performed) -->
+    <div *ngIf="!hasSearched" class="flex-1 bg-cases-page">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+          <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-gray-100 mb-6">
+            <i class="ri-search-line text-2xl text-gray-400"></i>
           </div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">Start Your Search</h3>
+          <p class="text-gray-500 mb-8 max-w-sm mx-auto">
+            Enter your search terms above to find cases, attorneys, law firms, judges, or parties.
+          </p>
         </div>
+      </div>
+    </div>
 
-        <!-- Cases Content Area -->
-        <div *ngIf="hasSearched">
+    <!-- Results Section (scrollable) -->
+    <app-cases-layout 
+      *ngIf="hasSearched"
+      [viewMode]="viewMode"
+      (viewModeChange)="toggleViewMode($event)">
+      <!-- Cases Content Area -->
           
           <!-- Skeleton Loader Cards (while loading) -->
           <div *ngIf="isSearching" class="space-y-4 mt-4">
               <div *ngFor="let card of skeletonCards" 
-                   class="rounded-lg border border-gray-200 p-6 animate-pulse hover:bg-white hover:bg-opacity-80 transition-all">
+                   class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 animate-pulse transition-all">
               
               <!-- Heading with Left Icon -->
               <div class="flex items-center mb-4">
@@ -137,7 +110,7 @@
           <div *ngIf="!isSearching && showResults" class="space-y-4 mt-4" id="results-section">
             
             <!-- Result Card 1 -->
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
@@ -146,28 +119,28 @@
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>Judge
+                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
                     <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-check-line text-sm mr-2"></i>Status
+                  <i class="ri-check-line text-sm mr-2"></i>STATUS
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
                     <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-file-text-line text-sm mr-2"></i>Type
+                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
                     <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-government-line text-sm mr-2"></i>Court
+                  <i class="ri-government-line text-sm mr-2"></i>COURT
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
                     <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
@@ -184,7 +157,7 @@
             </div>
 
             <!-- Result Card 2 -->
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
@@ -193,28 +166,28 @@
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>Judge
+                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-scales-3-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">JUDGE</div></div>
                     <div class="text-gray-600 leading-relaxed">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-check-line text-sm mr-2"></i>Status
+                  <i class="ri-check-line text-sm mr-2"></i>STATUS
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-check-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">STATUS</div></div>
                     <div class="text-gray-600 leading-relaxed">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-file-text-line text-sm mr-2"></i>Type
+                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-file-text-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">TYPE</div></div>
                     <div class="text-gray-600 leading-relaxed">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group">
-                  <i class="ri-government-line text-sm mr-2"></i>Court
+                  <i class="ri-government-line text-sm mr-2"></i>COURT
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-4 py-3 bg-white text-gray-800 text-xs rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-24 w-64">
                     <div class="flex items-center mb-2"><i class="ri-government-line text-sm mr-2 text-gray-600"></i><div class="font-semibold uppercase">COURT</div></div>
                     <div class="text-gray-600 leading-relaxed">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
@@ -231,16 +204,16 @@
             </div>
 
             <!-- Result Cards 3-10 (simplified for brevity) -->
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">WILSON ESTATES LLC VS CITY PLANNING COMMISSION</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">ADM778912</span></div>
@@ -251,16 +224,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">MARTINEZ FAMILY TRUST VS THOMPSON HOLDINGS</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">PRB445621</span></div>
@@ -271,16 +244,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">RODRIGUEZ CONSTRUCTION VS UNION WORKERS LOCAL 247</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">LAB334128</span></div>
@@ -291,16 +264,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ANDERSON MEDICAL GROUP VS HEALTH INSURANCE CORP</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">COM567891</span></div>
@@ -311,16 +284,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">TECH INNOVATIONS INC VS PATENT OFFICE</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">IP223467</span></div>
@@ -331,16 +304,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">ENVIRONMENTAL PROTECTION AGENCY VS CHEMICAL CORP</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">ENV445123</span></div>
@@ -351,16 +324,16 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-gray-200 p-6 hover:bg-white hover:bg-opacity-80 transition-all min-h-fit overflow-visible relative">
+            <div class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative">
               <div class="flex items-start space-x-3 mb-4">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0 mt-1"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">GLOBAL FINANCE BANK VS MORTGAGE HOLDERS UNION</h3>
               </div>
               <div class="flex flex-wrap gap-4 mb-4">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Judge</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Status</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Type</span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">Court</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">JUDGE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">STATUS</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">TYPE</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">COURT</span>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700">
                 <div class="flex items-center space-x-2"><i class="ri-hashtag text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span><span class="font-medium">FIN778934</span></div>
@@ -372,10 +345,8 @@
             </div>
             
           </div>
-        </div>
+      
+    </app-cases-layout>
 
-      </div>
-    </main>
-    
   </div>
 </div>
