@@ -13,7 +13,11 @@ import { PhosphorIconComponent } from '../../components/ui/phosphor-icon/phospho
 export class AppHeaderComponent implements OnInit {
   @Input() showUserProfile = false; // Show user profile and notifications
   @Input() showCollapseButton = false; // Show sidebar collapse button
+  @Input() projectName = ''; // Project name for hierarchical display
+  @Input() searchQuery = ''; // Search query for hierarchical display
   @Output() collapseToggle = new EventEmitter<void>();
+  @Output() projectClick = new EventEmitter<void>();
+  @Output() searchQueryClick = new EventEmitter<void>();
   
   isUserMenuOpen = false;
   isNotificationsOpen = false;
@@ -29,6 +33,16 @@ export class AppHeaderComponent implements OnInit {
 
   onCollapseClick(): void {
     this.collapseToggle.emit();
+  }
+
+  onProjectClick(): void {
+    this.projectClick.emit();
+    console.log('Project clicked:', this.projectName);
+  }
+
+  onSearchQueryClick(): void {
+    this.searchQueryClick.emit();
+    console.log('Search query clicked:', this.searchQuery);
   }
 
   toggleUserMenu(): void {

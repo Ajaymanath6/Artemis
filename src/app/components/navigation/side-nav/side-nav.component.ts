@@ -28,6 +28,16 @@ export class SideNavComponent {
     // Default navigation items with appropriate Remix icons
     this.navItems = [
       {
+        id: 'project',
+        label: 'NY Judgment Tracking',
+        icon: 'folder-open-fill',
+        children: [
+          { id: 'project-overview', label: 'Project Overview', icon: 'eye-line', route: '/project/overview' },
+          { id: 'project-settings', label: 'Project Settings', icon: 'settings-3-line', route: '/project/settings' },
+          { id: 'project-members', label: 'Team Members', icon: 'team-line', route: '/project/members' }
+        ]
+      },
+      {
         id: 'dashboard',
         label: 'Dashboard',
         icon: 'dashboard-line',

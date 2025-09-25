@@ -4,19 +4,20 @@
      [class.w-16]="isCollapsed">
 
   <!-- Header with Logo and Collapse Button -->
-  <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+  <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200" [class.justify-center]="isCollapsed">
     <!-- Logo -->
-    <div class="flex items-center" [class.hidden]="isCollapsed">
-      <img src="assets/images/logo1.svg"
+    <div class="flex items-center">
+      <img [src]="isCollapsed ? 'assets/images/logo2.svg' : 'assets/images/logo1.svg'"
            alt="UniCourt Logo"
            class="h-8 w-auto" 
            style="" />
     </div>
     
-    <!-- Collapse/Expand Button -->
+    <!-- Collapse/Expand Button - Hidden when collapsed -->
     <button
+      *ngIf="!isCollapsed"
       (click)="toggleCollapse()"
-      class="p-2 rounded-lg hover:bg-gray-100 transition-colors ml-auto">
+      class="p-2 rounded-lg hover:bg-gray-100 transition-colors ml-auto focus:outline-none">
       <i 
         class="ri-layout-right-line text-lg"
         style="color: #9CA3AF;">
@@ -26,17 +27,22 @@
 
   <!-- Navigation Items -->
   <div class="flex-1 overflow-y-auto py-4">
-    <ul class="space-y-1 px-3">
+    <ul class="space-y-1" [class.px-3]="!isCollapsed" [class.px-1]="isCollapsed">
       <li *ngFor="let item of navItems">
 
         <!-- Main Navigation Item -->
         <div>
           <button
             (click)="onItemClick(item)"
-            class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group"
+            class="w-full flex items-center text-sm font-medium rounded-lg transition-colors group"
             [class]="isActiveRoute(item.route || '') ?
               'bg-gray-light text-text-strong' :
-              'text-text-strong hover:bg-fill hover:text-brand'">
+              'text-text-strong hover:bg-fill hover:text-brand'"
+            [class.px-3]="!isCollapsed"
+            [class.py-2]="!isCollapsed"
+            [class.px-2]="isCollapsed"
+            [class.py-2]="isCollapsed"
+            [class.justify-center]="isCollapsed">
 
             <!-- Icon -->
             <i 
@@ -80,14 +86,14 @@
     </ul>
   </div>
 
-  <!-- Navigation Footer -->
-  <div class="p-4 border-t border-gray-200">
+  <!-- Navigation Footer - Hidden when collapsed -->
+  <div class="p-4 border-t border-gray-200" [class.hidden]="isCollapsed">
     <div class="flex items-center">
       <div class="flex items-center space-x-3">
         <div class="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
           <i class="ri-user-line text-base text-white"></i>
         </div>
-        <div class="flex-1 min-w-0" [class.hidden]="isCollapsed">
+        <div class="flex-1 min-w-0">
           <p class="text-sm font-medium text-text-strong truncate">Legal User</p>
           <p class="text-xs text-text-weak truncate">user&#64;unicourt.com</p>
         </div>

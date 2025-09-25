@@ -58,6 +58,11 @@ nav {
   z-index: 40;
 }
 
+/* Center content when collapsed */
+.justify-center {
+  justify-content: center;
+}
+
 /* Active state styling */
 .bg-brand {
   background-color: #146B85;

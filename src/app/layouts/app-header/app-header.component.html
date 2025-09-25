@@ -5,17 +5,43 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       
-      <!-- Left Section: Logo + Brand + Collapse Button -->
+      <!-- Left Section: Collapse Button + Project Title + Search Query -->
       <div class="flex items-center space-x-4">
         <!-- Sidebar Collapse Button (when sidebar is collapsed) -->
         <button
           *ngIf="showCollapseButton"
           (click)="onCollapseClick()"
-          class="p-2 rounded-lg hover:bg-gray-50 transition-colors">
+          class="p-2 rounded-lg hover:bg-gray-50 transition-colors focus:outline-none">
           <i class="ri-layout-left-line text-lg" style="color: #9CA3AF;"></i>
         </button>
 
-        <!-- Logo removed - moved to sidebar -->
+        <!-- Project Title and Search Query -->
+        <div *ngIf="showUserProfile && (projectName || searchQuery)" class="flex items-center space-x-2">
+          <!-- Project Name (clickable) -->
+          <button 
+            *ngIf="projectName"
+            (click)="onProjectClick()"
+            class="text-gray-600 hover:text-brand transition-colors focus:outline-none font-medium truncate">
+            {{ projectName }}
+          </button>
+          
+          <!-- Separator -->
+          <span *ngIf="projectName && searchQuery" class="text-gray-400 font-medium">:</span>
+          
+          <!-- Search Query (clickable) -->
+          <button 
+            *ngIf="searchQuery"
+            (click)="onSearchQueryClick()"
+            class="text-gray-900 hover:text-brand transition-colors focus:outline-none font-normal truncate">
+            {{ searchQuery }}
+          </button>
+          
+          <!-- Subtitle -->
+          <div *ngIf="projectName && !searchQuery" class="flex items-center space-x-2">
+            <span class="text-gray-400 font-medium">:</span>
+            <span class="text-gray-500 text-sm font-normal">Testing for NY grouping and extractions</span>
+          </div>
+        </div>
       </div>
 
       <!-- Right Section: User Profile + Notifications OR Help Button -->

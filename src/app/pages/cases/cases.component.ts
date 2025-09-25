@@ -16,6 +16,10 @@ export class CasesComponent implements OnInit {
   hasSearched: boolean = false;
   skeletonCards = Array(10).fill(0); // Create array for 10 skeleton cards
   isSidebarCollapsed: boolean = false;
+  projectName: string = 'NY Judgment Tracking'; // Default project name
+  currentSearchQuery: string = '';
+  viewMode: 'grid' | 'table' = 'grid';
+  showResults: boolean = false;
   
   constructor() {}
 
@@ -23,13 +27,16 @@ export class CasesComponent implements OnInit {
 
   onSearch(query: string): void {
     console.log('Searching cases for:', query);
+    this.currentSearchQuery = query; // Update the current search query
     this.isSearching = true;
     this.hasSearched = true;
+    this.showResults = false;
     
-    // Simulate search with loading
+    // Simulate search with loading, then show results
     setTimeout(() => {
       this.isSearching = false;
-    }, 2000);
+      this.showResults = true;
+    }, 3000);
   }
 
   onNavItemClick(item: NavItem): void {
@@ -38,5 +45,20 @@ export class CasesComponent implements OnInit {
 
   onSidebarToggle(): void {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+
+  onProjectClick(): void {
+    console.log('Project clicked:', this.projectName);
+    // Navigate to project dashboard or overview
+  }
+
+  onSearchQueryClick(): void {
+    console.log('Search query clicked:', this.currentSearchQuery);
+    // Refresh search or show advanced search options
+  }
+
+  toggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
   }
 }

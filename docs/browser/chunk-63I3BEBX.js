@@ -28330,6 +28330,7 @@ export {
   _sanitizeHtml,
   SecurityContext,
   ɵɵsanitizeHtml,
+  ɵɵsanitizeUrl,
   ɵɵsanitizeUrlOrResourceUrl,
   ɵɵresolveDocument,
   ɵɵadvance,
@@ -28455,4 +28456,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-B65Y4WCA.js.map
+//# sourceMappingURL=chunk-63I3BEBX.js.map
