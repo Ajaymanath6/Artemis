@@ -8,35 +8,33 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
+  <!-- Fixed Header Component -->
+  <app-cases-header
+    [isSidebarCollapsed]="isSidebarCollapsed"
+    [projectName]="projectName"
+    [currentSearchQuery]="currentSearchQuery"
+    (sidebarToggle)="onSidebarToggle()"
+    (projectClick)="onProjectClick()"
+    (searchQueryClick)="onSearchQueryClick()"
+    (search)="onSearch($event)">
+  </app-cases-header>
+  
   <!-- Main Content Area -->
-  <div class="flex flex-col min-h-screen" 
+  <div class="flex flex-col min-h-screen pt-header-height" 
        [class.ml-sidebar]="!isSidebarCollapsed" 
        [class.ml-16]="isSidebarCollapsed">
 
-    <!-- Sticky Header Component -->
-    <app-cases-header
-      [isSidebarCollapsed]="isSidebarCollapsed"
-      [projectName]="projectName"
-      [currentSearchQuery]="currentSearchQuery"
-      (sidebarToggle)="onSidebarToggle()"
-      (projectClick)="onProjectClick()"
-      (searchQueryClick)="onSearchQueryClick()"
-      (search)="onSearch($event)">
-    </app-cases-header>
-
 
     <!-- Empty State (when no search performed) -->
-    <div *ngIf="!hasSearched" class="flex-1 bg-cases-page">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center">
-          <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-gray-100 mb-6">
-            <i class="ri-search-line text-2xl text-gray-400"></i>
-          </div>
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Start Your Search</h3>
-          <p class="text-gray-500 mb-8 max-w-sm mx-auto">
-            Enter your search terms above to find cases, attorneys, law firms, judges, or parties.
-          </p>
+    <div *ngIf="!hasSearched" class="flex-1 bg-cases-page flex items-center justify-center min-h-empty-state">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-gray-100 mb-6">
+          <i class="ri-search-line text-2xl text-gray-400"></i>
         </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Start Your Search</h3>
+        <p class="text-gray-500 mb-8 max-w-sm mx-auto">
+          Enter your search terms above to find cases, attorneys, law firms, judges, or parties.
+        </p>
       </div>
     </div>
 

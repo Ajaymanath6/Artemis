@@ -1,5 +1,6 @@
 <!-- Combined Header and Search Bar Component -->
-<div class="sticky-header">
+<div class="sticky-header"
+     [class.sidebar-collapsed]="isSidebarCollapsed">
   <!-- App Header -->
   <app-header 
     [showUserProfile]="true"

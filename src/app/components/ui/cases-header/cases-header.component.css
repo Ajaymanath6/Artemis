@@ -4,12 +4,20 @@
   display: block;
 }
 
-/* Sticky header container */
+/* Fixed header container */
 .sticky-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 206px; /* Default sidebar width */
+  right: 0;
   z-index: 100;
   background-color: white;
+  transition: left 0.3s ease;
+}
+
+/* Adjust for collapsed sidebar */
+.sticky-header.sidebar-collapsed {
+  left: 4rem; /* 64px - collapsed sidebar width */
 }
 
 /* Cases page specific background */

@@ -883,8 +883,26 @@
 }
 
 /* Top padding for fixed header */
-.pt-32 {
-  padding-top: 8rem; /* 128px - space for fixed header */
+.pt-header-height {
+  padding-top: 12rem; /* 192px - space for fixed header + search bar */
+}
+
+/* Empty state minimum height and centering */
+.min-h-empty-state {
+  min-height: calc(100vh - 12rem); /* Full viewport height minus header height */
+}
+
+/* Additional flex utilities for centering */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 /* Responsive utilities */
