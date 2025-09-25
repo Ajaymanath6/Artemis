@@ -13,11 +13,18 @@
   </app-header>
 
   <!-- Search Bar Section -->
-  <div class="bg-cases-page border-b border-gray-200 py-4">
+  <div class="bg-cases-page border-b border-gray-200" 
+       [class.py-4]="!hasSearched" 
+       [class.py-2]="hasSearched">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Search Input -->
-      <div class="mb-4">
-        <app-search-bar (search)="onSearch($event)"></app-search-bar>
+      <div [class.mb-4]="!hasSearched" [class.mb-2]="hasSearched">
+        <app-search-bar 
+          [isCollapsed]="hasSearched"
+          [searchQuery]="currentSearchQuery"
+          (search)="onSearch($event)"
+          (expand)="onExpandSearch()">
+        </app-search-bar>
       </div>
     </div>
   </div>

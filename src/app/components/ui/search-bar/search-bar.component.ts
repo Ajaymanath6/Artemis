@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, HostListener } from '@angular/core';
+import { Component, EventEmitter, Output, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -85,8 +85,9 @@ interface ExpandedSections {
 })
 export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
-
-  searchQuery: string = '';
+  @Output() expand = new EventEmitter<void>(); // Emit when expanding search bar
+  @Input() isCollapsed: boolean = false; // Allow parent to control collapsed state
+  @Input() searchQuery: string = ''; // Allow parent to set search query
   isProDropdownOpen: boolean = false;
   selectedProOption: string = 'natural';
   isFilterPanelOpen: boolean = false;
@@ -163,12 +164,15 @@ export class SearchBarComponent {
   
   // Search state management
   isSearching: boolean = false;
-  isSearchCollapsed: boolean = false;
+  
+  // Use computed property to check collapsed state
+  get isSearchCollapsed(): boolean {
+    return this.isCollapsed;
+  }
 
   onSearch(): void {
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
       this.isSearching = true;
-      this.isSearchCollapsed = true;
       this.search.emit(this.searchQuery);
       
       // Simulate search completion after 2 seconds
@@ -187,13 +191,12 @@ export class SearchBarComponent {
   clearSearch(): void {
     this.searchQuery = '';
     this.isSearching = false;
-    this.isSearchCollapsed = false;
     this.search.emit('');
   }
   
   expandSearchBar(): void {
-    this.isSearchCollapsed = false;
     this.isSearching = false;
+    this.expand.emit(); // Notify parent to expand search bar
   }
   
   selectSearchType(type: SearchType): void {

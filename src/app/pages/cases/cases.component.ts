@@ -61,4 +61,9 @@ export class CasesComponent implements OnInit {
     this.viewMode = mode;
     console.log('View mode changed to:', mode);
   }
+
+  onExpandSearch(): void {
+    // Don't reset hasSearched - just expand the search bar while maintaining results
+    console.log('Search expanded - maintaining results');
+  }
 }

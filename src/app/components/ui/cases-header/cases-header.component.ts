@@ -15,6 +15,7 @@ export class CasesHeaderComponent {
   @Input() isSidebarCollapsed: boolean = false;
   @Input() projectName: string = '';
   @Input() currentSearchQuery: string = '';
+  @Input() hasSearched: boolean = false; // Track if user has searched
   
   // Header outputs
   @Output() sidebarToggle = new EventEmitter<void>();
@@ -23,6 +24,7 @@ export class CasesHeaderComponent {
   
   // Search outputs
   @Output() search = new EventEmitter<string>();
+  @Output() expandSearch = new EventEmitter<void>();
 
   onSidebarToggle(): void {
     this.sidebarToggle.emit();
@@ -38,5 +40,9 @@ export class CasesHeaderComponent {
 
   onSearch(query: string): void {
     this.search.emit(query);
+  }
+
+  onExpandSearch(): void {
+    this.expandSearch.emit();
   }
 }
