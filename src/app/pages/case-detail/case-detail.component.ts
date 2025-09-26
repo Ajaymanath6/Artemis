@@ -18,6 +18,7 @@ export class CaseDetailComponent implements OnInit {
   // Header and sidebar properties
   isSidebarCollapsed: boolean = false;
   projectName: string = 'NY Judgment Tracking';
+  currentSearchQuery: string = '';
   
   // Tab management
   activeTab: string = 'summary';
@@ -138,6 +139,8 @@ export class CaseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.caseId = this.route.snapshot.paramMap.get('id');
+    // Set the current search query to display the case title in the header
+    this.currentSearchQuery = this.caseDetails.title;
   }
 
   goBack(): void {
@@ -169,7 +172,8 @@ export class CaseDetailComponent implements OnInit {
   }
 
   onSearchQueryClick(): void {
-    console.log('Search query clicked');
+    // Navigate back to cases page for search
+    this.router.navigate(['/cases']);
   }
 
   onSearch(query: string): void {

@@ -4193,33 +4193,33 @@ var routes = [
   // Authentication routes
   {
     path: "login",
-    loadComponent: () => import("./chunk-PUDE3SKR.js").then((m3) => m3.LoginComponent)
+    loadComponent: () => import("./chunk-U2ZQ5GG2.js").then((m3) => m3.LoginComponent)
   },
   // Loading page for authentication
   {
     path: "loading",
-    loadComponent: () => import("./chunk-PXUDZG5A.js").then((m3) => m3.LoadingComponent)
+    loadComponent: () => import("./chunk-J6LFZ6XF.js").then((m3) => m3.LoadingComponent)
   },
   // Dashboard routes with layout
   {
     path: "dashboard",
-    loadComponent: () => import("./chunk-UHD7QILI.js").then((m3) => m3.DashboardLayoutComponent),
+    loadComponent: () => import("./chunk-MEE34YYN.js").then((m3) => m3.DashboardLayoutComponent),
     children: [
       {
         path: "",
-        loadComponent: () => import("./chunk-F3WU2MSM.js").then((m3) => m3.DashboardComponent)
+        loadComponent: () => import("./chunk-G3MV3GLX.js").then((m3) => m3.DashboardComponent)
       }
     ]
   },
   // Cases page
   {
     path: "cases",
-    loadComponent: () => import("./chunk-DLALMAYY.js").then((m3) => m3.CasesComponent)
+    loadComponent: () => import("./chunk-S2I3FO5Z.js").then((m3) => m3.CasesComponent)
   },
   // Case detail page
   {
     path: "case/:id",
-    loadComponent: () => import("./chunk-7EGIFVKX.js").then((m3) => m3.CaseDetailComponent)
+    loadComponent: () => import("./chunk-ELKJ6SQI.js").then((m3) => m3.CaseDetailComponent)
   },
   // Wildcard route - must be last
   { path: "**", redirectTo: "/dashboard" }
@@ -11363,7 +11363,7 @@ var AppComponent = class _AppComponent {
   }], () => [{ type: Router }], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.component.ts", lineNumber: 11 });
 })();
 
 // src/main.ts

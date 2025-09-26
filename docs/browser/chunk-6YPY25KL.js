@@ -474,10 +474,10 @@ var SideNavComponent = class _SideNavComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SideNavComponent, { className: "SideNavComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SideNavComponent, { className: "SideNavComponent", filePath: "src/app/components/navigation/side-nav/side-nav.component.ts", lineNumber: 21 });
 })();
 
 export {
   SideNavComponent
 };
-//# sourceMappingURL=chunk-POO7ABQP.js.map
+//# sourceMappingURL=chunk-6YPY25KL.js.map

@@ -7,45 +7,40 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-  <!-- Fixed Header Component (Modified for Case Detail) -->
+  <!-- Fixed Header Component -->
   <div class="sticky-header"
        [class.sidebar-collapsed]="isSidebarCollapsed">
-    <!-- Custom Header for Case Detail -->
-    <div class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between py-4">
-          <!-- Back Button and Case Title -->
-          <div class="flex items-center space-x-4">
-            <button 
-              (click)="goBack()" 
-              class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
-              <i class="ri-arrow-left-line text-lg mr-2"></i>
-              Back to Cases
-            </button>
-            <h1 class="text-lg font-semibold text-gray-900">{{ caseDetails.title }}</h1>
-          </div>
-          
-          <!-- User Profile -->
-          <div class="flex items-center space-x-3">
-            <div class="flex items-center space-x-2">
-              <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
-              <span class="text-sm text-gray-700">User</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- App Header -->
+    <app-header 
+      [showUserProfile]="true"
+      [showCollapseButton]="isSidebarCollapsed"
+      [projectName]="projectName"
+      [searchQuery]="currentSearchQuery"
+      (collapseToggle)="onSidebarToggle()"
+      (projectClick)="onProjectClick()"
+      (searchQueryClick)="onSearchQueryClick()">
+    </app-header>
+    
     <!-- Case Meta Section -->
     <div class="bg-white border-b border-gray-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <!-- Case Meta Information (Similar to publication info) -->
-        <div class="flex items-center text-sm text-gray-600 mb-4">
-          <span>Filed {{ caseDetails.date }}</span>
-          <span class="mx-2">·</span>
-          <span>{{ caseDetails.court }}</span>
-          <span class="mx-2">·</span>
-          <span>{{ caseDetails.judge }}</span>
+        <!-- Back Arrow, Case Title, and Meta Info on Single Line -->
+        <div class="flex items-center space-x-4 mb-4">
+          <!-- Back Arrow Button -->
+          <button 
+            (click)="goBack()" 
+            class="flex items-center justify-center w-8 h-8 text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
+            <i class="ri-arrow-left-line text-lg"></i>
+          </button>
+          <!-- Case Title and Meta Info Combined -->
+          <div class="flex items-center space-x-2 text-sm">
+            <h1 class="text-base font-semibold text-brand leading-tight">{{ caseDetails.title }}</h1>
+            <span class="text-gray-600">Filed {{ caseDetails.date }}</span>
+            <span class="mx-1 text-gray-600">·</span>
+            <span class="text-gray-600">{{ caseDetails.court }}</span>
+            <span class="mx-1 text-gray-600">·</span>
+            <span class="text-gray-600">{{ caseDetails.judge }}</span>
+          </div>
         </div>
 
         <!-- Action Buttons -->

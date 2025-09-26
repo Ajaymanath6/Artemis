@@ -61,9 +61,9 @@ var LoadingComponent = class _LoadingComponent {
   }], () => [{ type: Router }], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoadingComponent, { className: "LoadingComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoadingComponent, { className: "LoadingComponent", filePath: "src/app/pages/loading/loading.component.ts", lineNumber: 12 });
 })();
 export {
   LoadingComponent
 };
-//# sourceMappingURL=chunk-PXUDZG5A.js.map
+//# sourceMappingURL=chunk-J6LFZ6XF.js.map

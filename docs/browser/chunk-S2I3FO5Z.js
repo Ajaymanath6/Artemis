@@ -1,18 +1,18 @@
 import {
   SearchBarComponent
-} from "./chunk-XGQBLBHU.js";
+} from "./chunk-UXEM3NMO.js";
 import "./chunk-53JHYZBU.js";
 import "./chunk-EQUADVRM.js";
 import {
   SideNavComponent
-} from "./chunk-POO7ABQP.js";
+} from "./chunk-6YPY25KL.js";
 import {
   AppHeaderComponent
-} from "./chunk-UQQHCV5Z.js";
+} from "./chunk-S3ODH3JA.js";
 import {
   Router
 } from "./chunk-DDDO6NM3.js";
-import "./chunk-NB6NNANN.js";
+import "./chunk-CU4W3RIU.js";
 import {
   CommonModule,
   Component,
@@ -132,7 +132,7 @@ var CasesLayoutComponent = class _CasesLayoutComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesLayoutComponent, { className: "CasesLayoutComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesLayoutComponent, { className: "CasesLayoutComponent", filePath: "src/app/layouts/cases-layout/cases-layout.component.ts", lineNumber: 11 });
 })();
 
 // src/app/components/ui/cases-header/cases-header.component.ts
@@ -237,7 +237,7 @@ var CasesHeaderComponent = class _CasesHeaderComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesHeaderComponent, { className: "CasesHeaderComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesHeaderComponent, { className: "CasesHeaderComponent", filePath: "src/app/components/ui/cases-header/cases-header.component.ts", lineNumber: 13 });
 })();
 
 // src/app/pages/cases/cases.component.ts
@@ -2304,9 +2304,9 @@ var CasesComponent = class _CasesComponent {
   }], () => [{ type: Router }], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesComponent, { className: "CasesComponent" });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CasesComponent, { className: "CasesComponent", filePath: "src/app/pages/cases/cases.component.ts", lineNumber: 15 });
 })();
 export {
   CasesComponent
 };
-//# sourceMappingURL=chunk-DLALMAYY.js.map
+//# sourceMappingURL=chunk-S2I3FO5Z.js.map
