@@ -1043,7 +1043,12 @@
   margin-top: 0 !important; /* No extra top margin - rely on case-card-details margin-bottom */
 }
 
-/* Custom spacing for case title - 4px gap between icon and title */
+/* Custom spacing for case title - 8px gap between icon and title */
+.case-card-title {
+  gap: 8px !important;
+}
+
+/* Global space-x-1 for other elements */
 .space-x-1 > * + * {
   margin-left: 0.25rem; /* 4px */
 }

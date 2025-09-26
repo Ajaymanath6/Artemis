@@ -28,7 +28,7 @@ export class SummaryLayoutComponent {
 
   caseSummaryRows: CaseSummaryRow[] = [
     {
-      icon: 'ri-hashtag-line',
+      icon: 'ri-file-list-3-line',
       label: 'Case Number',
       value: '24LBRO01256'
     },

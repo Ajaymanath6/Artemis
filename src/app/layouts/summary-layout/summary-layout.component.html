@@ -62,8 +62,12 @@
       
       <!-- Table Rows -->
       <div class="legal-table-row" *ngFor="let row of legalRepresentationRows">
-        <div class="legal-table-cell attorney-name-col">{{ row.attorneyName }}</div>
-        <div class="legal-table-cell law-firm-col">{{ row.lawFirm }}</div>
+        <div class="legal-table-cell attorney-name-col">
+          <span class="legal-table-link">{{ row.attorneyName }}</span>
+        </div>
+        <div class="legal-table-cell law-firm-col">
+          <span class="legal-table-link">{{ row.lawFirm }}</span>
+        </div>
         <div class="legal-table-cell type-col">{{ row.type }}</div>
       </div>
     </div>

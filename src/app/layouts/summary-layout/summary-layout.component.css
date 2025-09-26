@@ -16,7 +16,7 @@
   max-width: 1200px; /* Match tab container width */
   margin-left: auto;
   margin-right: auto;
-  padding: 0 24px; /* Side padding */
+  padding: 0; /* Remove 24px padding */
 }
 
 /* Summary Table Container */
@@ -31,21 +31,27 @@
 .summary-table-row {
   display: flex;
   align-items: center;
-  height: 36px;
-  border: none; /* No border lines */
+  height: 40px; /* Increased from 36px to 40px */
+  border-bottom: 1px solid #f3f4f6; /* Add bottom border like second table */
 }
 
-/* Left Column: Icon and Label (40% width) */
+.summary-table-row:last-child {
+  border-bottom: none; /* Remove border from last row */
+}
+
+/* Left Column: Icon and Label (minimal width) */
 .summary-table-left {
-  width: 40%;
+  width: auto;
+  min-width: 200px; /* Minimal width to hold most content */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Right Column: Value (60% width) */
+/* Right Column: Value (flexible width) */
 .summary-table-right {
-  width: 60%;
+  flex: 1; /* Take remaining space */
   display: flex;
   align-items: center;
 }
@@ -161,6 +167,17 @@
   font-size: 14px;
   color: #111827;
   text-align: left;
+}
+
+/* Legal Table Links - for attorney name and law firm */
+.legal-table-link {
+  font-weight: 600; /* Add one unit of font weight (was 500, now 600) */
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.legal-table-row:hover .legal-table-link {
+  color: #146B85; /* Main brand color on hover */
 }
 
 /* Column Widths */

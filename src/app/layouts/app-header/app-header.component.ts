@@ -13,6 +13,7 @@ import { PhosphorIconComponent } from '../../components/ui/phosphor-icon/phospho
 export class AppHeaderComponent implements OnInit {
   @Input() showUserProfile = false; // Show user profile and notifications
   @Input() showCollapseButton = false; // Show sidebar collapse button
+  @Input() showBackButton = false; // Show back arrow button
   @Input() projectName = ''; // Project name for hierarchical display
   @Input() searchQuery = ''; // Search query for hierarchical display
   @Output() collapseToggle = new EventEmitter<void>();
