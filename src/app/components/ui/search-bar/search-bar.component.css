@@ -264,7 +264,7 @@ input[type="radio"] {
 }
 
 .bg-gray-light {
-  background-color: #f3f4f6; /* Light gray background for selected button */
+  background-color: #e9eaec; /* Light gray background for selected button - 4% darker */
 }
 
 .hover\:bg-gray-100:hover {
@@ -518,5 +518,45 @@ select {
     border-radius: 0.5rem;
     margin-top: 0.5rem;
     width: 100%;
+  }
+  
+  /* Filter panel mobile optimization */
+  .w-90 {
+    width: 90vw;
+    max-width: 22.5rem;
+  }
+}
+
+/* Laptop screen optimizations (1024px to 1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  /* Filter panel optimized for laptop screens */
+  .w-90 {
+    width: 26rem; /* 416px - wider for laptop screens */
+    max-height: calc(100vh - 2rem); /* Leave some margin from top/bottom */
+  }
+  
+  /* Enhanced scrolling for filter panel content on laptops */
+  .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  
+  /* Webkit scrollbar styling for laptops */
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
   }
 }

@@ -851,7 +851,7 @@
 
 /* Card background colors */
 .bg-zinc-200 {
-  background-color: rgba(249, 250, 251, 0.8); /* Very light gray, almost white */
+  background-color: rgba(252, 253, 254, 0.85); /* Very light gray, almost white - 5% lighter */
 }
 
 /* Additional utilities for data section */
@@ -916,12 +916,22 @@
 
 /* Top padding for fixed header */
 .pt-header-height {
-  padding-top: 12rem; /* 192px - space for fixed header + search bar */
+  padding-top: 12rem; /* 192px - space for fixed header + compact search bar */
+}
+
+/* Top padding for fixed header when search bar is expanded */
+.pt-header-height-expanded {
+  padding-top: 20.1875rem; /* 323px - space for fixed header + expanded search bar (increased by 35px) */
 }
 
 /* Empty state minimum height and centering */
 .min-h-empty-state {
   min-height: calc(100vh - 12rem); /* Full viewport height minus header height */
+}
+
+/* Empty state minimum height when search bar is expanded */
+.min-h-empty-state-expanded {
+  min-height: calc(100vh - 18rem); /* Full viewport height minus expanded header height */
 }
 
 /* Additional flex utilities for centering */
@@ -942,4 +952,76 @@
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* File Actions Badge Styles */
+.file-actions-badge {
+  width: 42px; /* Smaller default size */
+  height: 24px; /* Smaller default size */
+}
+
+/* Default badge dimensions and styling */
+.default-file-badge {
+  width: 42px; /* Smaller default size */
+  height: 24px; /* Smaller default size */
+  background-color: rgba(249, 250, 251, 0.9); /* Light white background */
+}
+
+/* Expanded badge maintains original size */
+.expanded-file-badge {
+  width: 50px;
+  height: 28px;
+}
+
+/* Wider default badge for double digit file counts */
+.default-file-badge-wide {
+  width: 50px; /* Wider for double digit counts */
+  height: 24px;
+  background-color: rgba(249, 250, 251, 0.9);
+}
+
+/* Expanded wide badge for double digit counts */
+.expanded-file-badge-wide {
+  width: 58px; /* Wider for double digit counts */
+  height: 28px;
+}
+
+/* Icon sizing for badge actions */
+.ri-time-line,
+.ri-price-tag-3-line,
+.ri-file-text-fill {
+  font-size: 1.125rem; /* 18px - appropriate size for the small badges */
+}
+
+/* Tooltip styling improvements */
+.group\/tracker:hover .group-hover\/tracker\:opacity-100,
+.group\/tag:hover .group-hover\/tag\:opacity-100 {
+  z-index: 60;
+}
+
+/* Group hover variants */
+.group\/badge,
+.group\/tracker,
+.group\/tag {
+  position: relative;
+}
+
+/* Consistent card padding */
+.case-card {
+  padding: 1.5rem; /* 24px - consistent padding on all sides */
+}
+
+/* Ensure consistent spacing */
+.case-card-content {
+  margin-bottom: 1rem; /* 16px consistent bottom margin */
+}
+
+/* Title section spacing - 4px bottom margin */
+.case-card-title {
+  margin-bottom: 0.25rem; /* 4px */
+}
+
+/* Case details section spacing - 12px bottom margin */
+.case-card-details {
+  margin-bottom: 0.75rem; /* 12px */
 }

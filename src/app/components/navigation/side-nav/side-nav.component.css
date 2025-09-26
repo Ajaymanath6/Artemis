@@ -214,7 +214,8 @@ img {
 .ri-bookmark-line,
 .ri-edit-line,
 .ri-arrow-down-s-line,
-.ri-arrow-right-s-line {
+.ri-arrow-right-s-line,
+.ri-arrow-up-s-line {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -237,6 +238,69 @@ img {
 
 .font-medium {
   font-weight: 500;
+}
+
+/* Language Dropdown Styles */
+.language-dropdown {
+  position: relative;
+}
+
+.language-dropdown img {
+  max-height: 1.5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Logo dimensions for 64x20 equivalent */
+.h-5 {
+  height: 1.25rem; /* 20px */
+}
+
+.w-16 {
+  width: 4rem; /* 64px */
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+/* Collapsed state logo sizing */
+.h-collapsed-logo {
+  height: 1.125rem; /* 18px */
+  width: auto; /* Let width adjust proportionally */
+}
+
+.h-4 {
+  height: 1rem; /* 16px */
+}
+
+.w-10 {
+  width: 2.5rem; /* 40px */
+}
+
+/* Dropdown shadow and positioning */
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Dropdown button hover states */
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}
+
+/* Rounded corners for first and last dropdown items */
+.first\:rounded-t-lg:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.last\:rounded-b-lg:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 /* Responsive behavior */

@@ -23,6 +23,10 @@ export class SideNavComponent {
   @Input() isCollapsed: boolean = false;
   @Output() itemClick = new EventEmitter<NavItem>();
   @Output() sidebarToggle = new EventEmitter<void>();
+  
+  // Dropdown state for language selection
+  isLanguageDropdownOpen: boolean = false;
+  selectedLanguage: 'dart' | 'deep' = 'dart'; // Default to dart
 
   constructor(private router: Router) {
     // Default navigation items with appropriate Remix icons
@@ -76,5 +80,23 @@ export class SideNavComponent {
 
   isActiveRoute(route: string): boolean {
     return this.router.url === route;
+  }
+
+  toggleLanguageDropdown(): void {
+    this.isLanguageDropdownOpen = !this.isLanguageDropdownOpen;
+  }
+
+  selectLanguage(language: 'dart' | 'deep'): void {
+    this.selectedLanguage = language;
+    this.isLanguageDropdownOpen = false;
+    console.log('Language selected:', language);
+  }
+
+  getLanguageIcon(): string {
+    return this.selectedLanguage === 'dart' ? 'assets/images/dartfull.svg' : 'assets/images/deep.svg';
+  }
+
+  getCollapsedLanguageIcon(): string {
+    return this.selectedLanguage === 'dart' ? 'assets/images/dartsmall.svg' : 'assets/images/deepsmall.svg';
   }
 }

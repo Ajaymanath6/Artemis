@@ -27,8 +27,45 @@
 
   <!-- Navigation Items -->
   <div class="flex-1 overflow-y-auto py-4">
+    
+    <!-- Language Selection Dropdown -->
+    <div class="relative mb-4" [class.px-3]="!isCollapsed" [class.px-2]="isCollapsed">
+      <!-- Expanded State - Full dropdown -->
+      <div *ngIf="!isCollapsed">
+        <button
+          (click)="toggleLanguageDropdown()"
+          class="w-full flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group focus:outline-none hover:bg-fill relative">
+          <img [src]="getLanguageIcon()" alt="Language" class="h-5 w-16 flex-shrink-0 object-contain">
+          <i [class]="'ri-arrow-' + (isLanguageDropdownOpen ? 'up' : 'down') + '-s-line text-base text-gray-400 absolute right-3'"></i>
+        </button>
+        
+        <!-- Dropdown Menu -->
+        <div *ngIf="isLanguageDropdownOpen" class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+          <button
+            (click)="selectLanguage('dart')"
+            class="w-full flex items-center justify-center px-3 py-3 text-sm hover:bg-gray-50 transition-colors focus:outline-none first:rounded-t-lg">
+            <img src="assets/images/dartfull.svg" alt="Dart" class="h-5 w-16 object-contain">
+          </button>
+          <button
+            (click)="selectLanguage('deep')"
+            class="w-full flex items-center justify-center px-3 py-3 text-sm hover:bg-gray-50 transition-colors focus:outline-none last:rounded-b-lg">
+            <img src="assets/images/deep.svg" alt="Deep" class="h-5 w-16 object-contain">
+          </button>
+        </div>
+      </div>
+      
+      <!-- Collapsed State - Just logo -->
+      <div *ngIf="isCollapsed" class="flex justify-center">
+        <button
+          (click)="toggleLanguageDropdown()"
+          class="p-2 rounded-lg transition-colors focus:outline-none hover:bg-fill">
+          <img [src]="getCollapsedLanguageIcon()" alt="Language" class="h-collapsed-logo object-contain">
+        </button>
+      </div>
+    </div>
+
     <ul class="space-y-2" [class.px-3]="!isCollapsed" [class.px-2]="isCollapsed">
-      <li *ngFor="let item of navItems">
+      <li *ngFor="let item of navItems; let i = index">
 
         <!-- Main Navigation Item -->
         <div>
@@ -78,18 +115,21 @@
             </li>
           </ul>
         </div>
+        
+        <!-- Divider after All Projects (first item) -->
+        <div *ngIf="i === 0 && !isCollapsed" class="border-b border-gray-200 my-4 mx-3"></div>
       </li>
     </ul>
   </div>
 
   <!-- Navigation Footer - Hidden when collapsed -->
   <div class="p-4 border-t border-gray-200" [class.hidden]="isCollapsed">
-    <button class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all focus:outline-none">
+    <div class="flex items-center space-x-3 px-3 py-2">
       <span class="text-lg">🚀</span>
-      <div class="flex-1 text-left">
+      <button class="flex-1 text-left bg-transparent border-none focus:outline-none text-text-strong hover:text-brand transition-colors">
         <p class="text-sm font-medium">Upgrade</p>
-        <p class="text-xs opacity-90">Unlock premium features</p>
-      </div>
-    </button>
+        <p class="text-xs text-text-weak">Unlock premium features</p>
+      </button>
+    </div>
   </div>
 </nav>
