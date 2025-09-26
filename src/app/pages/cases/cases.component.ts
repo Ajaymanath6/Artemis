@@ -35,11 +35,11 @@ export class CasesComponent implements OnInit {
     this.showResults = false;
     this.isSearchBarExpanded = false; // Reset expansion state when new search is performed
     
-    // Simulate search with loading, then show results
+    // Simulate search with loading, then show results (shorter timeout for testing)
     setTimeout(() => {
       this.isSearching = false;
       this.showResults = true;
-    }, 3000);
+    }, 1500);
   }
 
   onNavItemClick(item: NavItem): void {
@@ -69,6 +69,12 @@ export class CasesComponent implements OnInit {
     // Expand search bar without affecting results display
     this.isSearchBarExpanded = true;
     console.log('Search expanded - maintaining results visible');
+  }
+
+  onCollapseSearch(): void {
+    // Collapse search bar to compact version
+    this.isSearchBarExpanded = false;
+    console.log('Search collapsed to compact version');
   }
 
   onCaseClick(caseId: string): void {

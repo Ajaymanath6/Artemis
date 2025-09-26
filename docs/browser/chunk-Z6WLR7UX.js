@@ -28371,12 +28371,15 @@ export {
   ɵɵgetCurrentView,
   ɵɵlistener,
   ɵɵnextContext,
+  ɵɵprojectionDef,
+  ɵɵprojection,
   ɵɵcontentQuery,
   ɵɵqueryRefresh,
   ɵɵloadQuery,
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
+  ɵɵtextInterpolate3,
   ɵɵtwoWayProperty,
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
@@ -28456,4 +28459,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-63I3BEBX.js.map
+//# sourceMappingURL=chunk-Z6WLR7UX.js.map

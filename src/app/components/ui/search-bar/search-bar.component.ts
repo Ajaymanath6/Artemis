@@ -86,8 +86,10 @@ interface ExpandedSections {
 export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
   @Output() expand = new EventEmitter<void>(); // Emit when expanding search bar
+  @Output() collapse = new EventEmitter<void>(); // Emit when collapsing search bar
   @Input() isCollapsed: boolean = false; // Allow parent to control collapsed state
   @Input() searchQuery: string = ''; // Allow parent to set search query
+  @Input() showCollapseButton: boolean = false; // Show collapse button when results are visible
   isProDropdownOpen: boolean = false;
   selectedProOption: string = 'natural';
   isFilterPanelOpen: boolean = false;
@@ -197,6 +199,10 @@ export class SearchBarComponent {
   expandSearchBar(): void {
     this.isSearching = false;
     this.expand.emit(); // Notify parent to expand search bar
+  }
+  
+  collapseSearchBar(): void {
+    this.collapse.emit(); // Notify parent to collapse search bar
   }
   
   selectSearchType(type: SearchType): void {

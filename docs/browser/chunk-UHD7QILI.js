@@ -1,10 +1,10 @@
 import {
   AppHeaderComponent
-} from "./chunk-3RNL552V.js";
+} from "./chunk-UQQHCV5Z.js";
 import {
   RouterOutlet
-} from "./chunk-5EKLBSZZ.js";
-import "./chunk-JUOZCKZE.js";
+} from "./chunk-DDDO6NM3.js";
+import "./chunk-NB6NNANN.js";
 import {
   CommonModule,
   Component,
@@ -16,7 +16,7 @@ import {
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵproperty
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // src/app/layouts/dashboard-layout/dashboard-layout.component.ts
 var DashboardLayoutComponent = class _DashboardLayoutComponent {
@@ -44,9 +44,9 @@ var DashboardLayoutComponent = class _DashboardLayoutComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DashboardLayoutComponent, { className: "DashboardLayoutComponent", filePath: "src/app/layouts/dashboard-layout/dashboard-layout.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DashboardLayoutComponent, { className: "DashboardLayoutComponent" });
 })();
 export {
   DashboardLayoutComponent
 };
-//# sourceMappingURL=chunk-XGF6QVQJ.js.map
+//# sourceMappingURL=chunk-UHD7QILI.js.map

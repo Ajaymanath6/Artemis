@@ -1,11 +1,11 @@
 import {
   SearchBarComponent
-} from "./chunk-TOIY43RW.js";
+} from "./chunk-XGQBLBHU.js";
 import "./chunk-53JHYZBU.js";
-import "./chunk-4DW7BALG.js";
+import "./chunk-EQUADVRM.js";
 import {
   PhosphorIconComponent
-} from "./chunk-JUOZCKZE.js";
+} from "./chunk-NB6NNANN.js";
 import {
   CommonModule,
   Component,
@@ -31,7 +31,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // src/app/pages/dashboard/dashboard.component.ts
 function DashboardComponent_div_20_Template(rf, ctx) {
@@ -366,9 +366,9 @@ var DashboardComponent = class _DashboardComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DashboardComponent, { className: "DashboardComponent", filePath: "src/app/pages/dashboard/dashboard.component.ts", lineNumber: 21 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DashboardComponent, { className: "DashboardComponent" });
 })();
 export {
   DashboardComponent
 };
-//# sourceMappingURL=chunk-W2KF7NSQ.js.map
+//# sourceMappingURL=chunk-F3WU2MSM.js.map

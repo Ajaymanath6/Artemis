@@ -22,8 +22,10 @@
         <app-search-bar 
           [isCollapsed]="hasSearched"
           [searchQuery]="currentSearchQuery"
+          [showCollapseButton]="showCollapseButton"
           (search)="onSearch($event)"
-          (expand)="onExpandSearch()">
+          (expand)="onExpandSearch()"
+          (collapse)="onCollapseSearch()">
         </app-search-bar>
       </div>
     </div>

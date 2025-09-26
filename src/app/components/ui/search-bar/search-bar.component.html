@@ -121,6 +121,17 @@
 
         <!-- Filter and Search Section -->
         <div class="flex items-center space-x-3">
+          <!-- Collapse Button (only show when results are visible) -->
+          <button 
+            *ngIf="showCollapseButton"
+            (click)="collapseSearchBar()"
+            class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50" 
+            style="outline: none; border: #00000000;"
+            title="Collapse search bar">
+            <i class="ri-subtract-line text-lg" style="color: #146B85;"></i>
+            <span class="underline text-sm font-medium">Collapse</span>
+          </button>
+
           <!-- Filter Section -->
           <button 
             (click)="toggleFilterPanel()"

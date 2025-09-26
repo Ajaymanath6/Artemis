@@ -4,6 +4,45 @@
   display: block;
 }
 
+/* Fixed header container */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 206px; /* Default sidebar width */
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  transition: left 0.3s ease;
+}
+
+/* Adjust for collapsed sidebar */
+.sticky-header.sidebar-collapsed {
+  left: 4rem; /* 64px - collapsed sidebar width */
+}
+
+/* Main content padding for case detail header */
+.pt-case-detail-header {
+  padding-top: 200px; /* Adjust based on header height */
+}
+
+/* Sidebar margin utilities */
+.ml-sidebar {
+  margin-left: 206px; /* Default sidebar width */
+}
+
+.ml-16 {
+  margin-left: 4rem; /* Collapsed sidebar width */
+}
+
+/* Tab styling */
+.border-brand {
+  border-color: #146B85;
+}
+
+.text-brand {
+  color: #146B85;
+}
+
 /* Cases page specific background */
 .bg-cases-page {
   background-color: #F8F8F8;

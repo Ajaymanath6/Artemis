@@ -1,12 +1,4 @@
 import {
-  BrowserModule,
-  DomRendererFactory2,
-  Router,
-  RouterOutlet,
-  bootstrapApplication,
-  provideRouter
-} from "./chunk-5EKLBSZZ.js";
-import {
   AUTO_STYLE,
   AnimationGroupPlayer,
   AnimationMetadataType,
@@ -15,6 +7,14 @@ import {
   style,
   ɵPRE_STYLE
 } from "./chunk-53JHYZBU.js";
+import {
+  BrowserModule,
+  DomRendererFactory2,
+  Router,
+  RouterOutlet,
+  bootstrapApplication,
+  provideRouter
+} from "./chunk-DDDO6NM3.js";
 import {
   ANIMATION_MODULE_TYPE,
   Component,
@@ -38,7 +38,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵelement,
   ɵɵinject
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // node_modules/@angular/animations/fesm2022/util-D9FfmVnv.mjs
 var LINE_START = "\n - ";
@@ -4193,28 +4193,33 @@ var routes = [
   // Authentication routes
   {
     path: "login",
-    loadComponent: () => import("./chunk-WGSP45ZU.js").then((m3) => m3.LoginComponent)
+    loadComponent: () => import("./chunk-PUDE3SKR.js").then((m3) => m3.LoginComponent)
   },
   // Loading page for authentication
   {
     path: "loading",
-    loadComponent: () => import("./chunk-YGD45OFD.js").then((m3) => m3.LoadingComponent)
+    loadComponent: () => import("./chunk-PXUDZG5A.js").then((m3) => m3.LoadingComponent)
   },
   // Dashboard routes with layout
   {
     path: "dashboard",
-    loadComponent: () => import("./chunk-XGF6QVQJ.js").then((m3) => m3.DashboardLayoutComponent),
+    loadComponent: () => import("./chunk-UHD7QILI.js").then((m3) => m3.DashboardLayoutComponent),
     children: [
       {
         path: "",
-        loadComponent: () => import("./chunk-W2KF7NSQ.js").then((m3) => m3.DashboardComponent)
+        loadComponent: () => import("./chunk-F3WU2MSM.js").then((m3) => m3.DashboardComponent)
       }
     ]
   },
   // Cases page
   {
     path: "cases",
-    loadComponent: () => import("./chunk-UD2OCA6P.js").then((m3) => m3.CasesComponent)
+    loadComponent: () => import("./chunk-DLALMAYY.js").then((m3) => m3.CasesComponent)
+  },
+  // Case detail page
+  {
+    path: "case/:id",
+    loadComponent: () => import("./chunk-7EGIFVKX.js").then((m3) => m3.CaseDetailComponent)
   },
   // Wildcard route - must be last
   { path: "**", redirectTo: "/dashboard" }
@@ -11358,7 +11363,7 @@ var AppComponent = class _AppComponent {
   }], () => [{ type: Router }], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.component.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent" });
 })();
 
 // src/main.ts

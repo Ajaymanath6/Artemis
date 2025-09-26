@@ -1,6 +1,6 @@
 import {
   Router
-} from "./chunk-5EKLBSZZ.js";
+} from "./chunk-DDDO6NM3.js";
 import {
   CommonModule,
   Component,
@@ -12,7 +12,7 @@ import {
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵtext
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // src/app/pages/loading/loading.component.ts
 var LoadingComponent = class _LoadingComponent {
@@ -61,9 +61,9 @@ var LoadingComponent = class _LoadingComponent {
   }], () => [{ type: Router }], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoadingComponent, { className: "LoadingComponent", filePath: "src/app/pages/loading/loading.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoadingComponent, { className: "LoadingComponent" });
 })();
 export {
   LoadingComponent
 };
-//# sourceMappingURL=chunk-YGD45OFD.js.map
+//# sourceMappingURL=chunk-PXUDZG5A.js.map

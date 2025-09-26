@@ -1,16 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
+import { SummaryLayoutComponent } from '../../layouts/summary-layout/summary-layout.component';
+import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-case-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, AppHeaderComponent],
   templateUrl: './case-detail.component.html',
   styleUrls: ['./case-detail.component.css']
 })
 export class CaseDetailComponent implements OnInit {
   caseId: string | null = null;
+  
+  // Header and sidebar properties
+  isSidebarCollapsed: boolean = false;
+  projectName: string = 'NY Judgment Tracking';
+  
+  // Tab management
+  activeTab: string = 'summary';
+  tabs = [
+    { id: 'summary', label: 'Summary' },
+    { id: 'docket-entries', label: 'Docket Entries' },
+    { id: 'documents', label: 'Documents' },
+    { id: 'parties-attorneys', label: 'Parties/Attorneys' },
+    { id: 'judges', label: 'Judges' },
+    { id: 'related-cases', label: 'Related Cases' },
+    { id: 'docket-history', label: 'Docket History' },
+    { id: 'similar-cases', label: 'Similar Cases' }
+  ];
   
   // Dummy case data
   caseDetails = {
@@ -137,5 +157,47 @@ export class CaseDetailComponent implements OnInit {
   addToWatchlist(): void {
     console.log('Adding case to watchlist:', this.caseDetails.title);
     // Implement watchlist functionality
+  }
+
+  // Header interaction methods
+  onSidebarToggle(): void {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+
+  onProjectClick(): void {
+    console.log('Project clicked');
+  }
+
+  onSearchQueryClick(): void {
+    console.log('Search query clicked');
+  }
+
+  onSearch(query: string): void {
+    console.log('Search:', query);
+  }
+
+  onExpandSearch(): void {
+    console.log('Expand search');
+  }
+
+  onCollapseSearch(): void {
+    console.log('Collapse search');
+  }
+
+  // Tab management
+  setActiveTab(tabId: string): void {
+    this.activeTab = tabId;
+    console.log('Active tab set to:', tabId);
+  }
+
+  // Action methods
+  refreshCase(): void {
+    console.log('Refreshing case data for:', this.caseDetails.title);
+    // Implement refresh functionality
+  }
+
+  setTracker(): void {
+    console.log('Setting tracker for case:', this.caseDetails.title);
+    // Implement tracker functionality
   }
 }

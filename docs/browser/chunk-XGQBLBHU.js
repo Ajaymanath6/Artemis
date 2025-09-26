@@ -14,7 +14,7 @@ import {
   NgSelectOption,
   SelectControlValueAccessor,
   ɵNgSelectMultipleOption
-} from "./chunk-4DW7BALG.js";
+} from "./chunk-EQUADVRM.js";
 import {
   ANIMATION_MODULE_TYPE,
   CommonModule,
@@ -24,6 +24,7 @@ import {
   HostListener,
   Inject,
   Injectable,
+  Input,
   NgClass,
   NgForOf,
   NgIf,
@@ -59,7 +60,7 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // node_modules/@angular/animations/fesm2022/animations.mjs
 var AnimationBuilder = class _AnimationBuilder {
@@ -230,17 +231,17 @@ function isAnimationRenderer(renderer) {
 var _c0 = (a0, a1) => ({ "opacity-100 pointer-events-auto": a0, "opacity-0 pointer-events-none": a1 });
 var _c1 = (a0, a1) => ({ "opacity-100": a0, "opacity-0": a1 });
 var _c2 = (a0, a1) => ({ "translate-x-0": a0, "translate-x-full": a1 });
-function SearchBarComponent_div_1_button_4_Template(rf, ctx) {
+function SearchBarComponent_div_1_button_5_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 28);
-    \u0275\u0275listener("click", function SearchBarComponent_div_1_button_4_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 29);
+    \u0275\u0275listener("click", function SearchBarComponent_div_1_button_5_Template_button_click_0_listener() {
       const type_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r2.selectSearchType(type_r2));
     });
     \u0275\u0275element(1, "i");
-    \u0275\u0275elementStart(2, "span", 29);
+    \u0275\u0275elementStart(2, "span", 30);
     \u0275\u0275text(3);
     \u0275\u0275elementEnd()();
   }
@@ -257,28 +258,28 @@ function SearchBarComponent_div_1_button_4_Template(rf, ctx) {
 }
 function SearchBarComponent_div_1_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 24)(1, "h2", 25);
-    \u0275\u0275text(2, "Search For");
+    \u0275\u0275elementStart(0, "div", 24)(1, "div", 25)(2, "h2", 26);
+    \u0275\u0275text(3, "Search For:");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "div", 26);
-    \u0275\u0275template(4, SearchBarComponent_div_1_button_4_Template, 4, 7, "button", 27);
-    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(4, "div", 27);
+    \u0275\u0275template(5, SearchBarComponent_div_1_button_5_Template, 4, 7, "button", 28);
+    \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275advance(4);
+    \u0275\u0275advance(5);
     \u0275\u0275property("ngForOf", ctx_r2.searchTypes);
   }
 }
 function SearchBarComponent_div_2_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "div", 38);
+    \u0275\u0275element(0, "div", 40);
   }
 }
 function SearchBarComponent_div_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 30)(1, "div", 31)(2, "div", 32)(3, "span", 33);
+    \u0275\u0275elementStart(0, "div", 31)(1, "div", 32)(2, "div", 33)(3, "span", 34);
     \u0275\u0275listener("click", function SearchBarComponent_div_2_Template_span_click_3_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -286,21 +287,29 @@ function SearchBarComponent_div_2_Template(rf, ctx) {
     });
     \u0275\u0275text(4);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "div", 34);
-    \u0275\u0275template(6, SearchBarComponent_div_2_div_6_Template, 1, 0, "div", 35);
-    \u0275\u0275elementStart(7, "button", 36);
+    \u0275\u0275elementStart(5, "div", 35);
+    \u0275\u0275template(6, SearchBarComponent_div_2_div_6_Template, 1, 0, "div", 36);
+    \u0275\u0275elementStart(7, "button", 37);
     \u0275\u0275listener("click", function SearchBarComponent_div_2_Template_button_click_7_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.expandSearchBar());
+    });
+    \u0275\u0275element(8, "i", 38);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "button", 37);
+    \u0275\u0275listener("click", function SearchBarComponent_div_2_Template_button_click_9_listener() {
       \u0275\u0275restoreView(_r4);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.clearSearch());
     });
-    \u0275\u0275element(8, "i", 37);
+    \u0275\u0275element(10, "i", 39);
     \u0275\u0275elementEnd()()()()();
   }
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(4);
-    \u0275\u0275textInterpolate(ctx_r2.searchQuery);
+    \u0275\u0275textInterpolate(ctx_r2.searchQuery || "Search...");
     \u0275\u0275advance(2);
     \u0275\u0275property("ngIf", ctx_r2.isSearching);
   }
@@ -308,39 +317,39 @@ function SearchBarComponent_div_2_Template(rf, ctx) {
 function SearchBarComponent_div_3_div_12_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 56)(1, "div", 57);
+    \u0275\u0275elementStart(0, "div", 59)(1, "div", 60);
     \u0275\u0275listener("click", function SearchBarComponent_div_3_div_12_Template_div_click_1_listener() {
       \u0275\u0275restoreView(_r6);
       const ctx_r2 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r2.selectProOption("natural"));
     });
-    \u0275\u0275elementStart(2, "div", 50)(3, "div", 58);
-    \u0275\u0275element(4, "i", 59);
-    \u0275\u0275elementStart(5, "div", 60)(6, "h4", 61);
+    \u0275\u0275elementStart(2, "div", 52)(3, "div", 61);
+    \u0275\u0275element(4, "i", 62);
+    \u0275\u0275elementStart(5, "div", 63)(6, "h4", 64);
     \u0275\u0275text(7, "Natural Language");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "p", 62);
+    \u0275\u0275elementStart(8, "p", 65);
     \u0275\u0275text(9, "Standard natural language processing");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(10, "div", 63);
-    \u0275\u0275element(11, "input", 64);
+    \u0275\u0275elementStart(10, "div", 66);
+    \u0275\u0275element(11, "input", 67);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(12, "div", 57);
+    \u0275\u0275elementStart(12, "div", 60);
     \u0275\u0275listener("click", function SearchBarComponent_div_3_div_12_Template_div_click_12_listener() {
       \u0275\u0275restoreView(_r6);
       const ctx_r2 = \u0275\u0275nextContext(2);
       return \u0275\u0275resetView(ctx_r2.selectProOption("advanced"));
     });
-    \u0275\u0275elementStart(13, "div", 50)(14, "div", 58);
-    \u0275\u0275element(15, "i", 65);
-    \u0275\u0275elementStart(16, "div", 60)(17, "h4", 61);
+    \u0275\u0275elementStart(13, "div", 52)(14, "div", 61);
+    \u0275\u0275element(15, "i", 68);
+    \u0275\u0275elementStart(16, "div", 63)(17, "h4", 64);
     \u0275\u0275text(18, "Advanced");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "p", 62);
+    \u0275\u0275elementStart(19, "p", 65);
     \u0275\u0275text(20, "Advanced AI features and capabilities");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(21, "div", 63);
-    \u0275\u0275element(22, "input", 66);
+    \u0275\u0275elementStart(21, "div", 66);
+    \u0275\u0275element(22, "input", 69);
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
@@ -351,9 +360,24 @@ function SearchBarComponent_div_3_div_12_Template(rf, ctx) {
     \u0275\u0275property("checked", ctx_r2.selectedProOption === "advanced");
   }
 }
-function SearchBarComponent_div_3_span_18_Template(rf, ctx) {
+function SearchBarComponent_div_3_button_14_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "span", 67);
+    const _r7 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 70);
+    \u0275\u0275listener("click", function SearchBarComponent_div_3_button_14_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r7);
+      const ctx_r2 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r2.collapseSearchBar());
+    });
+    \u0275\u0275element(1, "i", 71);
+    \u0275\u0275elementStart(2, "span", 49);
+    \u0275\u0275text(3, "Collapse");
+    \u0275\u0275elementEnd()();
+  }
+}
+function SearchBarComponent_div_3_span_19_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 72);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
@@ -366,7 +390,7 @@ function SearchBarComponent_div_3_span_18_Template(rf, ctx) {
 function SearchBarComponent_div_3_Template(rf, ctx) {
   if (rf & 1) {
     const _r5 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 39)(1, "div", 40)(2, "div", 41)(3, "div", 42)(4, "input", 43);
+    \u0275\u0275elementStart(0, "div", 41)(1, "div", 42)(2, "div", 43)(3, "div", 44)(4, "input", 45);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_3_Template_input_ngModelChange_4_listener($event) {
       \u0275\u0275restoreView(_r5);
       const ctx_r2 = \u0275\u0275nextContext();
@@ -379,39 +403,41 @@ function SearchBarComponent_div_3_Template(rf, ctx) {
       return \u0275\u0275resetView(ctx_r2.onKeyPress($event));
     });
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(5, "div", 44)(6, "div", 39)(7, "button", 45);
+    \u0275\u0275elementStart(5, "div", 46)(6, "div", 41)(7, "button", 47);
     \u0275\u0275listener("click", function SearchBarComponent_div_3_Template_button_click_7_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.toggleProDropdown());
     });
-    \u0275\u0275element(8, "i", 46);
-    \u0275\u0275elementStart(9, "span", 47);
+    \u0275\u0275element(8, "i", 48);
+    \u0275\u0275elementStart(9, "span", 49);
     \u0275\u0275text(10, "Natural Language");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(11, "i", 48);
+    \u0275\u0275element(11, "i", 50);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(12, SearchBarComponent_div_3_div_12_Template, 23, 2, "div", 49);
+    \u0275\u0275template(12, SearchBarComponent_div_3_div_12_Template, 23, 2, "div", 51);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(13, "div", 50)(14, "button", 51);
-    \u0275\u0275listener("click", function SearchBarComponent_div_3_Template_button_click_14_listener() {
+    \u0275\u0275elementStart(13, "div", 52);
+    \u0275\u0275template(14, SearchBarComponent_div_3_button_14_Template, 4, 0, "button", 53);
+    \u0275\u0275elementStart(15, "button", 54);
+    \u0275\u0275listener("click", function SearchBarComponent_div_3_Template_button_click_15_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.toggleFilterPanel());
     });
-    \u0275\u0275element(15, "i", 52);
-    \u0275\u0275elementStart(16, "span", 47);
-    \u0275\u0275text(17, "Filter");
+    \u0275\u0275element(16, "i", 55);
+    \u0275\u0275elementStart(17, "span", 49);
+    \u0275\u0275text(18, "Filter");
     \u0275\u0275elementEnd();
-    \u0275\u0275template(18, SearchBarComponent_div_3_span_18_Template, 2, 1, "span", 53);
+    \u0275\u0275template(19, SearchBarComponent_div_3_span_19_Template, 2, 1, "span", 56);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "button", 54);
-    \u0275\u0275listener("click", function SearchBarComponent_div_3_Template_button_click_19_listener() {
+    \u0275\u0275elementStart(20, "button", 57);
+    \u0275\u0275listener("click", function SearchBarComponent_div_3_Template_button_click_20_listener() {
       \u0275\u0275restoreView(_r5);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.onSearch());
     });
-    \u0275\u0275element(20, "i", 55);
+    \u0275\u0275element(21, "i", 58);
     \u0275\u0275elementEnd()()()()();
   }
   if (rf & 2) {
@@ -420,7 +446,9 @@ function SearchBarComponent_div_3_Template(rf, ctx) {
     \u0275\u0275twoWayProperty("ngModel", ctx_r2.searchQuery);
     \u0275\u0275advance(8);
     \u0275\u0275property("ngIf", ctx_r2.isProDropdownOpen);
-    \u0275\u0275advance(6);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r2.showCollapseButton);
+    \u0275\u0275advance(5);
     \u0275\u0275property("ngIf", ctx_r2.activeFilterCount > 0);
     \u0275\u0275advance();
     \u0275\u0275styleProp("background-color", ctx_r2.searchQuery && ctx_r2.searchQuery.trim().length > 0 ? "#146B85" : "rgba(20, 120, 133, 0.5)");
@@ -429,81 +457,81 @@ function SearchBarComponent_div_3_Template(rf, ctx) {
 }
 function SearchBarComponent_div_23_Template(rf, ctx) {
   if (rf & 1) {
-    const _r7 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "input", 70);
+    const _r8 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "input", 75);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_2_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.caseName, $event) || (ctx_r2.caseFilters.caseName = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_2_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 71);
+    \u0275\u0275elementStart(3, "input", 76);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_3_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.caseNumber, $event) || (ctx_r2.caseFilters.caseNumber = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_3_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "input", 72);
+    \u0275\u0275elementStart(4, "input", 77);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_4_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.filingDateFrom, $event) || (ctx_r2.caseFilters.filingDateFrom = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_4_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "input", 73);
+    \u0275\u0275elementStart(5, "input", 78);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_5_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.filingDateTo, $event) || (ctx_r2.caseFilters.filingDateTo = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_5_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "input", 74);
+    \u0275\u0275elementStart(6, "input", 79);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_6_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.docketText, $event) || (ctx_r2.caseFilters.docketText = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_6_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "input", 75);
+    \u0275\u0275elementStart(7, "input", 80);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_23_Template_input_ngModelChange_7_listener($event) {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.caseFilters.docketDate, $event) || (ctx_r2.caseFilters.docketDate = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_23_Template_input_input_7_listener() {
-      \u0275\u0275restoreView(_r7);
+      \u0275\u0275restoreView(_r8);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
@@ -527,42 +555,42 @@ function SearchBarComponent_div_23_Template(rf, ctx) {
 }
 function SearchBarComponent_div_29_Template(rf, ctx) {
   if (rf & 1) {
-    const _r8 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "input", 76);
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "input", 81);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_29_Template_input_ngModelChange_2_listener($event) {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.judgeFilters.judgeName, $event) || (ctx_r2.judgeFilters.judgeName = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_29_Template_input_input_2_listener() {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 77);
+    \u0275\u0275elementStart(3, "input", 82);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_29_Template_input_ngModelChange_3_listener($event) {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.judgeFilters.judgeAddress, $event) || (ctx_r2.judgeFilters.judgeAddress = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_29_Template_input_input_3_listener() {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "input", 78);
+    \u0275\u0275elementStart(4, "input", 83);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_29_Template_input_ngModelChange_4_listener($event) {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.judgeFilters.judgeEmail, $event) || (ctx_r2.judgeFilters.judgeEmail = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_29_Template_input_input_4_listener() {
-      \u0275\u0275restoreView(_r8);
+      \u0275\u0275restoreView(_r9);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
@@ -580,55 +608,55 @@ function SearchBarComponent_div_29_Template(rf, ctx) {
 }
 function SearchBarComponent_div_35_Template(rf, ctx) {
   if (rf & 1) {
-    const _r9 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "input", 79);
+    const _r10 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "input", 84);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_35_Template_input_ngModelChange_2_listener($event) {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.attorneyFilters.attorneyName, $event) || (ctx_r2.attorneyFilters.attorneyName = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_35_Template_input_input_2_listener() {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 80);
+    \u0275\u0275elementStart(3, "input", 85);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_35_Template_input_ngModelChange_3_listener($event) {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.attorneyFilters.barNumber, $event) || (ctx_r2.attorneyFilters.barNumber = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_35_Template_input_input_3_listener() {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "input", 81);
+    \u0275\u0275elementStart(4, "input", 86);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_35_Template_input_ngModelChange_4_listener($event) {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.attorneyFilters.attorneyEmail, $event) || (ctx_r2.attorneyFilters.attorneyEmail = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_35_Template_input_input_4_listener() {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "input", 82);
+    \u0275\u0275elementStart(5, "input", 87);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_35_Template_input_ngModelChange_5_listener($event) {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.attorneyFilters.attorneyAddress, $event) || (ctx_r2.attorneyFilters.attorneyAddress = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_35_Template_input_input_5_listener() {
-      \u0275\u0275restoreView(_r9);
+      \u0275\u0275restoreView(_r10);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
@@ -648,92 +676,92 @@ function SearchBarComponent_div_35_Template(rf, ctx) {
 }
 function SearchBarComponent_div_41_Template(rf, ctx) {
   if (rf & 1) {
-    const _r10 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "input", 83);
+    const _r11 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "input", 88);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_41_Template_input_ngModelChange_2_listener($event) {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.partyFilters.partyName, $event) || (ctx_r2.partyFilters.partyName = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_41_Template_input_input_2_listener() {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "input", 84);
+    \u0275\u0275elementStart(3, "input", 89);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_41_Template_input_ngModelChange_3_listener($event) {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.partyFilters.partyAddress, $event) || (ctx_r2.partyFilters.partyAddress = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_41_Template_input_input_3_listener() {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "select", 85);
+    \u0275\u0275elementStart(4, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_41_Template_select_ngModelChange_4_listener($event) {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.partyFilters.partyRoleGroup, $event) || (ctx_r2.partyFilters.partyRoleGroup = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_41_Template_select_change_4_listener() {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(5, "option", 86);
+    \u0275\u0275elementStart(5, "option", 91);
     \u0275\u0275text(6, "Select a rolegroup...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "option", 87);
+    \u0275\u0275elementStart(7, "option", 92);
     \u0275\u0275text(8, "Plaintiff");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "option", 88);
+    \u0275\u0275elementStart(9, "option", 93);
     \u0275\u0275text(10, "Defendant");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(11, "option", 89);
+    \u0275\u0275elementStart(11, "option", 94);
     \u0275\u0275text(12, "Witness");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(13, "input", 90);
+    \u0275\u0275elementStart(13, "input", 95);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_41_Template_input_ngModelChange_13_listener($event) {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.partyFilters.partyEmail, $event) || (ctx_r2.partyFilters.partyEmail = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_41_Template_input_input_13_listener() {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(14, "select", 85);
+    \u0275\u0275elementStart(14, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_41_Template_select_ngModelChange_14_listener($event) {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.partyFilters.partyRole, $event) || (ctx_r2.partyFilters.partyRole = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_41_Template_select_change_14_listener() {
-      \u0275\u0275restoreView(_r10);
+      \u0275\u0275restoreView(_r11);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(15, "option", 86);
+    \u0275\u0275elementStart(15, "option", 91);
     \u0275\u0275text(16, "Select a role...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(17, "option", 91);
+    \u0275\u0275elementStart(17, "option", 96);
     \u0275\u0275text(18, "Lead");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "option", 92);
+    \u0275\u0275elementStart(19, "option", 97);
     \u0275\u0275text(20, "Co-Counsel");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(21, "option", 93);
+    \u0275\u0275elementStart(21, "option", 98);
     \u0275\u0275text(22, "Local Counsel");
     \u0275\u0275elementEnd()()()();
   }
@@ -753,56 +781,56 @@ function SearchBarComponent_div_41_Template(rf, ctx) {
 }
 function SearchBarComponent_div_47_Template(rf, ctx) {
   if (rf & 1) {
-    const _r11 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "input", 94);
+    const _r12 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "input", 99);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_47_Template_input_ngModelChange_2_listener($event) {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.documentFilters.documentName, $event) || (ctx_r2.documentFilters.documentName = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_47_Template_input_input_2_listener() {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "select", 85);
+    \u0275\u0275elementStart(3, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_47_Template_select_ngModelChange_3_listener($event) {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.documentFilters.documentType, $event) || (ctx_r2.documentFilters.documentType = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_47_Template_select_change_3_listener() {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(4, "option", 86);
+    \u0275\u0275elementStart(4, "option", 91);
     \u0275\u0275text(5, "Select Document Type...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(6, "option", 95);
+    \u0275\u0275elementStart(6, "option", 100);
     \u0275\u0275text(7, "Motion");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "option", 96);
+    \u0275\u0275elementStart(8, "option", 101);
     \u0275\u0275text(9, "Brief");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "option", 97);
+    \u0275\u0275elementStart(10, "option", 102);
     \u0275\u0275text(11, "Order");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "option", 98);
+    \u0275\u0275elementStart(12, "option", 103);
     \u0275\u0275text(13, "Transcript");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(14, "input", 99);
+    \u0275\u0275elementStart(14, "input", 104);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_47_Template_input_ngModelChange_14_listener($event) {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.documentFilters.documentDate, $event) || (ctx_r2.documentFilters.documentDate = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("input", function SearchBarComponent_div_47_Template_input_input_14_listener() {
-      \u0275\u0275restoreView(_r11);
+      \u0275\u0275restoreView(_r12);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
@@ -820,86 +848,86 @@ function SearchBarComponent_div_47_Template(rf, ctx) {
 }
 function SearchBarComponent_div_53_Template(rf, ctx) {
   if (rf & 1) {
-    const _r12 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 68)(1, "div", 69)(2, "div")(3, "label", 100);
+    const _r13 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 73)(1, "div", 74)(2, "div")(3, "label", 105);
     \u0275\u0275text(4, "Court Filters");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "select", 85);
+    \u0275\u0275elementStart(5, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_53_Template_select_ngModelChange_5_listener($event) {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.otherFilters.court, $event) || (ctx_r2.otherFilters.court = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_53_Template_select_change_5_listener() {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(6, "option", 86);
+    \u0275\u0275elementStart(6, "option", 91);
     \u0275\u0275text(7, "Select Court...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(8, "option", 101);
+    \u0275\u0275elementStart(8, "option", 106);
     \u0275\u0275text(9, "District Court");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(10, "option", 102);
+    \u0275\u0275elementStart(10, "option", 107);
     \u0275\u0275text(11, "Appellate Court");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(12, "option", 103);
+    \u0275\u0275elementStart(12, "option", 108);
     \u0275\u0275text(13, "Supreme Court");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(14, "div")(15, "label", 100);
+    \u0275\u0275elementStart(14, "div")(15, "label", 105);
     \u0275\u0275text(16, "Case Type");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(17, "select", 85);
+    \u0275\u0275elementStart(17, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_53_Template_select_ngModelChange_17_listener($event) {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.otherFilters.caseType, $event) || (ctx_r2.otherFilters.caseType = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_53_Template_select_change_17_listener() {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(18, "option", 86);
+    \u0275\u0275elementStart(18, "option", 91);
     \u0275\u0275text(19, "Select Case Type...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(20, "option", 104);
+    \u0275\u0275elementStart(20, "option", 109);
     \u0275\u0275text(21, "Civil");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(22, "option", 105);
+    \u0275\u0275elementStart(22, "option", 110);
     \u0275\u0275text(23, "Criminal");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(24, "option", 106);
+    \u0275\u0275elementStart(24, "option", 111);
     \u0275\u0275text(25, "Corporate");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(26, "div")(27, "label", 100);
+    \u0275\u0275elementStart(26, "div")(27, "label", 105);
     \u0275\u0275text(28, "Case Status");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(29, "select", 85);
+    \u0275\u0275elementStart(29, "select", 90);
     \u0275\u0275twoWayListener("ngModelChange", function SearchBarComponent_div_53_Template_select_ngModelChange_29_listener($event) {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       \u0275\u0275twoWayBindingSet(ctx_r2.otherFilters.caseStatus, $event) || (ctx_r2.otherFilters.caseStatus = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function SearchBarComponent_div_53_Template_select_change_29_listener() {
-      \u0275\u0275restoreView(_r12);
+      \u0275\u0275restoreView(_r13);
       const ctx_r2 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r2.updateActiveFilterCount());
     });
-    \u0275\u0275elementStart(30, "option", 86);
+    \u0275\u0275elementStart(30, "option", 91);
     \u0275\u0275text(31, "Select Status...");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(32, "option", 107);
+    \u0275\u0275elementStart(32, "option", 112);
     \u0275\u0275text(33, "Active");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(34, "option", 108);
+    \u0275\u0275elementStart(34, "option", 113);
     \u0275\u0275text(35, "Closed");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(36, "option", 109);
+    \u0275\u0275elementStart(36, "option", 114);
     \u0275\u0275text(37, "Pending");
     \u0275\u0275elementEnd()()()()();
   }
@@ -915,7 +943,16 @@ function SearchBarComponent_div_53_Template(rf, ctx) {
 }
 var SearchBarComponent = class _SearchBarComponent {
   search = new EventEmitter();
+  expand = new EventEmitter();
+  // Emit when expanding search bar
+  collapse = new EventEmitter();
+  // Emit when collapsing search bar
+  isCollapsed = false;
+  // Allow parent to control collapsed state
   searchQuery = "";
+  // Allow parent to set search query
+  showCollapseButton = false;
+  // Show collapse button when results are visible
   isProDropdownOpen = false;
   selectedProOption = "natural";
   isFilterPanelOpen = false;
@@ -980,11 +1017,13 @@ var SearchBarComponent = class _SearchBarComponent {
   activeFilterCount = 0;
   // Search state management
   isSearching = false;
-  isSearchCollapsed = false;
+  // Use computed property to check collapsed state
+  get isSearchCollapsed() {
+    return this.isCollapsed;
+  }
   onSearch() {
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
       this.isSearching = true;
-      this.isSearchCollapsed = true;
       this.search.emit(this.searchQuery);
       setTimeout(() => {
         this.isSearching = false;
@@ -999,12 +1038,14 @@ var SearchBarComponent = class _SearchBarComponent {
   clearSearch() {
     this.searchQuery = "";
     this.isSearching = false;
-    this.isSearchCollapsed = false;
     this.search.emit("");
   }
   expandSearchBar() {
-    this.isSearchCollapsed = false;
     this.isSearching = false;
+    this.expand.emit();
+  }
+  collapseSearchBar() {
+    this.collapse.emit();
   }
   selectSearchType(type) {
     this.selectedSearchType = type;
@@ -1167,10 +1208,10 @@ var SearchBarComponent = class _SearchBarComponent {
         return ctx.onEscapeKey($event);
       }, false, \u0275\u0275resolveDocument);
     }
-  }, outputs: { search: "search" }, decls: 60, vars: 36, consts: [[1, "w-full", "mx-auto"], ["class", "mb-6", 4, "ngIf"], ["class", "mb-8", 4, "ngIf"], ["class", "relative", 4, "ngIf"], [1, "fixed", "inset-0", "z-50", "overflow-hidden", "transition-opacity", "duration-300", 3, "ngClass"], [1, "absolute", "inset-0", "bg-gray-900", "bg-opacity-10", "transition-opacity", "duration-300", 3, "click", "ngClass"], [1, "absolute", "right-0", "top-0", "h-full", "w-90", "bg-white", "shadow-xl", "transition-transform", "duration-500", "ease-out", 3, "ngClass"], [1, "flex", "items-center", "justify-between", "px-6", "py-4", "border-b", "border-gray-200"], [1, "text-lg", "font-semibold", "text-gray-900"], [1, "p-2", "rounded-lg", "hover:bg-gray-100", "transition-colors", 3, "click"], [1, "ri-close-line", "text-xl", "text-gray-500"], [1, "flex-1", "overflow-y-auto", "p-6"], [1, "space-y-4"], [1, "bg-gray-50", "rounded-lg", "p-4"], [1, "text-sm", "font-medium", "text-gray-900", "mb-3"], ["type", "text", "placeholder", "Enter general search term...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "border", "border-gray-200", "rounded-lg"], [1, "w-full", "flex", "items-center", "justify-between", "px-4", "py-3", "text-left", "hover:bg-gray-50", "transition-colors", 3, "click"], [1, "text-sm", "font-medium", "text-gray-900"], ["class", "px-4 pb-4 border-t border-gray-200 bg-gray-50", 4, "ngIf"], [1, "px-6", "py-4", "border-t", "border-gray-200", "bg-white"], [1, "flex", "space-x-3"], [1, "flex-1", "px-4", "py-2", "border", "border-gray-300", "rounded-lg", "text-gray-700", "hover:bg-gray-50", "transition-colors", "font-medium", 3, "click"], [1, "flex-1", "px-4", "py-2", "bg-brand", "text-white", "rounded-lg", "hover:bg-opacity-90", "transition-colors", "font-medium", 3, "click"], [1, "mb-6"], [1, "text-sm", "font-bold", "text-gray-900", "mb-4", "uppercase"], [1, "flex", "items-center", "space-x-4"], ["class", "flex items-center space-x-2 h-9 px-4 py-3 rounded-lg transition-colors", 3, "class", "click", 4, "ngFor", "ngForOf"], [1, "flex", "items-center", "space-x-2", "h-9", "px-4", "py-3", "rounded-lg", "transition-colors", 3, "click"], [1, "font-medium", "text-sm"], [1, "mb-8"], [1, "bg-white", "border", "border-stroke-weak", "rounded-lg", "px-4", "py-3"], [1, "flex", "items-center", "justify-between"], [1, "text-gray-700", "cursor-pointer", 3, "click"], [1, "flex", "items-center", "space-x-2"], ["class", "animate-spin rounded-full h-5 w-5 border-b-2 border-brand", 4, "ngIf"], [1, "text-gray-500", "hover:text-gray-700", 3, "click"], [1, "ri-close-line", "text-lg"], [1, "animate-spin", "rounded-full", "h-5", "w-5", "border-b-2", "border-brand"], [1, "relative"], [1, "bg-white", "border", "border-stroke-weak", "rounded-lg"], [1, "flex", "items-center", "px-4", "py-4"], [1, "flex-1", "relative"], ["type", "text", "placeholder", "Ask the researcher", 1, "w-full", "pr-4", "py-2", "bg-transparent", "focus:outline-none", "placeholder-opacity-30", "text-lg", "border-none", 3, "ngModelChange", "keyup", "ngModel"], [1, "flex", "items-center", "justify-between", "px-4", "pb-4", "relative"], [1, "flex", "items-center", "space-x-2", "text-text-strong", "hover:text-brand", "transition-colors", "border-0", "px-3", "py-2", "rounded-lg", "hover:bg-gray-50", 2, "outline", "none", "border", "#00000000", 3, "click"], [1, "ri-sparkling-fill", "text-lg", 2, "color", "#146B85"], [1, "underline", "text-sm", "font-medium"], [1, "ri-arrow-down-s-line", 2, "color", "#353D59", "font-size", "14px"], ["class", "absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50", 4, "ngIf"], [1, "flex", "items-center", "space-x-3"], [1, "flex", "items-center", "space-x-2", "text-text-strong", "hover:text-brand", "transition-colors", "border-0", "px-3", "py-2", "rounded-lg", "hover:bg-gray-50", "relative", 2, "outline", "none", "border", "#00000000", 3, "click"], [1, "ri-filter-line", "text-lg", 2, "color", "#146B85"], ["class", "absolute -top-1 -right-1 bg-brand text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center", 4, "ngIf"], [1, "w-9", "h-9", "rounded-lg", "transition-colors", "flex", "items-center", "justify-center", "ml-3", 3, "click", "disabled"], [1, "ri-arrow-right-long-line", "text-white", "text-lg"], [1, "absolute", "top-full", "left-0", "mt-2", "w-80", "bg-white", "border", "border-gray-200", "rounded-lg", "shadow-lg", "z-50"], [1, "px-4", "py-3", "hover:bg-gray-50", "cursor-pointer", 3, "click"], [1, "flex", "items-center", "space-x-3", "flex-1"], [1, "ri-sparkling-fill", "text-lg", 2, "color", "#69718C"], [1, "flex-1"], [1, "text-sm", "font-medium", "text-text-strong"], [1, "text-xs", "text-text-weak"], [1, "flex", "items-center"], ["type", "radio", "name", "proOption", "value", "natural", 1, "w-4", "h-4", "text-brand", "focus:ring-brand", "border-gray-300", 3, "checked"], [1, "ri-flow-chart", "text-lg", 2, "color", "#69718C"], ["type", "radio", "name", "proOption", "value", "advanced", 1, "w-4", "h-4", "text-brand", "focus:ring-brand", "border-gray-300", 3, "checked"], [1, "absolute", "-top-1", "-right-1", "bg-brand", "text-white", "text-xs", "font-bold", "rounded-full", "h-5", "w-5", "flex", "items-center", "justify-center"], [1, "px-4", "pb-4", "border-t", "border-gray-200", "bg-gray-50"], [1, "space-y-3", "pt-3"], ["type", "text", "placeholder", "Case Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Case Number...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Filing Date From...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Filing Date To...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Docket Text...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Docket Date...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Judge Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Judge Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "email", "placeholder", "Judge Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Attorney Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Bar Number...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "email", "placeholder", "Attorney Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Attorney Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Party Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Party Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "change", "ngModel"], ["value", ""], ["value", "plaintiff"], ["value", "defendant"], ["value", "witness"], ["type", "email", "placeholder", "Party Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["value", "lead"], ["value", "co-counsel"], ["value", "local-counsel"], ["type", "text", "placeholder", "Document Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["value", "motion"], ["value", "brief"], ["value", "order"], ["value", "transcript"], ["type", "date", "placeholder", "Document Date...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "block", "text-sm", "font-medium", "text-gray-700", "mb-1"], ["value", "district"], ["value", "appellate"], ["value", "supreme"], ["value", "civil"], ["value", "criminal"], ["value", "corporate"], ["value", "active"], ["value", "closed"], ["value", "pending"]], template: function SearchBarComponent_Template(rf, ctx) {
+  }, inputs: { isCollapsed: "isCollapsed", searchQuery: "searchQuery", showCollapseButton: "showCollapseButton" }, outputs: { search: "search", expand: "expand", collapse: "collapse" }, decls: 60, vars: 36, consts: [[1, "w-full", "mx-auto"], ["class", "mb-6", 4, "ngIf"], ["class", "mb-4", 4, "ngIf"], ["class", "relative", 4, "ngIf"], [1, "fixed", "inset-0", "z-50", "overflow-hidden", "transition-opacity", "duration-300", 3, "ngClass"], [1, "absolute", "inset-0", "bg-gray-900", "bg-opacity-10", "transition-opacity", "duration-300", 3, "click", "ngClass"], [1, "absolute", "right-0", "top-0", "h-full", "w-90", "bg-white", "shadow-xl", "transition-transform", "duration-500", "ease-out", 3, "ngClass"], [1, "flex", "items-center", "justify-between", "px-6", "py-4", "border-b", "border-gray-200"], [1, "text-lg", "font-semibold", "text-gray-900"], [1, "p-2", "rounded-lg", "hover:bg-gray-100", "transition-colors", 3, "click"], [1, "ri-close-line", "text-xl", "text-gray-500"], [1, "flex-1", "overflow-y-auto", "p-6"], [1, "space-y-4"], [1, "bg-gray-50", "rounded-lg", "p-4"], [1, "text-sm", "font-medium", "text-gray-900", "mb-3"], ["type", "text", "placeholder", "Enter general search term...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "border", "border-gray-200", "rounded-lg"], [1, "w-full", "flex", "items-center", "justify-between", "px-4", "py-3", "text-left", "hover:bg-gray-50", "transition-colors", 3, "click"], [1, "text-sm", "font-medium", "text-gray-900"], ["class", "px-4 pb-4 border-t border-gray-200 bg-gray-50", 4, "ngIf"], [1, "px-6", "py-4", "border-t", "border-gray-200", "bg-white"], [1, "flex", "space-x-3"], [1, "flex-1", "px-4", "py-2", "border", "border-gray-300", "rounded-lg", "text-gray-700", "hover:bg-gray-50", "transition-colors", "font-medium", 3, "click"], [1, "flex-1", "px-4", "py-2", "bg-brand", "text-white", "rounded-lg", "hover:bg-opacity-90", "transition-colors", "font-medium", 3, "click"], [1, "mb-6"], [1, "flex", "items-center", "space-x-4"], [1, "text-sm", "font-bold", "text-gray-900", "uppercase", "whitespace-nowrap"], [1, "flex", "items-center", "space-x-2", "flex-wrap"], ["class", "flex items-center space-x-2 h-9 px-4 py-3 rounded-lg transition-colors", 3, "class", "click", 4, "ngFor", "ngForOf"], [1, "flex", "items-center", "space-x-2", "h-9", "px-4", "py-3", "rounded-lg", "transition-colors", 3, "click"], [1, "font-medium", "text-sm"], [1, "mb-4"], [1, "bg-white", "border", "border-stroke-weak", "rounded-lg", "px-3", "py-2"], [1, "flex", "items-center", "justify-between"], [1, "text-gray-700", "cursor-pointer", "text-sm", 3, "click"], [1, "flex", "items-center", "space-x-2"], ["class", "animate-spin rounded-full h-4 w-4 border-b-2 border-brand", 4, "ngIf"], [1, "text-gray-500", "hover:bg-gray-100", "rounded", "p-1", "transition-colors", 3, "click"], [1, "ri-arrow-go-back-fill", "text-base"], [1, "ri-close-line", "text-base"], [1, "animate-spin", "rounded-full", "h-4", "w-4", "border-b-2", "border-brand"], [1, "relative"], [1, "bg-white", "border", "border-stroke-weak", "rounded-lg"], [1, "flex", "items-center", "px-4", "py-4"], [1, "flex-1", "relative"], ["type", "text", "placeholder", "Ask the researcher", 1, "w-full", "pr-4", "py-2", "bg-transparent", "focus:outline-none", "placeholder-opacity-30", "text-lg", "border-none", 3, "ngModelChange", "keyup", "ngModel"], [1, "flex", "items-center", "justify-between", "px-4", "pb-4", "relative"], [1, "flex", "items-center", "space-x-2", "text-text-strong", "hover:text-brand", "transition-colors", "border-0", "px-3", "py-2", "rounded-lg", "hover:bg-gray-50", 2, "outline", "none", "border", "#00000000", 3, "click"], [1, "ri-sparkling-fill", "text-lg", 2, "color", "#146B85"], [1, "underline", "text-sm", "font-medium"], [1, "ri-arrow-down-s-line", 2, "color", "#353D59", "font-size", "14px"], ["class", "absolute top-full left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50", 4, "ngIf"], [1, "flex", "items-center", "space-x-3"], ["class", "flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50", "style", "outline: none; border: #00000000;", "title", "Collapse search bar", 3, "click", 4, "ngIf"], [1, "flex", "items-center", "space-x-2", "text-text-strong", "hover:text-brand", "transition-colors", "border-0", "px-3", "py-2", "rounded-lg", "hover:bg-gray-50", "relative", 2, "outline", "none", "border", "#00000000", 3, "click"], [1, "ri-filter-line", "text-lg", 2, "color", "#146B85"], ["class", "absolute -top-1 -right-1 bg-brand text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center", 4, "ngIf"], [1, "w-9", "h-9", "rounded-lg", "transition-colors", "flex", "items-center", "justify-center", "ml-3", 3, "click", "disabled"], [1, "ri-arrow-right-long-line", "text-white", "text-lg"], [1, "absolute", "top-full", "left-0", "mt-2", "w-80", "bg-white", "border", "border-gray-200", "rounded-lg", "shadow-lg", "z-50"], [1, "px-4", "py-3", "hover:bg-gray-50", "cursor-pointer", 3, "click"], [1, "flex", "items-center", "space-x-3", "flex-1"], [1, "ri-sparkling-fill", "text-lg", 2, "color", "#69718C"], [1, "flex-1"], [1, "text-sm", "font-medium", "text-text-strong"], [1, "text-xs", "text-text-weak"], [1, "flex", "items-center"], ["type", "radio", "name", "proOption", "value", "natural", 1, "w-4", "h-4", "text-brand", "focus:ring-brand", "border-gray-300", 3, "checked"], [1, "ri-flow-chart", "text-lg", 2, "color", "#69718C"], ["type", "radio", "name", "proOption", "value", "advanced", 1, "w-4", "h-4", "text-brand", "focus:ring-brand", "border-gray-300", 3, "checked"], ["title", "Collapse search bar", 1, "flex", "items-center", "space-x-2", "text-text-strong", "hover:text-brand", "transition-colors", "border-0", "px-3", "py-2", "rounded-lg", "hover:bg-gray-50", 2, "outline", "none", "border", "#00000000", 3, "click"], [1, "ri-subtract-line", "text-lg", 2, "color", "#146B85"], [1, "absolute", "-top-1", "-right-1", "bg-brand", "text-white", "text-xs", "font-bold", "rounded-full", "h-5", "w-5", "flex", "items-center", "justify-center"], [1, "px-4", "pb-4", "border-t", "border-gray-200", "bg-gray-50"], [1, "space-y-3", "pt-3"], ["type", "text", "placeholder", "Case Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Case Number...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Filing Date From...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Filing Date To...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Docket Text...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "date", "placeholder", "Docket Date...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Judge Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Judge Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "email", "placeholder", "Judge Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Attorney Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Bar Number...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "email", "placeholder", "Attorney Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Attorney Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Party Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["type", "text", "placeholder", "Party Address...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "change", "ngModel"], ["value", ""], ["value", "plaintiff"], ["value", "defendant"], ["value", "witness"], ["type", "email", "placeholder", "Party Email...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["value", "lead"], ["value", "co-counsel"], ["value", "local-counsel"], ["type", "text", "placeholder", "Document Name...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], ["value", "motion"], ["value", "brief"], ["value", "order"], ["value", "transcript"], ["type", "date", "placeholder", "Document Date...", 1, "w-full", "px-3", "py-2", "border", "border-gray-300", "rounded-lg", "focus:outline-none", "focus:ring-2", "focus:ring-brand", 3, "ngModelChange", "input", "ngModel"], [1, "block", "text-sm", "font-medium", "text-gray-700", "mb-1"], ["value", "district"], ["value", "appellate"], ["value", "supreme"], ["value", "civil"], ["value", "criminal"], ["value", "corporate"], ["value", "active"], ["value", "closed"], ["value", "pending"]], template: function SearchBarComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0);
-      \u0275\u0275template(1, SearchBarComponent_div_1_Template, 5, 1, "div", 1)(2, SearchBarComponent_div_2_Template, 9, 2, "div", 2)(3, SearchBarComponent_div_3_Template, 21, 6, "div", 3);
+      \u0275\u0275template(1, SearchBarComponent_div_1_Template, 6, 1, "div", 1)(2, SearchBarComponent_div_2_Template, 11, 2, "div", 2)(3, SearchBarComponent_div_3_Template, 22, 7, "div", 3);
       \u0275\u0275elementStart(4, "div", 4)(5, "div", 5);
       \u0275\u0275listener("click", function SearchBarComponent_Template_div_click_5_listener() {
         return ctx.closeFilterPanel();
@@ -1402,6 +1443,53 @@ input[type=radio][_ngcontent-%COMP%] {
 .cursor-not-allowed[_ngcontent-%COMP%] {
   cursor: not-allowed;
 }
+.whitespace-nowrap[_ngcontent-%COMP%] {
+  white-space: nowrap;
+}
+.flex-wrap[_ngcontent-%COMP%] {
+  flex-wrap: wrap;
+}
+.px-3[_ngcontent-%COMP%] {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.py-2[_ngcontent-%COMP%] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.mb-4[_ngcontent-%COMP%] {
+  margin-bottom: 1rem;
+}
+.h-4[_ngcontent-%COMP%] {
+  height: 1rem;
+}
+.w-4[_ngcontent-%COMP%] {
+  width: 1rem;
+}
+.text-base[_ngcontent-%COMP%] {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.hover\\:bg-gray-100[_ngcontent-%COMP%]:hover {
+  background-color: #f3f4f6;
+}
+.rounded[_ngcontent-%COMP%] {
+  border-radius: 0.25rem;
+}
+.p-1[_ngcontent-%COMP%] {
+  padding: 0.25rem;
+}
+.transition-colors[_ngcontent-%COMP%] {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .ri-sparkling-fill[_ngcontent-%COMP%], 
 .ri-user-line[_ngcontent-%COMP%], 
 .ri-vip-crown-line[_ngcontent-%COMP%], 
@@ -1413,7 +1501,8 @@ input[type=radio][_ngcontent-%COMP%] {
 .ri-arrow-right-s-line[_ngcontent-%COMP%], 
 .ri-arrow-up-s-line[_ngcontent-%COMP%], 
 .ri-arrow-down-s-line[_ngcontent-%COMP%], 
-.ri-close-line[_ngcontent-%COMP%] {
+.ri-close-line[_ngcontent-%COMP%], 
+.ri-arrow-go-back-fill[_ngcontent-%COMP%] {
   font-size: 1.125rem;
 }
 .text-sm[_ngcontent-%COMP%] {
@@ -1468,7 +1557,7 @@ input[type=radio][_ngcontent-%COMP%] {
   color: #374151;
 }
 .bg-gray-light[_ngcontent-%COMP%] {
-  background-color: #f3f4f6;
+  background-color: #e9eaec;
 }
 .hover\\:bg-gray-100[_ngcontent-%COMP%]:hover {
   background-color: #f3f4f6;
@@ -1655,6 +1744,34 @@ select[_ngcontent-%COMP%] {
     margin-top: 0.5rem;
     width: 100%;
   }
+  .w-90[_ngcontent-%COMP%] {
+    width: 90vw;
+    max-width: 22.5rem;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .w-90[_ngcontent-%COMP%] {
+    width: 26rem;
+    max-height: calc(100vh - 2rem);
+  }
+  .overflow-y-auto[_ngcontent-%COMP%] {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  .overflow-y-auto[_ngcontent-%COMP%]::-webkit-scrollbar {
+    width: 8px;
+  }
+  .overflow-y-auto[_ngcontent-%COMP%]::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+  .overflow-y-auto[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  .overflow-y-auto[_ngcontent-%COMP%]::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
 }
 /*# sourceMappingURL=search-bar.component.css.map */`], data: { animation: [
     trigger("slideIn", [
@@ -1696,31 +1813,36 @@ select[_ngcontent-%COMP%] {
   
   <!-- Search Type Selection - Only show when not collapsed -->
   <div class="mb-6" *ngIf="!isSearchCollapsed">
-    <h2 class="text-sm font-bold text-gray-900 mb-4 uppercase">Search For</h2>
     <div class="flex items-center space-x-4">
-      <button
-        *ngFor="let type of searchTypes"
-        (click)="selectSearchType(type)"
-        class="flex items-center space-x-2 h-9 px-4 py-3 rounded-lg transition-colors"
-        [class]="selectedSearchType.id === type.id ? 
-          'bg-gray-light text-gray-700' : 
-          'text-gray-700 hover:bg-gray-100'">
-        <i [class]="'ri-' + type.icon + ' text-base'" 
-           [style.color]="'#374151'"></i>
-        <span class="font-medium text-sm">{{ type.label }}</span>
-      </button>
+      <h2 class="text-sm font-bold text-gray-900 uppercase whitespace-nowrap">Search For:</h2>
+      <div class="flex items-center space-x-2 flex-wrap">
+        <button
+          *ngFor="let type of searchTypes"
+          (click)="selectSearchType(type)"
+          class="flex items-center space-x-2 h-9 px-4 py-3 rounded-lg transition-colors"
+          [class]="selectedSearchType.id === type.id ? 
+            'bg-gray-light text-gray-700' : 
+            'text-gray-700 hover:bg-gray-100'">
+          <i [class]="'ri-' + type.icon + ' text-base'" 
+             [style.color]="'#374151'"></i>
+          <span class="font-medium text-sm">{{ type.label }}</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Collapsed Search Bar -->
-  <div *ngIf="isSearchCollapsed" class="mb-8">
-    <div class="bg-white border border-stroke-weak rounded-lg px-4 py-3">
+  <div *ngIf="isSearchCollapsed" class="mb-4">
+    <div class="bg-white border border-stroke-weak rounded-lg px-3 py-2">
       <div class="flex items-center justify-between">
-        <span class="text-gray-700 cursor-pointer" (click)="expandSearchBar()">{{ searchQuery }}</span>
+        <span class="text-gray-700 cursor-pointer text-sm" (click)="expandSearchBar()">{{ searchQuery || 'Search...' }}</span>
         <div class="flex items-center space-x-2">
-          <div *ngIf="isSearching" class="animate-spin rounded-full h-5 w-5 border-b-2 border-brand"></div>
-          <button (click)="clearSearch()" class="text-gray-500 hover:text-gray-700">
-            <i class="ri-close-line text-lg"></i>
+          <div *ngIf="isSearching" class="animate-spin rounded-full h-4 w-4 border-b-2 border-brand"></div>
+          <button (click)="expandSearchBar()" class="text-gray-500 hover:bg-gray-100 rounded p-1 transition-colors">
+            <i class="ri-arrow-go-back-fill text-base"></i>
+          </button>
+          <button (click)="clearSearch()" class="text-gray-500 hover:bg-gray-100 rounded p-1 transition-colors">
+            <i class="ri-close-line text-base"></i>
           </button>
         </div>
       </div>
@@ -1809,6 +1931,17 @@ select[_ngcontent-%COMP%] {
 
         <!-- Filter and Search Section -->
         <div class="flex items-center space-x-3">
+          <!-- Collapse Button (only show when results are visible) -->
+          <button 
+            *ngIf="showCollapseButton"
+            (click)="collapseSearchBar()"
+            class="flex items-center space-x-2 text-text-strong hover:text-brand transition-colors border-0 px-3 py-2 rounded-lg hover:bg-gray-50" 
+            style="outline: none; border: #00000000;"
+            title="Collapse search bar">
+            <i class="ri-subtract-line text-lg" style="color: #146B85;"></i>
+            <span class="underline text-sm font-medium">Collapse</span>
+          </button>
+
           <!-- Filter Section -->
           <button 
             (click)="toggleFilterPanel()"
@@ -2165,6 +2298,53 @@ input[type=radio] {
 .cursor-not-allowed {
   cursor: not-allowed;
 }
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.h-4 {
+  height: 1rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.hover\\:bg-gray-100:hover {
+  background-color: #f3f4f6;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.p-1 {
+  padding: 0.25rem;
+}
+.transition-colors {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .ri-sparkling-fill,
 .ri-user-line,
 .ri-vip-crown-line,
@@ -2176,7 +2356,8 @@ input[type=radio] {
 .ri-arrow-right-s-line,
 .ri-arrow-up-s-line,
 .ri-arrow-down-s-line,
-.ri-close-line {
+.ri-close-line,
+.ri-arrow-go-back-fill {
   font-size: 1.125rem;
 }
 .text-sm {
@@ -2231,7 +2412,7 @@ input[type=radio] {
   color: #374151;
 }
 .bg-gray-light {
-  background-color: #f3f4f6;
+  background-color: #e9eaec;
 }
 .hover\\:bg-gray-100:hover {
   background-color: #f3f4f6;
@@ -2418,11 +2599,49 @@ select {
     margin-top: 0.5rem;
     width: 100%;
   }
+  .w-90 {
+    width: 90vw;
+    max-width: 22.5rem;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .w-90 {
+    width: 26rem;
+    max-height: calc(100vh - 2rem);
+  }
+  .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
 }
 /*# sourceMappingURL=search-bar.component.css.map */
 `] }]
   }], null, { search: [{
     type: Output
+  }], expand: [{
+    type: Output
+  }], collapse: [{
+    type: Output
+  }], isCollapsed: [{
+    type: Input
+  }], searchQuery: [{
+    type: Input
+  }], showCollapseButton: [{
+    type: Input
   }], onDocumentClick: [{
     type: HostListener,
     args: ["document:click", ["$event"]]
@@ -2432,7 +2651,7 @@ select {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SearchBarComponent, { className: "SearchBarComponent", filePath: "src/app/components/ui/search-bar/search-bar.component.ts", lineNumber: 86 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SearchBarComponent, { className: "SearchBarComponent" });
 })();
 
 export {
@@ -2447,4 +2666,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-TOIY43RW.js.map
+//# sourceMappingURL=chunk-XGQBLBHU.js.map

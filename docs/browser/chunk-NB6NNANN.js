@@ -13,7 +13,7 @@ import {
   ɵɵnamespaceSVG,
   ɵɵproperty,
   ɵɵsanitizeHtml
-} from "./chunk-63I3BEBX.js";
+} from "./chunk-Z6WLR7UX.js";
 
 // ../../node_modules/@phosphor-icons/core/dist/index.mjs
 var dist_exports = {};
@@ -13815,10 +13815,10 @@ var PhosphorIconComponent = class _PhosphorIconComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PhosphorIconComponent, { className: "PhosphorIconComponent", filePath: "src/app/components/ui/phosphor-icon/phosphor-icon.component.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PhosphorIconComponent, { className: "PhosphorIconComponent" });
 })();
 
 export {
   PhosphorIconComponent
 };
-//# sourceMappingURL=chunk-JUOZCKZE.js.map
+//# sourceMappingURL=chunk-NB6NNANN.js.map

@@ -1018,10 +1018,27 @@
 
 /* Title section spacing - 4px bottom margin */
 .case-card-title {
-  margin-bottom: 0.25rem; /* 4px */
+  margin-bottom: 0.25rem !important; /* 4px */
+  line-height: 1.25; /* Tighter line height to control wrapping spacing */
 }
 
-/* Case details section spacing - 12px bottom margin */
+.case-card-title h3 {
+  margin: 0 !important; /* Remove default h3 margins */
+  line-height: 1.25 !important; /* Consistent line height for title text */
+}
+
+/* Override tailwind leading-tight class for case titles */
+.case-card-title .leading-tight {
+  line-height: 1.25 !important;
+}
+
+/* Case details section spacing - 18px bottom margin */
 .case-card-details {
-  margin-bottom: 0.75rem; /* 12px */
+  margin-bottom: 1.125rem !important; /* 18px */
+  margin-top: 0 !important; /* Ensure no extra top margin */
+}
+
+/* Badges section - ensure proper spacing from case details */
+.case-card-badges {
+  margin-top: 0 !important; /* No extra top margin - rely on case-card-details margin-bottom */
 }
