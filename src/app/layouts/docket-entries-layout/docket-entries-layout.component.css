@@ -1,0 +1,118 @@
+/* Docket Entries Layout Component Styles */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Docket Entries content positioning */
+.docket-entries-content-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  isolation: isolate;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+/* Docket Entries Table Container */
+.docket-entries-table-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+/* Docket Table Header */
+.docket-table-header {
+  display: flex;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.docket-table-header-cell {
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+}
+
+/* Docket Table Row */
+.docket-table-row {
+  display: flex;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.docket-table-row:last-child {
+  border-bottom: none;
+}
+
+.docket-table-row:hover {
+  background-color: #f9fafb;
+}
+
+.docket-table-cell {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #111827;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+/* Column Widths */
+.date-col {
+  flex: 1;
+  min-width: 100px;
+}
+
+.entry-col {
+  flex: 0.5;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.description-col {
+  flex: 3;
+  min-width: 250px;
+}
+
+.filed-by-col {
+  flex: 1;
+  min-width: 120px;
+}
+
+.document-col {
+  flex: 2;
+  min-width: 200px;
+}
+
+/* Document Link Styling */
+.document-link {
+  color: #146B85;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.document-link:hover {
+  color: #0f5a6b;
+}
+
+/* Utility classes */
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}

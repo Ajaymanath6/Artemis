@@ -1,0 +1,29 @@
+<!-- Docket Entries Layout Content -->
+<div class="docket-entries-content-wrapper">
+  <!-- Docket Entries Table -->
+  <div class="docket-entries-table-container">
+    <!-- Table Header -->
+    <div class="docket-table-header">
+      <div class="docket-table-header-cell date-col">Date</div>
+      <div class="docket-table-header-cell entry-col">Entry #</div>
+      <div class="docket-table-header-cell description-col">Description</div>
+      <div class="docket-table-header-cell filed-by-col">Filed By</div>
+      <div class="docket-table-header-cell document-col">Document</div>
+    </div>
+    
+    <!-- Table Rows -->
+    <div class="docket-table-row" *ngFor="let entry of docketEntries">
+      <div class="docket-table-cell date-col">{{ entry.date }}</div>
+      <div class="docket-table-cell entry-col">{{ entry.entry }}</div>
+      <div class="docket-table-cell description-col">{{ entry.description }}</div>
+      <div class="docket-table-cell filed-by-col">{{ entry.filedBy }}</div>
+      <div class="docket-table-cell document-col">
+        <span *ngIf="entry.document" class="document-link">
+          <i class="ri-file-pdf-line mr-1"></i>
+          {{ entry.document }}
+        </span>
+        <span *ngIf="!entry.document" class="text-gray-400">—</span>
+      </div>
+    </div>
+  </div>
+</div>

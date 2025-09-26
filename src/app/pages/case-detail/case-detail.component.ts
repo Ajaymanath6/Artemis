@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
 import { SummaryLayoutComponent } from '../../layouts/summary-layout/summary-layout.component';
+import { DocketEntriesLayoutComponent } from '../../layouts/docket-entries-layout/docket-entries-layout.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-case-detail',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, AppHeaderComponent],
+  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, DocketEntriesLayoutComponent, AppHeaderComponent],
   templateUrl: './case-detail.component.html',
   styleUrls: ['./case-detail.component.css']
 })
@@ -140,6 +141,12 @@ export class CaseDetailComponent implements OnInit {
   ngOnInit(): void {
     this.caseId = this.route.snapshot.paramMap.get('id');
     console.log('Case Detail Page - Case ID:', this.caseId);
+    
+    // Get dynamic title from query parameters
+    const dynamicTitle = this.route.snapshot.queryParamMap.get('title');
+    if (dynamicTitle) {
+      this.caseDetails.title = dynamicTitle;
+    }
     
     // Set the current search query to display the case title in the header
     this.currentSearchQuery = this.caseDetails.title;

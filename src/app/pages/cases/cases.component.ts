@@ -77,7 +77,9 @@ export class CasesComponent implements OnInit {
     console.log('Search collapsed to compact version');
   }
 
-  onCaseClick(caseId: string): void {
-    this.router.navigate(['/case', caseId]);
+  onCaseClick(caseId: string, caseTitle?: string): void {
+    this.router.navigate(['/case', caseId], {
+      queryParams: { title: caseTitle }
+    });
   }
 }

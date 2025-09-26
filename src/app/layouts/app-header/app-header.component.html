@@ -29,8 +29,9 @@
           <button 
             *ngIf="projectName && !showBackButton"
             (click)="onProjectClick()"
-            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate">
-            {{ projectName }}
+            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate flex items-center space-x-2">
+            <i class="ri-search-eye-line text-lg"></i>
+            <span>{{ projectName }}</span>
           </button>
           
           <!-- Separator -->

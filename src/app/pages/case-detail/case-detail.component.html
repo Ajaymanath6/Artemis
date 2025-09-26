@@ -83,10 +83,9 @@
         <app-summary-layout [caseDetails]="caseDetails"></app-summary-layout>
       </div>
 
-      <!-- Other Tab Contents (Placeholder) -->
-      <div *ngIf="activeTab === 'docket-entries'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Docket Entries</h2>
-        <p class="text-gray-600">Docket entries content will be displayed here.</p>
+      <!-- Docket Entries Tab Content -->
+      <div *ngIf="activeTab === 'docket-entries'">
+        <app-docket-entries-layout [caseDetails]="caseDetails"></app-docket-entries-layout>
       </div>
 
       <div *ngIf="activeTab === 'documents'" class="tab-content">
