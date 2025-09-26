@@ -1,0 +1,52 @@
+<!-- Judges Layout Content -->
+<div class="judges-content-wrapper">
+  <div class="judges-section">
+    <h2 class="section-title">Judges</h2>
+    <div class="judges-grid">
+      <div *ngFor="let judge of judges" class="judge-card">
+        <div class="judge-info">
+          <div class="judge-icon">
+            <i class="ri-government-line"></i>
+          </div>
+          <div class="judge-details">
+            <div class="judge-header">
+              <h3 class="judge-name">{{ judge.name }}</h3>
+              <span class="judge-status" [class]="judge.currentStatus.toLowerCase().replace(' ', '-')">
+                {{ judge.currentStatus }}
+              </span>
+            </div>
+            <p class="judge-title">{{ judge.title }}</p>
+            <p class="judge-court">{{ judge.court }}</p>
+            
+            <div class="judge-contact">
+              <div class="contact-item">
+                <i class="ri-phone-line"></i>
+                <span>{{ judge.phone }}</span>
+              </div>
+              <div class="contact-item">
+                <i class="ri-mail-line"></i>
+                <span>{{ judge.email }}</span>
+              </div>
+            </div>
+
+            <div class="judge-meta">
+              <div class="meta-item">
+                <i class="ri-time-line"></i>
+                <span>{{ judge.yearsOfService }} years of service</span>
+              </div>
+            </div>
+
+            <div class="judge-specializations">
+              <h4>Specializations:</h4>
+              <div class="specialization-tags">
+                <span *ngFor="let spec of judge.specializations" class="specialization-tag">
+                  {{ spec }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

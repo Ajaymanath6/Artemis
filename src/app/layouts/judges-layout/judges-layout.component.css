@@ -1,0 +1,203 @@
+/* Judges Layout Component Styles */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Content positioning */
+.judges-content-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  isolation: isolate;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+/* Section Styles */
+.judges-section {
+  margin-top: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 24px 0;
+}
+
+/* Grid Layout */
+.judges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .judges-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Judge Card */
+.judge-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.judge-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #d1d5db;
+}
+
+/* Judge Info */
+.judge-info {
+  display: flex;
+  gap: 16px;
+}
+
+.judge-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #146B85;
+  flex-shrink: 0;
+}
+
+.judge-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Judge Header */
+.judge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.judge-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  flex: 1;
+}
+
+.judge-status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.judge-status.active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.judge-status.retired {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.judge-status.senior-status {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.judge-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.judge-court {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Contact Info */
+.judge-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.contact-item i {
+  color: #6b7280;
+  font-size: 14px;
+  width: 14px;
+}
+
+/* Meta Info */
+.judge-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.meta-item i {
+  color: #6b7280;
+  font-size: 14px;
+  width: 14px;
+}
+
+/* Specializations */
+.judge-specializations h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 8px 0;
+}
+
+.specialization-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.specialization-tag {
+  padding: 4px 8px;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}

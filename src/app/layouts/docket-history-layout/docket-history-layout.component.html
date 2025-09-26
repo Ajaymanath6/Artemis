@@ -1,0 +1,55 @@
+<!-- Docket History Layout Content -->
+<div class="docket-history-content-wrapper">
+  <div class="docket-history-section">
+    <h2 class="section-title">Docket History</h2>
+    <div class="timeline-container">
+      <div *ngFor="let event of docketHistory; let i = index" class="timeline-item">
+        <!-- Timeline Line -->
+        <div class="timeline-line" [class.last-item]="i === docketHistory.length - 1"></div>
+        
+        <!-- Event Icon -->
+        <div class="event-icon" [style.background-color]="getEventTypeColor(event.eventType)">
+          <i [class]="getEventIcon(event.eventType)"></i>
+        </div>
+        
+        <!-- Event Content -->
+        <div class="event-content">
+          <div class="event-header">
+            <div class="event-title-section">
+              <h3 class="event-title">{{ event.title }}</h3>
+              <div class="event-meta">
+                <span class="event-date">{{ event.date }}</span>
+                <span class="event-time">{{ event.time }}</span>
+                <span class="event-type" [style.color]="getEventTypeColor(event.eventType)">
+                  {{ event.eventType }}
+                </span>
+              </div>
+            </div>
+            <div class="event-status-section">
+              <span class="event-status" [class]="event.status.toLowerCase()">
+                {{ event.status }}
+              </span>
+            </div>
+          </div>
+
+          <p class="event-description">{{ event.description }}</p>
+
+          <div class="event-details">
+            <div class="event-filed-by">
+              <i class="ri-user-line"></i>
+              <span>Filed by: {{ event.filedBy }}</span>
+            </div>
+            <div *ngIf="event.judge" class="event-judge">
+              <i class="ri-government-line"></i>
+              <span>Judge: {{ event.judge }}</span>
+            </div>
+            <div *ngIf="event.document" class="event-document" (click)="onDocumentClick(event.document)">
+              <i class="ri-file-pdf-line"></i>
+              <span>{{ event.document }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

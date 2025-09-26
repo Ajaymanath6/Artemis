@@ -6,12 +6,16 @@ import { SummaryLayoutComponent } from '../../layouts/summary-layout/summary-lay
 import { DocketEntriesLayoutComponent } from '../../layouts/docket-entries-layout/docket-entries-layout.component';
 import { DocumentLayoutComponent } from '../../layouts/document-layout/document-layout.component';
 import { PartiesAttorneysLayoutComponent } from '../../layouts/parties-attorneys-layout/parties-attorneys-layout.component';
+import { JudgesLayoutComponent } from '../../layouts/judges-layout/judges-layout.component';
+import { RelatedCasesLayoutComponent } from '../../layouts/related-cases-layout/related-cases-layout.component';
+import { DocketHistoryLayoutComponent } from '../../layouts/docket-history-layout/docket-history-layout.component';
+import { SimilarCasesLayoutComponent } from '../../layouts/similar-cases-layout/similar-cases-layout.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-case-detail',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, DocketEntriesLayoutComponent, DocumentLayoutComponent, PartiesAttorneysLayoutComponent, AppHeaderComponent],
+  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, DocketEntriesLayoutComponent, DocumentLayoutComponent, PartiesAttorneysLayoutComponent, JudgesLayoutComponent, RelatedCasesLayoutComponent, DocketHistoryLayoutComponent, SimilarCasesLayoutComponent, AppHeaderComponent],
   templateUrl: './case-detail.component.html',
   styleUrls: ['./case-detail.component.css']
 })

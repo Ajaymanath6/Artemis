@@ -1,0 +1,80 @@
+<!-- Similar Cases Layout Content -->
+<div class="similar-cases-content-wrapper">
+  <div class="similar-cases-section">
+    <h2 class="section-title">Similar Cases</h2>
+    <div class="similar-cases-list">
+      <div *ngFor="let similarCase of similarCases" 
+           class="similar-case-card"
+           (click)="onSimilarCaseClick(similarCase)">
+        <div class="case-header">
+          <div class="case-title-section">
+            <div class="case-icon">
+              <i class="ri-scales-3-line"></i>
+            </div>
+            <div class="case-title-info">
+              <h3 class="case-title">{{ similarCase.title }}</h3>
+              <p class="case-number">{{ similarCase.caseNumber }}</p>
+            </div>
+          </div>
+          <div class="case-metrics-section">
+            <div class="similarity-score" [style.color]="getSimilarityColor(similarCase.similarityScore)">
+              <span class="score-value">{{ similarCase.similarityScore }}%</span>
+              <span class="score-label">Match</span>
+            </div>
+            <span class="precedent-value" [style.color]="getPrecedentColor(similarCase.precedentValue)">
+              {{ similarCase.precedentValue }} Precedent
+            </span>
+          </div>
+        </div>
+
+        <div class="case-details">
+          <div class="case-info-grid">
+            <div class="info-item">
+              <i class="ri-building-line"></i>
+              <span>{{ similarCase.court }}</span>
+            </div>
+            <div class="info-item">
+              <i class="ri-calendar-line"></i>
+              <span>Filed: {{ similarCase.filingDate }}</span>
+            </div>
+            <div class="info-item">
+              <i class="ri-user-line"></i>
+              <span>{{ similarCase.judge }}</span>
+            </div>
+            <div class="info-item status-item">
+              <i class="ri-flag-line"></i>
+              <span class="case-status" [class]="similarCase.status.toLowerCase().replace(' ', '-')">
+                {{ similarCase.status }}
+              </span>
+            </div>
+          </div>
+
+          <div *ngIf="similarCase.outcome" class="outcome-section">
+            <div class="outcome-item">
+              <i class="ri-check-line"></i>
+              <span>Outcome: {{ similarCase.outcome }}</span>
+            </div>
+          </div>
+
+          <div class="similarity-reasons-section">
+            <h4>Why This Case is Similar:</h4>
+            <div class="similarity-reasons-tags">
+              <span *ngFor="let reason of similarCase.similarityReasons" class="similarity-reason-tag">
+                {{ reason }}
+              </span>
+            </div>
+          </div>
+
+          <div class="key-issues-section">
+            <h4>Key Legal Issues:</h4>
+            <div class="key-issues-tags">
+              <span *ngFor="let issue of similarCase.keyIssues" class="key-issue-tag">
+                {{ issue }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

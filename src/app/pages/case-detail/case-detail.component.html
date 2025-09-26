@@ -98,24 +98,24 @@
         <app-parties-attorneys-layout [caseDetails]="caseDetails"></app-parties-attorneys-layout>
       </div>
 
-      <div *ngIf="activeTab === 'judges'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Judges</h2>
-        <p class="text-gray-600">Judge information will be displayed here.</p>
+      <!-- Judges Tab Content -->
+      <div *ngIf="activeTab === 'judges'">
+        <app-judges-layout [caseDetails]="caseDetails"></app-judges-layout>
       </div>
 
-      <div *ngIf="activeTab === 'related-cases'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Related Cases</h2>
-        <p class="text-gray-600">Related cases will be displayed here.</p>
+      <!-- Related Cases Tab Content -->
+      <div *ngIf="activeTab === 'related-cases'">
+        <app-related-cases-layout [caseDetails]="caseDetails"></app-related-cases-layout>
       </div>
 
-      <div *ngIf="activeTab === 'docket-history'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Docket History</h2>
-        <p class="text-gray-600">Docket history will be displayed here.</p>
+      <!-- Docket History Tab Content -->
+      <div *ngIf="activeTab === 'docket-history'">
+        <app-docket-history-layout [caseDetails]="caseDetails"></app-docket-history-layout>
       </div>
 
-      <div *ngIf="activeTab === 'similar-cases'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Similar Cases</h2>
-        <p class="text-gray-600">Similar cases will be displayed here.</p>
+      <!-- Similar Cases Tab Content -->
+      <div *ngIf="activeTab === 'similar-cases'">
+        <app-similar-cases-layout [caseDetails]="caseDetails"></app-similar-cases-layout>
       </div>
 
     </div>

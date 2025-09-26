@@ -1,0 +1,259 @@
+/* Docket History Layout Component Styles */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Content positioning */
+.docket-history-content-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  isolation: isolate;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+/* Section Styles */
+.docket-history-section {
+  margin-top: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 32px 0;
+}
+
+/* Timeline Container */
+.timeline-container {
+  position: relative;
+  padding-left: 40px;
+}
+
+/* Timeline Item */
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline Line */
+.timeline-line {
+  position: absolute;
+  left: -28px;
+  top: 20px;
+  width: 2px;
+  height: calc(100% + 20px);
+  background-color: #e5e7eb;
+}
+
+.timeline-line.last-item {
+  height: 0;
+}
+
+/* Event Icon */
+.event-icon {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  z-index: 2;
+}
+
+/* Event Content */
+.event-content {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-left: 20px;
+  transition: all 0.2s ease;
+}
+
+.event-content:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #d1d5db;
+}
+
+/* Event Header */
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+.event-title-section {
+  flex: 1;
+}
+
+.event-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.event-date {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.event-time {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.event-type {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(20, 107, 133, 0.1);
+}
+
+.event-status-section {
+  flex-shrink: 0;
+}
+
+.event-status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-status.completed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.event-status.scheduled {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.event-status.pending {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.event-status.cancelled {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+/* Event Description */
+.event-description {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+/* Event Details */
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.event-filed-by,
+.event-judge,
+.event-document {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.event-filed-by i,
+.event-judge i,
+.event-document i {
+  color: #6b7280;
+  font-size: 14px;
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.event-document {
+  cursor: pointer;
+  color: #146B85;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.event-document:hover {
+  color: #0f5a6b;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .timeline-container {
+    padding-left: 32px;
+  }
+  
+  .event-icon {
+    left: -32px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+  
+  .timeline-line {
+    left: -22px;
+  }
+  
+  .event-content {
+    margin-left: 16px;
+  }
+  
+  .event-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .event-status-section {
+    align-self: flex-start;
+  }
+  
+  .event-meta {
+    gap: 8px;
+  }
+}

@@ -1,0 +1,58 @@
+<!-- Related Cases Layout Content -->
+<div class="related-cases-content-wrapper">
+  <div class="related-cases-section">
+    <h2 class="section-title">Related Cases</h2>
+    <div class="related-cases-list">
+      <div *ngFor="let relatedCase of relatedCases" 
+           class="related-case-card"
+           (click)="onCaseClick(relatedCase)">
+        <div class="case-header">
+          <div class="case-title-section">
+            <div class="case-icon">
+              <i class="ri-scales-3-line"></i>
+            </div>
+            <div class="case-title-info">
+              <h3 class="case-title">{{ relatedCase.title }}</h3>
+              <p class="case-number">{{ relatedCase.caseNumber }}</p>
+            </div>
+          </div>
+          <div class="case-status-section">
+            <span class="case-status" [class]="relatedCase.status.toLowerCase()">
+              {{ relatedCase.status }}
+            </span>
+          </div>
+        </div>
+
+        <div class="case-details">
+          <div class="case-info-grid">
+            <div class="info-item">
+              <i class="ri-building-line"></i>
+              <span>{{ relatedCase.court }}</span>
+            </div>
+            <div class="info-item">
+              <i class="ri-calendar-line"></i>
+              <span>Filed: {{ relatedCase.filingDate }}</span>
+            </div>
+            <div class="info-item">
+              <i class="ri-user-line"></i>
+              <span>{{ relatedCase.judge }}</span>
+            </div>
+            <div class="info-item">
+              <i class="ri-link-line"></i>
+              <span>{{ relatedCase.relationshipType }}</span>
+            </div>
+          </div>
+
+          <div class="common-elements-section">
+            <h4>Common Elements:</h4>
+            <div class="common-elements-tags">
+              <span *ngFor="let element of relatedCase.commonElements" class="common-element-tag">
+                {{ element }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
