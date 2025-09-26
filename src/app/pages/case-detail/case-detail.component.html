@@ -88,35 +88,14 @@
         <app-docket-entries-layout [caseDetails]="caseDetails"></app-docket-entries-layout>
       </div>
 
-      <div *ngIf="activeTab === 'documents'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Documents</h2>
-        <div class="space-y-4">
-          <div *ngFor="let doc of caseDetails.documents" 
-               class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-            <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                  <i class="ri-file-pdf-line text-red-600"></i>
-                </div>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-gray-900">{{ doc.name }}</p>
-                <p class="text-xs text-gray-500">{{ doc.date }} • {{ doc.size }} • {{ doc.pages }} pages</p>
-              </div>
-            </div>
-            <button 
-              (click)="downloadDocument(doc)"
-              class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
-              <i class="ri-download-line text-lg mr-2"></i>
-              Download
-            </button>
-          </div>
-        </div>
+      <!-- Documents Tab Content -->
+      <div *ngIf="activeTab === 'documents'">
+        <app-document-layout [caseDetails]="caseDetails"></app-document-layout>
       </div>
 
-      <div *ngIf="activeTab === 'parties-attorneys'" class="tab-content">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">Parties & Attorneys</h2>
-        <p class="text-gray-600">Parties and attorneys information will be displayed here.</p>
+      <!-- Parties & Attorneys Tab Content -->
+      <div *ngIf="activeTab === 'parties-attorneys'">
+        <app-parties-attorneys-layout [caseDetails]="caseDetails"></app-parties-attorneys-layout>
       </div>
 
       <div *ngIf="activeTab === 'judges'" class="tab-content">

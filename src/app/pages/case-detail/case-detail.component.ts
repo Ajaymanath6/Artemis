@@ -4,12 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
 import { SummaryLayoutComponent } from '../../layouts/summary-layout/summary-layout.component';
 import { DocketEntriesLayoutComponent } from '../../layouts/docket-entries-layout/docket-entries-layout.component';
+import { DocumentLayoutComponent } from '../../layouts/document-layout/document-layout.component';
+import { PartiesAttorneysLayoutComponent } from '../../layouts/parties-attorneys-layout/parties-attorneys-layout.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-case-detail',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, DocketEntriesLayoutComponent, AppHeaderComponent],
+  imports: [CommonModule, SideNavComponent, SummaryLayoutComponent, DocketEntriesLayoutComponent, DocumentLayoutComponent, PartiesAttorneysLayoutComponent, AppHeaderComponent],
   templateUrl: './case-detail.component.html',
   styleUrls: ['./case-detail.component.css']
 })

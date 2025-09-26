@@ -29,20 +29,20 @@
           <button 
             *ngIf="projectName && !showBackButton"
             (click)="onProjectClick()"
-            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate flex items-center space-x-2">
-            <i class="ri-search-eye-line text-lg"></i>
-            <span>{{ projectName }}</span>
+            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate">
+            {{ projectName }}
           </button>
           
           <!-- Separator -->
           <span *ngIf="projectName && searchQuery && !showBackButton" class="text-gray-400 font-medium">:</span>
           
-          <!-- Search Query (clickable) -->
+          <!-- Search Query (clickable) with search icon -->
           <button 
             *ngIf="searchQuery"
             (click)="onSearchQueryClick()"
-            class="text-gray-900 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-normal truncate">
-            {{ searchQuery }}
+            class="text-gray-900 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-normal truncate flex items-center space-x-2">
+            <i class="ri-search-eye-line text-lg"></i>
+            <span>{{ searchQuery }}</span>
           </button>
           
           <!-- Subtitle -->

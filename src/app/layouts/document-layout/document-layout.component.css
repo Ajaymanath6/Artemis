@@ -1,0 +1,127 @@
+/* Document Layout Component Styles */
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Document content positioning */
+.document-content-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  isolation: isolate;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+/* Document Section */
+.document-section {
+  margin-top: 32px;
+}
+
+.document-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+
+/* Document List */
+.document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Document Item */
+.document-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.document-item:hover {
+  background-color: #f9fafb;
+}
+
+/* Document Info */
+.document-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.document-icon {
+  flex-shrink: 0;
+}
+
+.document-icon-container {
+  width: 40px;
+  height: 40px;
+  background-color: #fef2f2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.document-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.document-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+}
+
+.document-meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Download Button */
+.download-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.download-button:hover {
+  background-color: #f9fafb;
+}
+
+/* Utility classes */
+.text-red-600 {
+  color: #dc2626;
+}
+
+.text-lg {
+  font-size: 18px;
+}
+
+.mr-2 {
+  margin-right: 8px;
+}

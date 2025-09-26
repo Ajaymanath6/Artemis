@@ -1,0 +1,28 @@
+<!-- Document Layout Content -->
+<div class="document-content-wrapper">
+  <div class="document-section">
+    <h2 class="document-section-title">Documents</h2>
+    <div class="document-list">
+      <div *ngFor="let doc of caseDetails.documents" 
+           class="document-item">
+        <div class="document-info">
+          <div class="document-icon">
+            <div class="document-icon-container">
+              <i class="ri-file-pdf-line text-red-600"></i>
+            </div>
+          </div>
+          <div class="document-details">
+            <p class="document-name">{{ doc.name }}</p>
+            <p class="document-meta">{{ doc.date }} • {{ doc.size }} • {{ doc.pages }} pages</p>
+          </div>
+        </div>
+        <button 
+          (click)="downloadDocument(doc)"
+          class="download-button">
+          <i class="ri-download-line text-lg mr-2"></i>
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

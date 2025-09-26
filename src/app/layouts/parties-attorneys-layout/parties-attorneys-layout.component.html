@@ -1,0 +1,98 @@
+<!-- Parties & Attorneys Layout Content -->
+<div class="parties-attorneys-content-wrapper">
+  
+  <!-- Parties Section -->
+  <div class="parties-section">
+    <h2 class="section-title">Parties</h2>
+    <div class="parties-grid">
+      <!-- Plaintiffs -->
+      <div class="party-group">
+        <h3 class="party-group-title plaintiff">Plaintiffs</h3>
+        <div class="party-list">
+          <div *ngFor="let party of plaintiffParties" class="party-item">
+            <div class="party-info">
+              <div class="party-icon plaintiff">
+                <i class="ri-user-line"></i>
+              </div>
+              <div class="party-details">
+                <p class="party-name">{{ party.name }}</p>
+                <p class="party-role">{{ party.role }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Defendants -->
+      <div class="party-group">
+        <h3 class="party-group-title defendant">Defendants</h3>
+        <div class="party-list">
+          <div *ngFor="let party of defendantParties" class="party-item">
+            <div class="party-info">
+              <div class="party-icon defendant">
+                <i class="ri-user-line"></i>
+              </div>
+              <div class="party-details">
+                <p class="party-name">{{ party.name }}</p>
+                <p class="party-role">{{ party.role }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attorneys Section -->
+  <div class="attorneys-section">
+    <h2 class="section-title">Attorneys</h2>
+    <div class="attorneys-grid">
+      <!-- Plaintiff Attorneys -->
+      <div class="attorney-group">
+        <h3 class="attorney-group-title plaintiff">Plaintiff Attorneys</h3>
+        <div class="attorney-list">
+          <div *ngFor="let attorney of plaintiffAttorneys" class="attorney-item">
+            <div class="attorney-info">
+              <div class="attorney-icon plaintiff">
+                <i class="ri-briefcase-line"></i>
+              </div>
+              <div class="attorney-details">
+                <p class="attorney-name">{{ attorney.name }}</p>
+                <p class="attorney-firm">{{ attorney.firm }}</p>
+                <p class="attorney-role">{{ attorney.role }}</p>
+                <div class="attorney-contact">
+                  <p class="attorney-phone">{{ attorney.phone }}</p>
+                  <p class="attorney-email">{{ attorney.email }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Defendant Attorneys -->
+      <div class="attorney-group">
+        <h3 class="attorney-group-title defendant">Defendant Attorneys</h3>
+        <div class="attorney-list">
+          <div *ngFor="let attorney of defendantAttorneys" class="attorney-item">
+            <div class="attorney-info">
+              <div class="attorney-icon defendant">
+                <i class="ri-briefcase-line"></i>
+              </div>
+              <div class="attorney-details">
+                <p class="attorney-name">{{ attorney.name }}</p>
+                <p class="attorney-firm">{{ attorney.firm }}</p>
+                <p class="attorney-role">{{ attorney.role }}</p>
+                <div class="attorney-contact">
+                  <p class="attorney-phone">{{ attorney.phone }}</p>
+                  <p class="attorney-email">{{ attorney.email }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
