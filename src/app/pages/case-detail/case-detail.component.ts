@@ -139,8 +139,13 @@ export class CaseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.caseId = this.route.snapshot.paramMap.get('id');
+    console.log('Case Detail Page - Case ID:', this.caseId);
+    
     // Set the current search query to display the case title in the header
     this.currentSearchQuery = this.caseDetails.title;
+    
+    // Ensure we stay on this page by logging route info
+    console.log('Case Detail Page initialized successfully');
   }
 
   goBack(): void {
@@ -172,8 +177,8 @@ export class CaseDetailComponent implements OnInit {
   }
 
   onSearchQueryClick(): void {
-    // Navigate back to cases page for search
-    this.router.navigate(['/cases']);
+    // Don't navigate away from case detail page
+    console.log('Search query clicked on case detail page - staying on current page');
   }
 
   onSearch(query: string): void {

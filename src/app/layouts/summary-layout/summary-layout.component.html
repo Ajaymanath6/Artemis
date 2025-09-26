@@ -1,5 +1,71 @@
 <!-- Summary Layout Content -->
-<div class="bg-white rounded-xl border border-gray-200 p-6">
-  <h2 class="text-lg font-semibold text-gray-900 mb-4">Summary</h2>
-  <p class="text-gray-600">Summary content for {{ caseDetails?.title || 'this case' }} will be displayed here.</p>
+<div class="summary-content-wrapper">
+  <!-- Summary Table -->
+  <div class="summary-table-container">
+    <div class="summary-table-row" *ngFor="let row of caseSummaryRows">
+      <!-- Left Column: Icon and Label (40% width) -->
+      <div class="summary-table-left">
+        <i [class]="row.icon + ' summary-row-icon'"></i>
+        <span class="summary-row-label">{{ row.label }}</span>
+      </div>
+      
+      <!-- Right Column: Value (60% width) -->
+      <div class="summary-table-right">
+        <span 
+          [class]="row.isLink ? 'summary-row-value-link' : 'summary-row-value'"
+          [style.cursor]="row.isLink ? 'pointer' : 'default'">
+          {{ row.value }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Parties/Attorneys Divider and View Controls -->
+  <div class="results-divider-section">
+    <div class="results-header">
+      <div class="results-left">
+        <h3 class="results-title">Top Parties/Attorneys</h3>
+      </div>
+      <div class="results-right">
+        <!-- View Toggle Buttons - Same as Cases Layout -->
+        <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <button 
+            (click)="toggleViewMode('grid')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors"
+            [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-layout-grid-line text-base"></i>
+            <span class="text-sm font-medium">Grid</span>
+          </button>
+          <button 
+            (click)="toggleViewMode('table')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-layout-row-line text-base"></i>
+            <span class="text-sm font-medium">Table</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal Representation Table -->
+  <div class="legal-representation-section">
+    <h3 class="legal-representation-title">Legal Representation</h3>
+    
+    <div class="legal-table-container">
+      <!-- Table Header -->
+      <div class="legal-table-header">
+        <div class="legal-table-header-cell attorney-name-col">Attorney name</div>
+        <div class="legal-table-header-cell law-firm-col">Law firm</div>
+        <div class="legal-table-header-cell type-col">Type</div>
+      </div>
+      
+      <!-- Table Rows -->
+      <div class="legal-table-row" *ngFor="let row of legalRepresentationRows">
+        <div class="legal-table-cell attorney-name-col">{{ row.attorneyName }}</div>
+        <div class="legal-table-cell law-firm-col">{{ row.lawFirm }}</div>
+        <div class="legal-table-cell type-col">{{ row.type }}</div>
+      </div>
+    </div>
+  </div>
 </div>

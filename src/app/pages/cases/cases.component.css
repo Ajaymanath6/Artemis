@@ -1042,3 +1042,8 @@
 .case-card-badges {
   margin-top: 0 !important; /* No extra top margin - rely on case-card-details margin-bottom */
 }
+
+/* Custom spacing for case title - 4px gap between icon and title */
+.space-x-1 > * + * {
+  margin-left: 0.25rem; /* 4px */
+}

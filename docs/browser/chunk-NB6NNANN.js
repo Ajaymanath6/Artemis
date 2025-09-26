@@ -13815,10 +13815,10 @@ var PhosphorIconComponent = class _PhosphorIconComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PhosphorIconComponent, { className: "PhosphorIconComponent", filePath: "src/app/components/ui/phosphor-icon/phosphor-icon.component.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PhosphorIconComponent, { className: "PhosphorIconComponent" });
 })();
 
 export {
   PhosphorIconComponent
 };
-//# sourceMappingURL=chunk-CU4W3RIU.js.map
+//# sourceMappingURL=chunk-NB6NNANN.js.map

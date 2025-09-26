@@ -15,18 +15,14 @@
           <i class="ri-layout-left-line text-lg" style="color: #9CA3AF;"></i>
         </button>
 
-        <!-- Project Title and Search Query -->
-        <div *ngIf="showUserProfile && (projectName || searchQuery)" class="flex items-center space-x-2">
-          <!-- Project Name (clickable) -->
+        <!-- Back Arrow Button and Search Query -->
+        <div *ngIf="showUserProfile" class="flex items-center space-x-2">
+          <!-- Back Arrow Button -->
           <button 
-            *ngIf="projectName"
-            (click)="onProjectClick()"
-            class="text-gray-600 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-medium truncate">
-            {{ projectName }}
+            (click)="onBackClick()"
+            class="flex items-center justify-center w-8 h-8 text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
+            <i class="ri-arrow-left-line text-lg"></i>
           </button>
-          
-          <!-- Separator -->
-          <span *ngIf="projectName && searchQuery" class="text-gray-400 font-medium">:</span>
           
           <!-- Search Query (clickable) -->
           <button 
@@ -35,12 +31,6 @@
             class="text-gray-900 hover:text-brand hover:bg-gray-50 px-2 py-1 rounded-md transition-colors focus:outline-none font-normal truncate">
             {{ searchQuery }}
           </button>
-          
-          <!-- Subtitle -->
-          <div *ngIf="projectName && !searchQuery" class="flex items-center space-x-2">
-            <span class="text-gray-400 font-medium">:</span>
-            <span class="text-gray-500 text-sm font-normal">Testing for NY grouping and extractions</span>
-          </div>
         </div>
       </div>
 

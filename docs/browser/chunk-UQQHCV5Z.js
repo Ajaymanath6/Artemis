@@ -4,7 +4,7 @@ import {
 } from "./chunk-DDDO6NM3.js";
 import {
   PhosphorIconComponent
-} from "./chunk-CU4W3RIU.js";
+} from "./chunk-NB6NNANN.js";
 import {
   CommonModule,
   Component,
@@ -325,10 +325,10 @@ var AppHeaderComponent = class _AppHeaderComponent {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppHeaderComponent, { className: "AppHeaderComponent", filePath: "src/app/layouts/app-header/app-header.component.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppHeaderComponent, { className: "AppHeaderComponent" });
 })();
 
 export {
   AppHeaderComponent
 };
-//# sourceMappingURL=chunk-S3ODH3JA.js.map
+//# sourceMappingURL=chunk-UQQHCV5Z.js.map

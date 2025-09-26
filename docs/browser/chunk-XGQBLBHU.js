@@ -2651,7 +2651,7 @@ select {
   }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SearchBarComponent, { className: "SearchBarComponent", filePath: "src/app/components/ui/search-bar/search-bar.component.ts", lineNumber: 86 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SearchBarComponent, { className: "SearchBarComponent" });
 })();
 
 export {
@@ -2666,4 +2666,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-UXEM3NMO.js.map
+//# sourceMappingURL=chunk-XGQBLBHU.js.map

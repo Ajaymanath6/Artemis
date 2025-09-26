@@ -18,6 +18,7 @@ export class AppHeaderComponent implements OnInit {
   @Output() collapseToggle = new EventEmitter<void>();
   @Output() projectClick = new EventEmitter<void>();
   @Output() searchQueryClick = new EventEmitter<void>();
+  @Output() backClick = new EventEmitter<void>();
   
   isUserMenuOpen = false;
   isNotificationsOpen = false;
@@ -33,6 +34,11 @@ export class AppHeaderComponent implements OnInit {
 
   onCollapseClick(): void {
     this.collapseToggle.emit();
+  }
+
+  onBackClick(): void {
+    this.backClick.emit();
+    console.log('Back button clicked');
   }
 
   onProjectClick(): void {
