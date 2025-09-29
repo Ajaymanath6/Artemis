@@ -3,76 +3,60 @@
   <div class="similar-cases-section">
     <h2 class="section-title">Similar Cases</h2>
     <div class="similar-cases-list">
-      <div *ngFor="let similarCase of similarCases" 
-           class="similar-case-card"
-           (click)="onSimilarCaseClick(similarCase)">
-        <div class="case-header">
-          <div class="case-title-section">
-            <div class="case-icon">
-              <i class="ri-scales-3-line"></i>
-            </div>
-            <div class="case-title-info">
-              <h3 class="case-title">{{ similarCase.title }}</h3>
-              <p class="case-number">{{ similarCase.caseNumber }}</p>
-            </div>
-          </div>
-          <div class="case-metrics-section">
-            <div class="similarity-score" [style.color]="getSimilarityColor(similarCase.similarityScore)">
-              <span class="score-value">{{ similarCase.similarityScore }}%</span>
-              <span class="score-label">Match</span>
-            </div>
-            <span class="precedent-value" [style.color]="getPrecedentColor(similarCase.precedentValue)">
-              {{ similarCase.precedentValue }} Precedent
+      <!-- Similar Case Cards - Same as Cases Page -->
+      <div *ngFor="let similarCase of similarCases" class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group" (click)="onSimilarCaseClick(similarCase)">
+        <div class="flex items-start case-card-title">
+          <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+          <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
+            {{ similarCase.title }}
+          </h3>
+          <div class="ml-auto flex items-center gap-2">
+            <span class="similarity-score-badge" [style.color]="getSimilarityColor(similarCase.similarityScore)">
+              {{ similarCase.similarityScore }}% Match
             </span>
           </div>
         </div>
-
-        <div class="case-details">
-          <div class="case-info-grid">
-            <div class="info-item">
-              <i class="ri-building-line"></i>
-              <span>{{ similarCase.court }}</span>
-            </div>
-            <div class="info-item">
-              <i class="ri-calendar-line"></i>
-              <span>Filed: {{ similarCase.filingDate }}</span>
-            </div>
-            <div class="info-item">
-              <i class="ri-user-line"></i>
-              <span>{{ similarCase.judge }}</span>
-            </div>
-            <div class="info-item status-item">
-              <i class="ri-flag-line"></i>
-              <span class="case-status" [class]="similarCase.status.toLowerCase().replace(' ', '-')">
-                {{ similarCase.status }}
-              </span>
-            </div>
+        
+        <div class="flex flex-wrap gap-6 text-sm text-gray-700 case-card-details">
+          <div class="flex items-center space-x-2">
+            <i class="ri-hashtag text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span>
+            <span class="font-medium">{{ similarCase.caseNumber }}</span>
           </div>
-
-          <div *ngIf="similarCase.outcome" class="outcome-section">
-            <div class="outcome-item">
-              <i class="ri-check-line"></i>
-              <span>Outcome: {{ similarCase.outcome }}</span>
-            </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-government-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span>
+            <span class="font-medium">{{ similarCase.court }}</span>
           </div>
-
-          <div class="similarity-reasons-section">
-            <h4>Why This Case is Similar:</h4>
-            <div class="similarity-reasons-tags">
-              <span *ngFor="let reason of similarCase.similarityReasons" class="similarity-reason-tag">
-                {{ reason }}
-              </span>
-            </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-calendar-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">FILED:</span>
+            <span class="font-medium">{{ similarCase.filingDate }}</span>
           </div>
-
-          <div class="key-issues-section">
-            <h4>Key Legal Issues:</h4>
-            <div class="key-issues-tags">
-              <span *ngFor="let issue of similarCase.keyIssues" class="key-issue-tag">
-                {{ issue }}
-              </span>
-            </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-user-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">JUDGE:</span>
+            <span class="font-medium">{{ similarCase.judge }}</span>
           </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-time-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span>
+            <span class="font-medium">{{ similarCase.status }}</span>
+          </div>
+          <div *ngIf="similarCase.outcome" class="flex items-center space-x-2">
+            <i class="ri-check-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">OUTCOME:</span>
+            <span class="font-medium">{{ similarCase.outcome }}</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 case-card-badges">
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-award-line text-sm mr-2"></i>{{ similarCase.precedentValue }} Precedent
+          </span>
+          <span *ngFor="let reason of similarCase.similarityReasons" class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-check-line text-sm mr-2"></i>{{ reason }}
+          </span>
         </div>
       </div>
     </div>

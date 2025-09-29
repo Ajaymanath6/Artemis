@@ -71,13 +71,12 @@
               
               <!-- Ready State -->
               <div *ngIf="doc.downloadReady && !doc.downloading" class="download-ready">
-                <i class="ri-download-line mr-2"></i>
-                <span>Ready to Download</span>
+                <i class="ri-download-line"></i>
               </div>
               
               <!-- Default State -->
               <div *ngIf="!doc.downloading && !doc.downloadReady" class="download-default">
-                <span>Download $0.00</span>
+                <span>$0.00</span>
               </div>
             </button>
             

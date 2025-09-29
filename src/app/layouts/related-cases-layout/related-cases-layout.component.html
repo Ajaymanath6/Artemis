@@ -3,54 +3,50 @@
   <div class="related-cases-section">
     <h2 class="section-title">Related Cases</h2>
     <div class="related-cases-list">
-      <div *ngFor="let relatedCase of relatedCases" 
-           class="related-case-card"
-           (click)="onCaseClick(relatedCase)">
-        <div class="case-header">
-          <div class="case-title-section">
-            <div class="case-icon">
-              <i class="ri-scales-3-line"></i>
-            </div>
-            <div class="case-title-info">
-              <h3 class="case-title">{{ relatedCase.title }}</h3>
-              <p class="case-number">{{ relatedCase.caseNumber }}</p>
-            </div>
+      <!-- Related Case Cards - Same as Cases Page -->
+      <div *ngFor="let relatedCase of relatedCases" class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group" (click)="onCaseClick(relatedCase)">
+        <div class="flex items-start case-card-title">
+          <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+          <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
+            {{ relatedCase.title }}
+          </h3>
+        </div>
+        
+        <div class="flex flex-wrap gap-6 text-sm text-gray-700 case-card-details">
+          <div class="flex items-center space-x-2">
+            <i class="ri-hashtag text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span>
+            <span class="font-medium">{{ relatedCase.caseNumber }}</span>
           </div>
-          <div class="case-status-section">
-            <span class="case-status" [class]="relatedCase.status.toLowerCase()">
-              {{ relatedCase.status }}
-            </span>
+          <div class="flex items-center space-x-2">
+            <i class="ri-government-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span>
+            <span class="font-medium">{{ relatedCase.court }}</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-calendar-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">FILED:</span>
+            <span class="font-medium">{{ relatedCase.filingDate }}</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-user-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">JUDGE:</span>
+            <span class="font-medium">{{ relatedCase.judge }}</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="ri-time-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span>
+            <span class="font-medium">{{ relatedCase.status }}</span>
           </div>
         </div>
-
-        <div class="case-details">
-          <div class="case-info-grid">
-            <div class="info-item">
-              <i class="ri-building-line"></i>
-              <span>{{ relatedCase.court }}</span>
-            </div>
-            <div class="info-item">
-              <i class="ri-calendar-line"></i>
-              <span>Filed: {{ relatedCase.filingDate }}</span>
-            </div>
-            <div class="info-item">
-              <i class="ri-user-line"></i>
-              <span>{{ relatedCase.judge }}</span>
-            </div>
-            <div class="info-item">
-              <i class="ri-link-line"></i>
-              <span>{{ relatedCase.relationshipType }}</span>
-            </div>
-          </div>
-
-          <div class="common-elements-section">
-            <h4>Common Elements:</h4>
-            <div class="common-elements-tags">
-              <span *ngFor="let element of relatedCase.commonElements" class="common-element-tag">
-                {{ element }}
-              </span>
-            </div>
-          </div>
+        
+        <div class="flex flex-wrap gap-4 case-card-badges">
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-link-line text-sm mr-2"></i>{{ relatedCase.relationshipType }}
+          </span>
+          <span *ngFor="let element of relatedCase.commonElements" class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-check-line text-sm mr-2"></i>{{ element }}
+          </span>
         </div>
       </div>
     </div>
