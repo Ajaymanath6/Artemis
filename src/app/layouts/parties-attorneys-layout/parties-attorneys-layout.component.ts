@@ -10,10 +10,11 @@ interface Party {
 interface Attorney {
   name: string;
   firm: string;
+  type: string;
   role: string;
   phone: string;
   email: string;
-  type: 'plaintiff' | 'defendant';
+  specializations: string[];
 }
 
 @Component({
@@ -25,69 +26,72 @@ interface Attorney {
 export class PartiesAttorneysLayoutComponent {
   @Input() caseDetails: any;
 
-  parties: Party[] = [
+  plaintiffAttorneys: Attorney[] = [
     {
-      name: 'Guy Hawkins',
-      role: 'Plaintiff',
-      type: 'plaintiff'
-    },
-    {
-      name: 'Kristin Watson',
-      role: 'Plaintiff',
-      type: 'plaintiff'
-    },
-    {
-      name: 'Robert Fox',
-      role: 'Defendant',
-      type: 'defendant'
-    },
-    {
-      name: 'Roger Kinnaird',
-      role: 'Defendant',
-      type: 'defendant'
-    }
-  ];
-
-  attorneys: Attorney[] = [
-    {
-      name: 'Mary Richards',
-      firm: 'Abstergo Law',
+      name: 'DOOLITTLE, DIANE M.',
+      firm: 'Abstergo Law Firm LLC',
+      type: 'Lead Attorney, Attorney',
       role: 'Lead Attorney',
       phone: '(555) 123-4567',
-      email: 'm.richards@abstergolaw.com',
-      type: 'plaintiff'
+      email: 'diane.doolittle@abstergolaw.com',
+      specializations: ['Personal Injury', 'Civil Rights', 'Medical Malpractice']
     },
     {
-      name: 'Maria Stevens',
-      firm: 'Biffco Attorneys',
-      role: 'Defense Attorney',
-      phone: '(555) 987-6543',
-      email: 'm.stevens@biffco.com',
-      type: 'defendant'
-    },
-    {
-      name: 'William Brown',
-      firm: 'Biffco Attorneys',
+      name: 'MITCHELL, JOHN R.',
+      firm: 'Abstergo Law Firm LLC',
+      type: 'Associate Attorney',
       role: 'Associate Attorney',
-      phone: '(555) 456-7890',
-      email: 'w.brown@biffco.com',
-      type: 'defendant'
+      phone: '(555) 123-4568',
+      email: 'john.mitchell@abstergolaw.com',
+      specializations: ['Litigation Support', 'Discovery', 'Legal Research']
+    },
+    {
+      name: 'RICHARDS, MARY E.',
+      firm: 'Thompson & Associates',
+      type: 'Co-Counsel',
+      role: 'Co-Counsel',
+      phone: '(555) 789-0123',
+      email: 'mary.richards@thompsonlaw.com',
+      specializations: ['Civil Litigation', 'Settlement Negotiations']
     }
   ];
 
-  get plaintiffParties(): Party[] {
-    return this.parties.filter(party => party.type === 'plaintiff');
-  }
-
-  get defendantParties(): Party[] {
-    return this.parties.filter(party => party.type === 'defendant');
-  }
-
-  get plaintiffAttorneys(): Attorney[] {
-    return this.attorneys.filter(attorney => attorney.type === 'plaintiff');
-  }
-
-  get defendantAttorneys(): Attorney[] {
-    return this.attorneys.filter(attorney => attorney.type === 'defendant');
-  }
+  defendantAttorneys: Attorney[] = [
+    {
+      name: 'STEVENS, MARIA C.',
+      firm: 'Biffco Legal Services',
+      type: 'Defense Attorney, Lead',
+      role: 'Senior Partner',
+      phone: '(555) 987-6543',
+      email: 'maria.stevens@biffcolegal.com',
+      specializations: ['Defense Litigation', 'Insurance Law', 'Corporate Defense']
+    },
+    {
+      name: 'BROWN, WILLIAM H.',
+      firm: 'Biffco Legal Services',
+      type: 'Defense Attorney',
+      role: 'Defense Attorney',
+      phone: '(555) 987-6544',
+      email: 'william.brown@biffcolegal.com',
+      specializations: ['Medical Defense', 'Expert Witness Coordination', 'Settlement Negotiations']
+    },
+    {
+      name: 'JOHNSON, SARAH K.',
+      firm: 'Johnson & Partners LLP',
+      type: 'Co-Counsel, Attorney',
+      role: 'Co-Counsel',
+      phone: '(555) 456-7890',
+      email: 'sarah.johnson@johnsonpartners.com',
+      specializations: ['Medical Malpractice Defense', 'Risk Management', 'Regulatory Compliance']
+    },
+    {
+      name: 'WILSON, ROBERT T.',
+      firm: 'Wilson Legal Group',
+      type: 'Assistant Attorney',
+      role: 'Assistant Attorney',
+      phone: '(555) 345-6789',
+      email: 'robert.wilson@wilsonlegal.com',
+      specializations: ['Discovery Support', 'Document Review', 'Legal Research']
+    }
+  ];
 }

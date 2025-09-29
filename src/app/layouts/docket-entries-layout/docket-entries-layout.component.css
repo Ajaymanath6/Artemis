@@ -68,7 +68,7 @@
   background-color: #e5e7eb; /* Same as bg-gray-200 */
   color: #374151; /* Same as text-gray-700 */
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 16px; /* Changed to 16px */
   font-weight: 600;
   letter-spacing: 0.025em;
   white-space: nowrap;

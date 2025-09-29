@@ -1,27 +1,90 @@
 <!-- Document Layout Content -->
 <div class="document-content-wrapper">
-  <div class="document-section">
-    <h2 class="document-section-title">Documents</h2>
-    <div class="document-list">
-      <div *ngFor="let doc of caseDetails.documents" 
-           class="document-item">
-        <div class="document-info">
-          <div class="document-icon">
-            <div class="document-icon-container">
-              <i class="ri-file-pdf-line text-red-600"></i>
-            </div>
-          </div>
-          <div class="document-details">
-            <p class="document-name">{{ doc.name }}</p>
-            <p class="document-meta">{{ doc.date }} • {{ doc.size }} • {{ doc.pages }} pages</p>
+  
+  <!-- Compact Search Bar Section -->
+  <div class="search-bar-section">
+    <div class="max-w-full mx-auto">
+      <div class="mb-4">
+        <app-search-bar 
+          [isCollapsed]="true"
+          [searchQuery]="searchQuery"
+          [showCollapseButton]="false"
+          [showBackButton]="false"
+          (search)="onSearch($event)">
+        </app-search-bar>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Cards -->
+  <div class="document-cards-container">
+    <div *ngFor="let doc of filteredDocuments" class="document-card" [class.expanded]="doc.expanded">
+      <!-- Card Header with Date, Name, Description, Download -->
+      <div class="card-header">
+        <!-- Date Section - 10% width -->
+        <div class="date-section">
+          <span class="date-badge">{{ doc.date }}</span>
+        </div>
+        
+        <!-- Name Section - 20% width -->
+        <div class="name-section">
+          <a 
+            (click)="onNameClick(doc)"
+            class="document-name-link"
+            [class.clickable]="doc.isClickable">
+            {{ doc.name }}
+          </a>
+        </div>
+        
+        <!-- Description Section - 50% width -->
+        <div class="description-section">
+          <p class="description-text" [class.truncated]="!doc.expanded && isDescriptionLong(doc.description)">
+            {{ doc.description }}
+          </p>
+          <!-- See Full Text Button (shown if text is long) -->
+          <button 
+            *ngIf="isDescriptionLong(doc.description)"
+            (click)="toggleDescription(doc)"
+            class="see-full-text-btn">
+            <i class="ri-arrow-down-s-line" *ngIf="!doc.expanded"></i>
+            <i class="ri-arrow-up-s-line" *ngIf="doc.expanded"></i>
+            {{ doc.expanded ? 'Show Less' : 'See Full Text' }}
+          </button>
+        </div>
+        
+        <!-- Download Section - 20% width -->
+        <div class="download-section">
+          <div class="action-buttons">
+            <!-- Download Button -->
+            <button 
+              (click)="downloadDocument(doc)"
+              class="download-btn"
+              [class.loading]="doc.downloading"
+              [class.ready]="doc.downloadReady"
+              [disabled]="doc.downloading">
+              
+              <!-- Loading State -->
+              <div *ngIf="doc.downloading" class="download-loading">
+                <div class="spinner"></div>
+                <span>Processing...</span>
+              </div>
+              
+              <!-- Ready State -->
+              <div *ngIf="doc.downloadReady && !doc.downloading" class="download-ready">
+                <i class="ri-download-line mr-2"></i>
+                <span>Ready to Download</span>
+              </div>
+              
+              <!-- Default State -->
+              <div *ngIf="!doc.downloading && !doc.downloadReady" class="download-default">
+                <span>Download $0.00</span>
+              </div>
+            </button>
+            
+            <!-- Ordered Date - Below download button -->
+            <p class="ordered-date">ordered on {{ doc.orderedDate }}</p>
           </div>
         </div>
-        <button 
-          (click)="downloadDocument(doc)"
-          class="download-button">
-          <i class="ri-download-line text-lg mr-2"></i>
-          Download
-        </button>
       </div>
     </div>
   </div>
