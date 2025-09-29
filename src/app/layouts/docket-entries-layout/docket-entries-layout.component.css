@@ -7,7 +7,7 @@
   isolation: isolate;
 }
 
-/* Docket Entries content positioning */
+/* Content positioning */
 .docket-entries-content-wrapper {
   position: relative;
   z-index: 1;
@@ -19,100 +19,107 @@
   padding: 0;
 }
 
-/* Docket Entries Table Container */
-.docket-entries-table-container {
-  background-color: #ffffff;
+/* Search Bar Section - Same as Cases Page */
+.search-bar-section {
+  margin: 0 0 24px 0;
+}
+
+/* Docket Entries Cards Container */
+.docket-entries-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Docket Entry Card - Updated Colors */
+.docket-entry-card {
+  background-color: #fcfdfed9; /* Custom background color */
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  margin: 0 auto;
+  padding: 24px;
+  border-top: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-/* Docket Table Header */
-.docket-table-header {
+.docket-entry-card:hover {
+  background-color: #ffffff; /* White on hover */
+}
+
+/* Card Header */
+.card-header {
   display: flex;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  gap: 24px;
+  margin-bottom: 16px;
 }
 
-.docket-table-header-cell {
-  padding: 16px 24px;
-  font-size: 14px;
+/* Date Section - 10% width */
+.date-section {
+  width: 10%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.date-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: #e5e7eb; /* Same as bg-gray-200 */
+  color: #374151; /* Same as text-gray-700 */
+  border-radius: 6px;
+  font-size: 10px;
   font-weight: 600;
-  color: #374151;
-  text-align: left;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Docket Table Row */
-.docket-table-row {
-  display: flex;
-  border-bottom: 1px solid #f3f4f6;
-  transition: background-color 0.2s ease;
+/* Description Section - 90% width */
+.description-section {
+  flex: 1;
+  width: 90%;
 }
 
-.docket-table-row:last-child {
-  border-bottom: none;
-}
-
-.docket-table-row:hover {
-  background-color: #f9fafb;
-}
-
-.docket-table-cell {
-  padding: 16px 24px;
+.description-text {
   font-size: 14px;
-  color: #111827;
-  text-align: left;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Card Footer - Position like cases page */
+.card-footer {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+/* Document Badge - Same as Cases Page */
+.document-badge {
   display: flex;
   align-items: center;
 }
 
-/* Column Widths */
-.date-col {
-  flex: 1;
-  min-width: 100px;
-}
-
-.entry-col {
-  flex: 0.5;
-  min-width: 80px;
-  justify-content: center;
-}
-
-.description-col {
-  flex: 3;
-  min-width: 250px;
-}
-
-.filed-by-col {
-  flex: 1;
-  min-width: 120px;
-}
-
-.document-col {
-  flex: 2;
-  min-width: 200px;
-}
-
-/* Document Link Styling */
-.document-link {
-  color: #146B85;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  display: flex;
-  align-items: center;
-}
-
-.document-link:hover {
-  color: #0f5a6b;
-}
-
-/* Utility classes */
-.text-gray-400 {
-  color: #9ca3af;
-}
-
-.mr-1 {
-  margin-right: 0.25rem;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .date-section {
+    width: 100%;
+  }
+  
+  .description-section {
+    width: 100%;
+  }
+  
+  .search-input-wrapper {
+    max-width: 100%;
+  }
 }

@@ -126,10 +126,10 @@
 /* Legal Table Container */
 .legal-table-container {
   background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border-radius: 18px; /* Match first table corner radius */
+  border: none; /* Remove border */
   overflow: hidden;
-  padding: 0; /* No internal padding since cells have their own padding */
+  padding: 24px; /* Equal padding on all sides like first table */
 }
 
 /* Legal Table Header */
@@ -137,10 +137,13 @@
   display: flex;
   background-color: #f9fafb;
   border-bottom: 1px solid #e5e7eb;
+  border-radius: 8px 8px 0 0;
+  margin: -24px -24px 0 -24px;
+  padding: 0 24px;
 }
 
 .legal-table-header-cell {
-  padding: 16px 24px; /* Equal padding matching the tables */
+  padding: 16px 0; /* Remove horizontal padding since container has it */
   font-size: 14px;
   font-weight: 600;
   color: #374151;
@@ -163,7 +166,7 @@
 }
 
 .legal-table-cell {
-  padding: 16px 24px; /* Equal padding matching the tables */
+  padding: 16px 0; /* Remove horizontal padding since container has it */
   font-size: 14px;
   color: #111827;
   text-align: left;

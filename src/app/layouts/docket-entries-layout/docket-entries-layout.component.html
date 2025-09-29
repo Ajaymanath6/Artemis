@@ -1,28 +1,42 @@
 <!-- Docket Entries Layout Content -->
 <div class="docket-entries-content-wrapper">
-  <!-- Docket Entries Table -->
-  <div class="docket-entries-table-container">
-    <!-- Table Header -->
-    <div class="docket-table-header">
-      <div class="docket-table-header-cell date-col">Date</div>
-      <div class="docket-table-header-cell entry-col">Entry #</div>
-      <div class="docket-table-header-cell description-col">Description</div>
-      <div class="docket-table-header-cell filed-by-col">Filed By</div>
-      <div class="docket-table-header-cell document-col">Document</div>
+  
+  <!-- Compact Search Bar Section -->
+  <div class="search-bar-section">
+    <div class="max-w-full mx-auto">
+      <div class="mb-4">
+        <app-search-bar 
+          [isCollapsed]="true"
+          [searchQuery]="searchQuery"
+          [showCollapseButton]="false"
+          [showBackButton]="false"
+          (search)="onSearch($event)">
+        </app-search-bar>
+      </div>
     </div>
-    
-    <!-- Table Rows -->
-    <div class="docket-table-row" *ngFor="let entry of docketEntries">
-      <div class="docket-table-cell date-col">{{ entry.date }}</div>
-      <div class="docket-table-cell entry-col">{{ entry.entry }}</div>
-      <div class="docket-table-cell description-col">{{ entry.description }}</div>
-      <div class="docket-table-cell filed-by-col">{{ entry.filedBy }}</div>
-      <div class="docket-table-cell document-col">
-        <span *ngIf="entry.document" class="document-link">
-          <i class="ri-file-pdf-line mr-1"></i>
-          {{ entry.document }}
-        </span>
-        <span *ngIf="!entry.document" class="text-gray-400">—</span>
+  </div>
+
+  <!-- Docket Entries Cards -->
+  <div class="docket-entries-cards-container">
+    <div *ngFor="let entry of filteredEntries" class="docket-entry-card">
+      <!-- Card Header with Date and Description -->
+      <div class="card-header">
+        <div class="date-section">
+          <span class="date-badge">{{ entry.date }}</span>
+        </div>
+        <div class="description-section">
+          <p class="description-text">{{ entry.description }}</p>
+        </div>
+      </div>
+      
+      <!-- Card Footer with Document Badge (Same as Cases Page) -->
+      <div class="card-footer">
+        <div class="document-badge" *ngIf="entry.documents.length > 0">
+          <div class="flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm">
+            <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+            <span class="text-xs text-gray-700 font-medium">{{ entry.documents.length }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

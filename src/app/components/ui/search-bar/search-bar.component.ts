@@ -90,6 +90,7 @@ export class SearchBarComponent {
   @Input() isCollapsed: boolean = false; // Allow parent to control collapsed state
   @Input() searchQuery: string = ''; // Allow parent to set search query
   @Input() showCollapseButton: boolean = false; // Show collapse button when results are visible
+  @Input() showBackButton: boolean = true; // Show back button in collapsed view
   isProDropdownOpen: boolean = false;
   selectedProOption: string = 'natural';
   isFilterPanelOpen: boolean = false;

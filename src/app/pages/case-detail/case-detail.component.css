@@ -41,7 +41,7 @@
 .case-meta-content {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 1rem 1rem;
+  padding: 1rem 1rem 0 1rem; /* Remove bottom padding */
 }
 
 @media (min-width: 640px) {
@@ -116,6 +116,7 @@
 /* Tab Navigation */
 .tab-navigation {
   border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0; /* Remove bottom padding from tab navigation */
 }
 
 /* Summary Container - Bottom Part */
