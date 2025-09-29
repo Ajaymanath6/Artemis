@@ -21,6 +21,12 @@ interface RelatedCase {
 })
 export class RelatedCasesLayoutComponent {
   @Input() caseDetails: any;
+  viewMode: 'grid' | 'table' = 'grid';
+
+  toggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
 
   relatedCases: RelatedCase[] = [
     {

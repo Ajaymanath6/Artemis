@@ -24,6 +24,12 @@ interface SimilarCase {
 })
 export class SimilarCasesLayoutComponent {
   @Input() caseDetails: any;
+  viewMode: 'grid' | 'table' = 'grid';
+
+  toggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
 
   similarCases: SimilarCase[] = [
     {

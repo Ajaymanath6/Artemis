@@ -162,7 +162,10 @@ export class CaseDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/cases']);
+    // Navigate back to cases with preserved state
+    this.router.navigate(['/cases'], { 
+      state: { preserveSearchState: true }
+    });
   }
 
   downloadDocument(document: any): void {

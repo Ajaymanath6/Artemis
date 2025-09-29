@@ -25,6 +25,11 @@
   background-color: #F8F8F8;
 }
 
+/* Search bar section with top spacing */
+.search-bar-section {
+  padding-top: 8px;
+}
+
 /* Layout utilities */
 .flex {
   display: flex;

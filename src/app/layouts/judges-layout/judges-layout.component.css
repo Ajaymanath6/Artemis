@@ -27,22 +27,22 @@
   margin-bottom: 24px;
 }
 
-/* Judges grid - Compact grid for 10 cards in viewport */
+/* Judges grid - 4 cards per row */
 .judges-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-/* Judge card - Very compact design */
+/* Judge card - Comfortable size for 4 per row */
 .judge-card {
   background-color: white;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 20px;
   border: 1px solid #e5e7eb;
   cursor: pointer;
   position: relative;
-  height: 80px;
+  height: 120px;
   display: flex;
   align-items: center;
 }
@@ -50,9 +50,25 @@
 /* Judge header */
 .judge-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 12px;
+}
+
+.judge-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.judge-icon i {
+  font-size: 18px;
+  color: #6b7280;
 }
 
 .judge-name-section {
@@ -61,78 +77,86 @@
 }
 
 .judge-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 2px 0;
-  line-height: 1.2;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .judge-title {
-  font-size: 12px;
+  font-size: 14px;
   color: #6b7280;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Status badge - Neutral colors */
-.judge-status {
-  padding: 3px 6px;
-  border-radius: 12px;
-  font-size: 9px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  flex-shrink: 0;
-  background-color: #f3f4f6;
-  color: #6b7280;
-  margin-left: 8px;
-}
+/* Remove status badge styles - no longer needed */
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .judges-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
   
   .judge-card {
-    height: 70px;
-    padding: 10px;
+    height: 100px;
+    padding: 16px;
   }
   
   .judge-name {
-    font-size: 13px;
+    font-size: 15px;
   }
   
   .judge-title {
-    font-size: 11px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .judges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  
+  .judge-card {
+    height: 90px;
+    padding: 14px;
+  }
+  
+  .judge-name {
+    font-size: 14px;
+  }
+  
+  .judge-title {
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .judges-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   
   .judge-card {
-    height: 60px;
-    padding: 8px;
+    height: 80px;
+    padding: 12px;
   }
   
   .judge-name {
-    font-size: 12px;
+    font-size: 14px;
   }
   
   .judge-title {
-    font-size: 10px;
+    font-size: 12px;
   }
   
   .section-title {

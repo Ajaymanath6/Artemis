@@ -25,7 +25,18 @@ export class CasesComponent implements OnInit {
   
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Check if we should restore search state
+    const navigation = this.router.getCurrentNavigation();
+    const shouldPreserveState = navigation?.extras?.state?.['preserveSearchState'];
+    
+    if (shouldPreserveState) {
+      this.restoreSearchState();
+    } else {
+      // Check for saved search state in localStorage on page load
+      this.restoreSearchState();
+    }
+  }
 
   onSearch(query: string): void {
     console.log('Searching cases for:', query);
@@ -35,10 +46,15 @@ export class CasesComponent implements OnInit {
     this.showResults = false;
     this.isSearchBarExpanded = false; // Reset expansion state when new search is performed
     
+    // Save search state to localStorage
+    this.saveSearchState();
+    
     // Simulate search with loading, then show results (shorter timeout for testing)
     setTimeout(() => {
       this.isSearching = false;
       this.showResults = true;
+      // Save updated state after search completes
+      this.saveSearchState();
     }, 1500);
   }
 
@@ -78,8 +94,59 @@ export class CasesComponent implements OnInit {
   }
 
   onCaseClick(caseId: string, caseTitle?: string): void {
+    // Save current search state before navigating
+    this.saveSearchState();
+    
     this.router.navigate(['/case', caseId], {
       queryParams: { title: caseTitle }
     });
+  }
+
+  // Save search state to localStorage
+  private saveSearchState(): void {
+    const searchState = {
+      currentSearchQuery: this.currentSearchQuery,
+      hasSearched: this.hasSearched,
+      showResults: this.showResults,
+      isSearchBarExpanded: this.isSearchBarExpanded,
+      viewMode: this.viewMode,
+      timestamp: Date.now()
+    };
+    
+    try {
+      localStorage.setItem('casesSearchState', JSON.stringify(searchState));
+      console.log('Search state saved:', searchState);
+    } catch (error) {
+      console.warn('Failed to save search state:', error);
+    }
+  }
+
+  // Restore search state from localStorage
+  private restoreSearchState(): void {
+    try {
+      const savedState = localStorage.getItem('casesSearchState');
+      if (savedState) {
+        const searchState = JSON.parse(savedState);
+        
+        // Check if state is not too old (24 hours)
+        const twentyFourHours = 24 * 60 * 60 * 1000;
+        if (Date.now() - searchState.timestamp < twentyFourHours) {
+          this.currentSearchQuery = searchState.currentSearchQuery || '';
+          this.hasSearched = searchState.hasSearched || false;
+          this.showResults = searchState.showResults || false;
+          this.isSearchBarExpanded = searchState.isSearchBarExpanded || false;
+          this.viewMode = searchState.viewMode || 'grid';
+          
+          console.log('Search state restored:', searchState);
+        } else {
+          // Clear old state
+          localStorage.removeItem('casesSearchState');
+          console.log('Search state expired and cleared');
+        }
+      }
+    } catch (error) {
+      console.warn('Failed to restore search state:', error);
+      localStorage.removeItem('casesSearchState');
+    }
   }
 }

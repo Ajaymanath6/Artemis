@@ -37,40 +37,43 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Table Header Section - Party Name and Badge */
-.table-header-section {
+/* Party Name Header Cell - Within table header */
+.party-name-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #f3f4f6;
+  gap: 12px;
+  flex: 1;
+  min-width: 250px;
 }
 
 .party-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111827;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 .party-badge {
-  padding: 4px 12px;
+  padding: 2px 8px;
   border-radius: 12px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .party-badge.plaintiff {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: #f3f4f6; /* neutral gray */
+  color: #111827; /* dark text */
+  font-weight: 700; /* bolder */
 }
 
 .party-badge.defendant {
-  background-color: #fee2e2;
-  color: #dc2626;
+  background-color: #f3f4f6; /* neutral gray */
+  color: #111827; /* dark text */
+  font-weight: 700; /* bolder */
 }
 
 /* Attorney Table Header - Same as Summary Layout */
@@ -106,6 +109,22 @@
   min-width: 150px;
 }
 
+/* Header column widths */
+.party-name-header {
+  flex: 1;
+  min-width: 250px;
+}
+
+.firm-col-header {
+  flex: 1;
+  min-width: 200px;
+}
+
+.type-col-header {
+  flex: 1;
+  min-width: 150px;
+}
+
 /* Attorney Table Body */
 .attorney-table-body {
   display: flex;
@@ -133,16 +152,16 @@
 .attorney-table-cell {
   padding: 16px 0;
   font-size: 14px;
-  color: #374151;
+  color: #64748b;
   display: flex;
   align-items: center;
 }
 
-/* Attorney Name and Firm Links - Same as Summary Layout */
+/* Attorney Name and Firm Links - Light shaded */
 .attorney-name-link,
 .attorney-firm-link {
   font-weight: 600;
-  color: #374151;
+  color: #64748b;
   text-decoration: none;
   transition: color 0.2s ease;
 }

@@ -25,6 +25,12 @@ interface Judge {
 })
 export class JudgesLayoutComponent {
   @Input() caseDetails: any;
+  viewMode: 'grid' | 'table' = 'grid';
+
+  toggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
 
   onJudgeClick(judge: Judge): void {
     // This will be handled by the see more link instead
