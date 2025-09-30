@@ -27,30 +27,21 @@
             class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
             [class]="actionFilter === 'Added' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
             <i class="ri-add-circle-line text-sm mr-1" style="color: #16a34a;"></i>
-            <div class="flex flex-col items-start">
-              <span class="text-sm font-medium">Added</span>
-              <span class="text-xs text-gray-400">Docket Entries & Documents</span>
-            </div>
+            <span class="text-sm font-medium">Added</span>
           </button>
           <button 
             (click)="setActionFilter('Removed')"
             class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
             [class]="actionFilter === 'Removed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-subtract-circle-line text-sm mr-1" style="color: #dc2626;"></i>
-            <div class="flex flex-col items-start">
-              <span class="text-sm font-medium">Removed</span>
-              <span class="text-xs text-gray-400">Docket Entries & Documents</span>
-            </div>
+            <i class="ri-close-circle-line text-sm mr-1" style="color: #dc2626;"></i>
+            <span class="text-sm font-medium">Removed</span>
           </button>
           <button 
             (click)="setActionFilter('Changed')"
             class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
             [class]="actionFilter === 'Changed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-refresh-line text-sm mr-1" style="color: #2563eb;"></i>
-            <div class="flex flex-col items-start">
-              <span class="text-sm font-medium">Changed</span>
-              <span class="text-xs text-gray-400">Docket Entries & Documents</span>
-            </div>
+            <i class="ri-refresh-line text-sm mr-1" style="color: #2F55D9;"></i>
+            <span class="text-sm font-medium">Changed</span>
           </button>
         </div>
       </div>
@@ -77,29 +68,35 @@
     <div class="docket-history-list">
       <div *ngFor="let event of filteredDocketHistory; let i = index" class="docket-history-card">
         
-        <!-- Card Header with Action Icon and Date (Bold and Prominent) -->
-        <div class="card-header">
-          <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
-            <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
+        <!-- Horizontal Layout: Date Badge on Left, Content on Right -->
+        <div class="card-content-horizontal">
+          <!-- Date Badge - Light Gray -->
+          <div class="date-badge-container">
+            <span class="date-badge">{{ event.date }}</span>
           </div>
           
-          <!-- Date - Bold and Prominent -->
-          <div class="event-date-bold">{{ event.date }}</div>
-        </div>
-
-        <!-- Event Description -->
-        <div class="event-description">
-          <p>{{ event.description }}</p>
-          
-          <!-- Change Details (only for Changed items) -->
-          <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
-            <div class="change-item">
-              <span class="change-label">From:</span>
-              <span class="change-from">{{ event.changeDetails.from }}</span>
+          <!-- Content Area -->
+          <div class="content-area">
+            <!-- Action Icon -->
+            <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
+              <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
             </div>
-            <div class="change-item">
-              <span class="change-label">To:</span>
-              <span class="change-to">{{ event.changeDetails.to }}</span>
+            
+            <!-- Description -->
+            <div class="event-description">
+              <p>{{ event.description }}</p>
+              
+              <!-- Change Details (only for Changed items) -->
+              <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
+                <div class="change-item">
+                  <span class="change-label">From:</span>
+                  <span class="change-from">{{ event.changeDetails.from }}</span>
+                </div>
+                <div class="change-item">
+                  <span class="change-label">To:</span>
+                  <span class="change-to">{{ event.changeDetails.to }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

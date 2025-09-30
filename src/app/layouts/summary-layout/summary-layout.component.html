@@ -50,11 +50,12 @@
 
   <!-- Legal Representation Table -->
   <div class="legal-representation-section">
-    <h3 class="legal-representation-title">Legal Representation</h3>
-    
     <div class="legal-table-container">
-      <!-- Table Header -->
+      <!-- Table Header with Title -->
       <div class="legal-table-header">
+        <div class="legal-table-header-cell legal-representation-title-cell">
+          <h3 class="legal-representation-title">Legal Representation</h3>
+        </div>
         <div class="legal-table-header-cell attorney-name-col">Attorney name</div>
         <div class="legal-table-header-cell law-firm-col">Law firm</div>
         <div class="legal-table-header-cell type-col">Type</div>
@@ -62,6 +63,7 @@
       
       <!-- Table Rows -->
       <div class="legal-table-row" *ngFor="let row of legalRepresentationRows">
+        <div class="legal-table-cell legal-representation-title-cell"></div>
         <div class="legal-table-cell attorney-name-col">
           <span class="legal-table-link">{{ row.attorneyName }}</span>
         </div>

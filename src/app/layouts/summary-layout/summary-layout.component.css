@@ -117,10 +117,10 @@
 }
 
 .legal-representation-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 16px 0;
+  margin: 0;
 }
 
 /* Legal Table Container */
@@ -184,17 +184,23 @@
 }
 
 /* Column Widths */
+.legal-representation-title-cell {
+  flex: 2;
+  min-width: 220px;
+  padding-right: 20px;
+}
+
 .attorney-name-col {
   flex: 2;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .law-firm-col {
   flex: 2;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .type-col {
   flex: 1;
-  min-width: 150px;
+  min-width: 120px;
 }

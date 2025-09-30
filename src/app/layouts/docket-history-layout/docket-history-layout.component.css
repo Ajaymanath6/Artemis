@@ -40,33 +40,52 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Card Header - Simplified for date focus */
-.card-header {
+/* Horizontal Card Layout */
+.card-content-horizontal {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
-  margin-bottom: 16px;
 }
 
-/* Event Date - Bold and Prominent */
-.event-date-bold {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111827;
+/* Date Badge Container */
+.date-badge-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Date Badge - Light Gray */
+.date-badge {
+  background-color: #e5e7eb;
+  color: #374151;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 /* Action Icon - Light shaded backgrounds */
 .action-icon {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background-color: #f9fafb;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #e5e7eb;
+  margin-top: 2px;
 }
 
 .action-icon.added-bg {
@@ -85,7 +104,7 @@
 }
 
 .action-icon i {
-  font-size: 16px;
+  font-size: 14px;
   color: #6b7280;
 }
 
@@ -99,7 +118,7 @@
 }
 
 .action-icon i.changed {
-  color: #2563eb; /* Blue */
+  color: #2F55D9; /* Updated blue */
 }
 
 /* Event Info */
@@ -178,7 +197,7 @@
 
 /* Event Description - Light shaded */
 .event-description {
-  margin-bottom: 16px;
+  flex: 1;
 }
 
 .event-description p {
@@ -190,7 +209,7 @@
 
 /* Change Details (for Changed items) - Light shaded */
 .change-details {
-  background-color: #f8fafc;
+  background-color: #f8f8f8;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   padding: 12px;
@@ -219,13 +238,13 @@
 
 .change-from {
   font-size: 13px;
-  color: #ef4444;
+  color: #4b5563; /* Dark grey */
   text-decoration: line-through;
 }
 
 .change-to {
   font-size: 13px;
-  color: #10b981;
+  color: #2F55D9; /* Updated blue */
   font-weight: 500;
 }
 
