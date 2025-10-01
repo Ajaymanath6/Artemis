@@ -72,7 +72,7 @@
           <button
             (click)="onItemClick(item)"
             class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group focus:outline-none"
-            [class]="isActiveRoute(item.route || '') ?
+            [class]="isActiveItem(item) ?
               'bg-gray-light text-text-strong' :
               'text-text-strong hover:bg-fill hover:text-brand'"
             [class.justify-center]="isCollapsed">
@@ -80,7 +80,7 @@
             <!-- Icon -->
             <i 
               [class]="'ri-' + item.icon + ' text-lg flex-shrink-0'"
-              [style.color]="isActiveRoute(item.route || '') ? '#146B85' : '#9CA3AF'">
+              [style.color]="isActiveItem(item) ? '#146B85' : '#9CA3AF'">
             </i>
 
             <!-- Label (hidden when collapsed) -->
@@ -90,7 +90,7 @@
             <i
               *ngIf="item.children && !isCollapsed"
               [class]="'ri-arrow-' + (item.isExpanded ? 'down' : 'right') + '-s-line text-base ml-auto flex-shrink-0'"
-              [style.color]="isActiveRoute(item.route || '') ? '#146B85' : '#9CA3AF'">
+              [style.color]="isActiveItem(item) ? '#146B85' : '#9CA3AF'">
             </i>
           </button>
 

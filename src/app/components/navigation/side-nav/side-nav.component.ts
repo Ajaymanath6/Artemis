@@ -57,12 +57,27 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('SideNav component initializing...', 'Current URL:', this.router.url);
+    
+    // Ensure we have a default activeItemId
+    if (!this.activeItemId) {
+      this.activeItemId = 'project-home';
+      console.log('Set default activeItemId to project-home');
+    }
+    
     // Set initial active item based on current route
     this.setActiveItemBasedOnRoute(this.router.url);
+    
+    // Force update after a short delay to ensure DOM is ready
+    setTimeout(() => {
+      this.setActiveItemBasedOnRoute(this.router.url);
+      console.log('SideNav forced update - active item:', this.activeItemId);
+    }, 100);
 
     // Listen for route changes to update active item
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        console.log('Route changed to:', event.url);
         this.setActiveItemBasedOnRoute(event.url);
       }
     });
@@ -70,27 +85,29 @@ export class SideNavComponent implements OnInit {
 
   // Set the active item based on the current route
   private setActiveItemBasedOnRoute(url: string): void {
-    if (url === '/cases') {
-      // Try to restore from localStorage first
+    console.log('Setting active item for URL:', url);
+    
+    if (url === '/cases' || url.startsWith('/case/')) {
+      // For both cases page and case detail pages, try to restore saved active item
       const savedActiveItem = this.restoreActiveItemState();
-      if (savedActiveItem && (savedActiveItem === 'project-home' || savedActiveItem === 'project-search')) {
-        this.activeItemId = savedActiveItem;
+      if (savedActiveItem === 'project-search') {
+        this.activeItemId = 'project-search';
+        console.log('Restored active item: project-search');
       } else {
-        // If no saved state or invalid, default to "Project Home"
+        // Default to project-home for cases-related pages
         this.activeItemId = 'project-home';
+        console.log('Default active item: project-home');
       }
     } else if (url === '/dashboard') {
       this.activeItemId = 'all-projects';
-    } else if (url.startsWith('/case/')) {
-      // For case detail pages, restore the saved active item
-      const savedActiveItem = this.restoreActiveItemState();
-      if (savedActiveItem && (savedActiveItem === 'project-home' || savedActiveItem === 'project-search')) {
-        this.activeItemId = savedActiveItem;
-      } else {
-        this.activeItemId = 'project-home'; // Default fallback
-      }
+      console.log('Set active item for dashboard: all-projects');
+    } else {
+      // For other routes, default to project-home
+      this.activeItemId = 'project-home';
+      console.log('Default for other route: project-home');
     }
-    // Add more route mappings as needed
+    
+    console.log('Final active item ID:', this.activeItemId);
   }
 
   // Save active item state to localStorage
@@ -150,21 +167,25 @@ export class SideNavComponent implements OnInit {
 
   // Check if a specific nav item should be highlighted as active
   isActiveItem(item: NavItem): boolean {
+    console.log('Checking isActiveItem for:', item.id, 'activeItemId:', this.activeItemId, 'currentUrl:', this.router.url);
+    
     if (!item.route) return false;
     
-    // Check if we're on the correct route
+    // Check if we're on the correct route OR on a related route (like case detail)
     const isOnRoute = this.router.url === item.route;
+    const isOnCaseDetailPage = this.router.url.startsWith('/case/');
     
-    // For items that share the same route (like project-home and project-search both going to /cases),
-    // only highlight the one that was actually clicked
-    if (isOnRoute) {
-      if (item.route === '/cases') {
-        // Special handling for cases route - only highlight the item that was clicked
-        return this.activeItemId === item.id;
-      } else {
-        // For other routes, use normal route matching
-        return true;
+    // For cases-related items (project-home, project-search), they should be active on both /cases and /case/ pages
+    if (item.route === '/cases') {
+      if (isOnRoute || isOnCaseDetailPage) {
+        // Only highlight the item that matches our activeItemId
+        const isActive = this.activeItemId === item.id;
+        console.log(`Item ${item.id} is ${isActive ? 'ACTIVE' : 'not active'}`);
+        return isActive;
       }
+    } else if (isOnRoute) {
+      // For non-cases routes, use normal route matching
+      return true;
     }
     
     return false;

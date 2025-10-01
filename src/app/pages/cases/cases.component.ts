@@ -40,15 +40,35 @@ export class CasesComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    console.log('Cases component ngOnInit');
+    
     // Check if we should restore search state
     const navigation = this.router.getCurrentNavigation();
     const shouldPreserveState = navigation?.extras?.state?.['preserveSearchState'];
     
+    console.log('Navigation state:', navigation?.extras?.state);
+    console.log('Should preserve state:', shouldPreserveState);
+    
+    // Simplified logic:
+    // If coming from case detail (preserveSearchState = true) OR if there's saved state, restore it
+    // Only clear on actual page refresh
+    
     if (shouldPreserveState) {
+      console.log('Explicitly preserving search state from case detail...');
       this.restoreSearchState();
     } else {
-      // On fresh page load/refresh, show empty state
-      this.clearSearchState();
+      // Check if this is a page refresh or direct navigation
+      const currentUrl = this.router.url;
+      const referrer = document.referrer;
+      const isDirectNavigation = !referrer || !referrer.includes(window.location.origin);
+      
+      if (isDirectNavigation) {
+        console.log('Direct navigation/refresh - showing empty state');
+        this.clearSearchState();
+      } else {
+        console.log('Internal navigation - attempting to restore search state');
+        this.restoreSearchState();
+      }
     }
   }
 
@@ -172,6 +192,8 @@ export class CasesComponent implements OnInit {
   private restoreSearchState(): void {
     try {
       const savedState = localStorage.getItem('casesSearchState');
+      console.log('Attempting to restore search state. Saved state:', savedState);
+      
       if (savedState) {
         const searchState = JSON.parse(savedState);
         
@@ -183,22 +205,35 @@ export class CasesComponent implements OnInit {
           this.showResults = searchState.showResults || false;
           this.isSearchBarExpanded = searchState.isSearchBarExpanded || false;
           this.viewMode = searchState.viewMode || 'grid';
+          this.isSearching = false; // Make sure not stuck in searching state
           
-          console.log('Search state restored:', searchState);
+          console.log('Search state restored successfully:', {
+            query: this.currentSearchQuery,
+            hasSearched: this.hasSearched,
+            showResults: this.showResults,
+            isExpanded: this.isSearchBarExpanded,
+            viewMode: this.viewMode
+          });
         } else {
           // Clear old state
           localStorage.removeItem('casesSearchState');
           console.log('Search state expired and cleared');
+          this.clearSearchState();
         }
+      } else {
+        console.log('No saved search state found');
+        this.clearSearchState();
       }
     } catch (error) {
       console.warn('Failed to restore search state:', error);
       localStorage.removeItem('casesSearchState');
+      this.clearSearchState();
     }
   }
 
   // Clear search state to show empty state
   private clearSearchState(): void {
+    console.log('Clearing search state...');
     this.currentSearchQuery = '';
     this.hasSearched = false;
     this.showResults = false;
@@ -206,9 +241,17 @@ export class CasesComponent implements OnInit {
     this.viewMode = 'grid';
     this.isSearching = false;
     
+    // Clear all tooltip states
+    Object.keys(this.firstCardTooltips).forEach(key => {
+      this.firstCardTooltips[key] = false;
+    });
+    Object.keys(this.firstCardFileActionTooltips).forEach(key => {
+      this.firstCardFileActionTooltips[key] = false;
+    });
+    
     // Clear localStorage as well
     localStorage.removeItem('casesSearchState');
-    console.log('Search state cleared - showing empty state');
+    console.log('Search state cleared - empty state should be visible');
   }
 
   // Toggle tooltip visibility for first card badges
