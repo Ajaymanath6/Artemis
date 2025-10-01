@@ -101,13 +101,13 @@
               <button
                 (click)="onItemClick(child)"
                 class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
-                [class]="isActiveRoute(child.route || '') ?
+                [class]="isActiveItem(child) ?
                   'bg-blue-fill text-brand font-medium' :
                   'text-text-weak hover:bg-fill hover:text-text-strong'">
 
                 <i 
                   [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
-                  [style.color]="isActiveRoute(child.route || '') ? '#146B85' : '#9CA3AF'">
+                  [style.color]="isActiveItem(child) ? '#146B85' : '#9CA3AF'">
                 </i>
 
                 <span class="ml-3 truncate">{{ child.label }}</span>
