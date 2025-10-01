@@ -112,7 +112,8 @@ export class CasesComponent implements OnInit {
     this.saveSearchState();
     
     this.router.navigate(['/case', caseId], {
-      queryParams: { title: caseTitle }
+      queryParams: { title: caseTitle },
+      state: { preserveSearchState: true }
     });
   }
 
@@ -158,6 +159,13 @@ export class CasesComponent implements OnInit {
     } catch (error) {
       console.warn('Failed to save search state:', error);
     }
+  }
+
+  // Method to get current sidebar active item for preserving navigation state
+  getCurrentSidebarState(): string {
+    // This will be used by the app to determine which sidebar item should be active
+    // when returning from case detail page
+    return 'project-home'; // Default fallback
   }
 
   // Restore search state from localStorage

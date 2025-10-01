@@ -71,15 +71,48 @@ export class SideNavComponent implements OnInit {
   // Set the active item based on the current route
   private setActiveItemBasedOnRoute(url: string): void {
     if (url === '/cases') {
-      // If navigating directly to /cases without clicking a nav item,
-      // default to highlighting "Project Home"
-      if (!this.activeItemId || (this.activeItemId !== 'project-home' && this.activeItemId !== 'project-search')) {
+      // Try to restore from localStorage first
+      const savedActiveItem = this.restoreActiveItemState();
+      if (savedActiveItem && (savedActiveItem === 'project-home' || savedActiveItem === 'project-search')) {
+        this.activeItemId = savedActiveItem;
+      } else {
+        // If no saved state or invalid, default to "Project Home"
         this.activeItemId = 'project-home';
       }
     } else if (url === '/dashboard') {
       this.activeItemId = 'all-projects';
+    } else if (url.startsWith('/case/')) {
+      // For case detail pages, restore the saved active item
+      const savedActiveItem = this.restoreActiveItemState();
+      if (savedActiveItem && (savedActiveItem === 'project-home' || savedActiveItem === 'project-search')) {
+        this.activeItemId = savedActiveItem;
+      } else {
+        this.activeItemId = 'project-home'; // Default fallback
+      }
     }
     // Add more route mappings as needed
+  }
+
+  // Save active item state to localStorage
+  private saveActiveItemState(): void {
+    try {
+      localStorage.setItem('sidebarActiveItem', this.activeItemId);
+      console.log('Sidebar active item saved:', this.activeItemId);
+    } catch (error) {
+      console.warn('Failed to save sidebar active item:', error);
+    }
+  }
+
+  // Restore active item state from localStorage
+  private restoreActiveItemState(): string | null {
+    try {
+      const savedActiveItem = localStorage.getItem('sidebarActiveItem');
+      console.log('Sidebar active item restored:', savedActiveItem);
+      return savedActiveItem;
+    } catch (error) {
+      console.warn('Failed to restore sidebar active item:', error);
+      return null;
+    }
   }
 
   // Removed collapse functionality
@@ -103,6 +136,8 @@ export class SideNavComponent implements OnInit {
     } else if (item.route) {
       // Track which specific item was clicked
       this.activeItemId = item.id;
+      // Save active item to localStorage for state persistence
+      this.saveActiveItemState();
       // Navigate to route
       this.router.navigate([item.route]);
     }
