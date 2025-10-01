@@ -1006,6 +1006,27 @@
   position: relative;
 }
 
+/* Badge hover effects - very light gray to indicate they're interactive */
+.case-card-badges span.cursor-pointer {
+  transition: background-color 0.2s ease;
+}
+
+.case-card-badges span.cursor-pointer:hover {
+  background-color: #f9fafb; /* Very light gray */
+}
+
+/* Hover effects for badges with group hover tooltips (cards 2-9) */
+.case-card-badges span.group\/badge:hover,
+.case-card-badges span.group\/badge2:hover,
+.case-card-badges span.group\/badge4:hover,
+.case-card-badges span.group\/badge5:hover,
+.case-card-badges span.group\/badge6:hover,
+.case-card-badges span.group\/badge7:hover,
+.case-card-badges span.group\/badge8:hover,
+.case-card-badges span.group\/badge9:hover {
+  background-color: #f9fafb; /* Very light gray - consistent hover effect */
+}
+
 /* Consistent card padding */
 .case-card {
   padding: 1.5rem; /* 24px - consistent padding on all sides */
