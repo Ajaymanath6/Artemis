@@ -44,7 +44,7 @@ export class SideNavComponent {
         isExpanded: true,
         children: [
           { id: 'project-home', label: 'Project Home', icon: 'home-line', route: '/cases' },
-          { id: 'project-search', label: 'Search', icon: 'search-line', route: '/project/search' },
+          { id: 'project-search', label: 'Search', icon: 'search-line', route: '/cases' },
           { id: 'project-tracking', label: 'Tracking', icon: 'time-line', route: '/tracking' },
           { id: 'project-bookmarks', label: 'Bookmarks', icon: 'bookmark-line', route: '/bookmarks' },
           { id: 'project-manage', label: 'Manage Project', icon: 'edit-line', route: '/project/manage' }
