@@ -16,7 +16,9 @@ if [ $? -eq 0 ]; then
     if [ -d "docs/browser" ]; then
         echo "📁 Moving build files to docs root..."
         mv docs/browser/* docs/
-        rmdir docs/browser
+        if [ -d "docs/browser" ]; then
+            rmdir docs/browser
+        fi
         echo "✅ Files moved successfully!"
     else
         echo "ℹ️ Files are already in the correct location."
