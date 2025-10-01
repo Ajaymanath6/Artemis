@@ -1006,13 +1006,13 @@
   position: relative;
 }
 
-/* Badge hover effects - very light gray to indicate they're interactive */
+/* Badge hover effects - light gray to indicate they're interactive */
 .case-card-badges span.cursor-pointer {
   transition: background-color 0.2s ease;
 }
 
 .case-card-badges span.cursor-pointer:hover {
-  background-color: #f9fafb; /* Very light gray */
+  background-color: #f3f4f6; /* Light gray - more visible than before */
 }
 
 /* Hover effects for badges with group hover tooltips (cards 2-9) */
@@ -1024,7 +1024,7 @@
 .case-card-badges span.group\/badge7:hover,
 .case-card-badges span.group\/badge8:hover,
 .case-card-badges span.group\/badge9:hover {
-  background-color: #f9fafb; /* Very light gray - consistent hover effect */
+  background-color: #f3f4f6; /* Light gray - more visible hover effect */
 }
 
 /* Consistent card padding */

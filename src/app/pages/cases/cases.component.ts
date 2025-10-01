@@ -30,6 +30,12 @@ export class CasesComponent implements OnInit {
     type: false,
     court: false
   };
+
+  // Tooltip visibility for first card file action badges (click-based)
+  firstCardFileActionTooltips: { [key: string]: boolean } = {
+    tracker: false,
+    tag: false
+  };
   
   constructor(private router: Router) {}
 
@@ -220,5 +226,31 @@ export class CasesComponent implements OnInit {
     Object.keys(this.firstCardTooltips).forEach(key => {
       this.firstCardTooltips[key] = false;
     });
+    Object.keys(this.firstCardFileActionTooltips).forEach(key => {
+      this.firstCardFileActionTooltips[key] = false;
+    });
+  }
+
+  // Toggle tooltip visibility for first card file action badges
+  toggleFirstCardFileActionTooltip(tooltipKey: string, event?: Event): void {
+    if (event) {
+      event.stopPropagation(); // Prevent event bubbling
+    }
+    
+    // Close all other file action tooltips first
+    Object.keys(this.firstCardFileActionTooltips).forEach(key => {
+      if (key !== tooltipKey) {
+        this.firstCardFileActionTooltips[key] = false;
+      }
+    });
+    
+    // Also close info badge tooltips
+    Object.keys(this.firstCardTooltips).forEach(key => {
+      this.firstCardTooltips[key] = false;
+    });
+    
+    // Toggle the clicked tooltip
+    this.firstCardFileActionTooltips[tooltipKey] = !this.firstCardFileActionTooltips[tooltipKey];
+    console.log(`First card file action tooltip ${tooltipKey}:`, this.firstCardFileActionTooltips[tooltipKey]);
   }
 }

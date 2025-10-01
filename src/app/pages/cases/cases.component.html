@@ -179,17 +179,25 @@
                   </div>
                   
                   <!-- Set Tracker Button -->
-                  <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tracker">
+                  <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative"
+                          (click)="toggleFirstCardFileActionTooltip('tracker', $event)">
                     <i class="ri-time-line text-gray-600 text-lg"></i>
-                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tracker:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-200 whitespace-nowrap"
+                         [class.opacity-100]="firstCardFileActionTooltips['tracker']"
+                         [class.opacity-0]="!firstCardFileActionTooltips['tracker']"
+                         [class.pointer-events-none]="!firstCardFileActionTooltips['tracker']">
                       Set Tracker
                     </div>
                   </button>
                   
                   <!-- Add Tag Button -->
-                  <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tag">
+                  <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative"
+                          (click)="toggleFirstCardFileActionTooltip('tag', $event)">
                     <i class="ri-price-tag-3-line text-gray-600 text-lg"></i>
-                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tag:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                    <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-200 whitespace-nowrap"
+                         [class.opacity-100]="firstCardFileActionTooltips['tag']"
+                         [class.opacity-0]="!firstCardFileActionTooltips['tag']"
+                         [class.pointer-events-none]="!firstCardFileActionTooltips['tag']">
                       Add Tag
                     </div>
                   </button>
