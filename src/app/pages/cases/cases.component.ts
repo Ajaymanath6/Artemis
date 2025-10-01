@@ -23,6 +23,14 @@ export class CasesComponent implements OnInit {
   viewMode: 'grid' | 'table' = 'grid';
   showResults: boolean = false;
   
+  // Tooltip visibility for first card badges (click-based)
+  firstCardTooltips: { [key: string]: boolean } = {
+    judge: false,
+    status: false,
+    type: false,
+    court: false
+  };
+  
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -33,8 +41,8 @@ export class CasesComponent implements OnInit {
     if (shouldPreserveState) {
       this.restoreSearchState();
     } else {
-      // Check for saved search state in localStorage on page load
-      this.restoreSearchState();
+      // On fresh page load/refresh, show empty state
+      this.clearSearchState();
     }
   }
 
@@ -102,6 +110,31 @@ export class CasesComponent implements OnInit {
     });
   }
 
+  // Generate a search-related case title
+  getSearchRelatedTitle(): string {
+    if (this.currentSearchQuery.trim()) {
+      // Create a realistic case title that includes elements from the search query
+      const query = this.currentSearchQuery.trim().toUpperCase();
+      
+      // Different case title patterns based on search query
+      if (query.includes('JOHN') || query.includes('JOHNSON')) {
+        return `${query} VS CALIFORNIA DEPARTMENT OF JUSTICE`;
+      } else if (query.includes('MEDICAL') || query.includes('HEALTH')) {
+        return `MEDICAL PROFESSIONALS GROUP VS ${query} INSURANCE CORP`;
+      } else if (query.includes('TECH') || query.includes('TECHNOLOGY')) {
+        return `${query} INNOVATIONS INC VS PATENT LICENSING AUTHORITY`;
+      } else if (query.includes('BANK') || query.includes('FINANCIAL')) {
+        return `FIRST NATIONAL BANK VS ${query} HOLDINGS LLC`;
+      } else {
+        // Generic pattern for other searches
+        return `${query} ENTERPRISES LLC VS STATE REGULATORY COMMISSION`;
+      }
+    }
+    
+    // Default title if no search query
+    return 'AMBER LAUREL BAPTISTE VS MICHAEL LEWIS GOGUEN';
+  }
+
   // Save search state to localStorage
   private saveSearchState(): void {
     const searchState = {
@@ -148,5 +181,44 @@ export class CasesComponent implements OnInit {
       console.warn('Failed to restore search state:', error);
       localStorage.removeItem('casesSearchState');
     }
+  }
+
+  // Clear search state to show empty state
+  private clearSearchState(): void {
+    this.currentSearchQuery = '';
+    this.hasSearched = false;
+    this.showResults = false;
+    this.isSearchBarExpanded = false;
+    this.viewMode = 'grid';
+    this.isSearching = false;
+    
+    // Clear localStorage as well
+    localStorage.removeItem('casesSearchState');
+    console.log('Search state cleared - showing empty state');
+  }
+
+  // Toggle tooltip visibility for first card badges
+  toggleFirstCardTooltip(tooltipKey: string, event?: Event): void {
+    if (event) {
+      event.stopPropagation(); // Prevent event bubbling
+    }
+    
+    // Close all other tooltips first
+    Object.keys(this.firstCardTooltips).forEach(key => {
+      if (key !== tooltipKey) {
+        this.firstCardTooltips[key] = false;
+      }
+    });
+    
+    // Toggle the clicked tooltip
+    this.firstCardTooltips[tooltipKey] = !this.firstCardTooltips[tooltipKey];
+    console.log(`First card tooltip ${tooltipKey}:`, this.firstCardTooltips[tooltipKey]);
+  }
+
+  // Close all first card tooltips (for clicking outside)
+  closeAllFirstCardTooltips(): void {
+    Object.keys(this.firstCardTooltips).forEach(key => {
+      this.firstCardTooltips[key] = false;
+    });
   }
 }

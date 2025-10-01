@@ -103,15 +103,15 @@
           </div>
 
           <!-- Actual Results Cards (after loading) -->
-          <div *ngIf="!isSearching && showResults" id="results-section">
+          <div *ngIf="!isSearching && showResults" id="results-section" (click)="closeAllFirstCardTooltips()">
             
             <!-- Result Card 1 -->
             <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
-                    (click)="onCaseClick('CIV537691', 'AMBER LAUREL BAPTISTE VS MICHAEL LEWIS GOGUEN')">
-                  AMBER LAUREL BAPTISTE VS MICHAEL LEWIS GOGUEN
+                    (click)="onCaseClick('CIV537691', getSearchRelatedTitle())">
+                  {{ getSearchRelatedTitle() }}
                 </h3>
               </div>
               <div class="flex flex-wrap gap-6 text-sm text-gray-700 case-card-details">
@@ -122,30 +122,46 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Active</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative" 
+                      (click)="toggleFirstCardTooltip('judge', $event)">
                   <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
+                       [class.opacity-100]="firstCardTooltips['judge']"
+                       [class.opacity-0]="!firstCardTooltips['judge']"
+                       [class.pointer-events-none]="!firstCardTooltips['judge']">
                     <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
                     <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
+                      (click)="toggleFirstCardTooltip('status', $event)">
                   <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
+                       [class.opacity-100]="firstCardTooltips['status']"
+                       [class.opacity-0]="!firstCardTooltips['status']"
+                       [class.pointer-events-none]="!firstCardTooltips['status']">
                     <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
                     <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
+                      (click)="toggleFirstCardTooltip('type', $event)">
                   <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
+                       [class.opacity-100]="firstCardTooltips['type']"
+                       [class.opacity-0]="!firstCardTooltips['type']"
+                       [class.pointer-events-none]="!firstCardTooltips['type']">
                     <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
                     <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
+                      (click)="toggleFirstCardTooltip('court', $event)">
                   <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
+                       [class.opacity-100]="firstCardTooltips['court']"
+                       [class.opacity-0]="!firstCardTooltips['court']"
+                       [class.pointer-events-none]="!firstCardTooltips['court']">
                     <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
                     <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
                   </div>
