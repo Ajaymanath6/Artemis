@@ -34,15 +34,15 @@
   gap: 20px;
 }
 
-/* Judge card - Comfortable size for 4 per row */
+/* Judge card - More compact size for 4 per row */
 .judge-card {
   background-color: white;
   border-radius: 12px;
-  padding: 20px;
+  padding: 16px;
   border: 1px solid #e5e7eb;
   cursor: pointer;
   position: relative;
-  height: 120px;
+  height: 100px;
   display: flex;
   align-items: center;
 }
@@ -85,6 +85,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+/* Judge name hover - Main CTA color */
+.judge-card:hover .judge-name {
+  color: #146B85;
 }
 
 .judge-title {

@@ -136,7 +136,7 @@
 /* Legal Table Header */
 .legal-table-header {
   display: flex;
-  background-color: #f9fafb; /* Gray background for column headers */
+  background-color: #f3f4f6; /* Darker gray background for better contrast with layout bg */
   border-bottom: 1px solid #e5e7eb;
   border-radius: 0; /* No corner radius since it's below the title header */
   margin: -24px -24px 0 -24px;
