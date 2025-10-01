@@ -37,28 +37,28 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Party Name Header Cell - Within table header */
-.party-name-header {
+/* Party Header - Above the Table */
+.party-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex: 1;
-  min-width: 250px;
+  margin: 0 0 16px 0;
+  padding: 0 24px;
 }
 
 .party-name {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
-  color: #374151;
+  color: #111827;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .party-badge {
-  padding: 2px 8px;
+  padding: 4px 12px;
   border-radius: 12px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.025em;
@@ -110,9 +110,9 @@
 }
 
 /* Header column widths */
-.party-name-header {
+.attorney-col-header {
   flex: 1;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .firm-col-header {

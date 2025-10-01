@@ -183,24 +183,27 @@
   color: #146B85; /* Main brand color on hover */
 }
 
-/* Column Widths */
-.legal-representation-title-cell {
-  flex: 2;
-  min-width: 220px;
-  padding-right: 20px;
+/* Legal Representation Title - Above Table */
+.legal-representation-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 16px 0;
+  padding: 0 24px;
 }
 
+/* Column Widths */
 .attorney-name-col {
   flex: 2;
-  min-width: 180px;
+  min-width: 200px;
 }
 
 .law-firm-col {
   flex: 2;
-  min-width: 180px;
+  min-width: 200px;
 }
 
 .type-col {
   flex: 1;
-  min-width: 120px;
+  min-width: 150px;
 }
