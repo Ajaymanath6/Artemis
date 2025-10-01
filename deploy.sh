@@ -16,7 +16,10 @@ if [ $? -eq 0 ]; then
     if [ -d "docs/browser" ]; then
         echo "📁 Moving build files to docs root..."
         mv docs/browser/* docs/
-        rm -rf docs/browser
+        rmdir docs/browser
+        echo "✅ Files moved successfully!"
+    else
+        echo "ℹ️ Files are already in the correct location."
     fi
 
     # Add docs folder to git

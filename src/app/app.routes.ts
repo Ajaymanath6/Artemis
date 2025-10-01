@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // Redirect root to dashboard (will be handled by app component for GitHub Pages redirects)
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // Redirect root to cases page (our main application)
+  { path: '', redirectTo: '/cases', pathMatch: 'full' },
 
   // Authentication routes
   {
@@ -41,5 +41,5 @@ export const routes: Routes = [
   },
 
   // Wildcard route - must be last
-  { path: '**', redirectTo: '/dashboard' }
+  { path: '**', redirectTo: '/cases' }
 ];
