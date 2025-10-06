@@ -144,18 +144,6 @@ export class DocketHistoryLayoutComponent {
     return '18 min ago';
   }
 
-  // Refresh data method
-  refreshData(): void {
-    console.log('Refreshing docket history data...');
-    // Implement refresh functionality
-  }
-
-  // Set tracker method
-  setTracker(): void {
-    console.log('Setting tracker for docket history...');
-    // Implement tracker functionality
-  }
-
   // Get event type label for filter buttons
   getEventTypeLabel(eventType: string): string {
     switch (eventType) {

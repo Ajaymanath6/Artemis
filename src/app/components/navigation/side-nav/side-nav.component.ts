@@ -9,6 +9,9 @@ export interface NavItem {
   route?: string;
   children?: NavItem[];
   isExpanded?: boolean;
+  fullTerm?: string; // For history items
+  hasDropdown?: boolean; // For history items with 3-dot menu
+  isDropdownOpen?: boolean; // Track dropdown state
 }
 
 @Component({
@@ -48,17 +51,17 @@ export class SideNavComponent implements OnInit {
         children: [
           { id: 'project-home', label: 'Project Home', icon: 'home-line', route: '/cases' },
           { id: 'project-search', label: 'Search', icon: 'search-line', route: '/cases' },
+          {
+            id: 'history',
+            label: 'History',
+            icon: 'history-line',
+            isExpanded: false,
+            children: this.getSearchHistory()
+          },
           { id: 'project-tracking', label: 'Tracking', icon: 'time-line', route: '/tracking' },
-          { id: 'project-bookmarks', label: 'Bookmarks', icon: 'bookmark-line', route: '/bookmarks' },
+          { id: 'project-case-hub', label: 'Case Hub', icon: 'bookmark-line', route: '/case-hub' },
           { id: 'project-manage', label: 'Manage Project', icon: 'edit-line', route: '/project/manage' }
         ]
-      },
-      {
-        id: 'history',
-        label: 'History',
-        icon: 'history-line',
-        isExpanded: false,
-        children: this.getSearchHistory()
       }
     ];
   }
@@ -227,7 +230,9 @@ export class SideNavComponent implements OnInit {
           label: this.truncateSearchTerm(term),
           icon: 'search-2-line',
           route: '/cases',
-          fullTerm: term // Store full term for potential use
+          fullTerm: term, // Store full term for potential use
+          hasDropdown: true, // Enable 3-dot dropdown
+          isDropdownOpen: false // Initially closed
         }));
       }
     } catch (error) {
@@ -279,9 +284,99 @@ export class SideNavComponent implements OnInit {
 
   // Update history nav items
   private updateHistoryNavItems(): void {
-    const historyNavItem = this.navItems.find(item => item.id === 'history');
+    const historyNavItem = this.findHistoryNavItem();
     if (historyNavItem) {
       historyNavItem.children = this.getSearchHistory();
     }
+  }
+
+  // Find history nav item (now nested under project)
+  private findHistoryNavItem(): NavItem | undefined {
+    const projectItem = this.navItems.find(item => item.id === 'project');
+    if (projectItem && projectItem.children) {
+      return projectItem.children.find(child => child.id === 'history');
+    }
+    return undefined;
+  }
+
+  // Toggle dropdown for history items
+  toggleHistoryDropdown(historyItem: NavItem, event: Event): void {
+    event.stopPropagation(); // Prevent navigation
+    
+    // Close all other dropdowns
+    this.closeAllHistoryDropdowns();
+    
+    // Toggle current dropdown
+    historyItem.isDropdownOpen = !historyItem.isDropdownOpen;
+  }
+
+  // Close all history dropdowns
+  private closeAllHistoryDropdowns(): void {
+    const historyNavItem = this.findHistoryNavItem();
+    if (historyNavItem && historyNavItem.children) {
+      historyNavItem.children.forEach(child => {
+        child.isDropdownOpen = false;
+      });
+    }
+  }
+
+  // Add history item to Case Hub
+  addToCaseHub(historyItem: NavItem, event: Event): void {
+    event.stopPropagation();
+    console.log('Adding to Case Hub:', historyItem.fullTerm || historyItem.label);
+    
+    try {
+      // Get existing case hub items
+      let caseHubItems = [];
+      const existingCaseHub = localStorage.getItem('caseHubItems');
+      
+      if (existingCaseHub) {
+        caseHubItems = JSON.parse(existingCaseHub);
+      }
+      
+      // Add new item if not already exists
+      const newItem = historyItem.fullTerm || historyItem.label;
+      if (!caseHubItems.includes(newItem)) {
+        caseHubItems.unshift(newItem);
+        localStorage.setItem('caseHubItems', JSON.stringify(caseHubItems));
+        console.log('Added to Case Hub successfully');
+      }
+      
+    } catch (error) {
+      console.warn('Failed to add to Case Hub:', error);
+    }
+    
+    // Close dropdown
+    historyItem.isDropdownOpen = false;
+  }
+
+  // Delete history item
+  deleteHistoryItem(historyItem: NavItem, event: Event): void {
+    event.stopPropagation();
+    console.log('Deleting history item:', historyItem.fullTerm || historyItem.label);
+    
+    try {
+      const searchHistory = localStorage.getItem('searchHistory');
+      if (searchHistory) {
+        let history = JSON.parse(searchHistory);
+        const termToDelete = historyItem.fullTerm || historyItem.label;
+        
+        // Remove the item from history
+        history = history.filter((term: string) => term !== termToDelete);
+        
+        // Save updated history
+        localStorage.setItem('searchHistory', JSON.stringify(history));
+        
+        // Update the nav items
+        this.updateHistoryNavItems();
+        
+        console.log('History item deleted successfully');
+      }
+    } catch (error) {
+      console.warn('Failed to delete history item:', error);
+    }
+    
+    // Close dropdown
+    historyItem.isDropdownOpen = false;
   }
 }

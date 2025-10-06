@@ -98,20 +98,64 @@
           <ul *ngIf="item.children && item.isExpanded && !isCollapsed"
               class="mt-2 ml-6 space-y-1">
             <li *ngFor="let child of item.children">
-              <button
-                (click)="onItemClick(child)"
-                class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
-                [class]="isActiveItem(child) ?
-                  'bg-blue-fill text-brand font-medium' :
-                  'text-text-weak hover:bg-fill hover:text-text-strong'">
+              <!-- Regular navigation item -->
+              <div *ngIf="!child.hasDropdown" class="relative">
+                <button
+                  (click)="onItemClick(child)"
+                  class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
+                  [class]="isActiveItem(child) ?
+                    'bg-blue-fill text-brand font-medium' :
+                    'text-text-weak hover:bg-fill hover:text-text-strong'">
 
-                <i 
-                  [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
-                  [style.color]="isActiveItem(child) ? '#146B85' : '#9CA3AF'">
-                </i>
+                  <i 
+                    [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
+                    [style.color]="isActiveItem(child) ? '#146B85' : '#9CA3AF'">
+                  </i>
 
-                <span class="ml-3 truncate">{{ child.label }}</span>
-              </button>
+                  <span class="ml-3 truncate">{{ child.label }}</span>
+                </button>
+              </div>
+
+              <!-- History item with dropdown -->
+              <div *ngIf="child.hasDropdown" class="relative">
+                <div class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none text-text-weak hover:bg-fill hover:text-text-strong group">
+                  
+                  <!-- Main clickable area -->
+                  <button
+                    (click)="onItemClick(child)"
+                    class="flex-1 flex items-center">
+                    <i 
+                      [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
+                      style="color: #9CA3AF;">
+                    </i>
+                    <span class="ml-3 truncate">{{ child.label }}</span>
+                  </button>
+
+                  <!-- 3-dot dropdown button -->
+                  <button
+                    (click)="toggleHistoryDropdown(child, $event)"
+                    class="ml-2 p-1 rounded-lg hover:bg-gray-200 transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100">
+                    <i class="ri-more-2-line text-sm text-gray-500"></i>
+                  </button>
+                </div>
+
+                <!-- Dropdown Menu -->
+                <div *ngIf="child.isDropdownOpen" 
+                     class="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <button
+                    (click)="addToCaseHub(child, $event)"
+                    class="w-full flex items-center px-3 py-2 text-sm hover:bg-gray-50 transition-colors focus:outline-none first:rounded-t-lg">
+                    <i class="ri-bookmark-line text-base mr-2 text-gray-600"></i>
+                    <span class="text-gray-700">Add to Case Hub</span>
+                  </button>
+                  <button
+                    (click)="deleteHistoryItem(child, $event)"
+                    class="w-full flex items-center px-3 py-2 text-sm hover:bg-red-50 transition-colors focus:outline-none last:rounded-b-lg">
+                    <i class="ri-delete-bin-line text-base mr-2 text-red-600"></i>
+                    <span class="text-red-600">Delete case</span>
+                  </button>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
