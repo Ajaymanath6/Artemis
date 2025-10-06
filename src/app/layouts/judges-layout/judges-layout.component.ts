@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface Judge {
   name: string;
@@ -27,21 +28,38 @@ export class JudgesLayoutComponent {
   @Input() caseDetails: any;
   viewMode: 'grid' | 'table' = 'grid';
 
+  constructor(private router: Router) {}
+
   toggleViewMode(mode: 'grid' | 'table'): void {
     this.viewMode = mode;
     console.log('View mode changed to:', mode);
   }
 
   onJudgeClick(judge: Judge): void {
-    // This will be handled by the see more link instead
     console.log('Judge card clicked:', judge.name);
+    // Navigate to judge detail page
+    const judgeId = this.generateJudgeId(judge.name);
+    this.router.navigate(['/judge', judgeId], {
+      queryParams: { name: judge.name }
+    });
   }
 
   onSeeMoreClick(judge: Judge, event: Event): void {
     event.stopPropagation(); // Prevent card click event
     console.log('See more clicked for judge:', judge.name);
     // Navigate to judge details page
-    // this.router.navigate(['/judge-details', judge.id]);
+    const judgeId = this.generateJudgeId(judge.name);
+    this.router.navigate(['/judge', judgeId], {
+      queryParams: { name: judge.name }
+    });
+  }
+
+  // Helper method to generate judge ID from name
+  private generateJudgeId(name: string): string {
+    return name.toLowerCase()
+               .replace(/hon\.\s*/i, '') // Remove "Hon." prefix
+               .replace(/\s+/g, '-') // Replace spaces with hyphens
+               .replace(/[^a-z0-9-]/g, ''); // Remove special characters
   }
 
   judges: Judge[] = [

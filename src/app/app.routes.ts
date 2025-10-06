@@ -40,6 +40,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/case-detail/case-detail.component').then(m => m.CaseDetailComponent)
   },
 
+  // Judge detail page
+  {
+    path: 'judge/:id',
+    loadComponent: () => import('./pages/judge-detail/judge-detail.component').then(m => m.JudgeDetailComponent)
+  },
+
   // Wildcard route - must be last
   { path: '**', redirectTo: '/cases' }
 ];

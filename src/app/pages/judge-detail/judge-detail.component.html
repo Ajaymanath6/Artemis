@@ -1,0 +1,178 @@
+<!-- Judge Detail Page - Main Container -->
+<div class="judge-detail-container">
+  
+  <!-- Left Side: Side Navigation Bar -->
+  <app-side-nav
+    [isCollapsed]="isSidebarCollapsed"
+    (sidebarToggle)="onSidebarToggle()">
+  </app-side-nav>
+  
+  <!-- Right Side: Main Content Container -->
+  <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+    
+    <!-- Top Part: App Header Component Container -->
+    <div class="header-container">
+      <!-- App Header -->
+      <app-header 
+        [showUserProfile]="true"
+        [showCollapseButton]="isSidebarCollapsed"
+        [showBackButton]="true"
+        [searchQuery]="currentSearchQuery"
+        (collapseToggle)="onSidebarToggle()"
+        (backClick)="goBack()"
+        (searchQueryClick)="onSearchQueryClick()">
+      </app-header>
+      
+      <!-- Judge Meta Section -->
+      <div class="judge-meta-section">
+        <div class="judge-meta-content">
+          <!-- Judge Information Column -->
+          <div class="judge-info-column">
+            <!-- Judge Name with Profile Icon -->
+            <div class="judge-title-section">
+              <i class="ri-user-line judge-profile-icon"></i>
+              <h1 class="judge-title">{{ judgeDetails.name }}</h1>
+            </div>
+
+            <!-- Judge Meta Information -->
+            <div class="judge-meta-info">
+              <span>{{ judgeDetails.title }}</span>
+              <span class="mx-2">·</span>
+              <span>{{ judgeDetails.court }}</span>
+              <span class="mx-2">·</span>
+              <span>{{ judgeDetails.location }}</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button 
+                (click)="bookmarkJudge()"
+                class="action-button">
+                <i class="ri-bookmark-line text-lg mr-2"></i>
+                Bookmark
+              </button>
+              <button 
+                (click)="setAlert()"
+                class="action-button">
+                <i class="ri-notification-line text-lg mr-2"></i>
+                Set Alert
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab Navigation -->
+          <div class="tab-navigation">
+            <nav class="-mb-px flex space-x-8">
+              <button
+                *ngFor="let tab of tabs"
+                (click)="setActiveTab(tab.id)"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
+                [class]="activeTab === tab.id 
+                  ? 'border-brand text-brand' 
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
+                {{ tab.label }}
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Part: Tab Content Container -->
+    <div class="content-container">
+      
+      <!-- Summary Tab Content -->
+      <div *ngIf="activeTab === 'summary'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Judge Summary</h2>
+        <div class="space-y-4">
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold mb-3">Court Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm font-medium text-gray-500">Current Court</label>
+                <p class="text-gray-900">{{ judgeDetails.court }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500">Judicial Status</label>
+                <p class="text-gray-900">{{ judgeDetails.judicialStatus }}</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500">Years of Service</label>
+                <p class="text-gray-900">{{ judgeDetails.yearsOfService }} years</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500">Appointed By</label>
+                <p class="text-gray-900">{{ judgeDetails.appointedBy }}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold mb-3">Specializations</h3>
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let spec of judgeDetails.specializations" 
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
+                {{ spec }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Tab Content -->
+      <div *ngIf="activeTab === 'profile'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Judge Profile</h2>
+        <div class="bg-white p-6 rounded-lg border border-gray-200">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="text-sm font-medium text-gray-500">Full Name</label>
+              <p class="text-gray-900 font-medium">{{ judgeDetails.name }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500">Title</label>
+              <p class="text-gray-900">{{ judgeDetails.title }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500">Phone</label>
+              <p class="text-gray-900">{{ judgeDetails.phone }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500">Email</label>
+              <p class="text-gray-900">{{ judgeDetails.email }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500">Location</label>
+              <p class="text-gray-900">{{ judgeDetails.location }}</p>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-500">Website</label>
+              <p class="text-gray-900">{{ judgeDetails.website }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Tab Contents (Placeholders) -->
+      <div *ngIf="activeTab === 'attorneys'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Attorneys</h2>
+        <p class="text-gray-600">Attorneys who have appeared before this judge will be displayed here.</p>
+      </div>
+
+      <div *ngIf="activeTab === 'law-firms'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Law Firms</h2>
+        <p class="text-gray-600">Law firms that have appeared before this judge will be displayed here.</p>
+      </div>
+
+      <div *ngIf="activeTab === 'parties'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Parties</h2>
+        <p class="text-gray-600">Parties who have appeared before this judge will be displayed here.</p>
+      </div>
+
+      <div *ngIf="activeTab === 'cases'" class="tab-content">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Cases</h2>
+        <p class="text-gray-600">Cases handled by this judge will be displayed here.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
