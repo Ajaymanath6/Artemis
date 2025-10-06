@@ -1,0 +1,160 @@
+<!-- Alert Panel Container -->
+<div class="alert-panel" [class.static]="isStatic">
+  
+  <!-- Panel Header -->
+  <div class="panel-header">
+    <h2 class="panel-title">Alerts</h2>
+    <button 
+      (click)="onClose()" 
+      class="close-button"
+      title="Close panel">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <!-- Panel Content -->
+  <div class="panel-content">
+    
+    <!-- Research Question Section -->
+    <div class="form-section">
+      <label class="form-label">Research Question</label>
+      <textarea 
+        [(ngModel)]="alertData.researchQuestion"
+        placeholder="Enter your research question..."
+        rows="2"
+        class="form-textarea">
+      </textarea>
+    </div>
+    
+    <!-- Alert Name Section -->
+    <div class="form-section">
+      <label class="form-label">Name your Alert</label>
+      <input 
+        type="text"
+        [(ngModel)]="alertData.name"
+        placeholder="Enter alert name..."
+        class="form-input">
+    </div>
+
+    <!-- When to Receive Alert Section -->
+    <div class="form-section">
+      <label class="form-label">When do you want to receive alert</label>
+      
+      <!-- Daily Summary Option -->
+      <div class="radio-option" (click)="onFrequencyChange('daily')">
+        <div class="radio-button">
+          <input 
+            type="radio"
+            name="frequency"
+            value="daily"
+            [checked]="alertData.frequency === 'daily'"
+            (change)="onFrequencyChange('daily')"
+            class="radio-input">
+          <div class="radio-indicator"></div>
+        </div>
+        <div class="radio-content">
+          <div class="radio-title">Daily Summary</div>
+          <div class="radio-description">{{ getFrequencyDescription('daily') }}</div>
+        </div>
+      </div>
+
+      <!-- Immediate Option -->
+      <div class="radio-option" (click)="onFrequencyChange('immediate')">
+        <div class="radio-button">
+          <input 
+            type="radio"
+            name="frequency"
+            value="immediate"
+            [checked]="alertData.frequency === 'immediate'"
+            (change)="onFrequencyChange('immediate')"
+            class="radio-input">
+          <div class="radio-indicator"></div>
+        </div>
+        <div class="radio-content">
+          <div class="radio-title">Immediately when found</div>
+          <div class="radio-description">{{ getFrequencyDescription('immediate') }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who Should Receive Alerts Section -->
+    <div class="form-section">
+      <label class="form-label">Who should receive the alerts?</label>
+      
+      <!-- Everyone Option -->
+      <div class="radio-option" (click)="onRecipientsChange('everyone')">
+        <div class="radio-button">
+          <input 
+            type="radio"
+            name="recipients"
+            value="everyone"
+            [checked]="alertData.recipients === 'everyone'"
+            (change)="onRecipientsChange('everyone')"
+            class="radio-input">
+          <div class="radio-indicator"></div>
+        </div>
+        <div class="radio-content">
+          <div class="radio-title">Everyone on the project</div>
+        </div>
+      </div>
+
+      <!-- Pick Recipients Option -->
+      <div class="radio-option" (click)="onRecipientsChange('selected')">
+        <div class="radio-button">
+          <input 
+            type="radio"
+            name="recipients"
+            value="selected"
+            [checked]="alertData.recipients === 'selected'"
+            (change)="onRecipientsChange('selected')"
+            class="radio-input">
+          <div class="radio-indicator"></div>
+        </div>
+        <div class="radio-content">
+          <div class="radio-title">Pick who should receive them...</div>
+        </div>
+      </div>
+
+      <!-- Team Member Selection (when "selected" is chosen) -->
+      <div *ngIf="alertData.recipients === 'selected'" class="member-selection">
+        <div class="member-list">
+          <div 
+            *ngFor="let member of teamMembers"
+            (click)="onMemberToggle(member.id)"
+            class="member-item"
+            [class.selected]="isMemberSelected(member.id)">
+            <div class="member-avatar">
+              {{ member.avatar }}
+            </div>
+            <div class="member-info">
+              <div class="member-name">{{ member.name }}</div>
+              <div class="member-email">{{ member.email }}</div>
+            </div>
+            <div class="member-checkbox">
+              <i 
+                class="ri-check-line"
+                [class.visible]="isMemberSelected(member.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Panel Footer -->
+  <div class="panel-footer">
+    <button 
+      (click)="onCancel()" 
+      class="cancel-button">
+      Cancel
+    </button>
+    <button 
+      (click)="onSave()" 
+      class="save-button"
+      [disabled]="!isFormValid()">
+      Save Alert
+    </button>
+  </div>
+
+</div>

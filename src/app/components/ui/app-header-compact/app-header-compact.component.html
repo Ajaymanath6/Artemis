@@ -1,0 +1,54 @@
+<!-- Compact Header Container -->
+<div class="compact-header-container">
+
+  <!-- App Header -->
+  <app-header 
+    [showUserProfile]="true"
+    [showCollapseButton]="isSidebarCollapsed"
+    [projectName]="projectName"
+    [searchQuery]="currentSearchQuery"
+    (collapseToggle)="onSidebarToggle()"
+    (projectClick)="onProjectClick()"
+    (searchQueryClick)="onSearchQueryClick()">
+  </app-header>
+
+  <!-- Search Bar Section -->
+  <div class="search-bar-section">
+    <div class="search-content-container">
+      <!-- Search Input with Button Group -->
+      <div class="search-row">
+        <!-- Search Input (Left Side) -->
+        <div class="search-input-area">
+          <app-search-bar 
+            [isCollapsed]="hasSearched"
+            [searchQuery]="currentSearchQuery"
+            [showCollapseButton]="showCollapseButton"
+            [showBackButton]="showBackButton"
+            (search)="onSearch($event)"
+            (expand)="onExpandSearch()"
+            (collapse)="onCollapseSearch()">
+          </app-search-bar>
+        </div>
+        
+        <!-- Button Group (Right Side) - Only show when specified -->
+        <div *ngIf="showButtonGroup" class="button-group-area">
+          <!-- Create Alert Button -->
+          <button 
+            (click)="onCreateAlert()"
+            class="create-alert-btn">
+            <i class="ri-notification-line"></i>
+            <span>Create Alert</span>
+          </button>
+          
+          <!-- Alert Panel Collapse Button -->
+          <button 
+            (click)="onAlertPanelToggle()"
+            class="collapse-btn">
+            <i [class]="isAlertPanelCollapsed ? 'ri-layout-left-line' : 'ri-layout-right-line'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

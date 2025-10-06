@@ -52,6 +52,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/case-hub/case-hub.component').then(m => m.CaseHubComponent)
   },
 
+  // Alerts page
+  {
+    path: 'alerts',
+    loadComponent: () => import('./pages/alerts/alerts.component').then(m => m.AlertsComponent)
+  },
+
   // Wildcard route - must be last
   { path: '**', redirectTo: '/cases' }
 ];

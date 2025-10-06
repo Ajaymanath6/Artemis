@@ -2,12 +2,16 @@
 
 :host {
   display: block;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Cases page specific background */
 .bg-cases-page {
   background-color: #F8F8F8;
 }
+
+/* Alert panel now participates in layout flow, so no need for manual width adjustments */
 
 /* Skeleton loading animations */
 .animate-pulse {

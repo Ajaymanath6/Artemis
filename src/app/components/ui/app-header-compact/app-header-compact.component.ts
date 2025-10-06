@@ -4,13 +4,13 @@ import { AppHeaderComponent } from '../../../layouts/app-header/app-header.compo
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
-  selector: 'app-cases-header',
+  selector: 'app-header-compact',
   standalone: true,
   imports: [CommonModule, AppHeaderComponent, SearchBarComponent],
-  templateUrl: './cases-header.component.html',
-  styleUrls: ['./cases-header.component.css']
+  templateUrl: './app-header-compact.component.html',
+  styleUrls: ['./app-header-compact.component.css']
 })
-export class CasesHeaderComponent {
+export class AppHeaderCompactComponent {
   // Header inputs
   @Input() isSidebarCollapsed: boolean = false;
   @Input() projectName: string = '';
@@ -19,6 +19,7 @@ export class CasesHeaderComponent {
   @Input() showCollapseButton: boolean = false; // Show collapse button when results are visible
   @Input() showBackButton: boolean = true; // Show back button in search bar
   @Input() showButtonGroup: boolean = false; // Show Create Alert and Collapse button group
+  @Input() isAlertPanelCollapsed: boolean = false; // Track alert panel state
   
   // Header outputs
   @Output() sidebarToggle = new EventEmitter<void>();
@@ -30,8 +31,9 @@ export class CasesHeaderComponent {
   @Output() expandSearch = new EventEmitter<void>();
   @Output() collapseSearch = new EventEmitter<void>();
   
-  // Alert output
+  // Alert outputs
   @Output() createAlert = new EventEmitter<void>();
+  @Output() alertPanelToggle = new EventEmitter<void>(); // New output for alert panel toggle
 
   onSidebarToggle(): void {
     this.sidebarToggle.emit();
@@ -59,5 +61,9 @@ export class CasesHeaderComponent {
 
   onCreateAlert(): void {
     this.createAlert.emit();
+  }
+
+  onAlertPanelToggle(): void {
+    this.alertPanelToggle.emit();
   }
 }

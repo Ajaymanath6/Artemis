@@ -63,7 +63,7 @@ export class SideNavComponent implements OnInit {
           },
           { id: 'project-tracking', label: 'Tracking', icon: 'time-line', route: '/tracking' },
           { id: 'project-case-hub', label: 'Case Hub', icon: 'bookmark-line', route: '/case-hub' },
-          { id: 'project-manage', label: 'Manage Project', icon: 'edit-line', route: '/project/manage' }
+          { id: 'project-alerts', label: 'Alerts', icon: 'notification-line', route: '/alerts' }
         ]
       }
     ];
@@ -118,6 +118,17 @@ export class SideNavComponent implements OnInit {
     } else if (url === '/dashboard') {
       this.activeItemId = 'all-projects';
       console.log('Set active item for dashboard: all-projects');
+    } else if (url === '/case-hub') {
+      this.activeItemId = 'project-case-hub';
+      console.log('Set active item for case hub: project-case-hub');
+    } else if (url === '/alerts') {
+      this.activeItemId = 'project-alerts';
+      console.log('Set active item for alerts: project-alerts');
+    } else if (url.startsWith('/judge/')) {
+      // For judge detail pages, restore or default to project-home
+      const savedActiveItem = this.restoreActiveItemState();
+      this.activeItemId = savedActiveItem || 'project-home';
+      console.log('Set active item for judge detail: ', this.activeItemId);
     } else {
       // For other routes, default to project-home
       this.activeItemId = 'project-home';

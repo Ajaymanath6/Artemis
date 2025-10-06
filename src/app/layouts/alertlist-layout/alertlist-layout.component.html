@@ -1,0 +1,29 @@
+<!-- Alert List Layout Container -->
+<div class="alertlist-layout-container" [class.panel-collapsed]="isAlertPanelCollapsed">
+  
+  <!-- Left Side: Results/Content Area (70% or 100% when panel collapsed) -->
+  <div class="results-area" [class.full-width]="isAlertPanelCollapsed">
+    <!-- Empty State Content for now -->
+    <div class="empty-state-container">
+      <div class="empty-state-content">
+        <div class="empty-icon-wrapper">
+          <i class="ri-notification-line empty-icon"></i>
+        </div>
+        <h2 class="empty-title">Finish adding your alerts</h2>
+        <p class="empty-description">
+          Set up alerts to get notified about case updates, document changes, and important developments in your tracked cases.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Alert Panel (30% or hidden when collapsed) -->
+  <div class="alert-panel-area" [class.hidden]="isAlertPanelCollapsed" *ngIf="!isAlertPanelCollapsed">
+    <app-alert-panel
+      [isStatic]="true"
+      (close)="onCloseAlert()"
+      (save)="onSaveAlert($event)">
+    </app-alert-panel>
+  </div>
+  
+</div>

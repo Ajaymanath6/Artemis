@@ -1,0 +1,133 @@
+/* Alert List Layout Component Styles */
+
+:host {
+  display: block;
+  flex: 1;
+  width: 100%; /* Take full width available */
+}
+
+/* Main container with flex layout - 70/30 split */
+.alertlist-layout-container {
+  display: flex;
+  flex: 1;
+  width: 100%; /* Take full width available */
+  height: 100%;
+  overflow: hidden;
+  /* This container should fit within the available space below header */
+  min-height: 0; /* Allow proper flex shrinking */
+  position: relative;
+  z-index: 1; /* Ensure it stays below the header */
+  box-sizing: border-box; /* Include padding/border in width calculation */
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove any padding that could cause spacing */
+}
+
+/* Results Area (Left Side - 70%) */
+.results-area {
+  flex: 0 0 70%; /* Fixed 70% width */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-width: 0; /* Allow flex item to shrink */
+  background-color: #F8F8F8;
+  /* Ensure content fills the available height without overflow */
+  min-height: 0;
+  height: 100%;
+  margin: 0; /* No margins */
+  padding: 0; /* No padding */
+}
+
+/* Alert Panel Area (Right Side - 30%) */
+.alert-panel-area {
+  flex: 0 0 30%; /* Fixed 30% width */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  height: 100%;
+  margin: 0; /* No margins */
+  padding: 0; /* No padding */
+  transition: all 0.3s ease; /* Smooth collapse animation */
+}
+
+/* Alert Panel Area - Hidden State */
+.alert-panel-area.hidden {
+  display: none;
+}
+
+/* Results Area - Full Width When Panel Collapsed */
+.results-area.full-width {
+  flex: 0 0 100% !important; /* Take full width when panel is collapsed */
+}
+
+/* Container - Panel Collapsed State */
+.alertlist-layout-container.panel-collapsed {
+  /* Additional styles for collapsed state if needed */
+}
+
+/* Empty State Styling */
+.empty-state-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* Take full available height */
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.empty-state-content {
+  text-align: center;
+  max-width: 480px;
+}
+
+.empty-icon-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  color: #d1d5db;
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.empty-description {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alertlist-layout-container {
+    flex-direction: column;
+  }
+  
+  .results-area {
+    flex: 1;
+  }
+  
+      .alert-panel-area {
+        flex: 0 0 auto;
+        height: 40vh; /* Take less viewport space on mobile due to 30% width */
+      }
+  
+  .empty-state-container {
+    padding: 1rem;
+  }
+  
+  .empty-title {
+    font-size: 1.25rem;
+  }
+  
+  .empty-description {
+    font-size: 0.875rem;
+  }
+}

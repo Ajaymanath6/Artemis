@@ -1,0 +1,36 @@
+/* Alerts Component Styles */
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+/* Main Container - Flex Layout */
+.alerts-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Main Content Area - Below Fixed Header */
+.main-content-area {
+  position: fixed; /* Fixed positioning for full control */
+  left: 206px; /* Default sidebar width */
+  top: 140px; /* Space for fixed header */
+  right: 0; /* Stretch to right edge */
+  bottom: 0; /* Stretch to bottom */
+  width: calc(100vw - 206px); /* Explicit width calculation */
+  transition: left 0.3s ease, width 0.3s ease;
+  background-color: #F8F8F8;
+  overflow: hidden; /* Prevent overflow */
+  margin: 0; /* No margins */
+  padding: 0; /* No padding */
+}
+
+.main-content-area.sidebar-collapsed {
+  left: 4rem; /* 64px - collapsed sidebar width */
+  width: calc(100vw - 4rem); /* Explicit width when collapsed */
+}
+
+

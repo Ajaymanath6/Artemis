@@ -1,0 +1,140 @@
+/* Compact Header Component Styles */
+
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 206px; /* Default sidebar width */
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  transition: left 0.3s ease;
+}
+
+/* Adjust for collapsed sidebar */
+:host.sidebar-collapsed {
+  left: 4rem; /* 64px - collapsed sidebar width */
+}
+
+/* Main container */
+.compact-header-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+/* Search Bar Section */
+.search-bar-section {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 0; /* Compact padding */
+}
+
+.search-content-container {
+  width: 100%; /* Take full width */
+  max-width: none; /* Remove max-width restriction */
+  margin: 0;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .search-content-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-content-container {
+    padding: 0 1.5rem; /* Keep reasonable padding but not too much */
+  }
+}
+
+/* Search Row Layout */
+.search-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Search Input Area */
+.search-input-area {
+  flex: 1;
+  min-width: 0; /* Allow flex shrinking */
+}
+
+/* Button Group Area */
+.button-group-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0; /* Don't shrink buttons */
+}
+
+/* Create Alert Button - Main CTA Style */
+.create-alert-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #146B85; /* Main CTA color */
+  border: 1px solid #146B85;
+  color: white; /* White text on CTA background */
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.create-alert-btn:hover {
+  background-color: #0f5a70; /* Darker shade on hover */
+  border-color: #0f5a70;
+}
+
+.create-alert-btn i {
+  font-size: 1rem;
+}
+
+/* Collapse Button */
+.collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-width: 2.5rem;
+  height: 2.5rem;
+}
+
+.collapse-btn:hover {
+  background-color: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.collapse-btn i {
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  
+  .button-group-area {
+    justify-content: center;
+  }
+  
+  .create-alert-btn {
+    justify-content: center;
+  }
+}

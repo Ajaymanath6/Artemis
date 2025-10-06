@@ -1,0 +1,40 @@
+<!-- Alerts Page Container -->
+<div class="alerts-container">
+  
+  <!-- Left Side: Side Navigation Bar -->
+  <app-side-nav
+    [isCollapsed]="isSidebarCollapsed"
+    (sidebarToggle)="onSidebarToggle()">
+  </app-side-nav>
+  
+  <!-- Compact Header -->
+  <app-header-compact
+    [class.sidebar-collapsed]="isSidebarCollapsed"
+    [isSidebarCollapsed]="isSidebarCollapsed"
+    [projectName]="projectName"
+    [currentSearchQuery]="currentSearchQuery"
+    [hasSearched]="hasSearched"
+    [showCollapseButton]="showCollapseButton"
+    [showBackButton]="false"
+    [showButtonGroup]="true"
+    [isAlertPanelCollapsed]="isAlertPanelCollapsed"
+    (sidebarToggle)="onSidebarToggle()"
+    (projectClick)="onProjectClick()"
+    (searchQueryClick)="onSearchQueryClick()"
+    (search)="onSearch($event)"
+    (expandSearch)="onExpandSearch()"
+    (collapseSearch)="onCollapseSearch()"
+    (createAlert)="onCreateAlert()"
+    (alertPanelToggle)="onAlertPanelToggle()">
+  </app-header-compact>
+
+  <!-- Main Content Area with proper top margin -->
+  <div class="main-content-area" [class.sidebar-collapsed]="isSidebarCollapsed">
+    <!-- Alert List Layout (70/30 Split) -->
+    <app-alertlist-layout
+      [isAlertPanelCollapsed]="isAlertPanelCollapsed"
+      (closeAlert)="onCloseAlert()"
+      (saveAlert)="onSaveAlert($event)">
+    </app-alertlist-layout>
+  </div>
+</div>

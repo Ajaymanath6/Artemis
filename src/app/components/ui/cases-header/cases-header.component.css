@@ -25,9 +25,9 @@
   background-color: #F8F8F8;
 }
 
-/* Search bar section with top spacing */
+/* Search bar section - no extra margins */
 .search-bar-section {
-  padding-top: 8px;
+  /* Removed padding-top to eliminate margins */
 }
 
 /* Layout utilities */

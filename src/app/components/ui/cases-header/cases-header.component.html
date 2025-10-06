@@ -13,20 +13,42 @@
   </app-header>
 
   <!-- Search Bar Section -->
-  <div class="bg-cases-page border-b border-gray-200 search-bar-section" 
+  <div class="bg-white border-b border-gray-200 search-bar-section" 
        [class.py-4]="!hasSearched" 
        [class.py-2]="hasSearched">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Search Input -->
-      <div [class.mb-4]="!hasSearched" [class.mb-2]="hasSearched">
-        <app-search-bar 
-          [isCollapsed]="hasSearched"
-          [searchQuery]="currentSearchQuery"
-          [showCollapseButton]="showCollapseButton"
-          (search)="onSearch($event)"
-          (expand)="onExpandSearch()"
-          (collapse)="onCollapseSearch()">
-        </app-search-bar>
+      <!-- Search Input with Button Group -->
+      <div class="flex items-center justify-between" [class.mb-0]="hasSearched">
+        <!-- Search Input (Left Side) -->
+        <div class="flex-1">
+          <app-search-bar 
+            [isCollapsed]="hasSearched"
+            [searchQuery]="currentSearchQuery"
+            [showCollapseButton]="showCollapseButton"
+            [showBackButton]="showBackButton"
+            (search)="onSearch($event)"
+            (expand)="onExpandSearch()"
+            (collapse)="onCollapseSearch()">
+          </app-search-bar>
+        </div>
+        
+        <!-- Button Group (Right Side) - Only show on alerts page -->
+        <div *ngIf="showButtonGroup" class="flex items-center space-x-3 ml-4">
+          <!-- Create Alert Button -->
+          <button 
+            (click)="onCreateAlert()"
+            class="px-4 py-2 flex items-center space-x-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
+            <i class="ri-notification-line text-base"></i>
+            <span class="text-sm font-medium">Create Alert</span>
+          </button>
+          
+          <!-- Collapse Button (same as sidebar header) -->
+          <button 
+            (click)="onSidebarToggle()"
+            class="px-3 py-2 flex items-center bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+            <i class="ri-menu-fold-line text-gray-700 text-base"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
