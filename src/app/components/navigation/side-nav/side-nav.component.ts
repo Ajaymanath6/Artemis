@@ -192,17 +192,18 @@ export class SideNavComponent implements OnInit {
     // Check if we're on the correct route OR on a related route (like case detail)
     const isOnRoute = this.router.url === item.route;
     const isOnCaseDetailPage = this.router.url.startsWith('/case/');
+    const isOnJudgeDetailPage = this.router.url.startsWith('/judge/');
     
     // For cases-related items (project-home, project-search), they should be active on both /cases and /case/ pages
     if (item.route === '/cases') {
-      if (isOnRoute || isOnCaseDetailPage) {
+      if (isOnRoute || isOnCaseDetailPage || isOnJudgeDetailPage) {
         // Only highlight the item that matches our activeItemId
         const isActive = this.activeItemId === item.id;
         console.log(`Item ${item.id} is ${isActive ? 'ACTIVE' : 'not active'}`);
         return isActive;
       }
     } else if (isOnRoute) {
-      // For non-cases routes, use normal route matching
+      // For all other routes (including case-hub), use exact route matching
       return true;
     }
     
@@ -250,7 +251,7 @@ export class SideNavComponent implements OnInit {
 
   // Truncate search term for display
   private truncateSearchTerm(term: string): string {
-    const maxLength = 25;
+    const maxLength = 8;
     if (term.length <= maxLength) {
       return term;
     }

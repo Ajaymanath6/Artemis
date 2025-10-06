@@ -1,0 +1,51 @@
+<!-- Cases Hub Layout Content -->
+<div class="cases-hub-content-wrapper">
+  
+  <!-- Bookmarked Cases Grid -->
+  <div class="cases-hub-grid">
+    <div *ngFor="let case of bookmarkedCases" 
+         class="case-hub-card" 
+         (click)="onCaseClick(case)">
+      
+      <!-- Card Header with Title -->
+      <div class="card-header">
+        <h3 class="case-title">{{ case.title }}</h3>
+      </div>
+
+      <!-- Card Body with Description -->
+      <div class="card-body">
+        <p class="case-description">{{ case.description }}</p>
+      </div>
+
+      <!-- Card Footer with Project Info and Bookmark -->
+      <div class="card-footer">
+        <div class="footer-content">
+          <!-- Project Label -->
+          <div class="project-info">
+            <span class="project-label">Project: {{ case.projectName }}</span>
+          </div>
+          
+          <!-- Bookmark Icon -->
+          <div class="bookmark-section">
+            <button 
+              (click)="onRemoveBookmark(case, $event)"
+              class="bookmark-button"
+              title="Remove from bookmarks">
+              <i class="ri-bookmark-fill bookmark-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State when no bookmarked cases -->
+  <div *ngIf="bookmarkedCases.length === 0" class="empty-state">
+    <div class="empty-content">
+      <i class="ri-bookmark-line empty-icon"></i>
+      <h3 class="empty-title">No Bookmarked Cases</h3>
+      <p class="empty-description">You haven't bookmarked any cases yet. Start bookmarking cases from your search results to see them here.</p>
+    </div>
+  </div>
+
+</div>

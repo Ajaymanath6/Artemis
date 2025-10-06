@@ -1,0 +1,55 @@
+<!-- Judges Hub Layout Content -->
+<div class="judges-hub-content-wrapper">
+  
+  <!-- Bookmarked Judges Grid -->
+  <div class="judges-hub-grid">
+    <div *ngFor="let judge of bookmarkedJudges" 
+         class="judge-hub-card" 
+         (click)="onJudgeClick(judge)">
+      
+      <!-- Card Header with Title -->
+      <div class="card-header">
+        <h3 class="judge-title">{{ judge.title }}</h3>
+        <div class="judge-meta">
+          <span class="court">{{ judge.court }}</span>
+          <span class="status">{{ judge.status }}</span>
+        </div>
+      </div>
+
+      <!-- Card Body with Description -->
+      <div class="card-body">
+        <p class="judge-description">{{ judge.description }}</p>
+      </div>
+
+      <!-- Card Footer with Project Info and Bookmark -->
+      <div class="card-footer">
+        <div class="footer-content">
+          <!-- Project Label -->
+          <div class="project-info">
+            <span class="project-label">Project: {{ judge.projectName }}</span>
+          </div>
+          
+          <!-- Bookmark Icon -->
+          <div class="bookmark-section">
+            <button 
+              (click)="onRemoveBookmark(judge, $event)"
+              class="bookmark-button"
+              title="Remove from bookmarks">
+              <i class="ri-bookmark-fill bookmark-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State when no bookmarked judges -->
+  <div *ngIf="bookmarkedJudges.length === 0" class="empty-state">
+    <div class="empty-content">
+      <i class="ri-scales-line empty-icon"></i>
+      <h3 class="empty-title">No Bookmarked Judges</h3>
+      <p class="empty-description">You haven't bookmarked any judges yet. Start bookmarking judges from your search results to see them here.</p>
+    </div>
+  </div>
+
+</div>

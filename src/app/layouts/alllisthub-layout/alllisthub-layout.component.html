@@ -1,0 +1,57 @@
+<!-- All List Hub Layout Content -->
+<div class="alllisthub-content-wrapper">
+  
+  <!-- Bookmarked Items Grid -->
+  <div class="alllisthub-grid">
+    <div *ngFor="let item of bookmarkedItems" 
+         class="item-hub-card" 
+         (click)="onItemClick(item)">
+      
+      <!-- Card Header with Title and Type Badge -->
+      <div class="card-header">
+        <div class="title-section">
+          <h3 class="item-title">{{ item.title }}</h3>
+          <div class="type-badge">
+            <i [class]="getTypeIcon(item.type)"></i>
+            <span>{{ getTypeLabel(item.type) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Body with Description -->
+      <div class="card-body">
+        <p class="item-description">{{ item.description }}</p>
+      </div>
+
+      <!-- Card Footer with Project Info and Bookmark -->
+      <div class="card-footer">
+        <div class="footer-content">
+          <!-- Project Label -->
+          <div class="project-info">
+            <span class="project-label">Project: {{ item.projectName }}</span>
+          </div>
+          
+          <!-- Bookmark Icon -->
+          <div class="bookmark-section">
+            <button 
+              (click)="onRemoveBookmark(item, $event)"
+              class="bookmark-button"
+              title="Remove from bookmarks">
+              <i class="ri-bookmark-fill bookmark-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State when no bookmarked items -->
+  <div *ngIf="bookmarkedItems.length === 0" class="empty-state">
+    <div class="empty-content">
+      <i class="ri-bookmark-line empty-icon"></i>
+      <h3 class="empty-title">No Bookmarked Items</h3>
+      <p class="empty-description">You haven't bookmarked anything yet. Start bookmarking cases, attorneys, judges, and parties from your search results to see them here.</p>
+    </div>
+  </div>
+
+</div>

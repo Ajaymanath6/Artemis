@@ -1,0 +1,71 @@
+<!-- Case Hub Page with Layout -->
+<div class="min-h-screen">
+  
+  <!-- Side Navigation - Fixed Full Height -->
+  <app-side-nav
+    [isCollapsed]="isSidebarCollapsed"
+    (itemClick)="onNavItemClick($event)"
+    (sidebarToggle)="onSidebarToggle()">
+  </app-side-nav>
+  
+  <!-- Main Content Container -->
+  <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+    
+    <!-- App Header -->
+    <app-header 
+      [showUserProfile]="true"
+      [showCollapseButton]="isSidebarCollapsed"
+      [projectName]="'NY Judgment Tracking'"
+      (collapseToggle)="onSidebarToggle()"
+      (projectClick)="onProjectClick()"
+      (searchQueryClick)="onSearchQueryClick()">
+    </app-header>
+    
+    <!-- Tab Navigation Section -->
+    <div class="tab-section">
+      <div class="tab-container">
+        <nav class="tab-navigation">
+          <div class="tab-list">
+            <button
+              *ngFor="let tab of tabs"
+              (click)="setActiveTab(tab.id)"
+              class="tab-button"
+              [class.active]="activeTab === tab.id">
+              {{ tab.label }}
+            </button>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="content-container">
+      
+      <!-- All Tab Content -->
+      <div *ngIf="activeTab === 'all'">
+        <app-alllisthub-layout></app-alllisthub-layout>
+      </div>
+
+      <!-- Cases Tab Content -->
+      <div *ngIf="activeTab === 'cases'">
+        <app-cases-hub-layout></app-cases-hub-layout>
+      </div>
+
+      <!-- Attorneys Tab Content -->
+      <div *ngIf="activeTab === 'attorneys'">
+        <app-attorney-hub-layout></app-attorney-hub-layout>
+      </div>
+
+      <!-- Judges Tab Content -->
+      <div *ngIf="activeTab === 'judges'">
+        <app-judges-hub-layout></app-judges-hub-layout>
+      </div>
+
+      <!-- Parties Tab Content -->
+      <div *ngIf="activeTab === 'parties'">
+        <app-parties-hub-layout></app-parties-hub-layout>
+      </div>
+
+    </div>
+  </div>
+</div>

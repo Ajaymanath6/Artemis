@@ -1,0 +1,122 @@
+/* Case Hub Page Styles */
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+/* Main Container */
+.main-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 206px; /* Default sidebar width */
+  transition: margin-left 0.3s ease;
+  min-height: 100vh;
+}
+
+.main-content-container.sidebar-collapsed {
+  margin-left: 4rem; /* 64px - collapsed sidebar width */
+}
+
+/* Tab Section */
+.tab-section {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.tab-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .tab-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tab-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Tab Navigation */
+.tab-navigation {
+  padding-top: 1rem;
+}
+
+.tab-list {
+  display: flex;
+  gap: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab-button {
+  padding: 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: #374151;
+}
+
+.tab-button.active {
+  color: #146B85;
+  border-bottom-color: #146B85;
+  font-weight: 600;
+}
+
+/* Content Container */
+.content-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+  padding: 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .content-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content-container {
+    margin-left: 0;
+  }
+  
+  .main-content-container.sidebar-collapsed {
+    margin-left: 0;
+  }
+  
+  .tab-list {
+    gap: 1rem;
+  }
+  
+  .tab-button {
+    font-size: 0.8125rem;
+  }
+}
