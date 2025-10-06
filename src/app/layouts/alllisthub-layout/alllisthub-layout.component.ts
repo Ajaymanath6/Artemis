@@ -47,7 +47,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'Senior Judge at San Mateo County Superior Court with 18 years of service specializing in Personal Injury and Commercial Law.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-09-30',
-      type: 'judge'
+      type: 'judge',
+      caseId: 'CIV642883',
+      court: 'California Superior Courts - Los Angeles County Superior Court',
+      date: '15 June 2017',
+      caseType: 'Civil',
+      status: 'Pending'
     },
     {
       id: '3',
@@ -55,7 +60,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'Lead Attorney specializing in corporate litigation with extensive experience in regulatory compliance and commercial disputes.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-09-29',
-      type: 'attorney'
+      type: 'attorney',
+      caseId: 'CIV642883',
+      court: 'California Superior Courts - Los Angeles County Superior Court',
+      date: '15 June 2017',
+      caseType: 'Civil',
+      status: 'Pending'
     },
     {
       id: '4',
@@ -63,7 +73,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'Manufacturing company involved in environmental regulation disputes and state compliance requirements.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-09-28',
-      type: 'party'
+      type: 'party',
+      caseId: 'CIV642883',
+      court: 'California Superior Courts - Los Angeles County Superior Court',
+      date: '15 June 2017',
+      caseType: 'Civil',
+      status: 'Pending'
     },
     {
       id: '5',
@@ -84,7 +99,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'Defense Attorney with specialization in family law and personal injury cases with 12 years of experience.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-09-26',
-      type: 'attorney'
+      type: 'attorney',
+      caseId: 'CIV642883',
+      court: 'California Superior Courts - Los Angeles County Superior Court',
+      date: '15 June 2017',
+      caseType: 'Civil',
+      status: 'Pending'
     }
   ];
 
