@@ -320,6 +320,28 @@ img {
   background-color: #e5e7eb;
 }
 
+/* Loading spinner styles */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.border-green-500 {
+  border-color: #22c55e;
+}
+
+.border-t-transparent {
+  border-top-color: transparent;
+}
+
 /* Responsive behavior */
 @media (max-width: 768px) {
   nav {

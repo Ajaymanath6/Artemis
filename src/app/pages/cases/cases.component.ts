@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
@@ -12,7 +12,7 @@ import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/
   templateUrl: './cases.component.html',
   styleUrls: ['./cases.component.css']
 })
-export class CasesComponent implements OnInit {
+export class CasesComponent implements OnInit, AfterViewInit {
   // ViewChild to access the sidebar component
   @ViewChild('sideNav') sideNav!: SideNavComponent;
   
@@ -75,13 +75,37 @@ export class CasesComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    console.log('CasesComponent AfterViewInit - SideNav available:', !!this.sideNav);
+    if (this.sideNav) {
+      console.log('SideNav component is ready');
+    }
+  }
+
   onSearch(query: string): void {
     console.log('Searching cases for:', query);
     this.currentSearchQuery = query; // Update the current search query
     
     // Add to search history if query is not empty
-    if (query.trim() && this.sideNav) {
-      this.sideNav.addToSearchHistory(query.trim());
+    if (query.trim()) {
+      console.log('Attempting to add to search history:', query.trim());
+      if (this.sideNav) {
+        console.log('SideNav is available, calling addToSearchHistory');
+        this.sideNav.addToSearchHistory(query.trim());
+      } else {
+        console.warn('SideNav is not available! ViewChild might not be initialized');
+        // Fallback: try to access after a short delay
+        setTimeout(() => {
+          if (this.sideNav) {
+            console.log('SideNav available after timeout, adding to history');
+            this.sideNav.addToSearchHistory(query.trim());
+          } else {
+            console.error('SideNav still not available after timeout');
+          }
+        }, 100);
+      }
+    } else {
+      console.log('Empty query, not adding to history');
     }
     
     this.isSearching = true;

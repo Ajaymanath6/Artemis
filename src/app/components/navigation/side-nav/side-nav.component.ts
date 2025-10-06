@@ -10,8 +10,7 @@ export interface NavItem {
   children?: NavItem[];
   isExpanded?: boolean;
   fullTerm?: string; // For history items
-  hasDropdown?: boolean; // For history items with 3-dot menu
-  isDropdownOpen?: boolean; // Track dropdown state
+  isDropdownOpen?: boolean; // Track dropdown state for history items
 }
 
 @Component({
@@ -33,6 +32,10 @@ export class SideNavComponent implements OnInit {
   
   // Track which specific nav item was clicked (for items that share the same route)
   activeItemId: string = 'project-home'; // Default to project home
+  
+  // Track current search state for synchronized spinner
+  @Input() currentSearchQuery: string = '';
+  @Input() isSearching: boolean = false;
 
   constructor(private router: Router) {
     // Default navigation items with appropriate Remix icons
@@ -75,12 +78,16 @@ export class SideNavComponent implements OnInit {
       console.log('Set default activeItemId to project-home');
     }
     
+    // Initialize history items on startup
+    this.updateHistoryNavItems();
+    
     // Set initial active item based on current route
     this.setActiveItemBasedOnRoute(this.router.url);
     
     // Force update after a short delay to ensure DOM is ready
     setTimeout(() => {
       this.setActiveItemBasedOnRoute(this.router.url);
+      this.updateHistoryNavItems(); // Refresh history items
       console.log('SideNav forced update - active item:', this.activeItemId);
     }, 100);
 
@@ -160,6 +167,7 @@ export class SideNavComponent implements OnInit {
     if (item.children && !this.isCollapsed) {
       // Toggle expansion for items with children (only when not collapsed)
       item.isExpanded = !item.isExpanded;
+      console.log(`Toggled ${item.label} expansion to:`, item.isExpanded);
     } else if (item.route) {
       // Track which specific item was clicked
       this.activeItemId = item.id;
@@ -231,7 +239,6 @@ export class SideNavComponent implements OnInit {
           icon: 'search-2-line',
           route: '/cases',
           fullTerm: term, // Store full term for potential use
-          hasDropdown: true, // Enable 3-dot dropdown
           isDropdownOpen: false // Initially closed
         }));
       }
@@ -254,6 +261,8 @@ export class SideNavComponent implements OnInit {
   addToSearchHistory(searchTerm: string): void {
     if (!searchTerm.trim()) return;
     
+    console.log('Adding search term to history:', searchTerm);
+    
     try {
       let searchHistory = [];
       const existingHistory = localStorage.getItem('searchHistory');
@@ -274,8 +283,12 @@ export class SideNavComponent implements OnInit {
       // Save to localStorage
       localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
       
-      // Update the nav items
+      console.log('Updated search history:', searchHistory);
+      
+      // Update the nav items immediately
       this.updateHistoryNavItems();
+      
+      console.log('History nav items updated');
       
     } catch (error) {
       console.warn('Failed to save search history:', error);
@@ -287,6 +300,13 @@ export class SideNavComponent implements OnInit {
     const historyNavItem = this.findHistoryNavItem();
     if (historyNavItem) {
       historyNavItem.children = this.getSearchHistory();
+      // Auto-expand history section when new items are added
+      if (historyNavItem.children && historyNavItem.children.length > 0) {
+        historyNavItem.isExpanded = true;
+      }
+      console.log('History nav items updated, total items:', historyNavItem.children?.length || 0);
+    } else {
+      console.warn('History nav item not found!');
     }
   }
 
@@ -378,5 +398,15 @@ export class SideNavComponent implements OnInit {
     
     // Close dropdown
     historyItem.isDropdownOpen = false;
+  }
+
+  // Check if a history item should show loading spinner
+  shouldShowSpinner(historyItem: NavItem): boolean {
+    if (!this.isSearching || !this.currentSearchQuery) {
+      return false;
+    }
+    
+    const itemTerm = historyItem.fullTerm || historyItem.label;
+    return itemTerm.toLowerCase().trim() === this.currentSearchQuery.toLowerCase().trim();
   }
 }

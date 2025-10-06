@@ -94,4 +94,5 @@ export class AppHeaderComponent implements OnInit {
       window.location.href = '/Artemis/login';
     });
   }
+
 }

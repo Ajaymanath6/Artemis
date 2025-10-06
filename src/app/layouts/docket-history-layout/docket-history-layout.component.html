@@ -42,10 +42,22 @@
         </div>
       </div>
       
-      <!-- Last Updated Time -->
-      <div class="flex items-center space-x-2 text-gray-500 text-sm">
-        <i class="ri-refresh-line text-sm"></i>
-        <span>updated {{ getLastUpdatedTime() }}</span>
+      <!-- View Toggle Buttons -->
+      <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <button 
+          (click)="toggleViewMode('grid')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors"
+          [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-grid-line text-base"></i>
+          <span class="text-sm font-medium">Grid</span>
+        </button>
+        <button 
+          (click)="toggleViewMode('table')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+          [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-row-line text-base"></i>
+          <span class="text-sm font-medium">Table</span>
+        </button>
       </div>
     </div>
     

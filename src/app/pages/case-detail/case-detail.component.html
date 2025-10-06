@@ -42,18 +42,28 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
-              <button 
-                (click)="refreshCase()"
-                class="action-button">
-                <i class="ri-refresh-line text-lg mr-2"></i>
-                Refresh
-              </button>
-              <button 
-                (click)="setTracker()"
-                class="action-button">
-                <i class="ri-time-line text-lg mr-2"></i>
-                Set Tracker
-              </button>
+              <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                  <button 
+                    (click)="refreshCase()"
+                    class="action-button">
+                    <i class="ri-refresh-line text-lg mr-2"></i>
+                    Refresh
+                  </button>
+                  <button 
+                    (click)="setTracker()"
+                    class="action-button">
+                    <i class="ri-time-line text-lg mr-2"></i>
+                    Set Tracker
+                  </button>
+                </div>
+                
+                <!-- Last Updated Time -->
+                <div class="flex items-center space-x-2 text-gray-500 text-sm">
+                  <i class="ri-refresh-line text-sm"></i>
+                  <span>updated 18 min ago</span>
+                </div>
+              </div>
             </div>
           </div>
 

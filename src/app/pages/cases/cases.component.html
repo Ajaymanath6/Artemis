@@ -5,6 +5,8 @@
   <app-side-nav
     #sideNav
     [isCollapsed]="isSidebarCollapsed"
+    [currentSearchQuery]="currentSearchQuery"
+    [isSearching]="isSearching"
     (itemClick)="onNavItemClick($event)"
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
