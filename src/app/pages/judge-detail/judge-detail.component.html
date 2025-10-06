@@ -17,9 +17,11 @@
         [showUserProfile]="true"
         [showCollapseButton]="isSidebarCollapsed"
         [showBackButton]="true"
+        [projectName]="projectName"
         [searchQuery]="currentSearchQuery"
         (collapseToggle)="onSidebarToggle()"
         (backClick)="goBack()"
+        (projectClick)="onProjectClick()"
         (searchQueryClick)="onSearchQueryClick()">
       </app-header>
       

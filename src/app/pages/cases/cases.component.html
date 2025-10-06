@@ -3,6 +3,7 @@
   
   <!-- Side Navigation - Fixed Full Height -->
   <app-side-nav
+    #sideNav
     [isCollapsed]="isSidebarCollapsed"
     (itemClick)="onNavItemClick($event)"
     (sidebarToggle)="onSidebarToggle()">

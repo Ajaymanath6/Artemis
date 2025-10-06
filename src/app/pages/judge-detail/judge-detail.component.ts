@@ -38,6 +38,20 @@ export class JudgeDetailComponent implements OnInit {
   projectName: string = 'NY Judgment Tracking';
   currentSearchQuery: string = '';
   
+  // Get current search query from cases page state
+  private getCurrentSearchQuery(): string {
+    try {
+      const casesSearchState = localStorage.getItem('casesSearchState');
+      if (casesSearchState) {
+        const searchState = JSON.parse(casesSearchState);
+        return searchState.currentSearchQuery || '';
+      }
+    } catch (error) {
+      console.warn('Failed to get current search query:', error);
+    }
+    return '';
+  }
+  
   // Tab management
   activeTab: string = 'summary';
   tabs = [
@@ -78,6 +92,9 @@ export class JudgeDetailComponent implements OnInit {
     // Get judge ID from route parameters
     this.judgeId = this.route.snapshot.paramMap.get('id');
     
+    // Get current search query for header display
+    this.currentSearchQuery = this.getCurrentSearchQuery();
+    
     // Get judge name from query parameters if available
     const judgeName = this.route.snapshot.queryParamMap.get('name');
     if (judgeName) {
@@ -86,6 +103,7 @@ export class JudgeDetailComponent implements OnInit {
     }
     
     console.log('Judge Detail Page initialized for:', this.judgeId, this.judgeDetails.name);
+    console.log('Current search query:', this.currentSearchQuery);
   }
 
   // Load judge data based on judge name

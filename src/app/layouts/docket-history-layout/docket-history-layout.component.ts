@@ -139,12 +139,21 @@ export class DocketHistoryLayoutComponent {
     // Implement document download/view functionality
   }
 
-  // Get last refresh time
-  getLastRefreshTime(): string {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
+  // Get last updated time
+  getLastUpdatedTime(): string {
+    return '18 min ago';
+  }
+
+  // Refresh data method
+  refreshData(): void {
+    console.log('Refreshing docket history data...');
+    // Implement refresh functionality
+  }
+
+  // Set tracker method
+  setTracker(): void {
+    console.log('Setting tracker for docket history...');
+    // Implement tracker functionality
   }
 
   // Get event type label for filter buttons

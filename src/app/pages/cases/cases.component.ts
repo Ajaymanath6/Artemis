@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
@@ -13,6 +13,9 @@ import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/
   styleUrls: ['./cases.component.css']
 })
 export class CasesComponent implements OnInit {
+  // ViewChild to access the sidebar component
+  @ViewChild('sideNav') sideNav!: SideNavComponent;
+  
   isSearching: boolean = false;
   hasSearched: boolean = false;
   isSearchBarExpanded: boolean = false; // New property to track search bar expansion
@@ -75,6 +78,12 @@ export class CasesComponent implements OnInit {
   onSearch(query: string): void {
     console.log('Searching cases for:', query);
     this.currentSearchQuery = query; // Update the current search query
+    
+    // Add to search history if query is not empty
+    if (query.trim() && this.sideNav) {
+      this.sideNav.addToSearchHistory(query.trim());
+    }
+    
     this.isSearching = true;
     this.hasSearched = true;
     this.showResults = false;
