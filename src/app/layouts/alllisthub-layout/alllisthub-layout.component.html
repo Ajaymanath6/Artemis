@@ -42,24 +42,25 @@
             </div>
           </div>
           
+          <!-- Project Label below case details -->
           <span class="project-label"><span class="project-prefix">Project:</span> <span class="project-name">{{ item.projectName }}</span></span>
-        </div>
-        
-        <!-- Right Side - Actions -->
-        <div class="card-actions">
-          <!-- Document Count Badge -->
-          <div class="flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm document-badge">
-            <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
-            <span class="text-xs text-gray-700 font-medium">{{ item.documentCount || 2 }}</span>
-          </div>
           
-          <!-- Bookmark Button -->
-          <button 
-            (click)="onRemoveBookmark(item, $event)"
-            class="bookmark-button"
-            title="Remove from bookmarks">
-            <i class="ri-bookmark-fill bookmark-icon"></i>
-          </button>
+          <!-- Actions below project label -->
+          <div class="card-actions">
+            <!-- Document Count Badge -->
+            <div class="flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm document-badge">
+              <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+              <span class="text-xs text-gray-700 font-medium">{{ item.documentCount || 2 }}</span>
+            </div>
+            
+            <!-- Bookmark Button -->
+            <button 
+              (click)="onRemoveBookmark(item, $event)"
+              class="bookmark-button"
+              title="Remove from bookmarks">
+              <i class="ri-bookmark-fill bookmark-icon"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@
   margin-bottom: 2rem;
 }
 
-/* Item Hub Card - Expanded Height */
+/* Item Hub Card - Auto Height */
 .item-hub-card {
   background-color: #fcfdfed9;
   border: 1px solid #e5e7eb;
@@ -34,7 +34,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  height: 121px; /* Expanded height for case details */
+  min-height: 121px; /* Minimum height, grows with content */
 }
 
 .item-hub-card:hover {
@@ -47,7 +47,7 @@
 .card-content {
   display: flex;
   align-items: flex-start;
-  height: 100%;
+  min-height: 100%;
   padding: 16px 20px;
   gap: 16px;
 }
@@ -58,7 +58,7 @@
   min-width: 0; /* Allow text truncation */
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 /* Case Details Section */
@@ -113,7 +113,7 @@
 
 
 .project-label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   display: inline-block;
   width: fit-content;
@@ -127,12 +127,12 @@
   color: #146B85; /* Main CTA color */
 }
 
-/* Right Side - Actions */
+/* Actions within main content flow */
 .card-actions {
-  flex-shrink: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
+  margin-top: 4px;
 }
 
 /* Document Badge */
@@ -156,7 +156,7 @@
 }
 
 .bookmark-button:hover {
-  background-color: rgba(220, 38, 38, 0.1);
+  background-color: rgba(20, 107, 133, 0.1);
 }
 
 .bookmark-icon {
@@ -166,7 +166,7 @@
 }
 
 .bookmark-button:hover .bookmark-icon {
-  color: #dc2626;
+  color: #0f5462;
 }
 
 /* Empty State */
