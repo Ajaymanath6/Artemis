@@ -9,6 +9,12 @@ interface BookmarkedItem {
   bookmarkedDate: string;
   type: 'case' | 'attorney' | 'judge' | 'party';
   documentCount?: number;
+  // Case-specific fields
+  caseId?: string;
+  court?: string;
+  date?: string;
+  caseType?: string;
+  status?: string;
 }
 
 @Component({
@@ -28,7 +34,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'A comprehensive legal case involving regulatory compliance and state commission oversight for enterprise operations.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-10-01',
-      type: 'case'
+      type: 'case',
+      caseId: 'CIV537691',
+      court: 'California Superior Courts - San Mateo County Superior Court',
+      date: '8 March 2016',
+      caseType: 'Civil',
+      status: 'Active'
     },
     {
       id: '2',
@@ -60,7 +71,12 @@ export class AlllisthubLayoutComponent implements OnInit {
       description: 'Real estate development case involving zoning laws and municipal planning regulations.',
       projectName: 'NY Judgment Tracking',
       bookmarkedDate: '2024-09-27',
-      type: 'case'
+      type: 'case',
+      caseId: 'CIV642883',
+      court: 'California Superior Courts - Los Angeles County Superior Court',
+      date: '15 June 2017',
+      caseType: 'Civil',
+      status: 'Pending'
     },
     {
       id: '6',

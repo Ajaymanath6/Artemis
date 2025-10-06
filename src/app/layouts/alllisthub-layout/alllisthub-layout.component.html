@@ -13,6 +13,36 @@
         <div class="card-main">
           <h3 class="item-title">{{ item.title }}</h3>
           <p class="item-description">{{ item.description }}</p>
+          
+          <!-- Case Details -->
+          <div class="case-details" *ngIf="item.type === 'case'">
+            <div class="case-detail-item">
+              <i class="ri-hashtag case-detail-icon"></i>
+              <span class="case-detail-label">CASE ID:</span>
+              <span class="case-detail-value">{{ item.caseId }}</span>
+            </div>
+            <div class="case-detail-item">
+              <i class="ri-government-line case-detail-icon"></i>
+              <span class="case-detail-label">COURT:</span>
+              <span class="case-detail-value">{{ item.court }}</span>
+            </div>
+            <div class="case-detail-item">
+              <i class="ri-calendar-line case-detail-icon"></i>
+              <span class="case-detail-label">DATE:</span>
+              <span class="case-detail-value">{{ item.date }}</span>
+            </div>
+            <div class="case-detail-item">
+              <i class="ri-file-list-line case-detail-icon"></i>
+              <span class="case-detail-label">TYPE:</span>
+              <span class="case-detail-value">{{ item.caseType }}</span>
+            </div>
+            <div class="case-detail-item">
+              <i class="ri-time-line case-detail-icon"></i>
+              <span class="case-detail-label">STATUS:</span>
+              <span class="case-detail-value">{{ item.status }}</span>
+            </div>
+          </div>
+          
           <span class="project-label"><span class="project-prefix">Project:</span> <span class="project-name">{{ item.projectName }}</span></span>
         </div>
         

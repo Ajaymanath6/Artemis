@@ -26,7 +26,7 @@
   margin-bottom: 2rem;
 }
 
-/* Item Hub Card - Horizontal and Compact */
+/* Item Hub Card - Expanded Height */
 .item-hub-card {
   background-color: #fcfdfed9;
   border: 1px solid #e5e7eb;
@@ -34,7 +34,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  height: 80px; /* Very compact height */
+  height: 121px; /* Expanded height for case details */
 }
 
 .item-hub-card:hover {
@@ -58,7 +58,41 @@
   min-width: 0; /* Allow text truncation */
   display: flex;
   flex-direction: column;
+  gap: 6px;
+}
+
+/* Case Details Section */
+.case-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.case-detail-item {
+  display: flex;
+  align-items: center;
   gap: 4px;
+  font-size: 11px;
+}
+
+.case-detail-icon {
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.case-detail-label {
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #6b7280;
+}
+
+.case-detail-value {
+  font-weight: 500;
+  font-size: 10px;
+  color: #374151;
 }
 
 .item-title {
