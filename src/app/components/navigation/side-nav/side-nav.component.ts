@@ -332,7 +332,7 @@ export class SideNavComponent implements OnInit {
   }
 
   // Close all history dropdowns
-  private closeAllHistoryDropdowns(): void {
+  closeAllHistoryDropdowns(): void {
     const historyNavItem = this.findHistoryNavItem();
     if (historyNavItem && historyNavItem.children) {
       historyNavItem.children.forEach(child => {

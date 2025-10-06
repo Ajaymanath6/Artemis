@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
+import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { AlllisthubLayoutComponent } from '../../layouts/alllisthub-layout/alllisthub-layout.component';
 import { CasesHubLayoutComponent } from '../../layouts/cases-hub-layout/cases-hub-layout.component';
 import { AttorneyHubLayoutComponent } from '../../layouts/attorney-hub-layout/attorney-hub-layout.component';
@@ -16,6 +17,7 @@ import { PartiesHubLayoutComponent } from '../../layouts/parties-hub-layout/part
     CommonModule, 
     SideNavComponent, 
     AppHeaderComponent,
+    CasesLayoutComponent,
     AlllisthubLayoutComponent,
     CasesHubLayoutComponent,
     AttorneyHubLayoutComponent,
@@ -60,12 +62,14 @@ export class CaseHubComponent implements OnInit {
     console.log('Active tab set to:', tabId);
   }
 
-  // Header methods (same as cases page)
-  onProjectClick(): void {
-    console.log('Project clicked');
+  // Action button methods
+  onAddList(): void {
+    console.log('Add List clicked');
+    // Add functionality to create new list
   }
 
-  onSearchQueryClick(): void {
-    console.log('Search query clicked');
+  onImportCase(): void {
+    console.log('Import Case clicked');
+    // Add functionality to import case
   }
 }

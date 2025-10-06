@@ -329,18 +329,21 @@ img {
   bottom: 0;
   z-index: 9999;
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: all;
 }
 
 .dropdown-menu {
+  position: absolute;
+  top: 50%;
+  left: 220px; /* Closer to the 3-dots */
+  transform: translateY(-50%);
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  min-width: 200px;
+  min-width: 180px;
+  width: auto; /* Allow content to determine width */
+  max-width: 280px;
   overflow: hidden;
   animation: dropdownFadeIn 0.2s ease-out;
 }
@@ -348,11 +351,11 @@ img {
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(-10px);
+    transform: translateY(-50%) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(-50%) scale(1);
   }
 }
 

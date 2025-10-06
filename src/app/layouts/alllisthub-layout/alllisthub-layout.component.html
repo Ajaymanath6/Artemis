@@ -1,45 +1,44 @@
 <!-- All List Hub Layout Content -->
 <div class="alllisthub-content-wrapper">
   
-  <!-- Bookmarked Items Grid -->
-  <div class="alllisthub-grid">
+  <!-- Bookmarked Items List -->
+  <div class="alllisthub-list">
     <div *ngFor="let item of bookmarkedItems" 
          class="item-hub-card" 
          (click)="onItemClick(item)">
       
-      <!-- Card Header with Title and Type Badge -->
-      <div class="card-header">
-        <div class="title-section">
-          <h3 class="item-title">{{ item.title }}</h3>
+      <!-- Card Content - Horizontal Layout -->
+      <div class="card-content">
+        <!-- Left Side - Type Badge -->
+        <div class="card-type">
           <div class="type-badge">
             <i [class]="getTypeIcon(item.type)"></i>
             <span>{{ getTypeLabel(item.type) }}</span>
           </div>
         </div>
-      </div>
-
-      <!-- Card Body with Description -->
-      <div class="card-body">
-        <p class="item-description">{{ item.description }}</p>
-      </div>
-
-      <!-- Card Footer with Project Info and Bookmark -->
-      <div class="card-footer">
-        <div class="footer-content">
-          <!-- Project Label -->
-          <div class="project-info">
-            <span class="project-label">Project: {{ item.projectName }}</span>
+        
+        <!-- Middle - Main Content -->
+        <div class="card-main">
+          <h3 class="item-title">{{ item.title }}</h3>
+          <p class="item-description">{{ item.description }}</p>
+          <span class="project-label"><span class="project-prefix">Project:</span> <span class="project-name">{{ item.projectName }}</span></span>
+        </div>
+        
+        <!-- Right Side - Actions -->
+        <div class="card-actions">
+          <!-- Document Count Badge -->
+          <div class="flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm document-badge">
+            <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+            <span class="text-xs text-gray-700 font-medium">{{ item.documentCount || 2 }}</span>
           </div>
           
-          <!-- Bookmark Icon -->
-          <div class="bookmark-section">
-            <button 
-              (click)="onRemoveBookmark(item, $event)"
-              class="bookmark-button"
-              title="Remove from bookmarks">
-              <i class="ri-bookmark-fill bookmark-icon"></i>
-            </button>
-          </div>
+          <!-- Bookmark Button -->
+          <button 
+            (click)="onRemoveBookmark(item, $event)"
+            class="bookmark-button"
+            title="Remove from bookmarks">
+            <i class="ri-bookmark-fill bookmark-icon"></i>
+          </button>
         </div>
       </div>
     </div>

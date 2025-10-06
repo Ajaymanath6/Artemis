@@ -1,71 +1,117 @@
-<!-- Case Hub Page with Layout -->
-<div class="min-h-screen">
+<!-- Case Hub Page - Main Container -->
+<div class="case-detail-container">
   
-  <!-- Side Navigation - Fixed Full Height -->
+  <!-- Left Side: Side Navigation Bar -->
   <app-side-nav
     [isCollapsed]="isSidebarCollapsed"
-    (itemClick)="onNavItemClick($event)"
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-  <!-- Main Content Container -->
+  <!-- Right Side: Main Content Container -->
   <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
     
-    <!-- App Header -->
-    <app-header 
-      [showUserProfile]="true"
-      [showCollapseButton]="isSidebarCollapsed"
-      [projectName]="'NY Judgment Tracking'"
-      (collapseToggle)="onSidebarToggle()"
-      (projectClick)="onProjectClick()"
-      (searchQueryClick)="onSearchQueryClick()">
-    </app-header>
-    
-    <!-- Tab Navigation Section -->
-    <div class="tab-section">
-      <div class="tab-container">
-        <nav class="tab-navigation">
-          <div class="tab-list">
-            <button
-              *ngFor="let tab of tabs"
-              (click)="setActiveTab(tab.id)"
-              class="tab-button"
-              [class.active]="activeTab === tab.id">
-              {{ tab.label }}
-            </button>
+    <!-- Top Part: App Header Component Container -->
+    <div class="header-container">
+      <!-- App Header -->
+      <app-header 
+        [showUserProfile]="true"
+        [showCollapseButton]="isSidebarCollapsed"
+        [showBackButton]="false"
+        (collapseToggle)="onSidebarToggle()">
+      </app-header>
+      
+      <!-- Case Meta Section -->
+      <div class="case-meta-section">
+        <div class="case-meta-content">
+          <!-- Case Information Column -->
+          <div class="case-info-column">
+            <!-- Case Hub Title -->
+            <h1 class="case-title">Case Hub</h1>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                  <button 
+                    (click)="onAddList()"
+                    class="action-button">
+                    <i class="ri-add-line text-lg mr-2"></i>
+                    Add to list
+                  </button>
+                  <button 
+                    (click)="onImportCase()"
+                    class="action-button">
+                    <i class="ri-file-add-line text-lg mr-2"></i>
+                    Import case
+                  </button>
+                </div>
+                
+                <!-- Last Updated Time -->
+                <div class="flex items-center space-x-2 text-gray-500 text-sm">
+                  <i class="ri-refresh-line text-sm"></i>
+                  <span>updated 18 min ago</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </nav>
+
+          <!-- Tab Navigation -->
+          <div class="tab-navigation">
+            <nav class="-mb-px flex space-x-8">
+              <button
+                *ngFor="let tab of tabs"
+                (click)="setActiveTab(tab.id)"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
+                [class]="activeTab === tab.id 
+                  ? 'border-brand text-brand' 
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
+                {{ tab.label }}
+              </button>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Tab Content -->
-    <div class="content-container">
+    <!-- Main Content Area (Cases Layout Style) -->
+    <div class="flex flex-col min-h-screen bg-cases-page">
       
-      <!-- All Tab Content -->
-      <div *ngIf="activeTab === 'all'">
-        <app-alllisthub-layout></app-alllisthub-layout>
-      </div>
+      <!-- Results Section -->
+      <app-cases-layout [viewMode]="'grid'">
+        
+        <!-- Tab Content -->
+        <div class="cases-grid">
+          
+          <!-- All Tab Content -->
+          <div *ngIf="activeTab === 'all'">
+            <app-alllisthub-layout></app-alllisthub-layout>
+          </div>
 
-      <!-- Cases Tab Content -->
-      <div *ngIf="activeTab === 'cases'">
-        <app-cases-hub-layout></app-cases-hub-layout>
-      </div>
+          <!-- Cases Tab Content -->
+          <div *ngIf="activeTab === 'cases'">
+            <app-cases-hub-layout></app-cases-hub-layout>
+          </div>
 
-      <!-- Attorneys Tab Content -->
-      <div *ngIf="activeTab === 'attorneys'">
-        <app-attorney-hub-layout></app-attorney-hub-layout>
-      </div>
+          <!-- Attorneys Tab Content -->
+          <div *ngIf="activeTab === 'attorneys'">
+            <app-attorney-hub-layout></app-attorney-hub-layout>
+          </div>
 
-      <!-- Judges Tab Content -->
-      <div *ngIf="activeTab === 'judges'">
-        <app-judges-hub-layout></app-judges-hub-layout>
-      </div>
+          <!-- Judges Tab Content -->
+          <div *ngIf="activeTab === 'judges'">
+            <app-judges-hub-layout></app-judges-hub-layout>
+          </div>
 
-      <!-- Parties Tab Content -->
-      <div *ngIf="activeTab === 'parties'">
-        <app-parties-hub-layout></app-parties-hub-layout>
-      </div>
+          <!-- Parties Tab Content -->
+          <div *ngIf="activeTab === 'parties'">
+            <app-parties-hub-layout></app-parties-hub-layout>
+          </div>
 
+        </div>
+        
+      </app-cases-layout>
+      
     </div>
   </div>
 </div>
+  

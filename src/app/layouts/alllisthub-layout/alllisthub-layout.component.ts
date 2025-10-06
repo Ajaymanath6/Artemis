@@ -8,6 +8,7 @@ interface BookmarkedItem {
   projectName: string;
   bookmarkedDate: string;
   type: 'case' | 'attorney' | 'judge' | 'party';
+  documentCount?: number;
 }
 
 @Component({

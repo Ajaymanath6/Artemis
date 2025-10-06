@@ -7,33 +7,47 @@
          class="case-hub-card" 
          (click)="onCaseClick(case)">
       
-      <!-- Card Header with Title -->
+      <!-- Card Header -->
       <div class="card-header">
-        <h3 class="case-title">{{ case.title }}</h3>
+        <div class="case-title-row">
+          <h3 class="case-title">{{ case.title }}</h3>
+        </div>
+        <div class="case-meta-row">
+          <span>Filed {{ case.date || 'Jan 15, 2024' }}</span>
+          <span class="separator">·</span>
+          <span>{{ case.court || 'California Superior Court' }}</span>
+        </div>
       </div>
 
-      <!-- Card Body with Description -->
+      <!-- Card Body -->
       <div class="card-body">
         <p class="case-description">{{ case.description }}</p>
       </div>
 
-      <!-- Card Footer with Project Info and Bookmark -->
+      <!-- Card Footer -->
       <div class="card-footer">
-        <div class="footer-content">
-          <!-- Project Label -->
-          <div class="project-info">
-            <span class="project-label">Project: {{ case.projectName }}</span>
+        <div class="footer-left">
+          <div class="case-badges">
+            <span class="badge judge-badge">JUDGE: {{ case.judge || 'Steven Thomas' }}</span>
+            <span class="badge status-badge">STATUS: {{ case.status || 'Pending' }}</span>
+            <span class="badge type-badge">TYPE: {{ case.type || 'Civil' }}</span>
+            <span class="badge court-badge">COURT: {{ case.court || 'Superior' }}</span>
+          </div>
+        </div>
+        <div class="footer-right">
+          <!-- Document Count Badge -->
+          <div class="file-actions-badge">
+            <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+            <span class="text-xs text-gray-700 font-medium">{{ case.documentCount || 3 }}</span>
           </div>
           
-          <!-- Bookmark Icon -->
-          <div class="bookmark-section">
-            <button 
-              (click)="onRemoveBookmark(case, $event)"
-              class="bookmark-button"
-              title="Remove from bookmarks">
-              <i class="ri-bookmark-fill bookmark-icon"></i>
-            </button>
-          </div>
+          <!-- Bookmark Button -->
+          <button 
+            (click)="onRemoveBookmark(case, $event)"
+            class="bookmark-button"
+            title="Remove from bookmarks">
+            <i class="ri-bookmark-fill bookmark-icon"></i>
+          </button>
         </div>
       </div>
     </div>

@@ -151,8 +151,9 @@
 
                       <!-- Dropdown Menu -->
                       <div *ngIf="historyItem.isDropdownOpen" 
-                           class="dropdown-overlay">
-                        <div class="dropdown-menu">
+                           class="dropdown-overlay"
+                           (click)="closeAllHistoryDropdowns()">
+                        <div class="dropdown-menu" (click)="$event.stopPropagation()">
                           <button
                             (click)="addToCaseHub(historyItem, $event)"
                             class="dropdown-item">

@@ -7,6 +7,12 @@ interface BookmarkedCase {
   description: string;
   projectName: string;
   bookmarkedDate: string;
+  documentCount?: number;
+  date?: string;
+  court?: string;
+  judge?: string;
+  status?: string;
+  type?: string;
 }
 
 @Component({
