@@ -58,11 +58,11 @@
 .case-title {
   font-size: 18px;
   font-weight: 600;
-  color: #111827;
+  color: #146B85; /* Main CTA color */
   line-height: 1.4;
   margin: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: text-decoration 0.2s ease;
 }
 
 .case-hub-card:hover .case-title {

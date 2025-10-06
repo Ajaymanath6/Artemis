@@ -8,16 +8,8 @@
          (click)="onItemClick(item)">
       
       <!-- Card Content - Horizontal Layout -->
-      <div class="card-content">
-        <!-- Left Side - Type Badge -->
-        <div class="card-type">
-          <div class="type-badge">
-            <i [class]="getTypeIcon(item.type)"></i>
-            <span>{{ getTypeLabel(item.type) }}</span>
-          </div>
-        </div>
-        
-        <!-- Middle - Main Content -->
+      <div class="card-content">        
+        <!-- Main Content -->
         <div class="card-main">
           <h3 class="item-title">{{ item.title }}</h3>
           <p class="item-description">{{ item.description }}</p>
