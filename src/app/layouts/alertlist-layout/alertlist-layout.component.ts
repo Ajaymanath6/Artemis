@@ -13,9 +13,16 @@ export class AlertlistLayoutComponent {
   // Alert panel state
   @Input() isAlertPanelCollapsed: boolean = false;
   
+  // Search state inputs
+  @Input() isSearching: boolean = false;
+  @Input() evaluatedCount: number = 0;
+  @Input() totalCount: number = 8000;
+  @Input() shouldUpdateAlertHeader: boolean = false;
+  
   // Alert panel management
   @Output() closeAlert = new EventEmitter<void>();
   @Output() saveAlert = new EventEmitter<any>();
+  @Output() researchQuestionChanged = new EventEmitter<string>();
 
   // Alert panel methods
   onCloseAlert(): void {
@@ -25,5 +32,9 @@ export class AlertlistLayoutComponent {
   onSaveAlert(alertData: any): void {
     console.log('Alert data from layout:', alertData);
     this.saveAlert.emit(alertData);
+  }
+
+  onResearchQuestionChanged(researchQuestion: string): void {
+    this.researchQuestionChanged.emit(researchQuestion);
   }
 }

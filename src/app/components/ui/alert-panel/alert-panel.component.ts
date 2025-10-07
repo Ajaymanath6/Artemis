@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,12 +15,14 @@ interface AlertData {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './alert-panel.component.html',
-  styleUrls: ['./alert-panel.component.css']
+  styleUrls: []
 })
-export class AlertPanelComponent implements OnInit {
+export class AlertPanelComponent implements OnInit, OnChanges {
   @Input() isStatic: boolean = false; // If true, panel is part of layout, not overlay
+  @Input() shouldUpdateHeader: boolean = false; // Trigger to update header
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<AlertData>();
+  @Output() researchQuestionChanged = new EventEmitter<string>();
 
   // Alert form data
   alertData: AlertData = {
@@ -44,6 +46,12 @@ export class AlertPanelComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Alert Panel initialized');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['shouldUpdateHeader'] && changes['shouldUpdateHeader'].currentValue) {
+      this.updateHeaderTitle();
+    }
   }
 
   onClose(): void {
@@ -108,5 +116,29 @@ export class AlertPanelComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  // Method to get current research question
+  getCurrentResearchQuestion(): string {
+    return this.alertData.researchQuestion.trim();
+  }
+
+  // Method to trigger when research question changes
+  onResearchQuestionChange(): void {
+    this.researchQuestionChanged.emit(this.alertData.researchQuestion.trim());
+  }
+
+  // Store the header title that only changes when Create Alert is clicked
+  private headerTitle: string = 'New alert';
+
+  // Get header title 
+  getHeaderTitle(): string {
+    return this.headerTitle;
+  }
+
+  // Update header title (called when Create Alert is clicked)
+  updateHeaderTitle(): void {
+    const researchQuestion = this.alertData.researchQuestion.trim();
+    this.headerTitle = researchQuestion || 'New alert';
   }
 }

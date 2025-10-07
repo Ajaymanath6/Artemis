@@ -1,139 +1,159 @@
 <!-- Alert Panel Container -->
-<div class="alert-panel" [class.static]="isStatic">
+<div class="w-full h-full bg-white border-l border-gray-200 flex flex-col flex-shrink-0 overflow-hidden" 
+     [class]="isStatic ? 'static h-full w-96 border-l border-gray-200 flex-shrink-0 overflow-hidden' : ''">
   
   <!-- Panel Header -->
-  <div class="panel-header">
-    <h2 class="panel-title">Alerts</h2>
+  <div class="px-4 py-2 border-b border-gray-200 bg-gray-50 flex items-center justify-between flex-shrink-0 min-h-[60px]">
+    <h2 class="text-xl font-semibold text-gray-900 m-0">{{ getHeaderTitle() }}</h2>
     <button 
       (click)="onClose()" 
-      class="close-button"
+      class="bg-transparent border-none cursor-pointer p-2 rounded-md text-gray-500 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700"
       title="Close panel">
-      <i class="ri-close-line"></i>
+      <i class="ri-close-line text-xl"></i>
     </button>
   </div>
 
   <!-- Panel Content -->
-  <div class="panel-content">
+  <div class="flex-1 overflow-y-auto p-4 min-h-0">
     
     <!-- Research Question Section -->
-    <div class="form-section">
-      <label class="form-label">Research Question</label>
+    <div class="mb-5">
+      <label class="block text-xs font-semibold text-gray-700 mb-2">Research Question</label>
       <textarea 
         [(ngModel)]="alertData.researchQuestion"
         placeholder="Enter your research question..."
         rows="2"
-        class="form-textarea">
+        class="w-full p-2 border border-gray-300 rounded-lg text-xs text-gray-900 transition-colors focus:outline-none focus:border-[#146B85] focus:ring-3 focus:ring-[#146B85]/10 resize-vertical min-h-[3rem] box-border"
+        (input)="onResearchQuestionChange()">
       </textarea>
     </div>
     
     <!-- Alert Name Section -->
-    <div class="form-section">
-      <label class="form-label">Name your Alert</label>
+    <div class="mb-5">
+      <label class="block text-xs font-semibold text-gray-700 mb-2">Name your Alert</label>
       <input 
         type="text"
         [(ngModel)]="alertData.name"
         placeholder="Enter alert name..."
-        class="form-input">
+        class="w-full p-2 border border-gray-300 rounded-lg text-xs text-gray-900 transition-colors focus:outline-none focus:border-[#146B85] focus:ring-3 focus:ring-[#146B85]/10 box-border placeholder:text-gray-400">
     </div>
 
     <!-- When to Receive Alert Section -->
-    <div class="form-section">
-      <label class="form-label">When do you want to receive alert</label>
+    <div class="mb-5">
+      <label class="block text-xs font-semibold text-gray-700 mb-2">When do you want to receive alert</label>
       
       <!-- Daily Summary Option -->
-      <div class="radio-option" (click)="onFrequencyChange('daily')">
-        <div class="radio-button">
+      <div class="flex items-start p-4 border border-gray-200 rounded-lg mb-3 cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-300" 
+           (click)="onFrequencyChange('daily')">
+        <div class="relative mr-3 mt-0.5">
           <input 
             type="radio"
             name="frequency"
             value="daily"
             [checked]="alertData.frequency === 'daily'"
             (change)="onFrequencyChange('daily')"
-            class="radio-input">
-          <div class="radio-indicator"></div>
+            class="opacity-0 absolute pointer-events-none">
+          <div class="w-4 h-4 border-2 rounded-full bg-white transition-all duration-200 relative flex items-center justify-center"
+               [class]="alertData.frequency === 'daily' ? 'border-[#146B85] bg-[#146B85]' : 'border-gray-300 bg-white'">
+            <div *ngIf="alertData.frequency === 'daily'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
         </div>
-        <div class="radio-content">
-          <div class="radio-title">Daily Summary</div>
-          <div class="radio-description">{{ getFrequencyDescription('daily') }}</div>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-900 mb-1">Daily Summary</div>
+          <div class="text-xs text-gray-500 leading-tight">{{ getFrequencyDescription('daily') }}</div>
         </div>
       </div>
 
       <!-- Immediate Option -->
-      <div class="radio-option" (click)="onFrequencyChange('immediate')">
-        <div class="radio-button">
+      <div class="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-300" 
+           (click)="onFrequencyChange('immediate')">
+        <div class="relative mr-3 mt-0.5">
           <input 
             type="radio"
             name="frequency"
             value="immediate"
             [checked]="alertData.frequency === 'immediate'"
             (change)="onFrequencyChange('immediate')"
-            class="radio-input">
-          <div class="radio-indicator"></div>
+            class="opacity-0 absolute pointer-events-none">
+          <div class="w-4 h-4 border-2 rounded-full bg-white transition-all duration-200 relative flex items-center justify-center"
+               [class]="alertData.frequency === 'immediate' ? 'border-[#146B85] bg-[#146B85]' : 'border-gray-300 bg-white'">
+            <div *ngIf="alertData.frequency === 'immediate'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
         </div>
-        <div class="radio-content">
-          <div class="radio-title">Immediately when found</div>
-          <div class="radio-description">{{ getFrequencyDescription('immediate') }}</div>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-900 mb-1">Immediately when found</div>
+          <div class="text-xs text-gray-500 leading-tight">{{ getFrequencyDescription('immediate') }}</div>
         </div>
       </div>
     </div>
 
     <!-- Who Should Receive Alerts Section -->
-    <div class="form-section">
-      <label class="form-label">Who should receive the alerts?</label>
+    <div class="mb-0">
+      <label class="block text-xs font-semibold text-gray-700 mb-2">Who should receive the alerts?</label>
       
       <!-- Everyone Option -->
-      <div class="radio-option" (click)="onRecipientsChange('everyone')">
-        <div class="radio-button">
+      <div class="flex items-start p-4 border border-gray-200 rounded-lg mb-3 cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-300" 
+           (click)="onRecipientsChange('everyone')">
+        <div class="relative mr-3 mt-0.5">
           <input 
             type="radio"
             name="recipients"
             value="everyone"
             [checked]="alertData.recipients === 'everyone'"
             (change)="onRecipientsChange('everyone')"
-            class="radio-input">
-          <div class="radio-indicator"></div>
+            class="opacity-0 absolute pointer-events-none">
+          <div class="w-4 h-4 border-2 rounded-full bg-white transition-all duration-200 relative flex items-center justify-center"
+               [class]="alertData.recipients === 'everyone' ? 'border-[#146B85] bg-[#146B85]' : 'border-gray-300 bg-white'">
+            <div *ngIf="alertData.recipients === 'everyone'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
         </div>
-        <div class="radio-content">
-          <div class="radio-title">Everyone on the project</div>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-900">Everyone on the project</div>
         </div>
       </div>
 
       <!-- Pick Recipients Option -->
-      <div class="radio-option" (click)="onRecipientsChange('selected')">
-        <div class="radio-button">
+      <div class="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-300"
+           [class]="alertData.recipients === 'selected' ? 'mb-0' : 'mb-0'" 
+           (click)="onRecipientsChange('selected')">
+        <div class="relative mr-3 mt-0.5">
           <input 
             type="radio"
             name="recipients"
             value="selected"
             [checked]="alertData.recipients === 'selected'"
             (change)="onRecipientsChange('selected')"
-            class="radio-input">
-          <div class="radio-indicator"></div>
+            class="opacity-0 absolute pointer-events-none">
+          <div class="w-4 h-4 border-2 rounded-full bg-white transition-all duration-200 relative flex items-center justify-center"
+               [class]="alertData.recipients === 'selected' ? 'border-[#146B85] bg-[#146B85]' : 'border-gray-300 bg-white'">
+            <div *ngIf="alertData.recipients === 'selected'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
         </div>
-        <div class="radio-content">
-          <div class="radio-title">Pick who should receive them...</div>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-900">Pick who should receive them...</div>
         </div>
       </div>
 
       <!-- Team Member Selection (when "selected" is chosen) -->
-      <div *ngIf="alertData.recipients === 'selected'" class="member-selection">
-        <div class="member-list">
+      <div *ngIf="alertData.recipients === 'selected'" class="mt-4 pt-4 border-t border-gray-100">
+        <div class="space-y-2">
           <div 
             *ngFor="let member of teamMembers"
             (click)="onMemberToggle(member.id)"
-            class="member-item"
-            [class.selected]="isMemberSelected(member.id)">
-            <div class="member-avatar">
+            class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200 mb-2 hover:bg-gray-50 hover:border-gray-300"
+            [class]="isMemberSelected(member.id) ? 'bg-[#146B85]/5 border-[#146B85]' : 'bg-white border-gray-200'">
+            <div class="w-8 h-8 bg-[#146B85] text-white rounded-full flex items-center justify-center text-xs font-semibold mr-3">
               {{ member.avatar }}
             </div>
-            <div class="member-info">
-              <div class="member-name">{{ member.name }}</div>
-              <div class="member-email">{{ member.email }}</div>
+            <div class="flex-1">
+              <div class="text-sm font-medium text-gray-900 mb-0.5">{{ member.name }}</div>
+              <div class="text-xs text-gray-500">{{ member.email }}</div>
             </div>
-            <div class="member-checkbox">
+            <div class="w-6 h-6 border border-gray-300 rounded flex items-center justify-center bg-white transition-all duration-200"
+                 [class]="isMemberSelected(member.id) ? 'bg-[#146B85] border-[#146B85]' : 'bg-white border-gray-300'">
               <i 
-                class="ri-check-line"
-                [class.visible]="isMemberSelected(member.id)"></i>
+                class="ri-check-line text-sm text-white transition-opacity duration-200"
+                [class]="isMemberSelected(member.id) ? 'opacity-100' : 'opacity-0'"></i>
             </div>
           </div>
         </div>
@@ -143,15 +163,15 @@
   </div>
 
   <!-- Panel Footer -->
-  <div class="panel-footer">
+  <div class="px-6 py-6 border-t border-gray-200 flex gap-3 flex-shrink-0">
     <button 
       (click)="onCancel()" 
-      class="cancel-button">
+      class="flex-1 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-400">
       Cancel
     </button>
     <button 
       (click)="onSave()" 
-      class="save-button"
+      class="flex-1 px-6 py-3 bg-[#146B85] text-white border border-[#146B85] rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-[#0f5462] hover:border-[#0f5462] disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
       [disabled]="!isFormValid()">
       Save Alert
     </button>

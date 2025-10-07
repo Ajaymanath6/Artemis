@@ -33,11 +33,20 @@ export class AlertsComponent implements OnInit {
   // Search state
   searchQuery: string = '';
   isSearching: boolean = false;
+  currentResearchQuestion: string = '';
+  shouldUpdateAlertHeader: boolean = false;
+  searchState = {
+    isSearching: false,
+    evaluatedCount: 0,
+    totalCount: 8000
+  };
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log('Alerts page initialized');
+    // Set default search query to show in header
+    this.currentSearchQuery = '';
   }
 
   // Navigation methods
@@ -80,7 +89,27 @@ export class AlertsComponent implements OnInit {
   // Alert methods
   onCreateAlert(): void {
     console.log('Create alert clicked');
-    // Handle create alert functionality
+    console.log('Current research question:', this.currentResearchQuestion);
+    
+    // Don't update search bar, just trigger the spinner in alertlist layout
+    if (this.currentResearchQuestion.trim()) {
+      // Start the loading state for alertlist layout
+      this.searchState.isSearching = true;
+      this.searchState.evaluatedCount = 0;
+      
+      // Trigger alert panel header update
+      this.shouldUpdateAlertHeader = true;
+      
+      // Reset the trigger after a short delay
+      setTimeout(() => {
+        this.shouldUpdateAlertHeader = false;
+      }, 100);
+      
+      // Simulate the evaluation process
+      this.simulateEvaluation();
+    } else {
+      console.log('No research question to search with');
+    }
   }
 
   onCloseAlert(): void {
@@ -96,6 +125,38 @@ export class AlertsComponent implements OnInit {
   onAlertPanelToggle(): void {
     this.isAlertPanelCollapsed = !this.isAlertPanelCollapsed;
     console.log('Alert panel toggled:', this.isAlertPanelCollapsed ? 'collapsed' : 'expanded');
+  }
+
+  // Research question tracking
+  onResearchQuestionChanged(researchQuestion: string): void {
+    this.currentResearchQuestion = researchQuestion;
+    // Don't automatically update search query - only when Create Alert is clicked
+    console.log('Research question changed:', researchQuestion);
+  }
+
+  // Search state tracking
+  onSearchStateChanged(state: {isSearching: boolean, evaluatedCount: number, totalCount: number}): void {
+    this.searchState = state;
+    console.log('Search state changed:', state);
+  }
+
+  // Simulate evaluation process for alertlist layout
+  private simulateEvaluation(): void {
+    const interval = setInterval(() => {
+      this.searchState.evaluatedCount += Math.floor(Math.random() * 50) + 10; // Random increment between 10-60
+      
+      if (this.searchState.evaluatedCount >= this.searchState.totalCount) {
+        this.searchState.evaluatedCount = this.searchState.totalCount;
+        this.searchState.isSearching = false;
+        clearInterval(interval);
+      }
+    }, 200); // Update every 200ms
+    
+    // Stop after 3 seconds maximum
+    setTimeout(() => {
+      this.searchState.isSearching = false;
+      clearInterval(interval);
+    }, 3000);
   }
 
 }

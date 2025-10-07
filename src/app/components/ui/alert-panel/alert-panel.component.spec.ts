@@ -61,6 +61,7 @@ describe('AlertPanelComponent', () => {
     
     component.onSave();
     expect(component.save.emit).toHaveBeenCalledWith({
+      researchQuestion: '',
       name: 'Test Alert',
       frequency: 'daily',
       recipients: 'everyone',

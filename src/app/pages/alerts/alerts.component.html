@@ -25,16 +25,20 @@
     (expandSearch)="onExpandSearch()"
     (collapseSearch)="onCollapseSearch()"
     (createAlert)="onCreateAlert()"
-    (alertPanelToggle)="onAlertPanelToggle()">
+    (alertPanelToggle)="onAlertPanelToggle()"
+    (searchStateChanged)="onSearchStateChanged($event)">
   </app-header-compact>
 
-  <!-- Main Content Area with proper top margin -->
-  <div class="main-content-area" [class.sidebar-collapsed]="isSidebarCollapsed">
-    <!-- Alert List Layout (70/30 Split) -->
-    <app-alertlist-layout
-      [isAlertPanelCollapsed]="isAlertPanelCollapsed"
-      (closeAlert)="onCloseAlert()"
-      (saveAlert)="onSaveAlert($event)">
-    </app-alertlist-layout>
-  </div>
+  <!-- Alert List Layout (70/30 Split) -->
+  <app-alertlist-layout
+    [class.sidebar-collapsed]="isSidebarCollapsed"
+    [isAlertPanelCollapsed]="isAlertPanelCollapsed"
+    [isSearching]="searchState.isSearching"
+    [evaluatedCount]="searchState.evaluatedCount"
+    [totalCount]="searchState.totalCount"
+    [shouldUpdateAlertHeader]="shouldUpdateAlertHeader"
+    (closeAlert)="onCloseAlert()"
+    (saveAlert)="onSaveAlert($event)"
+    (researchQuestionChanged)="onResearchQuestionChanged($event)">
+  </app-alertlist-layout>
 </div>

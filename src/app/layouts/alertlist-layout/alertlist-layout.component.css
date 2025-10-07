@@ -4,9 +4,19 @@
   display: block;
   flex: 1;
   width: 100%; /* Take full width available */
+  margin-left: 206px; /* Default sidebar width */
+  margin-top: 185px; /* Space for fixed header */
+  margin-right: 0; /* No right margin to allow panel to reach edge */
+  padding-right: 0; /* No right padding to allow panel to reach edge */
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 140px); /* Full height minus header */
 }
 
-/* Main container with flex layout - 70/30 split */
+:host.sidebar-collapsed {
+  margin-left: 4rem; /* 64px - collapsed sidebar width */
+}
+
+/* Main container - Right Panel Only */
 .alertlist-layout-container {
   display: flex;
   flex: 1;
@@ -20,27 +30,28 @@
   box-sizing: border-box; /* Include padding/border in width calculation */
   margin: 0; /* Remove any margin */
   padding: 0; /* Remove any padding that could cause spacing */
+  justify-content: flex-end; /* Push content to the right */
 }
 
-/* Results Area (Left Side - Responsive Width) */
+/* Results Area - NOT USED (Only right panel shown)
 .results-area {
-  flex: 0 0 70%; /* Default 70% width */
+  flex: 0 0 70%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  min-width: 0; /* Allow flex item to shrink */
+  min-width: 0;
   background-color: #F8F8F8;
-  /* Ensure content fills the available height without overflow */
   min-height: 0;
   height: 100%;
-  margin: 0; /* No margins */
-  padding: 0; /* No padding */
-  transition: flex 0.3s ease; /* Smooth responsive transitions */
+  margin: 0;
+  padding: 0;
+  transition: flex 0.3s ease;
 }
+*/
 
-/* Alert Panel Area (Right Side - Responsive Width) */
+/* Alert Panel Area (Right Side Only - Full Edge) */
 .alert-panel-area {
-  flex: 0 0 30%; /* Default 30% width */
+  flex: 0 0 400px; /* Fixed width for consistency */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -50,56 +61,57 @@
   margin: 0; /* No margins */
   padding: 0; /* No padding */
   transition: all 0.3s ease; /* Smooth collapse animation */
+  margin-left: auto; /* Push to right edge */
 }
 
 /* Ultra-Wide Screen Optimizations */
 
 /* Large Desktop Screens (1440px+) */
 @media (min-width: 1440px) {
-  .results-area {
-    flex: 0 0 75%; /* 75% for better content space */
-  }
-  
   .alert-panel-area {
-    flex: 0 0 25%; /* 25% but constrained by max-width */
+    flex: 0 0 400px; /* Keep consistent width */
   }
 }
 
 /* Extra Large Screens (1920px+) */
 @media (min-width: 1920px) {
-  .alertlist-layout-container {
-    justify-content: center; /* Center the content */
-    max-width: 1600px; /* Optimal reading width */
-    margin: 0 auto; /* Center container */
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  :host {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* Align to right edge */
   }
   
-  .results-area {
-    flex: 0 0 calc(1200px - 320px); /* Fixed optimal width minus panel */
-    background-color: white;
-    border-radius: 12px 0 0 12px;
+  .alertlist-layout-container {
+    justify-content: flex-end; /* Push content to right */
+    max-width: none; /* Allow full width */
+    margin: 0; /* No centering */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
   }
   
   .alert-panel-area {
-    flex: 0 0 320px; /* Fixed optimal width for forms */
-    border-radius: 0 12px 12px 0;
+    flex: 0 0 400px; /* Fixed optimal width for forms */
+    border-radius: 12px 0 0 12px; /* Round left side only */
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 }
 
 /* Ultra-Wide Screens (2560px+) */
 @media (min-width: 2560px) {
-  .alertlist-layout-container {
-    max-width: 2000px; /* Wider container for ultra-wide */
+  :host {
+    padding: 3rem 0; /* Remove right padding to reach edge */
   }
   
-  .results-area {
-    flex: 0 0 calc(1600px - 400px); /* Optimal content width */
+  .alertlist-layout-container {
+    max-width: none; /* Allow full width */
   }
   
   .alert-panel-area {
-    flex: 0 0 400px; /* Wider panel for better form layout */
+    flex: 0 0 450px; /* Slightly wider panel for ultra-wide screens */
   }
 }
 
@@ -108,10 +120,11 @@
   display: none;
 }
 
-/* Results Area - Full Width When Panel Collapsed */
+/* Results Area Styles - NOT USED (Only right panel shown)
 .results-area.full-width {
-  flex: 0 0 100% !important; /* Take full width when panel is collapsed */
+  flex: 0 0 100% !important;
 }
+*/
 
 /* Container - Panel Collapsed State */
 .alertlist-layout-container.panel-collapsed {
@@ -346,28 +359,20 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  :host {
+    margin-left: 0; /* Remove sidebar margin on mobile */
+    margin-right: 0; /* No right margin */
+    padding-right: 0; /* No right padding */
+  }
+  
   .alertlist-layout-container {
-    flex-direction: column;
+    justify-content: flex-end; /* Keep panel on right */
   }
   
-  .results-area {
-    flex: 1;
-  }
-  
-      .alert-panel-area {
-        flex: 0 0 auto;
-        height: 40vh; /* Take less viewport space on mobile due to 30% width */
-      }
-  
-  .empty-state-container {
-    padding: 1rem;
-  }
-  
-  .empty-title {
-    font-size: 1.25rem;
-  }
-  
-  .empty-description {
-    font-size: 0.875rem;
+  .alert-panel-area {
+    flex: 0 0 100%; /* Full width on mobile */
+    min-width: 100%; /* Full width */
+    max-width: 100%; /* Full width */
+    margin-left: 0; /* Reset margin */
   }
 }

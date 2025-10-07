@@ -48,6 +48,18 @@
           </button>
         </div>
       </div>
+
+      <!-- Search Results Section - Below Search Bar -->
+      <div class="mt-4 px-4">
+        <!-- Search Query Display -->
+        <div *ngIf="currentSearchQuery || showDefaultContent" class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-gray-900">{{ currentSearchQuery || getDefaultSearchQuery() }}</h3>
+          <div class="text-sm text-gray-500">
+            <i class="ri-time-line mr-1"></i>
+            <span>Updated {{ lastUpdated }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

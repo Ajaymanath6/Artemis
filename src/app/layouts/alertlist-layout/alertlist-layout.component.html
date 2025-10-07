@@ -1,72 +1,24 @@
-<!-- Alert List Layout Container -->
-<div class="alertlist-layout-container" [class.panel-collapsed]="isAlertPanelCollapsed">
-  
-  <!-- Left Side: Results/Content Area (70% or 100% when panel collapsed) -->
-  <div class="results-area" [class.full-width]="isAlertPanelCollapsed">
-    <!-- Empty State Content for now -->
-    <div class="empty-state-container">
-      <div class="empty-state-content">
-        <div class="empty-icon-wrapper">
-          <i class="ri-notification-line empty-icon"></i>
-        </div>
-        <h2 class="empty-title">Create Smart Alerts for Your Cases</h2>
-        <p class="empty-description">
-          Stay ahead with intelligent notifications about case updates, document changes, and important developments. Configure your alerts to get the right information at the right time.
-        </p>
-        
-        <!-- Quick Action Cards for Wide Screens -->
-        <div class="quick-actions-grid">
-          <div class="quick-action-card">
-            <div class="action-icon">
-              <i class="ri-file-search-line"></i>
-            </div>
-            <h3 class="action-title">Document Updates</h3>
-            <p class="action-description">Get notified when new documents are filed or existing ones are modified</p>
-          </div>
-          
-          <div class="quick-action-card">
-            <div class="action-icon">
-              <i class="ri-calendar-event-line"></i>
-            </div>
-            <h3 class="action-title">Hearing Schedules</h3>
-            <p class="action-description">Receive alerts for upcoming hearings and court date changes</p>
-          </div>
-          
-          <div class="quick-action-card">
-            <div class="action-icon">
-              <i class="ri-user-line"></i>
-            </div>
-            <h3 class="action-title">Party Changes</h3>
-            <p class="action-description">Track when new parties are added or existing party information changes</p>
-          </div>
-          
-          <div class="quick-action-card">
-            <div class="action-icon">
-              <i class="ri-scales-line"></i>
-            </div>
-            <h3 class="action-title">Status Updates</h3>
-            <p class="action-description">Monitor case status changes and important procedural updates</p>
-          </div>
-        </div>
-        
-        <!-- Help Text for Wide Screens -->
-        <div class="help-section">
-          <p class="help-text">
-            <i class="ri-lightbulb-line"></i>
-            <strong>Pro Tip:</strong> Use the alert panel on the right to configure your first alert. You can create multiple alerts with different triggers and recipients.
-          </p>
-        </div>
-      </div>
+<!-- Alert List Layout - Right Panel Only -->
+<div class="alertlist-layout-container" 
+     [class.panel-collapsed]="isAlertPanelCollapsed">
+
+  <!-- Loading Spinner (Center) -->
+  <div *ngIf="isSearching" class="flex-1 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#146B85] mx-auto mb-4"></div>
+      <p class="text-gray-600">Evaluating {{ evaluatedCount }} of {{ totalCount }} cases...</p>
     </div>
   </div>
 
-  <!-- Right Side: Alert Panel (30% or hidden when collapsed) -->
-  <div class="alert-panel-area" [class.hidden]="isAlertPanelCollapsed" *ngIf="!isAlertPanelCollapsed">
+  <!-- Alert Panel Area (Right Side Only) -->
+  <div class="alert-panel-area" 
+       [class.hidden]="isAlertPanelCollapsed">
     <app-alert-panel
-      [isStatic]="true"
+      [shouldUpdateHeader]="shouldUpdateAlertHeader"
       (close)="onCloseAlert()"
-      (save)="onSaveAlert($event)">
+      (save)="onSaveAlert($event)"
+      (researchQuestionChanged)="onResearchQuestionChanged($event)">
     </app-alert-panel>
   </div>
-  
+
 </div>

@@ -21,6 +21,14 @@ export class AppHeaderCompactComponent {
   @Input() showButtonGroup: boolean = false; // Show Create Alert and Collapse button group
   @Input() isAlertPanelCollapsed: boolean = false; // Track alert panel state
   
+  // Search state properties
+  isSearching: boolean = false;
+  evaluatedCount: number = 0;
+  totalCount: number = 8000;
+  lastUpdated: string = '18 min. ago';
+  sortOption: string = 'Most recently published';
+  showDefaultContent: boolean = true;
+  
   // Header outputs
   @Output() sidebarToggle = new EventEmitter<void>();
   @Output() projectClick = new EventEmitter<void>();
@@ -34,6 +42,7 @@ export class AppHeaderCompactComponent {
   // Alert outputs
   @Output() createAlert = new EventEmitter<void>();
   @Output() alertPanelToggle = new EventEmitter<void>(); // New output for alert panel toggle
+  @Output() searchStateChanged = new EventEmitter<{isSearching: boolean, evaluatedCount: number, totalCount: number}>();
 
   onSidebarToggle(): void {
     this.sidebarToggle.emit();
@@ -48,7 +57,55 @@ export class AppHeaderCompactComponent {
   }
 
   onSearch(query: string): void {
+    this.currentSearchQuery = query;
+    this.isSearching = true;
+    this.evaluatedCount = 0;
+    
+    // Emit initial search state
+    this.searchStateChanged.emit({
+      isSearching: this.isSearching,
+      evaluatedCount: this.evaluatedCount,
+      totalCount: this.totalCount
+    });
+    
+    // Simulate progressive evaluation
+    this.simulateEvaluation();
+    
     this.search.emit(query);
+  }
+
+  private simulateEvaluation(): void {
+    const interval = setInterval(() => {
+      this.evaluatedCount += Math.floor(Math.random() * 50) + 10; // Random increment between 10-60
+      
+      if (this.evaluatedCount >= this.totalCount) {
+        this.evaluatedCount = this.totalCount;
+        this.isSearching = false;
+        this.searchStateChanged.emit({
+          isSearching: this.isSearching,
+          evaluatedCount: this.evaluatedCount,
+          totalCount: this.totalCount
+        });
+        clearInterval(interval);
+      } else {
+        this.searchStateChanged.emit({
+          isSearching: this.isSearching,
+          evaluatedCount: this.evaluatedCount,
+          totalCount: this.totalCount
+        });
+      }
+    }, 200); // Update every 200ms
+    
+    // Stop after 3 seconds maximum
+    setTimeout(() => {
+      this.isSearching = false;
+      this.searchStateChanged.emit({
+        isSearching: this.isSearching,
+        evaluatedCount: this.evaluatedCount,
+        totalCount: this.totalCount
+      });
+      clearInterval(interval);
+    }, 3000);
   }
 
   onExpandSearch(): void {
@@ -65,5 +122,9 @@ export class AppHeaderCompactComponent {
 
   onAlertPanelToggle(): void {
     this.alertPanelToggle.emit();
+  }
+
+  getDefaultSearchQuery(): string {
+    return 'New alert';
   }
 }
