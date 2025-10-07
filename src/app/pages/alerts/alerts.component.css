@@ -33,4 +33,29 @@
   width: calc(100vw - 4rem); /* Explicit width when collapsed */
 }
 
+/* Ultra-Wide Screen Enhancements */
+@media (min-width: 1920px) {
+  .main-content-area {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .main-content-area.sidebar-collapsed {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .main-content-area {
+    padding: 3rem 4rem;
+  }
+  
+  .main-content-area.sidebar-collapsed {
+    padding: 3rem 4rem;
+  }
+}
+
 
