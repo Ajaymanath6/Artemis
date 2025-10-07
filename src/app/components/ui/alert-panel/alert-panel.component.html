@@ -3,8 +3,8 @@
      [class]="isStatic ? 'static h-full w-96 border-l border-gray-200 flex-shrink-0 overflow-hidden' : ''">
   
   <!-- Panel Header -->
-  <div class="px-4 py-2 border-b border-gray-200 bg-gray-50 flex items-center justify-between flex-shrink-0 min-h-[60px]">
-    <h2 class="text-xl font-semibold text-gray-900 m-0">{{ getHeaderTitle() }}</h2>
+  <div class="px-4 py-1 border-b border-gray-200 bg-gray-50 flex items-center justify-between flex-shrink-0 min-h-[50px]">
+    <h2 class="text-xl font-semibold text-gray-900 m-0">Alerts</h2>
     <button 
       (click)="onClose()" 
       class="bg-transparent border-none cursor-pointer p-2 rounded-md text-gray-500 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700"
@@ -15,6 +15,29 @@
 
   <!-- Panel Content -->
   <div class="flex-1 overflow-y-auto p-4 min-h-0">
+    
+    <!-- New Alert Title -->
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
+    </div>
+    
+    <!-- Divider -->
+    <div class="border-t border-gray-200 mb-4"></div>
+    
+    <!-- Instant Email Alert Toggle -->
+    <div class="mb-5 flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium text-gray-900">Instant email alert</span>
+        <i class="ri-information-line text-gray-500 cursor-help" title="Get notified immediately when new cases match your criteria"></i>
+      </div>
+      <button 
+        class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#146B85] focus:ring-offset-2"
+        [class]="instantEmailEnabled ? 'bg-[#146B85]' : 'bg-gray-300'"
+        (click)="toggleInstantEmail()">
+        <span class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform"
+              [class]="instantEmailEnabled ? 'translate-x-5' : 'translate-x-1'"></span>
+      </button>
+    </div>
     
     <!-- Research Question Section -->
     <div class="mb-5">

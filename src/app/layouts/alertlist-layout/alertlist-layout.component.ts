@@ -19,6 +19,9 @@ export class AlertlistLayoutComponent {
   @Input() totalCount: number = 8000;
   @Input() shouldUpdateAlertHeader: boolean = false;
   
+  // Case count for table header
+  caseCount: number = 0;
+  
   // Alert panel management
   @Output() closeAlert = new EventEmitter<void>();
   @Output() saveAlert = new EventEmitter<any>();

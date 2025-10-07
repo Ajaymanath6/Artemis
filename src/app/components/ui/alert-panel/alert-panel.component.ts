@@ -41,6 +41,7 @@ export class AlertPanelComponent implements OnInit, OnChanges {
   ];
 
   selectedMembers: string[] = [];
+  instantEmailEnabled: boolean = false;
 
   constructor() {}
 
@@ -140,5 +141,11 @@ export class AlertPanelComponent implements OnInit, OnChanges {
   updateHeaderTitle(): void {
     const researchQuestion = this.alertData.researchQuestion.trim();
     this.headerTitle = researchQuestion || 'New alert';
+  }
+
+  // Toggle instant email alert
+  toggleInstantEmail(): void {
+    this.instantEmailEnabled = !this.instantEmailEnabled;
+    console.log('Instant email alert:', this.instantEmailEnabled ? 'enabled' : 'disabled');
   }
 }
