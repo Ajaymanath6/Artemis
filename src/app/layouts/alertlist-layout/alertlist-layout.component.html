@@ -3,26 +3,31 @@
      [class.panel-collapsed]="isAlertPanelCollapsed">
 
   <!-- Cases Table Area -->
-  <div class="flex-1 bg-white">
+  <div class="flex-1 bg-white ml-10 mr-2">
     <!-- Table Container -->
-    <div class="h-full border border-gray-200 rounded-lg overflow-hidden">
-      <!-- Table Header -->
-      <div class="bg-gray-50 border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-4">
-          <h3 class="text-sm font-semibold text-gray-900">Cases: {{ caseCount }}</h3>
-        </div>
-        <div class="text-sm font-semibold text-gray-900">Relevant cases</div>
-      </div>
-      
-      <!-- Column Headers -->
-      <div class="bg-gray-100 border-b border-gray-200 flex">
-        <div class="flex-1 px-4 py-2 text-xs font-semibold text-gray-700 uppercase tracking-wider" style="width: 70%">
-          Cases
-        </div>
-        <div class="px-4 py-2 text-xs font-semibold text-gray-700 uppercase tracking-wider text-right" style="width: 30%">
-          Relevance
-        </div>
-      </div>
+    <div class="h-full border border-gray-200 rounded-lg overflow-hidden ">
+            <!-- Default Two Column Table -->
+            <div class="bg-gray-100 border-b border-gray-200 flex">
+              <div class="flex-1 px-4 py-3 text-sm font-semibold text-gray-900 border-r border-gray-300" style="width: 70%">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span>Cases: {{ caseCount }}</span>
+                    <span *ngIf="getUnreadCount() > 0" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      {{ getUnreadCount() }} new
+                    </span>
+                    <button *ngIf="getUnreadCount() > 0" 
+                            (click)="markAllAsRead()"
+                            class="text-xs text-blue-600 hover:text-blue-800 underline cursor-pointer bg-transparent border-none">
+                      Mark all as read
+                    </button>
+                  </div>
+                  <span>Relevant cases</span>
+                </div>
+              </div>
+              <div class="px-4 py-3 text-sm font-semibold text-gray-900 text-center" style="width: 30%">
+                Relevance
+              </div>
+            </div>
       
       <!-- Table Content -->
       <div class="flex-1 h-full relative">
@@ -37,22 +42,221 @@
         <!-- Empty State -->
         <div *ngIf="!isSearching && caseCount === 0" class="absolute inset-0 flex items-center justify-center">
           <div class="text-center">
-            <i class="ri-file-search-line text-4xl text-gray-400 mb-4"></i>
             <p class="text-gray-600">Finish adding your alerts to see cases</p>
           </div>
         </div>
         
-        <!-- Case Cards (Left Column) -->
-        <div *ngIf="!isSearching && caseCount > 0" class="p-4 flex">
-          <div class="flex-1" style="width: 70%">
-            <!-- Case cards will go here -->
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <p class="text-gray-600">Case cards will appear here</p>
+        <!-- Case Cards After Loading -->
+        <div *ngIf="!isSearching && caseCount > 0" class="flex h-full">
+          <!-- Left Column - Case Cards (70%) -->
+          <div class="flex-1 p-4 border-r border-gray-200 overflow-y-auto" style="width: 70%">
+            <div class="space-y-4">
+              <!-- Case Card 1 - Has Unread Updates -->
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                   (click)="markAsRead(1)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1 flex items-start gap-2">
+                    <!-- Unread Indicator Dot -->
+                    <div *ngIf="isUnread(1)" class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-1">
+                        <h4 class="text-sm font-semibold text-gray-900">Smith v. Johnson Manufacturing Corp.</h4>
+                        <span *ngIf="isUnread(1)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          New
+                        </span>
+                      </div>
+                      <p class="text-xs text-gray-500">Case No: 2023-CV-1234 • Filed: Mar 15, 2023</p>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                  Product liability case involving manufacturing defects in industrial equipment. Plaintiff seeks damages for workplace injury.
+                </p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                  <span>Cook County Circuit Court</span>
+                  <span class="font-medium text-blue-600" *ngIf="isUnread(1)">Updated 2 hours ago</span>
+                  <span *ngIf="!isUnread(1)">Updated 2 days ago</span>
+                </div>
+              </div>
+
+              <!-- Case Card 2 - Has Unread Updates -->
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" 
+                   [class.bg-blue-50]="isUnread(2)"
+                   (click)="markAsRead(2)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1 flex items-start gap-2">
+                    <!-- Unread Indicator Dot -->
+                    <div *ngIf="isUnread(2)" class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-1">
+                        <h4 class="text-sm font-semibold text-gray-900">Wilson v. Tech Solutions Inc.</h4>
+                        <span *ngIf="isUnread(2)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                          Updated
+                        </span>
+                      </div>
+                      <p class="text-xs text-gray-500">Case No: 2023-CV-5678 • Filed: Apr 22, 2023</p>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      Discovery
+                    </span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                  Employment dispute regarding wrongful termination and breach of contract. Involves non-compete clause violations.
+                </p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                  <span>Federal District Court</span>
+                  <span class="font-medium text-blue-600" *ngIf="isUnread(2)">Updated 4 hours ago</span>
+                  <span *ngIf="!isUnread(2)">Updated 1 week ago</span>
+                </div>
+              </div>
+
+              <!-- Case Card 3 - Read (No unread indicator) -->
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                   (click)="markAsRead(3)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1 flex items-start gap-2">
+                    <div class="flex-1">
+                      <h4 class="text-sm font-semibold text-gray-900 mb-1">Davis v. Metropolitan Insurance</h4>
+                      <p class="text-xs text-gray-500">Case No: 2023-CV-9012 • Filed: Feb 8, 2023</p>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                      Settlement
+                    </span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                  Insurance coverage dispute involving denied claims for commercial property damage. Bad faith allegations included.
+                </p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                  <span>State Supreme Court</span>
+                  <span>Updated 3 days ago</span>
+                </div>
+              </div>
+
+              <!-- Case Card 4 - Has Unread Updates -->
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                   [class.bg-blue-50]="isUnread(4)"
+                   (click)="markAsRead(4)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1 flex items-start gap-2">
+                    <!-- Unread Indicator Dot -->
+                    <div *ngIf="isUnread(4)" class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-1">
+                        <h4 class="text-sm font-semibold text-gray-900">Brown v. City Municipal Authority</h4>
+                        <span *ngIf="isUnread(4)" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          New Update
+                        </span>
+                      </div>
+                      <p class="text-xs text-gray-500">Case No: 2023-CV-3456 • Filed: Jan 30, 2023</p>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                      Appeal
+                    </span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                  Civil rights violation case involving municipal policy enforcement. Constitutional claims under Section 1983.
+                </p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                  <span>Municipal Court</span>
+                  <span class="font-medium text-blue-600" *ngIf="isUnread(4)">Updated 1 hour ago</span>
+                  <span *ngIf="!isUnread(4)">Updated 5 days ago</span>
+                </div>
+              </div>
+
+              <!-- Case Card 5 - Read (No unread indicator) -->
+              <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                   (click)="markAsRead(5)">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1 flex items-start gap-2">
+                    <div class="flex-1">
+                      <h4 class="text-sm font-semibold text-gray-900 mb-1">Miller v. Healthcare Partners LLC</h4>
+                      <p class="text-xs text-gray-500">Case No: 2023-CV-7890 • Filed: May 12, 2023</p>
+                    </div>
+                  </div>
+                  <div class="ml-3">
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                      Trial
+                    </span>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                  Medical malpractice case involving surgical complications and informed consent issues. Expert testimony required.
+                </p>
+                <div class="flex items-center justify-between text-xs text-gray-500">
+                  <span>Superior Court</span>
+                  <span>Updated yesterday</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="px-4" style="width: 30%">
-            <!-- Relevance scores will go here -->
-            <div class="text-right text-gray-600">Relevance scores</div>
+
+          <!-- Right Column - Relevance Scores (30%) -->
+          <div class="p-4 overflow-y-auto" style="width: 30%">
+            <div class="space-y-4">
+              <!-- Relevance Score 1 -->
+              <div class="flex flex-col items-center justify-center h-24">
+                <div class="mb-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    92%
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 text-center">High relevance to product liability patterns</p>
+              </div>
+
+              <!-- Relevance Score 2 -->
+              <div class="flex flex-col items-center justify-center h-24">
+                <div class="mb-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                    87%
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 text-center">Strong match for employment disputes</p>
+              </div>
+
+              <!-- Relevance Score 3 -->
+              <div class="flex flex-col items-center justify-center h-24">
+                <div class="mb-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                    74%
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 text-center">Moderate relevance to insurance claims</p>
+              </div>
+
+              <!-- Relevance Score 4 -->
+              <div class="flex flex-col items-center justify-center h-24">
+                <div class="mb-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                    81%
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 text-center">Good alignment with civil rights cases</p>
+              </div>
+
+              <!-- Relevance Score 5 -->
+              <div class="flex flex-col items-center justify-center h-24">
+                <div class="mb-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                    89%
+                  </span>
+                </div>
+                <p class="text-xs text-gray-600 text-center">High match for medical malpractice</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

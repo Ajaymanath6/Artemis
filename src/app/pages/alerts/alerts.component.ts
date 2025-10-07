@@ -35,6 +35,7 @@ export class AlertsComponent implements OnInit {
   isSearching: boolean = false;
   currentResearchQuestion: string = '';
   shouldUpdateAlertHeader: boolean = false;
+  caseCount: number = 0;
   searchState = {
     isSearching: false,
     evaluatedCount: 0,
@@ -155,6 +156,7 @@ export class AlertsComponent implements OnInit {
     // Stop after 3 seconds maximum
     setTimeout(() => {
       this.searchState.isSearching = false;
+      this.caseCount = 5; // Set case count to show 5 cases after loading
       clearInterval(interval);
     }, 3000);
   }
