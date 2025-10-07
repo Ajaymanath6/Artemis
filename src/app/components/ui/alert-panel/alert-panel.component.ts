@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CaseData } from '../result-card/result-card.component';
 
 interface AlertData {
   researchQuestion: string;
@@ -20,9 +21,12 @@ interface AlertData {
 export class AlertPanelComponent implements OnInit, OnChanges {
   @Input() isStatic: boolean = false; // If true, panel is part of layout, not overlay
   @Input() shouldUpdateHeader: boolean = false; // Trigger to update header
+  @Input() showCaseDetail: boolean = false; // Show case detail view
+  @Input() selectedCase: CaseData | null = null; // Selected case data
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<AlertData>();
   @Output() researchQuestionChanged = new EventEmitter<string>();
+  @Output() backFromCaseDetail = new EventEmitter<void>();
 
   // Alert form data
   alertData: AlertData = {
@@ -79,6 +83,11 @@ export class AlertPanelComponent implements OnInit, OnChanges {
     this.selectedMembers = [];
     this.close.emit();
   }
+
+  onBackFromCaseDetail(): void {
+    this.backFromCaseDetail.emit();
+  }
+
 
   onFrequencyChange(frequency: 'daily' | 'immediate'): void {
     this.alertData.frequency = frequency;

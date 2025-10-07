@@ -47,7 +47,7 @@ export class AlertsComponent implements OnInit {
   ngOnInit(): void {
     console.log('Alerts page initialized');
     // Set default search query to show in header
-    this.currentSearchQuery = '';
+    this.currentSearchQuery = 'New alert';
   }
 
   // Navigation methods
@@ -92,6 +92,9 @@ export class AlertsComponent implements OnInit {
     console.log('Create alert clicked');
     console.log('Current research question:', this.currentResearchQuestion);
     
+    // Collapse the main sidebar when create alert is clicked
+    this.isSidebarCollapsed = true;
+    
     // Don't update search bar, just trigger the spinner in alertlist layout
     if (this.currentResearchQuestion.trim()) {
       // Start the loading state for alertlist layout
@@ -126,6 +129,12 @@ export class AlertsComponent implements OnInit {
   onAlertPanelToggle(): void {
     this.isAlertPanelCollapsed = !this.isAlertPanelCollapsed;
     console.log('Alert panel toggled:', this.isAlertPanelCollapsed ? 'collapsed' : 'expanded');
+  }
+
+  // Sidebar collapse request from alert layout
+  onSidebarCollapseRequested(): void {
+    this.isSidebarCollapsed = true;
+    console.log('Main sidebar collapsed from alert layout');
   }
 
   // Research question tracking

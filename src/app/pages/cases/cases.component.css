@@ -1033,7 +1033,7 @@
 
 /* Consistent card padding */
 .case-card {
-  padding: 1.5rem; /* 24px - consistent padding on all sides */
+  /* Padding now handled by Tailwind p-6 class in HTML */
 }
 
 /* Ensure consistent spacing */
@@ -1076,4 +1076,31 @@
 /* Global space-x-1 for other elements */
 .space-x-1 > * + * {
   margin-left: 0.25rem; /* 4px */
+}
+
+/* Limit results section height and add scroll */
+#results-section {
+  max-height: calc(100vh - 300px); /* Adjust based on header height */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+/* Custom scrollbar for webkit browsers */
+#results-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+#results-section::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+#results-section::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+#results-section::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }

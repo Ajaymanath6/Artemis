@@ -55,13 +55,14 @@
       (viewModeChange)="toggleViewMode($event)"
       (createAlert)="onCreateAlert()"
       (closeAlert)="onCloseAlertPanel()"
-      (saveAlert)="onSaveAlert($event)">
+      (saveAlert)="onSaveAlert($event)"
+      class="flex-1 min-h-0">
         <!-- Cases Content Area -->
           
           <!-- Skeleton Loader Cards (while loading) -->
           <div *ngIf="isSearching">
               <div *ngFor="let card of skeletonCards" 
-                   class="rounded-lg border-t border-b border-gray-200 p-6 bg-zinc-200 animate-pulse transition-all">
+                   class="border-b border-gray-200 p-6 bg-zinc-200 animate-pulse transition-all">
               
               <!-- Case Title Row -->
               <div class="flex items-start case-card-title">
@@ -109,11 +110,11 @@
             </div>
           </div>
 
-          <!-- Actual Results Cards (after loading) -->
-          <div *ngIf="!isSearching && showResults" id="results-section" (click)="closeAllFirstCardTooltips()">
+          <!-- Actual Results Cards (after loading) - Limited height with scroll -->
+          <div *ngIf="!isSearching && showResults" id="results-section" class="space-y-0" (click)="closeAllFirstCardTooltips()">
             
             <!-- Result Card 1 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight underline cursor-pointer"
@@ -213,7 +214,7 @@
             </div>
 
             <!-- Result Card 2 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -295,7 +296,7 @@
             </div>
 
             <!-- Result Card 3 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -376,7 +377,7 @@
               </div>
             </div>
 
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -458,7 +459,7 @@
             </div>
 
             <!-- Result Card 5 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -540,7 +541,7 @@
             </div>
 
             <!-- Result Card 6 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -622,7 +623,7 @@
             </div>
 
             <!-- Result Card 7 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -704,7 +705,7 @@
             </div>
 
             <!-- Result Card 8 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -786,7 +787,7 @@
             </div>
 
             <!-- Result Card 9 -->
-            <div class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"

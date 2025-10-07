@@ -33,6 +33,7 @@
   <app-alertlist-layout
     [class.sidebar-collapsed]="isSidebarCollapsed"
     [isAlertPanelCollapsed]="isAlertPanelCollapsed"
+    [isSidebarCollapsed]="isSidebarCollapsed"
     [isSearching]="searchState.isSearching"
     [evaluatedCount]="searchState.evaluatedCount"
     [totalCount]="searchState.totalCount"
@@ -40,6 +41,7 @@
     [shouldUpdateAlertHeader]="shouldUpdateAlertHeader"
     (closeAlert)="onCloseAlert()"
     (saveAlert)="onSaveAlert($event)"
-    (researchQuestionChanged)="onResearchQuestionChanged($event)">
+    (researchQuestionChanged)="onResearchQuestionChanged($event)"
+    (sidebarCollapseRequested)="onSidebarCollapseRequested()">
   </app-alertlist-layout>
 </div>

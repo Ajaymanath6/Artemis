@@ -20,6 +20,8 @@ export class CasesComponent implements OnInit, AfterViewInit {
   hasSearched: boolean = false;
   isSearchBarExpanded: boolean = false; // New property to track search bar expansion
   skeletonCards = Array(10).fill(0); // Create array for 10 skeleton cards
+  maxVisibleCards = 10; // Limit visible cards to 10
+  allCards = Array.from({length: 10}, (_, i) => i + 1); // Generate 10 cards
   isSidebarCollapsed: boolean = false;
   projectName: string = 'NY Judgment Tracking'; // Default project name
   currentSearchQuery: string = '';

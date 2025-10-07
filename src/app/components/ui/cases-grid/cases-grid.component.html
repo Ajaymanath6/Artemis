@@ -1,0 +1,11 @@
+<!-- Cases Grid Container with Scroll -->
+<div class="cases-grid-container">
+  <app-result-card 
+    *ngFor="let case of getFilteredCaseData(); let i = index" 
+    [caseData]="case"
+    class="case-card-item"
+    [class.border-bottom]="i < getFilteredCaseData().length - 1"
+    (click)="onResultCardClick(case)"
+    (markAsRead)="onResultCardMarkAsRead(case.id)">
+  </app-result-card>
+</div>

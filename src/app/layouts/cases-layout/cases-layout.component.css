@@ -24,6 +24,20 @@
   min-width: 0; /* Allow flex item to shrink */
 }
 
+/* Content centering when no alert panel - match search bar width exactly */
+.centered-content {
+  max-width: none; /* No max-width restriction */
+  margin: 0;
+  padding-left: 0; /* Remove padding - handled by scrollable area */
+  padding-right: 0; /* Remove padding - handled by scrollable area */
+}
+
+/* Content with alert panel */
+.with-panel-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Alert panel is now part of flex layout, so content automatically adjusts */
 
 /* Scrollable container */
@@ -33,6 +47,18 @@
 
 .overflow-y-auto {
   overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Scrollable content area below divider */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  scroll-behavior: smooth;
+  padding-bottom: 0; /* No padding */
+  padding-left: 0; /* No horizontal padding - handled by container */
+  padding-right: 0; /* No horizontal padding - handled by container */
 }
 
 /* Cases page specific background */

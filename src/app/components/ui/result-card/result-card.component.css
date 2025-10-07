@@ -1,0 +1,8 @@
+/* Case Card Styling */
+.case-card {
+  background-color: #FCFDFED9;
+}
+
+.case-card:hover {
+  background-color: white;
+}

@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertPanelComponent } from '../../components/ui/alert-panel/alert-panel.component';
+import { AlertRightPanelComponent } from '../../components/alert-right-panel/alert-right-panel.component';
 
 @Component({
   selector: 'app-cases-layout',
   standalone: true,
-  imports: [CommonModule, AlertPanelComponent],
+  imports: [CommonModule, AlertRightPanelComponent],
   templateUrl: './cases-layout.component.html',
   styleUrls: ['./cases-layout.component.css']
 })

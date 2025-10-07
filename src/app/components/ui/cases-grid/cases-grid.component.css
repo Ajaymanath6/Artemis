@@ -1,0 +1,82 @@
+/* Cases Grid Container Styles */
+
+.cases-grid-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0; /* Removed 16px padding */
+  gap: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+/* Webkit scrollbar styling */
+.cases-grid-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cases-grid-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.cases-grid-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.cases-grid-container::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Case Card Item Styling */
+.case-card-item {
+  flex-shrink: 0;
+  margin: 0; /* Remove all margins */
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.case-card-item:not(:last-child) {
+  margin-bottom: 0; /* No margin between cards */
+}
+
+/* Border Bottom Styling */
+.case-card-item.border-bottom {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0; /* Remove padding */
+  margin-bottom: 0; /* Remove margin */
+  border-radius: 8px 8px 0 0;
+}
+
+.case-card-item:last-child {
+  border-bottom: none;
+  border-radius: 8px;
+}
+
+/* Hover Effects - No drop shadow */
+.case-card-item:hover {
+  transform: translateY(-2px);
+  /* Removed box-shadow for no drop shadow */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cases-grid-container {
+    padding: 0; /* No padding on mobile either */
+  }
+  
+  .case-card-item {
+    margin: 0; /* No margin on mobile */
+  }
+  
+  .case-card-item:not(:last-child) {
+    margin-bottom: 0; /* No margin between cards */
+  }
+  
+  .case-card-item.border-bottom {
+    padding-bottom: 0; /* No padding */
+    margin-bottom: 0; /* No margin */
+  }
+}

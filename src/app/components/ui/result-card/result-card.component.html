@@ -1,0 +1,123 @@
+<!-- Result Card -->
+<div class="case-card cursor-pointer transition-colors border-l-4 border-transparent border-b border-gray-300 relative group min-h-24 p-4"
+     (click)="onCardClick()">
+  <div class="flex items-start justify-between">
+    <div class="flex-1 flex items-start gap-3">
+      
+      <div class="flex-1 min-w-0">
+        <!-- Case Title with Icon -->
+        <div class="flex items-center gap-2 mb-2">
+          <!-- Case Icon aligned with title -->
+          <i [class]="caseData.icon + ' text-[#146B85] text-lg flex-shrink-0'"></i>
+          <h4 class="text-sm font-semibold text-[#146B85] hover:underline cursor-pointer">
+            {{ caseData.title }}
+          </h4>
+          <span *ngIf="caseData.badge" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium" 
+                style="background-color: #E5E7EB; color: #374151;">
+            {{ caseData.badge }}
+          </span>
+        </div>
+        
+        <!-- Case Details - Horizontal Layout -->
+        <div class="text-xs text-gray-600 flex flex-wrap items-center gap-4 mb-3">
+          <div><span class="font-semibold">CASE ID:</span> {{ caseData.caseId }}</div>
+          <div><span class="font-semibold">COURT:</span> {{ caseData.court }}</div>
+          <div><span class="font-semibold">DATE:</span> {{ caseData.date }}</div>
+          <div><span class="font-semibold">TYPE:</span> {{ caseData.type }}</div>
+          <div class="flex items-center gap-2">
+            <span class="font-semibold">STATUS:</span> 
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium" 
+                  style="background-color: #E5E7EB; color: #374151;">
+              {{ caseData.status }}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Badges Section -->
+        <div class="flex flex-wrap gap-2 mb-2">
+          <!-- Judge Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge1">
+            <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
+            <div class="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge1:opacity-100 transition-opacity duration-300 pointer-events-none z-[99999] min-h-32 w-80" style="z-index: 99999;">
+              <div class="flex items-center mb-3">
+                <i class="ri-scales-3-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">JUDGE</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+            </div>
+          </span>
+          
+          <!-- Status Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2">
+            <i class="ri-check-line text-sm mr-2"></i>STATUS
+            <div class="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-[99999] min-h-32 w-80" style="z-index: 99999;">
+              <div class="flex items-center mb-3">
+                <i class="ri-check-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">STATUS</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+            </div>
+          </span>
+          
+          <!-- Type Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge3">
+            <i class="ri-file-text-line text-sm mr-2"></i>TYPE
+            <div class="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge3:opacity-100 transition-opacity duration-300 pointer-events-none z-[99999] min-h-32 w-80" style="z-index: 99999;">
+              <div class="flex items-center mb-3">
+                <i class="ri-file-text-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">TYPE</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+            </div>
+          </span>
+          
+          <!-- Court Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge4">
+            <i class="ri-government-line text-sm mr-2"></i>COURT
+            <div class="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge4:opacity-100 transition-opacity duration-300 pointer-events-none z-[99999] min-h-32 w-80" style="z-index: 99999;">
+              <div class="flex items-center mb-3">
+                <i class="ri-government-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">COURT</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- File Actions Badge (if enabled) -->
+  <div *ngIf="showFileActions" class="absolute bottom-2 right-2">
+    <!-- Default Badge (not on hover) -->
+    <div class="group-hover:hidden flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm">
+      <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+      <span class="text-xs text-gray-700 font-medium">2</span>
+    </div>
+    
+    <!-- Expanded Badge (on hover) -->
+    <div class="hidden group-hover:flex items-center space-x-1">
+      <!-- File Count Badge -->
+      <div class="flex items-center bg-white border border-gray-300 rounded-md px-2 py-1 shadow-sm">
+        <i class="ri-file-text-fill text-gray-600 text-sm mr-1"></i>
+        <span class="text-xs text-gray-700 font-medium">2</span>
+      </div>
+      
+      <!-- Set Tracker Button -->
+      <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tracker">
+        <i class="ri-time-line text-gray-600 text-lg"></i>
+        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tracker:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+          Set Tracker
+        </div>
+      </button>
+      
+      <!-- Add Tag Button -->
+      <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tag">
+        <i class="ri-price-tag-3-line text-gray-600 text-lg"></i>
+        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tag:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+          Add Tag
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

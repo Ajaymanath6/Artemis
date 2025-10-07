@@ -7,7 +7,7 @@
   margin-left: 206px; /* Default sidebar width */
   margin-top: 185px; /* Space for fixed header */
   margin-right: 0; /* No right margin to allow panel to reach edge */
-  padding-right: 0; /* No right padding to allow panel to reach edge */
+  padding-right: 24px; /* 24px right padding */
   transition: margin-left 0.3s ease;
   min-height: calc(100vh - 140px); /* Full height minus header */
 }
@@ -16,7 +16,7 @@
   margin-left: 4rem; /* 64px - collapsed sidebar width */
 }
 
-/* Main container - Right Panel Only */
+/* Main container - Alert Sidebar + Content + Right Panel */
 .alertlist-layout-container {
   display: flex;
   flex: 1;
@@ -30,7 +30,89 @@
   box-sizing: border-box; /* Include padding/border in width calculation */
   margin: 0; /* Remove any margin */
   padding: 0; /* Remove any padding that could cause spacing */
-  justify-content: flex-end; /* Push content to the right */
+}
+
+/* Content expansion when panel is collapsed - maximize middle div size */
+.alertlist-layout-container.panel-collapsed .flex-1 {
+  justify-content: flex-start; /* Left align instead of center */
+  padding: 0; /* Remove padding to allow full width expansion */
+  flex: 1; /* Take maximum available space */
+  margin-right: 0; /* No right margin when panel is collapsed */
+}
+
+/* Remove margins when panel is collapsed to maximize space */
+.alertlist-layout-container.panel-collapsed .flex-1 .cases-area-container {
+  margin: 0; /* Remove all margins */
+  padding-right: 20px; /* Add some padding to prevent touching the edge */
+}
+
+/* When panel is collapsed, make inner content expand to full width */
+.alertlist-layout-container.panel-collapsed .cases-area-container .max-w-7xl {
+  max-width: none; /* Remove width restriction when panel is collapsed */
+  padding-left: 0; /* Remove left padding */
+  padding-right: 0; /* Remove right padding */
+}
+
+/* Alert History Sidebar */
+.alert-history-sidebar {
+  flex: 0 0 240px; /* Fixed width sidebar */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  margin-right: 8px; /* 8px gap between sidebar and cases */
+  margin-left: 16px; /* 16px padding from left */
+  padding-left: 16px; /* Additional 16px padding inside */
+  border: none; /* Remove any borders */
+  box-shadow: none; /* Remove any shadows */
+  border-radius: 8px; /* Match table corner radius */
+}
+
+/* Hide alert history sidebar when main sidebar is collapsed (to save space) */
+:host.sidebar-collapsed .alert-history-sidebar {
+  flex: 0 0 200px; /* Slightly smaller when main sidebar is collapsed */
+}
+
+/* Case Card Styling */
+.case-card {
+  background-color: #FCFDFED9;
+}
+
+.case-card:hover {
+  background-color: white;
+}
+
+/* Cases Area Container - Match search bar width */
+.cases-area-container {
+  width: 100%;
+  border-radius: 8px; /* Match alert sidebar border radius */
+  overflow: hidden; /* Ensure border radius is visible */
+}
+
+/* Cases area when alert panel is collapsed - extend to full width */
+.cases-area-container.max-w-none {
+  max-width: none !important; /* Force no max-width restriction */
+  width: 100% !important; /* Take full available width */
+  flex: 1 !important; /* Take all available space */
+}
+
+/* Cases content should match search bar constraints */
+.cases-area-container .max-w-7xl {
+  max-width: 80rem; /* Same as search bar */
+  padding: 0; /* Remove all padding */
+}
+
+/* Cases Header with top border radius */
+.bg-gray-100.border-b {
+  border-radius: 8px 8px 0 0; /* Top corners only */
+}
+
+/* Cases Container with bottom border radius and proper scroll */
+.h-full.overflow-y-auto {
+  border-radius: 0 0 8px 8px; /* Bottom corners only */
+  height: calc(100vh - 230px); /* Match viewport height minus header and cases header */
+  max-height: calc(100vh - 230px); /* Ensure proper scrolling space */
+  overflow-y: auto;
 }
 
 /* Results Area - NOT USED (Only right panel shown)
@@ -49,7 +131,7 @@
 }
 */
 
-/* Alert Panel Area (Right Side Only - Full Edge) */
+/* Alert Panel Area (Right Side Only) - Full viewport height */
 .alert-panel-area {
   flex: 0 0 400px; /* Fixed width for consistency */
   display: flex;
@@ -57,11 +139,14 @@
   overflow: hidden;
   min-width: 280px; /* Minimum width for usability */
   max-width: 400px; /* Maximum width on ultra-wide screens */
-  height: 100%;
-  margin: 0; /* No margins */
+  height: calc(100vh - 185px); /* Full viewport height minus header */
+  margin-left: 8px; /* 8px gap from cases area */
+  margin-right: 8px; /* 8px margin from right edge */
   padding: 0; /* No padding */
   transition: all 0.3s ease; /* Smooth collapse animation */
-  margin-left: auto; /* Push to right edge */
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+  border-radius: 8px; /* Match table corner radius */
 }
 
 /* Ultra-Wide Screen Optimizations */
@@ -96,7 +181,8 @@
     flex: 0 0 400px; /* Fixed optimal width for forms */
     border-radius: 12px 0 0 12px; /* Round left side only */
     background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Remove shadow */
+    border: none; /* Remove border */
   }
 }
 
