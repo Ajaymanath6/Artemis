@@ -64,12 +64,13 @@
       <div class="h-full overflow-y-auto" style="background-color: #FCFDFED9;">
         <!-- Cases Grid Component without padding -->
         <div class="max-w-7xl mx-auto">
-          <app-cases-grid 
-            [caseData]="caseData"
-            [activeFilter]="activeFilter"
-            (resultCardClick)="onResultCardClick($event)"
-            (markAsRead)="onResultCardMarkAsRead($event)">
-          </app-cases-grid>
+        <app-cases-grid 
+          [caseData]="caseData"
+          [activeFilter]="activeFilter"
+          (resultCardClick)="onResultCardClick($event)"
+          (markAsRead)="onResultCardMarkAsRead($event)"
+          (filteredCaseCountChanged)="onFilteredCaseCountChanged($event)">
+        </app-cases-grid>
         </div>
       </div>
     </div>
@@ -85,6 +86,7 @@
       [selectedResearchQuestion]="selectedResearchQuestion"
       (close)="onCloseAlert()"
       (save)="onSaveAlert($event)"
+      (cancel)="onCancelAlert()"
       (researchQuestionChanged)="onResearchQuestionChanged($event)"
       (backFromCaseDetail)="onBackFromCaseDetail()">
     </app-alert-right-panel>

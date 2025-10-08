@@ -98,6 +98,9 @@ export class AlertsComponent implements OnInit {
     // Expand the alert panel when create alert is clicked
     this.isAlertPanelCollapsed = false;
     
+    // Show existing case data immediately when alert panel opens
+    this.caseCount = 8; // Show all available cases
+    
     // Don't update search bar, just trigger the spinner in alertlist layout
     if (this.currentResearchQuestion.trim()) {
       // Start the loading state for alertlist layout
@@ -115,7 +118,7 @@ export class AlertsComponent implements OnInit {
       // Simulate the evaluation process
       this.simulateEvaluation();
     } else {
-      console.log('No research question to search with');
+      console.log('No research question to search with - showing existing cases');
     }
   }
 
@@ -126,7 +129,36 @@ export class AlertsComponent implements OnInit {
 
   onSaveAlert(alertData: any): void {
     console.log('Saving alert:', alertData);
-    // Handle save alert functionality
+    
+    // Update current research question from the alert data
+    this.currentResearchQuestion = alertData.researchQuestion || '';
+    
+    // Start search process when Apply is clicked
+    if (alertData.researchQuestion && alertData.researchQuestion.trim()) {
+      console.log('Starting search for:', alertData.researchQuestion);
+      
+      // Start the loading state for alertlist layout
+      this.searchState.isSearching = true;
+      this.searchState.evaluatedCount = 0;
+      
+      // Keep the alert panel open to show results
+      this.isAlertPanelCollapsed = false;
+      
+      // Trigger alert panel header update
+      this.shouldUpdateAlertHeader = true;
+      
+      // Reset the trigger after a short delay
+      setTimeout(() => {
+        this.shouldUpdateAlertHeader = false;
+      }, 100);
+      
+      // Simulate the evaluation process and show results
+      this.simulateEvaluation();
+      
+      console.log('Search initiated successfully');
+    } else {
+      console.log('No research question provided for search');
+    }
   }
 
   onAlertPanelToggle(): void {
@@ -142,8 +174,8 @@ export class AlertsComponent implements OnInit {
 
   // Alert panel collapse request from alert layout
   onAlertPanelCollapseRequested(): void {
-    this.isAlertPanelCollapsed = !this.isAlertPanelCollapsed; // Toggle instead of just collapse
-    console.log('Alert panel toggled from alert layout:', this.isAlertPanelCollapsed ? 'collapsed' : 'expanded');
+    this.isAlertPanelCollapsed = true; // Always collapse when requested
+    console.log('Alert panel collapsed from alert layout');
   }
 
   // Handle history alert selection
@@ -161,6 +193,12 @@ export class AlertsComponent implements OnInit {
     }, 100);
   }
 
+  // Handle filtered case count changes
+  onFilteredCaseCountChanged(count: number): void {
+    this.caseCount = count;
+    console.log('Filtered case count updated:', count);
+  }
+
   // Research question tracking
   onResearchQuestionChanged(researchQuestion: string): void {
     this.currentResearchQuestion = researchQuestion;
@@ -176,6 +214,8 @@ export class AlertsComponent implements OnInit {
 
   // Simulate evaluation process for alertlist layout
   private simulateEvaluation(): void {
+    console.log('Starting evaluation simulation...');
+    
     const interval = setInterval(() => {
       this.searchState.evaluatedCount += Math.floor(Math.random() * 50) + 10; // Random increment between 10-60
       
@@ -183,13 +223,18 @@ export class AlertsComponent implements OnInit {
         this.searchState.evaluatedCount = this.searchState.totalCount;
         this.searchState.isSearching = false;
         clearInterval(interval);
+        
+        // Set case count to show results after search completes
+        this.caseCount = 8; // Show 8 cases from the existing case data
+        console.log('Search completed - showing', this.caseCount, 'cases');
       }
     }, 200); // Update every 200ms
     
     // Stop after 3 seconds maximum
     setTimeout(() => {
       this.searchState.isSearching = false;
-      this.caseCount = 5; // Set case count to show 5 cases after loading
+      this.caseCount = 8; // Ensure case count is set even if interval doesn't complete
+      console.log('Search timeout - showing', this.caseCount, 'cases');
       clearInterval(interval);
     }, 3000);
   }

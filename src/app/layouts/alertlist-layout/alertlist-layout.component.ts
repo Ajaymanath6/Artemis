@@ -31,6 +31,7 @@ export class AlertlistLayoutComponent {
   @Output() sidebarCollapseRequested = new EventEmitter<void>();
   @Output() alertPanelCollapseRequested = new EventEmitter<void>();
   @Output() historyAlertSelected = new EventEmitter<string>();
+  @Output() filteredCaseCountChanged = new EventEmitter<number>();
 
   // Read/Unread state management
   private unreadItems: Set<number> = new Set([1, 2, 4]); // Cases 1, 2, and 4 start as unread
@@ -116,6 +117,11 @@ export class AlertlistLayoutComponent {
   // Alert panel methods
   onCloseAlert(): void {
     this.closeAlert.emit();
+  }
+
+  onCancelAlert(): void {
+    // Collapse the alert panel when cancel is clicked
+    this.alertPanelCollapseRequested.emit();
   }
 
   onSaveAlert(alertData: any): void {
@@ -252,6 +258,10 @@ export class AlertlistLayoutComponent {
     }
     
     console.log(`Case ${caseId} marked as read`);
+  }
+
+  onFilteredCaseCountChanged(count: number): void {
+    this.filteredCaseCountChanged.emit(count);
   }
 
   getFilteredCaseCount(): number {

@@ -20,6 +20,7 @@ export class AlertRightPanelComponent implements OnChanges {
   @Output() save = new EventEmitter<any>();
   @Output() researchQuestionChanged = new EventEmitter<string>();
   @Output() backFromCaseDetail = new EventEmitter<void>();
+  @Output() cancel = new EventEmitter<void>();
 
   instantEmailEnabled: boolean = false;
   alertData = {
@@ -67,7 +68,14 @@ export class AlertRightPanelComponent implements OnChanges {
   }
 
   onCancel(): void {
-    this.close.emit();
+    // Reset form when cancel is clicked
+    this.resetAlertForm();
+    this.cancel.emit();
+  }
+
+  // Public method to reset form from parent component
+  public resetForm(): void {
+    this.resetAlertForm();
   }
 
   onSave(): void {
@@ -84,6 +92,35 @@ export class AlertRightPanelComponent implements OnChanges {
       includeAttachments: this.alertData.includeAttachments,
       instantEmail: this.instantEmailEnabled
     });
+
+    // Don't reset form immediately - let user see search results first
+    // Form can be reset later when user starts new search or cancels
+    console.log('Alert saved and search triggered');
+  }
+
+  private resetAlertForm(): void {
+    this.alertData = {
+      researchQuestion: '',
+      timing: 'immediate',
+      recipients: 'everyone',
+      selectedUsers: {
+        alexander: false,
+        sarah: false,
+        michael: false
+      },
+      priority: 'all',
+      dateFrom: '',
+      dateTo: '',
+      caseTypes: {
+        civil: false,
+        criminal: false,
+        family: false,
+        corporate: false
+      },
+      format: 'summary',
+      includeAttachments: false
+    };
+    this.instantEmailEnabled = false;
   }
 
   onBackFromCaseDetail(): void {
