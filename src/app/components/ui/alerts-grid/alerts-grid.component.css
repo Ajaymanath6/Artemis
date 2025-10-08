@@ -1,0 +1,72 @@
+/* Alerts Grid Container Styles */
+
+.alerts-grid-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0;
+  gap: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+/* Webkit scrollbar styling */
+.alerts-grid-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alerts-grid-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.alerts-grid-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.alerts-grid-container::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Alert Card Item Styling */
+.alert-card-item {
+  flex-shrink: 0;
+  margin: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.alert-card-item:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+/* Empty State Styling */
+.empty-state-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Hover Effects */
+.alert-card-item:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alerts-grid-container {
+    padding: 0;
+  }
+  
+  .alert-card-item {
+    margin: 4px;
+  }
+  
+  .alert-card-item:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}

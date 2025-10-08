@@ -55,22 +55,38 @@
     <!-- Cases Area - Match search bar width -->
     <div class="cases-area-container" 
          [class.max-w-none]="isAlertPanelCollapsed">
-      <!-- Cases Header -->
+      <!-- Content Header -->
       <div class="bg-gray-100 border-b border-gray-200 px-2 py-3">
-        <span class="text-sm font-semibold text-gray-900">Cases: {{ getFilteredCaseCount() }}</span>
+        <span class="text-sm font-semibold text-gray-900">
+          {{ showingAlerts ? 'Alerts: ' + savedAlerts.length : 'Cases: ' + getFilteredCaseCount() }}
+        </span>
       </div>
       
-      <!-- Cases Container -->
+      <!-- Content Container - Shows either Alerts or Cases -->
       <div class="h-full overflow-y-auto" style="background-color: #FCFDFED9;">
-        <!-- Cases Grid Component without padding -->
         <div class="max-w-7xl mx-auto">
-        <app-cases-grid 
-          [caseData]="caseData"
-          [activeFilter]="activeFilter"
-          (resultCardClick)="onResultCardClick($event)"
-          (markAsRead)="onResultCardMarkAsRead($event)"
-          (filteredCaseCountChanged)="onFilteredCaseCountChanged($event)">
-        </app-cases-grid>
+          
+          <!-- Alerts Grid (when showingAlerts is true) -->
+          <app-alerts-grid 
+            *ngIf="showingAlerts"
+            [alertData]="savedAlerts"
+            [activeFilter]="activeFilter"
+            (alertClick)="onAlertClick($event)"
+            (toggleAlert)="onToggleAlert($event)"
+            (editAlert)="onEditAlert($event)"
+            (deleteAlert)="onDeleteAlert($event)">
+          </app-alerts-grid>
+
+          <!-- Cases Grid (when showingAlerts is false) -->
+          <app-cases-grid 
+            *ngIf="!showingAlerts"
+            [caseData]="caseData"
+            [activeFilter]="activeFilter"
+            (resultCardClick)="onResultCardClick($event)"
+            (markAsRead)="onResultCardMarkAsRead($event)"
+            (filteredCaseCountChanged)="onFilteredCaseCountChanged($event)">
+          </app-cases-grid>
+
         </div>
       </div>
     </div>
@@ -83,7 +99,9 @@
       [shouldUpdateHeader]="shouldUpdateAlertHeader"
       [showCaseDetail]="showCaseDetail"
       [selectedCase]="selectedCase"
+      [selectedAlert]="selectedAlert"
       [selectedResearchQuestion]="selectedResearchQuestion"
+      [caseData]="caseData"
       (close)="onCloseAlert()"
       (save)="onSaveAlert($event)"
       (cancel)="onCancelAlert()"

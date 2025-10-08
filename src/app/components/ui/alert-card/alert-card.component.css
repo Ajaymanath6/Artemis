@@ -1,0 +1,34 @@
+/* Simple Alert Card Component Styles */
+
+.alert-card-container {
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  position: relative;
+  height: 64px; /* Fixed 64px height */
+}
+
+.alert-card-container:hover {
+  border-color: #d1d5db;
+  /* Removed drop shadow as requested */
+  transform: translateY(-1px);
+}
+
+.alert-card-container:active {
+  transform: translateY(0);
+}
+
+/* Text truncation for long alert text */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .alert-card-container {
+    height: 64px; /* Maintain 64px height on mobile */
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}

@@ -1,0 +1,26 @@
+<!-- Alerts Grid Container -->
+<div class="alerts-grid-container">
+  <!-- Empty State for No Alerts -->
+  <div *ngIf="getFilteredAlertData().length === 0" class="empty-state-container">
+    <div class="text-center py-12 px-6">
+      <div class="mb-4">
+        <i class="ri-notification-3-line text-6xl text-gray-300"></i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-600 mb-2">No Alerts Created</h3>
+      <p class="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
+        You haven't created any alerts yet. Click "Create Alert" to get started with monitoring cases.
+      </p>
+    </div>
+  </div>
+
+  <!-- Alerts List -->
+  <app-alert-card 
+    *ngFor="let alert of getFilteredAlertData(); let i = index" 
+    [alertData]="alert"
+    class="alert-card-item"
+    (alertClick)="onAlertClick($event)"
+    (toggleAlert)="onToggleAlert($event)"
+    (editAlert)="onEditAlert($event)"
+    (deleteAlert)="onDeleteAlert($event)">
+  </app-alert-card>
+</div>

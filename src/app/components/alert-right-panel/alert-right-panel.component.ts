@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CaseData } from '../ui/result-card/result-card.component';
+import { AlertData } from '../ui/alert-card/alert-card.component';
 
 @Component({
   selector: 'app-alert-right-panel',
@@ -13,8 +14,10 @@ export class AlertRightPanelComponent implements OnChanges {
   @Input() isStatic: boolean = false;
   @Input() showCaseDetail: boolean = false;
   @Input() selectedCase: CaseData | null = null;
+  @Input() selectedAlert: AlertData | null = null;
   @Input() shouldUpdateHeader: boolean = false;
   @Input() selectedResearchQuestion: string = '';
+  @Input() caseData: CaseData[] = [];
   
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
@@ -125,6 +128,12 @@ export class AlertRightPanelComponent implements OnChanges {
 
   onBackFromCaseDetail(): void {
     this.backFromCaseDetail.emit();
+  }
+
+  onCaseClick(caseData: CaseData): void {
+    // Handle case click - could emit an event or show case detail
+    console.log('Case clicked in right panel:', caseData);
+    // For now, just log - you can implement case detail view later
   }
 
   isFormValid(): boolean {

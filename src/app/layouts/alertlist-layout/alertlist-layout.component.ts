@@ -2,12 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertRightPanelComponent } from '../../components/alert-right-panel/alert-right-panel.component';
 import { CasesGridComponent } from '../../components/ui/cases-grid/cases-grid.component';
+import { AlertsGridComponent } from '../../components/ui/alerts-grid/alerts-grid.component';
 import { CaseData } from '../../components/ui/result-card/result-card.component';
+import { AlertData } from '../../components/ui/alert-card/alert-card.component';
 
 @Component({
   selector: 'app-alertlist-layout',
   standalone: true,
-  imports: [CommonModule, AlertRightPanelComponent, CasesGridComponent],
+  imports: [CommonModule, AlertRightPanelComponent, CasesGridComponent, AlertsGridComponent],
   templateUrl: './alertlist-layout.component.html',
   styleUrls: ['./alertlist-layout.component.css']
 })
@@ -46,6 +48,10 @@ export class AlertlistLayoutComponent {
   // Case detail state
   selectedCase: CaseData | null = null;
   showCaseDetail: boolean = false;
+  
+  // Alert view state - default to showing alerts since 'all' filter shows alerts
+  showingAlerts: boolean = true; // true when showing alert cards, false when showing case cards
+  selectedAlert: AlertData | null = null;
   
   // Case data for result cards
   caseData: CaseData[] = [
@@ -114,6 +120,54 @@ export class AlertlistLayoutComponent {
     }
   ];
 
+  // Saved alerts data
+  savedAlerts: AlertData[] = [
+    {
+      id: '1',
+      name: 'New IBM Cases',
+      isActive: true,
+      caseCount: 12,
+      recipients: 3,
+      researchQuestion: 'IBM technology patents intellectual property lawsuits',
+      timing: 'immediate',
+      createdDate: '2 days ago',
+      lastUpdated: '1 hour ago'
+    },
+    {
+      id: '2', 
+      name: 'Qualcomm (Patent)',
+      isActive: true,
+      caseCount: 8,
+      recipients: 2,
+      researchQuestion: 'Qualcomm patent disputes semiconductor technology',
+      timing: 'daily',
+      createdDate: '1 week ago',
+      lastUpdated: '3 hours ago'
+    },
+    {
+      id: '3',
+      name: 'LA Wildfires',
+      isActive: true,
+      caseCount: 15,
+      recipients: 4,
+      researchQuestion: 'Los Angeles wildfires insurance claims property damage',
+      timing: 'immediate',
+      createdDate: '3 days ago',
+      lastUpdated: '30 minutes ago'
+    },
+    {
+      id: '4',
+      name: 'Data Breach',
+      isActive: false,
+      caseCount: 6,
+      recipients: 1,
+      researchQuestion: 'data breach cybersecurity privacy violations GDPR',
+      timing: 'daily',
+      createdDate: '1 week ago',
+      lastUpdated: '2 hours ago'
+    }
+  ];
+
   // Alert panel methods
   onCloseAlert(): void {
     this.closeAlert.emit();
@@ -131,6 +185,23 @@ export class AlertlistLayoutComponent {
     if (alertData.researchQuestion && alertData.researchQuestion.trim()) {
       this.addToHistory(alertData.researchQuestion.trim());
     }
+
+    // Create new saved alert from the form data
+    const newAlert: AlertData = {
+      id: (this.savedAlerts.length + 1).toString(),
+      name: alertData.researchQuestion.substring(0, 50) + (alertData.researchQuestion.length > 50 ? '...' : ''),
+      isActive: true,
+      caseCount: 8, // Default case count
+      recipients: alertData.recipients === 'everyone' ? 5 : Object.values(alertData.selectedUsers).filter(Boolean).length,
+      researchQuestion: alertData.researchQuestion,
+      timing: alertData.timing,
+      createdDate: 'just now',
+      lastUpdated: 'just now'
+    };
+
+    // Add to saved alerts
+    this.savedAlerts.unshift(newAlert);
+    console.log('New alert saved:', newAlert);
     
     this.saveAlert.emit(alertData);
   }
@@ -191,6 +262,15 @@ export class AlertlistLayoutComponent {
   setActiveFilter(filter: 'all' | 'unread' | 'new'): void {
     this.activeFilter = filter;
     console.log(`Filter changed to: ${filter}`);
+    
+    // Determine what to show based on filter
+    if (filter === 'all') {
+      this.showingAlerts = true; // Show alert cards in 'all' mode
+      this.showCaseDetail = false;
+      this.selectedAlert = null;
+    } else {
+      this.showingAlerts = false; // Show case cards for 'unread' and 'new'
+    }
     
     // Auto-collapse alert panel when "New alerts" is selected and there are no new alerts
     if (filter === 'new' && this.getNewCount() === 0) {
@@ -262,6 +342,44 @@ export class AlertlistLayoutComponent {
 
   onFilteredCaseCountChanged(count: number): void {
     this.filteredCaseCountChanged.emit(count);
+  }
+
+  // Alert card interaction methods
+  onAlertClick(alertData: AlertData): void {
+    console.log('Alert clicked:', alertData);
+    this.selectedAlert = alertData;
+    // DON'T switch main view - keep showing alerts
+    // Instead, show cases for this alert in the RIGHT PANEL
+    this.showCaseDetail = false; // Show cases list, not individual case detail
+    
+    // Expand alert panel if collapsed to show the cases
+    if (this.isAlertPanelCollapsed) {
+      this.alertPanelCollapseRequested.emit(); // This will expand the panel
+    }
+  }
+
+  onToggleAlert(event: {alert: AlertData, isActive: boolean}): void {
+    console.log('Alert toggled:', event.alert.name, 'Active:', event.isActive);
+    // Update the alert's active status
+    const alert = this.savedAlerts.find(a => a.id === event.alert.id);
+    if (alert) {
+      alert.isActive = event.isActive;
+    }
+  }
+
+  onEditAlert(alertData: AlertData): void {
+    console.log('Edit alert:', alertData);
+    this.selectedAlert = alertData;
+    // Expand alert panel to show edit form
+    if (this.isAlertPanelCollapsed) {
+      this.alertPanelCollapseRequested.emit(); // This toggles the panel
+    }
+  }
+
+  onDeleteAlert(alertData: AlertData): void {
+    console.log('Delete alert:', alertData);
+    // Remove alert from saved alerts
+    this.savedAlerts = this.savedAlerts.filter(a => a.id !== alertData.id);
   }
 
   getFilteredCaseCount(): number {
