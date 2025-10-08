@@ -34,27 +34,17 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1.5rem;
-  padding-bottom: 100px; /* Space for absolutely positioned footer */
   min-height: 0;
   background: white;
 }
 
-/* Footer - absolutely positioned within panel container */
+/* Footer - fixed flex item at bottom */
 .panel-footer {
-  position: absolute;
-  bottom: 3rem; /* Even higher from bottom edge */
-  left: 1rem;
-  right: 1rem;
+  flex-shrink: 0;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem; /* More rounded corners */
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem; /* Additional bottom margin */
-  display: flex !important;
-  gap: 0.75rem;
-  z-index: 100;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 0.5rem;
   min-height: 64px;
   box-sizing: border-box;
 }
