@@ -37,7 +37,7 @@
 /* 3-Column Grid Layout (15% - 65% - 20%) */
 .alertlist-layout-container.alertlist-grid {
   display: grid;
-  grid-template-columns: 15% 65% 20%;
+  grid-template-columns: minmax(200px, 15%) 65% minmax(280px, 20%);
   grid-template-rows: 1fr auto;
   gap: 16px 16px; /* 16px gap between columns */
   width: 100%;
@@ -47,7 +47,7 @@
 
 /* When panel is collapsed, adjust grid to 2 columns */
 .alertlist-layout-container.alertlist-grid.panel-collapsed {
-  grid-template-columns: 20% 80%;
+  grid-template-columns: minmax(200px, 20%) 80%;
 }
 
 /* Content expansion when panel is collapsed - maximize middle div size */
@@ -96,6 +96,15 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  min-width: 200px; /* Ensure minimum width to prevent text cutoff */
+}
+
+/* Fix header text overflow in narrow columns */
+.alertlist-grid .alert-history-sidebar h3 {
+  white-space: nowrap;
+  overflow: hidden;  
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 /* Grid Layout: Main Content Area (Column 2) - 65% */

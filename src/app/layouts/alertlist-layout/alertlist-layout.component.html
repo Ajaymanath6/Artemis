@@ -4,10 +4,10 @@
   
   <!-- Column 1: Alert History Sidebar (15%) -->
   <div class="alert-history-sidebar bg-white">
-    <div class="p-3 bg-gray-100">
-      <h3 class="text-lg font-semibold text-gray-900">Alerts</h3>
+    <div class="p-2 bg-gray-100">
+      <h3 class="text-sm font-semibold text-gray-900">Alerts</h3>
     </div>
-    <div class="p-4" style="padding: 16px;">
+    <div style="padding: 16px;">
       <nav class="space-y-1">
         <button 
           (click)="setActiveFilter('all')"
@@ -57,7 +57,7 @@
     <div class="cases-area-container" 
          [class.max-w-none]="isAlertPanelCollapsed">
       <!-- Content Header -->
-      <div class="bg-gray-100 border-b border-gray-200 px-8 py-3 mb-6">
+      <div class="bg-gray-100 border-b border-gray-200 px-4 py-3 mb-6">
         <span class="text-sm font-semibold text-gray-900">
           {{ showingAlerts ? 'Alerts: ' + savedAlerts.length : 'Cases: ' + getFilteredCaseCount() }}
         </span>
