@@ -31,6 +31,7 @@
   box-sizing: border-box; /* Include padding/border in width calculation */
   margin: 0; /* Remove any margin */
   padding: 0; /* Remove any padding that could cause spacing */
+  flex-direction: row; /* Default to horizontal layout */
 }
 
 /* Content expansion when panel is collapsed - maximize middle div size */
@@ -446,15 +447,99 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
+/* Small desktop and large tablet responsive layout */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  :host {
+    margin-left: 180px; /* Slightly reduced sidebar margin */
+    margin-top: 160px; /* Slightly reduced header margin */
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+
+/* Tablet responsive layout */
+@media (max-width: 1024px) and (min-width: 769px) {
+  :host {
+    margin-left: 64px; /* Reduced sidebar margin for tablets */
+    margin-top: 140px; /* Reduced header margin for better fit */
+    padding-left: 4px; /* Reduced padding */
+    padding-right: 4px;
+  }
+  
+  .alertlist-layout-container {
+    flex-direction: row; /* Maintain horizontal layout */
+    min-height: calc(100vh - 140px); /* Adjust for smaller header */
+    overflow-x: auto; /* Allow horizontal scroll if needed */
+  }
+  
+  .alert-sidebar {
+    flex: 0 0 200px; /* Slightly narrower sidebar */
+    min-width: 200px;
+  }
+  
+  .alert-panel-area {
+    flex: 0 0 320px; /* Slightly narrower panel */
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+
+/* Small tablet responsive layout */
+@media (max-width: 768px) and (min-width: 481px) {
+  :host {
+    margin-left: 0; /* Remove sidebar margin */
+    margin-right: 0; /* No right margin */
+    margin-top: 130px; /* Reduced header space */
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  
+  .alertlist-layout-container {
+    flex-direction: row; /* Try to maintain horizontal on small tablets */
+    min-height: calc(100vh - 130px);
+    overflow-x: auto; /* Allow horizontal scroll */
+  }
+  
+  .alert-sidebar {
+    flex: 0 0 160px; /* Narrower sidebar */
+    min-width: 160px;
+  }
+  
+  .alert-panel-area {
+    flex: 0 0 280px; /* Narrower panel */
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+/* Mobile responsive layout */
+@media (max-width: 480px) {
   :host {
     margin-left: 0; /* Remove sidebar margin on mobile */
     margin-right: 0; /* No right margin */
+    margin-top: 120px; /* Reduced header space for mobile */
+    padding-left: 2px;
     padding-right: 0; /* No right padding */
   }
   
   .alertlist-layout-container {
-    justify-content: flex-end; /* Keep panel on right */
+    flex-direction: column; /* Stack vertically on mobile */
+    justify-content: flex-start;
+    min-height: calc(100vh - 120px); /* Adjust for mobile header */
+    overflow: visible; /* Allow content to flow naturally */
+  }
+  
+  .alert-sidebar {
+    flex: 0 0 auto; /* Auto height on mobile */
+    width: 100%; /* Full width */
+    min-width: unset;
+    order: 1; /* First in order */
+  }
+  
+  .flex-1 {
+    flex: 1;
+    order: 2; /* Second in order */
   }
   
   .alert-panel-area {
@@ -462,5 +547,6 @@
     min-width: 100%; /* Full width */
     max-width: 100%; /* Full width */
     margin-left: 0; /* Reset margin */
+    order: 3; /* Third in order */
   }
 }
