@@ -24,6 +24,7 @@ export class AlertlistLayoutComponent {
   @Input() totalCount: number = 8000;
   @Input() shouldUpdateAlertHeader: boolean = false;
   @Input() caseCount: number = 0;
+  @Input() isCreatingAlert: boolean = false;
   @Input() selectedResearchQuestion: string = '';
   
   // Alert panel management
@@ -360,8 +361,12 @@ export class AlertlistLayoutComponent {
     // Emit alert selection for search bar update
     this.alertSelected.emit(alertData);
     
-    // DON'T switch main view - keep showing alerts
-    // Instead, show cases for this alert in the RIGHT PANEL
+    // Ensure we're showing alerts in main content area
+    this.activeFilter = 'all';
+    this.showingAlerts = true;
+    this.sidebarFilterChanged.emit('all');
+    
+    // Show cases for this alert in the RIGHT PANEL
     this.showCaseDetail = false; // Show cases list, not individual case detail
     
     // Expand alert panel if collapsed to show the cases

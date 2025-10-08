@@ -1,8 +1,1 @@
-/* Case Card Styling */
-.case-card {
-  background-color: #FCFDFED9;
-}
-
-.case-card:hover {
-  background-color: white;
-}
+/* All styling is handled by Tailwind classes in the HTML template */

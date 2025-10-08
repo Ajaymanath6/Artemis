@@ -150,14 +150,14 @@
 
     <!-- Alert Form View (default when no selectedAlert) -->
     <div *ngIf="!selectedAlert && !showCaseDetail">
-      <!-- New Alert Title -->
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
-        <p class="text-sm text-gray-600 mt-1">{{ getHeaderSubtitle() }}</p>
-      </div>
-      
-      <!-- Divider -->
-      <div class="border-t border-gray-200 mb-4"></div>
+        <!-- New Alert Title -->
+        <div class="mb-4">
+          <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
+          <p class="text-sm text-gray-600 mt-1">{{ getHeaderSubtitle() }}</p>
+        </div>
+        
+        <!-- Divider -->
+        <div class="border-t border-gray-200 mb-4"></div>
     
     <!-- Instant Email Alert Toggle -->
     <div class="form-section flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -394,22 +394,21 @@
           </button>
         </div>
       </div>
+      </div>
     </div>
-    
-    </div>
-  </div>
 
-  <!-- Panel Footer - Fixed at Bottom (only show for alert creation) -->
-  <div *ngIf="!showCaseDetail" class="panel-footer">
+  <!-- Panel Footer - Fixed at Bottom (always visible) -->
+  <div class="panel-footer">
     <button 
       (click)="onCancel()" 
       class="flex-1 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-400">
-      Cancel
+      {{ showCaseDetail || selectedAlert ? 'Close' : 'Cancel' }}
     </button>
     <button 
       (click)="onSave()" 
       class="flex-1 px-6 py-3 bg-[#146B85] text-white border border-[#146B85] rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-[#0f5462] hover:border-[#0f5462] disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
-      [disabled]="!isFormValid()">
+      [disabled]="!showCaseDetail && !selectedAlert && !isFormValid()"
+      *ngIf="!showCaseDetail && !selectedAlert">
       Apply
     </button>
   </div>

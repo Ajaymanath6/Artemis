@@ -12,6 +12,7 @@ import { AlertCardComponent, AlertData } from '../alert-card/alert-card.componen
 export class AlertsGridComponent {
   @Input() alertData: AlertData[] = [];
   @Input() activeFilter: 'all' | 'unread' | 'new' = 'all';
+  @Input() selectedAlert: AlertData | null = null;
   
   @Output() alertClick = new EventEmitter<AlertData>();
   @Output() toggleAlert = new EventEmitter<{alert: AlertData, isActive: boolean}>();

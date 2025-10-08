@@ -110,7 +110,6 @@ export class AlertRightPanelComponent implements OnChanges {
     });
 
     // Don't reset form immediately - let user see search results first
-    // Form can be reset later when user starts new search or cancels
     console.log('Alert saved and search triggered');
   }
 

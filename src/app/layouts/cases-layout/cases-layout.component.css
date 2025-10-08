@@ -24,21 +24,11 @@
   min-width: 0; /* Allow flex item to shrink */
 }
 
-/* Content centering when no alert panel */
+/* Content centering */
 .centered-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
-
-/* Content with alert panel */
-.with-panel-content {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* Alert panel is now part of flex layout, so content automatically adjusts */
 
 /* Scrollable container */
 .flex-1 {
@@ -96,20 +86,7 @@
   margin-bottom: 1rem;
 }
 
-/* Responsive padding */
-@media (min-width: 640px) {
-  .sm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
+/* Removed laptop screen margins as requested */
 
 /* Ensure smooth scrolling */
 :host {
@@ -224,22 +201,6 @@
   line-height: 1.25rem;
 }
 
-/* Normal button colors for Create Alert button */
-.bg-white {
-  background-color: #ffffff;
-}
-
-.border-gray-300 {
-  border-color: #d1d5db;
-}
-
-.text-gray-700 {
-  color: #374151;
-}
-
-.hover\\:bg-gray-50:hover {
-  background-color: #f9fafb;
-}
 
 /* Additional spacing for right controls */
 .space-x-3 > * + * {

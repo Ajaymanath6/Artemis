@@ -39,6 +39,7 @@ export class AlertsComponent implements OnInit {
   currentResearchQuestion: string = '';
   shouldUpdateAlertHeader: boolean = false;
   caseCount: number = 0;
+  isCreatingAlert: boolean = false;
   searchState = {
     isSearching: false,
     evaluatedCount: 0,
@@ -152,9 +153,8 @@ export class AlertsComponent implements OnInit {
     if (alertData.researchQuestion && alertData.researchQuestion.trim()) {
       console.log('Starting search for:', alertData.researchQuestion);
       
-      // Start the loading state for alertlist layout
-      this.searchState.isSearching = true;
-      this.searchState.evaluatedCount = 0;
+      // Start creating alert loading state in main content area
+      this.isCreatingAlert = true;
       
       // Keep the alert panel open to show results
       this.isAlertPanelCollapsed = false;
@@ -167,8 +167,8 @@ export class AlertsComponent implements OnInit {
         this.shouldUpdateAlertHeader = false;
       }, 100);
       
-      // Simulate the evaluation process and show alert results
-      this.simulateAlertSearch();
+      // Simulate the alert creation process and show alert results
+      this.simulateAlertCreation();
       
       console.log('Alert search initiated successfully');
     } else {
@@ -305,31 +305,18 @@ export class AlertsComponent implements OnInit {
     }, 3000);
   }
 
-  // Simulate alert search process - shows alert cards after spinner
-  private simulateAlertSearch(): void {
-    console.log('Starting alert search simulation...');
+  // Simulate alert creation process - shows alert cards after spinner
+  private simulateAlertCreation(): void {
+    console.log('Starting alert creation simulation...');
     
-    const interval = setInterval(() => {
-      this.searchState.evaluatedCount += Math.floor(Math.random() * 50) + 10; // Random increment between 10-60
-      
-      if (this.searchState.evaluatedCount >= this.searchState.totalCount) {
-        this.searchState.evaluatedCount = this.searchState.totalCount;
-        this.searchState.isSearching = false;
-        clearInterval(interval);
-        
-        // After search completes, switch to showing alerts
-        this.showAlertCards();
-        console.log('Alert search completed - showing alert cards');
-      }
-    }, 200); // Update every 200ms
-    
-    // Stop after 3 seconds maximum
+    // Simulate 2 second creation process
     setTimeout(() => {
-      this.searchState.isSearching = false;
-      this.showAlertCards(); // Ensure alert cards are shown even if interval doesn't complete
-      console.log('Alert search timeout - showing alert cards');
-      clearInterval(interval);
-    }, 3000);
+      this.isCreatingAlert = false;
+      
+      // After creation completes, switch to showing alerts
+      this.showAlertCards();
+      console.log('Alert creation completed - showing alert cards');
+    }, 2000); // 2 second creation simulation
   }
 
   // Switch to showing alert cards in the main area

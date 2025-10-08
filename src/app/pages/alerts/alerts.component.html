@@ -29,27 +29,28 @@
     (searchStateChanged)="onSearchStateChanged($event)">
   </app-header-compact>
 
-  <!-- Alert List Layout (70/30 Split) -->
-  <app-alertlist-layout
-    #alertlistLayout
-    [class.sidebar-collapsed]="isSidebarCollapsed"
-    [isAlertPanelCollapsed]="isAlertPanelCollapsed"
-    [isSidebarCollapsed]="isSidebarCollapsed"
-    [isSearching]="searchState.isSearching"
-    [evaluatedCount]="searchState.evaluatedCount"
-    [totalCount]="searchState.totalCount"
-    [caseCount]="caseCount"
-    [shouldUpdateAlertHeader]="shouldUpdateAlertHeader"
-    [selectedResearchQuestion]="currentResearchQuestion"
-    (closeAlert)="onCloseAlert()"
-    (saveAlert)="onSaveAlert($event)"
-    (researchQuestionChanged)="onResearchQuestionChanged($event)"
-    (sidebarCollapseRequested)="onSidebarCollapseRequested()"
-    (alertPanelCollapseRequested)="onAlertPanelCollapseRequested()"
-    (historyAlertSelected)="onHistoryAlertSelected($event)"
-    (filteredCaseCountChanged)="onFilteredCaseCountChanged($event)"
-    (alertSelected)="onAlertSelected($event)"
-    (sidebarFilterChanged)="onSidebarFilterChanged($event)"
-    (expandCases)="onExpandCases($event)">
-  </app-alertlist-layout>
+    <!-- Alert List Layout (70/30 Split) -->
+    <app-alertlist-layout
+      #alertlistLayout
+      [class.sidebar-collapsed]="isSidebarCollapsed"
+      [isAlertPanelCollapsed]="isAlertPanelCollapsed"
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      [isSearching]="searchState.isSearching"
+      [evaluatedCount]="searchState.evaluatedCount"
+      [totalCount]="searchState.totalCount"
+      [caseCount]="caseCount"
+      [isCreatingAlert]="isCreatingAlert"
+      [shouldUpdateAlertHeader]="shouldUpdateAlertHeader"
+      [selectedResearchQuestion]="currentResearchQuestion"
+      (closeAlert)="onCloseAlert()"
+      (saveAlert)="onSaveAlert($event)"
+      (researchQuestionChanged)="onResearchQuestionChanged($event)"
+      (sidebarCollapseRequested)="onSidebarCollapseRequested()"
+      (alertPanelCollapseRequested)="onAlertPanelCollapseRequested()"
+      (historyAlertSelected)="onHistoryAlertSelected($event)"
+      (filteredCaseCountChanged)="onFilteredCaseCountChanged($event)"
+      (alertSelected)="onAlertSelected($event)"
+      (sidebarFilterChanged)="onSidebarFilterChanged($event)"
+      (expandCases)="onExpandCases($event)">
+    </app-alertlist-layout>
 </div>

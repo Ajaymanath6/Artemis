@@ -7,7 +7,7 @@
     <div class="p-3 bg-gray-100">
       <h3 class="text-lg font-semibold text-gray-900">Alerts</h3>
     </div>
-    <div class="p-2">
+    <div class="p-6">
       <nav class="space-y-1">
         <button 
           (click)="setActiveFilter('all')"
@@ -35,47 +35,57 @@
         </button>
       </nav>
       
-      <!-- History Section -->
-      <div *ngIf="searchHistory.length > 0" class="mt-4 p-6">
-        <div class="text-xs font-semibold text-gray-500 mb-2 px-3">HISTORY</div>
+      <!-- Alert History Section -->
+      <div *ngIf="savedAlerts.length > 0" class="mt-6">
+        <div class="text-xs font-semibold text-gray-500 mb-2 px-3">ALERT HISTORY</div>
         <div class="space-y-1">
-          <div *ngFor="let historyItem of searchHistory; let i = index" 
-               class="px-3 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
-               (click)="selectHistoryItem(historyItem)">
-            {{ historyItem }}
+          <div *ngFor="let alert of savedAlerts; let i = index" 
+               class="px-3 py-2 text-sm text-gray-700 rounded-lg cursor-pointer transition-colors hover:bg-gray-100"
+               (click)="onAlertClick(alert)">
+            {{ alert.name }}
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 
-  <!-- Main Content Area - No additional margins -->
+  <!-- Main Content Area - With 32px margins -->
   <div class="flex-1 flex justify-center">
     
     <!-- Cases Area - Match search bar width -->
     <div class="cases-area-container" 
          [class.max-w-none]="isAlertPanelCollapsed">
       <!-- Content Header -->
-      <div class="bg-gray-100 border-b border-gray-200 px-2 py-3">
+      <div class="bg-gray-100 border-b border-gray-200 px-8 py-3 mb-6">
         <span class="text-sm font-semibold text-gray-900">
           {{ showingAlerts ? 'Alerts: ' + savedAlerts.length : 'Cases: ' + getFilteredCaseCount() }}
         </span>
       </div>
       
       <!-- Content Container - Shows either Alerts or Cases -->
-      <div class="h-full overflow-y-auto" style="background-color: #FCFDFED9;">
-        <div class="max-w-7xl mx-auto p-6">
+      <div class="h-full overflow-y-auto relative" style="background-color: #FCFDFED9;">
+        
+        <!-- Creating Alert Loading Overlay -->
+        <div *ngIf="isCreatingAlert" class="content-loading-overlay">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Creating your alert</div>
+        </div>
+        
+        <!-- Content (hidden when creating alert) -->
+        <div class="max-w-7xl mx-auto" *ngIf="!isCreatingAlert">
           
-          <!-- Alerts Grid (when showingAlerts is true) -->
-          <app-alerts-grid 
-            *ngIf="showingAlerts"
-            [alertData]="savedAlerts"
-            [activeFilter]="activeFilter"
-            (alertClick)="onAlertClick($event)"
-            (toggleAlert)="onToggleAlert($event)"
-            (editAlert)="onEditAlert($event)"
-            (deleteAlert)="onDeleteAlert($event)">
-          </app-alerts-grid>
+        <!-- Alerts Grid (when showingAlerts is true) -->
+        <app-alerts-grid 
+          *ngIf="showingAlerts"
+          [alertData]="savedAlerts"
+          [selectedAlert]="selectedAlert"
+          [activeFilter]="activeFilter"
+          (alertClick)="onAlertClick($event)"
+          (toggleAlert)="onToggleAlert($event)"
+          (editAlert)="onEditAlert($event)"
+          (deleteAlert)="onDeleteAlert($event)">
+        </app-alerts-grid>
 
           <!-- Cases Grid (when showingAlerts is false) -->
           <app-cases-grid 

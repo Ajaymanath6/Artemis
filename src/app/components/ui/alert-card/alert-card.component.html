@@ -1,5 +1,11 @@
 <!-- Alert Card Container - 64px height with full layout -->
-<div class="alert-card-container bg-white border border-gray-200 rounded-lg transition-all duration-200 cursor-pointer h-16 flex items-center px-4"
+<div class="alert-card-container bg-white rounded-lg transition-all duration-200 cursor-pointer h-16 flex items-center px-4 border-l-4"
+     [class.border-gray-200]="!isSelected"
+     [class.border-[#146B85]]="isSelected"
+     [class.border-r]="!isSelected"
+     [class.border-t]="!isSelected"
+     [class.border-b]="!isSelected"
+     [style.background-color]="isSelected ? '#2f55d90d' : ''"
      (click)="onAlertClick()">
   
   <!-- Left: Toggle Button -->

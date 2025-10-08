@@ -22,6 +22,7 @@ export interface AlertData {
 })
 export class AlertCardComponent {
   @Input() alertData!: AlertData;
+  @Input() isSelected: boolean = false;
   
   @Output() alertClick = new EventEmitter<AlertData>();
   @Output() toggleAlert = new EventEmitter<{alert: AlertData, isActive: boolean}>();

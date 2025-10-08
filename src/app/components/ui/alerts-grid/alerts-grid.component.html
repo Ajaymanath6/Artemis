@@ -13,14 +13,16 @@
     </div>
   </div>
 
-  <!-- Alerts List -->
-  <app-alert-card 
-    *ngFor="let alert of getFilteredAlertData(); let i = index" 
-    [alertData]="alert"
-    class="alert-card-item"
-    (alertClick)="onAlertClick($event)"
-    (toggleAlert)="onToggleAlert($event)"
-    (editAlert)="onEditAlert($event)"
-    (deleteAlert)="onDeleteAlert($event)">
-  </app-alert-card>
+<!-- Alerts List -->
+<app-alert-card 
+  *ngFor="let alert of getFilteredAlertData(); let i = index" 
+  [alertData]="alert"
+  [isSelected]="selectedAlert?.id === alert.id"
+  class="alert-card-item"
+  [class.mt-6]="i === 0"
+  (alertClick)="onAlertClick($event)"
+  (toggleAlert)="onToggleAlert($event)"
+  (editAlert)="onEditAlert($event)"
+  (deleteAlert)="onDeleteAlert($event)">
+</app-alert-card>
 </div>

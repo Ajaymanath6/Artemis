@@ -7,8 +7,8 @@
   margin-left: 206px; /* Default sidebar width */
   margin-top: 223px; /* Space for fixed header */
   margin-right: 0; /* No right margin to allow panel to reach edge */
-  padding-left: 8px; /* Reduced left padding - was too much */
-  padding-right: 8px; /* Reduced right padding */
+  padding-left: 32px; /* 32px left padding */
+  padding-right: 32px; /* 32px right padding */
   transition: margin-left 0.3s ease;
   min-height: calc(100vh - 140px); /* Full height minus header */
 }
@@ -45,7 +45,7 @@
 /* Remove margins when panel is collapsed to maximize space */
 .alertlist-layout-container.panel-collapsed .flex-1 .cases-area-container {
   margin: 0; /* Remove all margins */
-  padding-right: 20px; /* Add some padding to prevent touching the edge */
+  padding-right: 0; /* Remove right padding to maximize space */
 }
 
 /* When panel is collapsed, make inner content expand to full width */
@@ -62,7 +62,7 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  margin-right: 8px; /* 8px gap between sidebar and cases */
+  margin-right: 32px; /* 32px gap between sidebar and cases */
   margin-left: 0px; /* No left margin - use host padding instead */
   border: none; /* Remove any borders */
   box-shadow: none; /* Remove any shadows */
@@ -143,8 +143,8 @@
   min-width: 280px; /* Minimum width for usability */
   max-width: 400px; /* Maximum width on ultra-wide screens */
   height: calc(100vh - 185px); /* Full viewport height minus header */
-  margin-left: 8px; /* 8px gap from cases area */
-  margin-right: 8px; /* 8px margin from right edge */
+  margin-left: 32px; /* 32px gap from cases area */
+  margin-right: 0; /* Remove right margin */
   padding: 0; /* No padding */
   transition: all 0.3s ease; /* Smooth collapse animation */
   border: none; /* Remove border */
@@ -549,4 +549,41 @@
     margin-left: 0; /* Reset margin */
     order: 3; /* Third in order */
   }
+}
+
+/* Content Loading Overlay Styles */
+.content-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.content-loading-overlay .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #146B85;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.content-loading-overlay .loading-text {
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

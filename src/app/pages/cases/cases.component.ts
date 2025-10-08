@@ -28,8 +28,6 @@ export class CasesComponent implements OnInit, AfterViewInit {
   viewMode: 'grid' | 'table' = 'grid';
   showResults: boolean = false;
   
-  // Alert panel state
-  isAlertPanelOpen: boolean = false;
   
   // Tooltip visibility for first card badges (click-based)
   firstCardTooltips: { [key: string]: boolean } = {
@@ -343,20 +341,4 @@ export class CasesComponent implements OnInit, AfterViewInit {
     console.log(`First card file action tooltip ${tooltipKey}:`, this.firstCardFileActionTooltips[tooltipKey]);
   }
 
-  // Alert panel methods
-  onCreateAlert(): void {
-    console.log('Create Alert clicked');
-    this.isAlertPanelOpen = true;
-  }
-
-  onCloseAlertPanel(): void {
-    console.log('Alert panel closed');
-    this.isAlertPanelOpen = false;
-  }
-
-  onSaveAlert(alertData: any): void {
-    console.log('Saving alert:', alertData);
-    // Handle save logic here
-    this.isAlertPanelOpen = false;
-  }
 }
