@@ -28,6 +28,7 @@ export class AlertRightPanelComponent implements OnChanges {
   @Output() expandCases = new EventEmitter<AlertData>();
 
   instantEmailEnabled: boolean = false;
+  isLoadingCases: boolean = false;
   alertData = {
     researchQuestion: '',
     timing: 'immediate', // Default to immediate alerts
@@ -159,6 +160,18 @@ export class AlertRightPanelComponent implements OnChanges {
       this.expandCases.emit(this.selectedAlert);
       console.log('Expand cases for alert:', this.selectedAlert.name);
     }
+  }
+
+  // Method to start loading cases for an alert
+  public startLoadingCases(): void {
+    this.isLoadingCases = true;
+    console.log('Starting to load cases for alert');
+  }
+
+  // Method to stop loading cases
+  public stopLoadingCases(): void {
+    this.isLoadingCases = false;
+    console.log('Finished loading cases for alert');
   }
 
   isFormValid(): boolean {

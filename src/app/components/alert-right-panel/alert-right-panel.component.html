@@ -108,33 +108,43 @@
     </div>
     
     <!-- Alert Cases View (when selectedAlert is provided) -->
-    <div *ngIf="selectedAlert && !showCaseDetail" class="alert-cases-view">
-      <!-- Alert Header -->
-      <div class="mb-4 flex items-center justify-between">
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
-          <p class="text-sm text-gray-600 mt-1">{{ getHeaderSubtitle() }}</p>
-        </div>
-        <!-- Expand Icon -->
-        <button 
-          class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-          (click)="onExpandCases()"
-          title="Expand to see all cases">
-          <i class="ri-expand-diagonal-line text-lg"></i>
-        </button>
+    <div *ngIf="selectedAlert && !showCaseDetail" class="alert-cases-view relative">
+      
+      <!-- Loading Overlay -->
+      <div *ngIf="isLoadingCases" class="alert-cases-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Fetching cases for your alert</div>
       </div>
       
-      <!-- Divider -->
-      <div class="border-t border-gray-200 mb-4"></div>
-      
-      <!-- Cases List (Result Cards Alert - No tooltips or hover icons) -->
-      <div class="space-y-0">
-        <app-result-card-alert 
-          *ngFor="let case of caseData" 
-          [caseData]="case"
-          (cardClick)="onCaseClick($event)"
-          (markAsRead)="onCaseMarkAsRead($event)">
-        </app-result-card-alert>
+      <!-- Content (hidden when loading) -->
+      <div *ngIf="!isLoadingCases">
+        <!-- Alert Header -->
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
+            <p class="text-sm text-gray-600 mt-1">{{ getHeaderSubtitle() }}</p>
+          </div>
+          <!-- Expand Icon -->
+          <button 
+            class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            (click)="onExpandCases()"
+            title="Expand to see all cases">
+            <i class="ri-expand-diagonal-line text-lg"></i>
+          </button>
+        </div>
+        
+        <!-- Divider -->
+        <div class="border-t border-gray-200 mb-4"></div>
+        
+        <!-- Cases List (Result Cards Alert - No tooltips or hover icons) -->
+        <div class="space-y-0">
+          <app-result-card-alert 
+            *ngFor="let case of caseData" 
+            [caseData]="case"
+            (cardClick)="onCaseClick($event)"
+            (markAsRead)="onCaseMarkAsRead($event)">
+          </app-result-card-alert>
+        </div>
       </div>
     </div>
 

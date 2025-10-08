@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertRightPanelComponent } from '../../components/alert-right-panel/alert-right-panel.component';
 import { CasesGridComponent } from '../../components/ui/cases-grid/cases-grid.component';
@@ -37,6 +37,8 @@ export class AlertlistLayoutComponent {
   @Output() alertSelected = new EventEmitter<AlertData>();
   @Output() sidebarFilterChanged = new EventEmitter<string>();
   @Output() expandCases = new EventEmitter<AlertData>();
+
+  @ViewChild(AlertRightPanelComponent) alertRightPanel!: AlertRightPanelComponent;
 
   // Read/Unread state management
   private unreadItems: Set<number> = new Set([1, 2, 4]); // Cases 1, 2, and 4 start as unread
@@ -366,6 +368,20 @@ export class AlertlistLayoutComponent {
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This will expand the panel
     }
+    
+    // Start loading cases with spinner
+    setTimeout(() => {
+      if (this.alertRightPanel) {
+        this.alertRightPanel.startLoadingCases();
+        console.log('Started loading cases for alert:', alertData.name);
+        
+        // Simulate loading delay then show cases
+        setTimeout(() => {
+          this.alertRightPanel.stopLoadingCases();
+          console.log('Finished loading cases for alert:', alertData.name);
+        }, 2000); // 2 second loading simulation
+      }
+    }, 0);
   }
 
   onToggleAlert(event: {alert: AlertData, isActive: boolean}): void {
