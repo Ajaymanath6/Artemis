@@ -7,8 +7,8 @@
   margin-left: 206px; /* Default sidebar width */
   margin-top: 223px; /* Space for fixed header */
   margin-right: 0; /* No right margin to allow panel to reach edge */
-  padding-left: 32px; /* 32px left padding */
-  padding-right: 32px; /* 32px right padding */
+  padding-left: 24px; /* 24px left padding */
+  padding-right: 24px; /* 24px right padding */
   transition: margin-left 0.3s ease;
   min-height: calc(100vh - 140px); /* Full height minus header */
 }
@@ -34,12 +34,12 @@
   flex-direction: row; /* Default to horizontal layout */
 }
 
-/* 3-Column Grid Layout (30% - 45% - 25%) */
+/* 3-Column Grid Layout (15% - 65% - 20%) */
 .alertlist-layout-container.alertlist-grid {
   display: grid;
-  grid-template-columns: 30% 45% 25%;
+  grid-template-columns: 15% 65% 20%;
   grid-template-rows: 1fr auto;
-  gap: 0;
+  gap: 16px 16px; /* 16px gap between columns */
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -47,7 +47,7 @@
 
 /* When panel is collapsed, adjust grid to 2 columns */
 .alertlist-layout-container.alertlist-grid.panel-collapsed {
-  grid-template-columns: 35% 65%;
+  grid-template-columns: 20% 80%;
 }
 
 /* Content expansion when panel is collapsed - maximize middle div size */
@@ -78,14 +78,14 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  margin-right: 32px; /* 32px gap between sidebar and cases */
+  margin-right: 24px; /* 24px gap between sidebar and cases */
   margin-left: 0px; /* No left margin - use host padding instead */
   border: none; /* Remove any borders */
   box-shadow: none; /* Remove any shadows */
   border-radius: 8px; /* Match table corner radius */
 }
 
-/* Grid Layout: Alert History Sidebar (Column 1) - 30% */
+/* Grid Layout: Alert History Sidebar (Column 1) - 15% */
 .alertlist-grid .alert-history-sidebar {
   grid-column: 1;
   grid-row: 1;
@@ -96,10 +96,9 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  border-right: 1px solid #e5e7eb;
 }
 
-/* Grid Layout: Main Content Area (Column 2) - 45% */
+/* Grid Layout: Main Content Area (Column 2) - 65% */
 .alertlist-grid .main-content-area {
   grid-column: 2;
   grid-row: 1;
@@ -107,13 +106,12 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: 0;
+  padding: 0; /* Remove all padding */
   margin: 0;
   overflow: hidden;
-  border-right: 1px solid #e5e7eb;
 }
 
-/* Grid Layout: Alert Panel Area (Column 3) - 25% */
+/* Grid Layout: Alert Panel Area (Column 3) - 20% */
 .alertlist-grid .alert-panel-area {
   grid-column: 3;
   grid-row: 1;
@@ -255,7 +253,7 @@
   min-width: 280px; /* Minimum width for usability */
   max-width: 400px; /* Maximum width on ultra-wide screens */
   height: calc(100vh - 185px); /* Full viewport height minus header */
-  margin-left: 32px; /* 32px gap from cases area */
+  margin-left: 24px; /* 24px gap from cases area */
   margin-right: 0; /* Remove right margin */
   padding: 0; /* No padding */
   transition: all 0.3s ease; /* Smooth collapse animation */

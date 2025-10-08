@@ -1,13 +1,13 @@
-<!-- Alert List Layout - 3 Column Grid Layout (10% - 60% - 30%) -->
+<!-- Alert List Layout - 3 Column Grid Layout (15% - 65% - 20%) -->
 <div class="alertlist-layout-container alertlist-grid" 
      [class.panel-collapsed]="isAlertPanelCollapsed">
   
-  <!-- Column 1: Alert History Sidebar (10%) -->
+  <!-- Column 1: Alert History Sidebar (15%) -->
   <div class="alert-history-sidebar bg-white">
     <div class="p-3 bg-gray-100">
       <h3 class="text-lg font-semibold text-gray-900">Alerts</h3>
     </div>
-    <div class="p-6">
+    <div class="p-4" style="padding: 16px;">
       <nav class="space-y-1">
         <button 
           (click)="setActiveFilter('all')"
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <!-- Column 2: Main Content Area (60%) -->
+  <!-- Column 2: Main Content Area (65%) -->
   <div class="main-content-area">
     
     <!-- Cases Area - Match search bar width -->
@@ -64,7 +64,7 @@
       </div>
       
       <!-- Content Container - Shows either Alerts or Cases -->
-      <div class="h-full overflow-y-auto relative" style="background-color: #FCFDFED9;">
+      <div class="h-full overflow-y-auto relative" style="background-color: #FCFDFED9; padding: 16px; padding-top: 0;">
         
         <!-- Creating Alert Loading Overlay -->
         <div *ngIf="isCreatingAlert" class="content-loading-overlay">
@@ -102,9 +102,10 @@
     </div>
   </div>
   
-  <!-- Column 3: Alert Panel Area (25%) -->
+  <!-- Column 3: Alert Panel Area (20%) -->
   <div class="alert-panel-area" 
-       [class.hidden]="isAlertPanelCollapsed">
+       [class.hidden]="isAlertPanelCollapsed"
+       style="padding: 16px; padding-top: 0;">
     <app-alert-right-panel
       [shouldUpdateHeader]="shouldUpdateAlertHeader"
       [showCaseDetail]="showCaseDetail"
