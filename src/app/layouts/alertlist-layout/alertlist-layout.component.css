@@ -34,11 +34,11 @@
   flex-direction: row; /* Default to horizontal layout */
 }
 
-/* 3-Column Grid Layout (10% - 60% - 30%) */
+/* 3-Column Grid Layout (30% - 45% - 25%) */
 .alertlist-layout-container.alertlist-grid {
   display: grid;
-  grid-template-columns: 10% 60% 30%;
-  grid-template-rows: 1fr;
+  grid-template-columns: 30% 45% 25%;
+  grid-template-rows: 1fr auto;
   gap: 0;
   width: 100%;
   height: 100%;
@@ -47,7 +47,7 @@
 
 /* When panel is collapsed, adjust grid to 2 columns */
 .alertlist-layout-container.alertlist-grid.panel-collapsed {
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 35% 65%;
 }
 
 /* Content expansion when panel is collapsed - maximize middle div size */
@@ -85,41 +85,100 @@
   border-radius: 8px; /* Match table corner radius */
 }
 
-/* Grid Layout: Alert History Sidebar (Column 1) */
+/* Grid Layout: Alert History Sidebar (Column 1) - 30% */
 .alertlist-grid .alert-history-sidebar {
   grid-column: 1;
+  grid-row: 1;
   width: 100%;
-  margin-right: 0;
-  padding-right: 16px;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  border-right: 1px solid #e5e7eb;
 }
 
-/* Grid Layout: Main Content Area (Column 2) */
+/* Grid Layout: Main Content Area (Column 2) - 45% */
 .alertlist-grid .main-content-area {
   grid-column: 2;
+  grid-row: 1;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
+  border-right: 1px solid #e5e7eb;
 }
 
-/* Grid Layout: Alert Panel Area (Column 3) */
+/* Grid Layout: Alert Panel Area (Column 3) - 25% */
 .alertlist-grid .alert-panel-area {
   grid-column: 3;
+  grid-row: 1;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding-left: 16px;
+  padding: 0;
+  margin: 0;
 }
 
 /* When panel is collapsed, hide the right panel column */
 .alertlist-grid.panel-collapsed .alert-panel-area {
   display: none;
+}
+
+/* Sticky Footer spanning all columns */
+.alertlist-grid-footer {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-height: 64px;
+}
+
+/* Footer buttons */
+.alertlist-grid-footer .footer-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.alertlist-grid-footer .footer-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #d1d5db;
+}
+
+.alertlist-grid-footer .footer-button.primary {
+  background: #146B85;
+  color: white;
+  border-color: #146B85;
+}
+
+.alertlist-grid-footer .footer-button.primary:hover {
+  background: #0f5462;
+  border-color: #0f5462;
+}
+
+.alertlist-grid-footer .footer-button.secondary {
+  background: white;
+  color: #374151;
+}
+
+.alertlist-grid-footer .footer-button.secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
 }
 
 /* Hide alert history sidebar when main sidebar is collapsed (to save space) */

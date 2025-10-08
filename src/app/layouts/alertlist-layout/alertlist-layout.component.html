@@ -102,7 +102,7 @@
     </div>
   </div>
   
-  <!-- Column 3: Alert Panel Area (30%) -->
+  <!-- Column 3: Alert Panel Area (25%) -->
   <div class="alert-panel-area" 
        [class.hidden]="isAlertPanelCollapsed">
     <app-alert-right-panel
@@ -119,6 +119,26 @@
       (researchQuestionChanged)="onResearchQuestionChanged($event)"
       (backFromCaseDetail)="onBackFromCaseDetail()">
     </app-alert-right-panel>
+  </div>
+  
+  <!-- Sticky Footer spanning all columns -->
+  <div class="alertlist-grid-footer">
+    <div class="flex items-center">
+      <span class="text-sm text-gray-600">
+        {{ showingAlerts ? savedAlerts.length + ' alerts' : getFilteredCaseCount() + ' cases' }} found
+      </span>
+    </div>
+    <div class="footer-buttons">
+      <button class="footer-button secondary" (click)="onRefresh()">
+        <i class="ri-refresh-line mr-2"></i>Refresh
+      </button>
+      <button class="footer-button secondary" (click)="onExport()">
+        <i class="ri-download-line mr-2"></i>Export
+      </button>
+      <button class="footer-button primary" (click)="onCreateAlert()">
+        <i class="ri-add-line mr-2"></i>Create Alert
+      </button>
+    </div>
   </div>
   
 </div>

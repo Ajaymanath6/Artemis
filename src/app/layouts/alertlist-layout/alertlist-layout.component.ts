@@ -430,4 +430,34 @@ export class AlertlistLayoutComponent {
         return this.caseCount;
     }
   }
+
+  // Footer button actions
+  onRefresh(): void {
+    console.log('Refreshing data...');
+    // Add refresh logic here - emit event to parent or reload data
+    window.location.reload();
+  }
+
+  onExport(): void {
+    console.log('Exporting data...');
+    // Add export logic here - could export alerts or cases based on current view
+    const dataToExport = this.showingAlerts ? this.savedAlerts : this.caseData;
+    const dataStr = JSON.stringify(dataToExport, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = this.showingAlerts ? 'alerts.json' : 'cases.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  onCreateAlert(): void {
+    console.log('Creating new alert...');
+    // Clear any selected alert and expand panel to show create form
+    this.selectedAlert = null;
+    if (this.isAlertPanelCollapsed) {
+      this.alertPanelCollapseRequested.emit(); // This toggles the panel
+    }
+  }
 }
