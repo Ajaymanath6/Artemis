@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.component';
@@ -18,6 +18,9 @@ import { AlertlistLayoutComponent } from '../../layouts/alertlist-layout/alertli
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
+  
+  @ViewChild('alertlistLayout') alertlistLayout!: AlertlistLayoutComponent;
+
   // Sidebar state
   isSidebarCollapsed: boolean = false;
   
@@ -98,6 +101,18 @@ export class AlertsComponent implements OnInit {
     // Expand the alert panel when create alert is clicked
     this.isAlertPanelCollapsed = false;
     
+    // Clear any selected alert to show the create alert form
+    // Use timeout to ensure ViewChild is initialized
+    setTimeout(() => {
+      if (this.alertlistLayout) {
+        this.alertlistLayout.selectedAlert = null;
+        this.alertlistLayout.showCaseDetail = false;
+        console.log('Cleared selectedAlert to show create form');
+      } else {
+        console.log('AlertlistLayout ViewChild not yet available');
+      }
+    }, 0);
+    
     // Show existing case data immediately when alert panel opens
     this.caseCount = 8; // Show all available cases
     
@@ -152,10 +167,10 @@ export class AlertsComponent implements OnInit {
         this.shouldUpdateAlertHeader = false;
       }, 100);
       
-      // Simulate the evaluation process and show results
-      this.simulateEvaluation();
+      // Simulate the evaluation process and show alert results
+      this.simulateAlertSearch();
       
-      console.log('Search initiated successfully');
+      console.log('Alert search initiated successfully');
     } else {
       console.log('No research question provided for search');
     }
@@ -164,6 +179,17 @@ export class AlertsComponent implements OnInit {
   onAlertPanelToggle(): void {
     this.isAlertPanelCollapsed = !this.isAlertPanelCollapsed;
     console.log('Alert panel toggled:', this.isAlertPanelCollapsed ? 'collapsed' : 'expanded');
+    
+    // If expanding the panel, clear selectedAlert to show create form
+    if (!this.isAlertPanelCollapsed) {
+      setTimeout(() => {
+        if (this.alertlistLayout) {
+          this.alertlistLayout.selectedAlert = null;
+          this.alertlistLayout.showCaseDetail = false;
+          console.log('Cleared selectedAlert on panel expand');
+        }
+      }, 0);
+    }
   }
 
   // Sidebar collapse request from alert layout
@@ -175,6 +201,16 @@ export class AlertsComponent implements OnInit {
   // Alert panel collapse request from alert layout
   onAlertPanelCollapseRequested(): void {
     this.isAlertPanelCollapsed = true; // Always collapse when requested
+    
+    // Clear selectedAlert when panel collapses to reset state
+    setTimeout(() => {
+      if (this.alertlistLayout) {
+        this.alertlistLayout.selectedAlert = null;
+        this.alertlistLayout.showCaseDetail = false;
+        console.log('Cleared selectedAlert on panel collapse');
+      }
+    }, 0);
+    
     console.log('Alert panel collapsed from alert layout');
   }
 
@@ -242,7 +278,7 @@ export class AlertsComponent implements OnInit {
     console.log('Search state changed:', state);
   }
 
-  // Simulate evaluation process for alertlist layout
+  // Simulate evaluation process for alertlist layout (case search)
   private simulateEvaluation(): void {
     console.log('Starting evaluation simulation...');
     
@@ -267,6 +303,46 @@ export class AlertsComponent implements OnInit {
       console.log('Search timeout - showing', this.caseCount, 'cases');
       clearInterval(interval);
     }, 3000);
+  }
+
+  // Simulate alert search process - shows alert cards after spinner
+  private simulateAlertSearch(): void {
+    console.log('Starting alert search simulation...');
+    
+    const interval = setInterval(() => {
+      this.searchState.evaluatedCount += Math.floor(Math.random() * 50) + 10; // Random increment between 10-60
+      
+      if (this.searchState.evaluatedCount >= this.searchState.totalCount) {
+        this.searchState.evaluatedCount = this.searchState.totalCount;
+        this.searchState.isSearching = false;
+        clearInterval(interval);
+        
+        // After search completes, switch to showing alerts
+        this.showAlertCards();
+        console.log('Alert search completed - showing alert cards');
+      }
+    }, 200); // Update every 200ms
+    
+    // Stop after 3 seconds maximum
+    setTimeout(() => {
+      this.searchState.isSearching = false;
+      this.showAlertCards(); // Ensure alert cards are shown even if interval doesn't complete
+      console.log('Alert search timeout - showing alert cards');
+      clearInterval(interval);
+    }, 3000);
+  }
+
+  // Switch to showing alert cards in the main area
+  private showAlertCards(): void {
+    // Directly call the alertlist layout to set filter to 'all' to show alerts
+    if (this.alertlistLayout) {
+      this.alertlistLayout.setActiveFilter('all');
+      console.log('Switched to showing alert cards via direct method call');
+    } else {
+      // Fallback to emit method
+      this.onSidebarFilterChanged('all');
+      console.log('Switched to showing alert cards via fallback emit');
+    }
   }
 
 }
