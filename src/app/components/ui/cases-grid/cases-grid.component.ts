@@ -16,7 +16,7 @@ export class CasesGridComponent {
   @Output() markAsRead = new EventEmitter<string>();
 
   private unreadItems: Set<number> = new Set([1, 2, 4]);
-  private newItems: Set<number> = new Set([1, 4]);
+  private newItems: Set<number> = new Set([]); // No new alerts initially - empty state
 
   getFilteredCaseData(): CaseData[] {
     let filteredData: CaseData[];

@@ -1,0 +1,172 @@
+/* Alert Right Panel Component Styles */
+
+/* Ensure proper scrolling with fixed footer */
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent any overflow from this component */
+}
+
+/* Panel container - proper height within parent constraints */
+.alert-panel-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  background: white;
+  position: relative;
+}
+
+/* Header - fixed at top */
+.panel-header {
+  flex-shrink: 0;
+  min-height: 50px;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  z-index: 20;
+}
+
+/* Content area - scrollable middle section with proper height */
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  padding-bottom: 120px; /* Space for fixed footer */
+  min-height: 0;
+  max-height: calc(100% - 50px - 88px); /* Total height - header - footer */
+  background: white;
+}
+
+/* Footer - absolutely positioned at bottom - ALWAYS VISIBLE */
+.panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem 1.5rem 1.5rem 1.5rem; /* top: 16px, sides: 24px, bottom: 24px */
+  margin-bottom: 0.75rem; /* 12px bottom margin */
+  display: flex !important;
+  gap: 0.75rem;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  min-height: 88px; /* Ensure consistent footer height */
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Custom scrollbar for better UX - More visible */
+.panel-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.panel-content::-webkit-scrollbar-thumb:active {
+  background: #475569;
+}
+
+/* Firefox scrollbar */
+.panel-content {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f8fafc;
+}
+
+/* Ensure proper spacing for form elements */
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section:last-child {
+  margin-bottom: 2rem; /* Extra space before footer */
+}
+
+/* User selection cards hover effect - NO DROP SHADOW */
+.user-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  background-color: #f8fafc !important;
+  /* Removed transform and box-shadow for cleaner look */
+}
+
+/* Radio button and checkbox improvements */
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  ring-offset-width: 2px;
+  ring-offset-color: #ffffff;
+}
+
+/* Button improvements */
+.panel-footer button {
+  transition: all 0.15s ease;
+  min-height: 44px; /* Ensure buttons are touch-friendly */
+  font-weight: 500;
+  flex: 1; /* Ensure buttons take equal space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-footer button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.panel-footer button:active {
+  transform: translateY(0);
+}
+
+/* Button footer styling already defined above - removing duplicate */
+
+/* Removed unnecessary pseudo-elements - using padding-bottom instead */
+
+/* Responsive adjustments */
+@media (max-height: 600px) {
+  .panel-content {
+    padding: 0.75rem;
+  }
+  
+  .panel-footer {
+    padding: 1rem;
+  }
+  
+  .form-section {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Loading state styles */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}

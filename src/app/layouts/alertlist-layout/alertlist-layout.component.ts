@@ -22,16 +22,19 @@ export class AlertlistLayoutComponent {
   @Input() totalCount: number = 8000;
   @Input() shouldUpdateAlertHeader: boolean = false;
   @Input() caseCount: number = 0;
+  @Input() selectedResearchQuestion: string = '';
   
   // Alert panel management
   @Output() closeAlert = new EventEmitter<void>();
   @Output() saveAlert = new EventEmitter<any>();
   @Output() researchQuestionChanged = new EventEmitter<string>();
   @Output() sidebarCollapseRequested = new EventEmitter<void>();
+  @Output() alertPanelCollapseRequested = new EventEmitter<void>();
+  @Output() historyAlertSelected = new EventEmitter<string>();
 
   // Read/Unread state management
   private unreadItems: Set<number> = new Set([1, 2, 4]); // Cases 1, 2, and 4 start as unread
-  private newItems: Set<number> = new Set([1, 4]); // Cases 1 and 4 are "new alerts"
+  private newItems: Set<number> = new Set([]); // No new alerts initially - empty state
   
   // Sidebar filtering
   activeFilter: 'all' | 'unread' | 'new' = 'all';
@@ -147,7 +150,12 @@ export class AlertlistLayoutComponent {
 
   selectHistoryItem(historyItem: string): void {
     console.log('Selected history item:', historyItem);
-    // Here you could emit an event or trigger a search with this historical query
+    // Emit the selected alert to set it in the alert panel
+    this.historyAlertSelected.emit(historyItem);
+    // Expand the alert panel if it's collapsed
+    if (this.isAlertPanelCollapsed) {
+      this.alertPanelCollapseRequested.emit(); // This will toggle/expand the panel
+    }
   }
 
   // Read/Unread methods
@@ -177,6 +185,12 @@ export class AlertlistLayoutComponent {
   setActiveFilter(filter: 'all' | 'unread' | 'new'): void {
     this.activeFilter = filter;
     console.log(`Filter changed to: ${filter}`);
+    
+    // Auto-collapse alert panel when "New alerts" is selected and there are no new alerts
+    if (filter === 'new' && this.getNewCount() === 0) {
+      this.alertPanelCollapseRequested.emit();
+      console.log('Alert panel collapse requested - no new alerts');
+    }
   }
 
   getNavButtonClass(filter: 'all' | 'unread' | 'new'): string {

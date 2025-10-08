@@ -1,10 +1,9 @@
 <!-- Alert Panel Container -->
-<div class="w-full bg-white flex flex-col flex-shrink-0 overflow-hidden relative" 
-     style="height: 100vh;"
+<div class="alert-panel-container w-full bg-white flex flex-col flex-shrink-0 overflow-hidden relative" 
      [class]="isStatic ? 'static w-96 flex-shrink-0 overflow-hidden' : ''">
   
   <!-- Panel Header -->
-  <div class="px-4 py-1 border-b border-gray-200 bg-gray-100 flex items-center justify-between flex-shrink-0 min-h-[50px]">
+  <div class="panel-header px-4 py-1 border-b border-gray-200 bg-gray-100 flex items-center justify-between flex-shrink-0 min-h-[50px]">
     <div class="flex items-center gap-3">
       <!-- Back Button (only show when in case detail view) -->
     <button 
@@ -20,8 +19,8 @@
     </div>
   </div>
 
-  <!-- Panel Content -->
-  <div class="flex-1 overflow-y-auto p-4 min-h-0">
+  <!-- Panel Content (Scrollable) -->
+  <div class="panel-content">
     
     
     <!-- Case Detail View -->
@@ -119,7 +118,7 @@
       <div class="border-t border-gray-200 mb-4"></div>
     
     <!-- Instant Email Alert Toggle -->
-    <div class="mb-5 flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+    <div class="form-section flex items-center justify-between p-3 bg-gray-50 rounded-lg">
       <div class="flex items-center gap-2">
         <span class="text-sm font-medium text-gray-900">Instant email alert</span>
         <i class="ri-information-line text-gray-500 cursor-help" title="Get notified immediately when new cases match your criteria"></i>
@@ -133,21 +132,233 @@
       </button>
     </div>
     
-    <!-- Research Question Section -->
-    <div class="mb-5">
-      <label class="block text-xs font-semibold text-gray-700 mb-2">Research Question</label>
+    <!-- Case Alert Criteria Section -->
+    <div class="form-section">
+      <label class="block text-xs font-semibold text-gray-700 mb-2">Case Alert Criteria</label>
       <textarea 
         [(ngModel)]="alertData.researchQuestion"
-        placeholder="Enter your research question..."
-        rows="2"
-        class="w-full p-2 border border-gray-300 rounded-lg text-xs text-gray-900 transition-colors focus:outline-none focus:border-[#146B85] focus:ring-3 focus:ring-[#146B85]/10 resize-vertical min-h-[3rem] box-border"
+        placeholder="Enter keywords, case types, or criteria to monitor..."
+        rows="3"
+        class="w-full p-3 border border-gray-300 rounded-lg text-sm text-gray-900 transition-colors focus:outline-none focus:border-[#146B85] focus:ring-3 focus:ring-[#146B85]/10 resize-vertical min-h-[4rem] box-border"
         (input)="onResearchQuestionChange()">
       </textarea>
     </div>
     
+    <!-- When to receive alerts -->
+    <div class="form-section">
+      <label class="block text-xs font-semibold text-gray-700 mb-3">When do you want to receive the alerts?</label>
+      <div class="space-y-3">
+        <!-- Daily Summary Option -->
+        <div class="flex items-start gap-3">
+          <input 
+            type="radio" 
+            id="daily" 
+            name="alertTiming" 
+            value="daily"
+            [(ngModel)]="alertData.timing"
+            class="mt-1 h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+          <div class="flex-1">
+            <label for="daily" class="text-sm font-medium text-gray-900 cursor-pointer">Daily Summary</label>
+            <p class="text-xs text-gray-600 mt-1">An email is sent daily to the recipients of the alert.</p>
+          </div>
+        </div>
+        
+        <!-- Immediately Option -->
+        <div class="flex items-start gap-3">
+          <input 
+            type="radio" 
+            id="immediate" 
+            name="alertTiming" 
+            value="immediate"
+            [(ngModel)]="alertData.timing"
+            class="mt-1 h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+          <div class="flex-1">
+            <label for="immediate" class="text-sm font-medium text-gray-900 cursor-pointer">Immediately when found</label>
+            <p class="text-xs text-gray-600 mt-1">We will let you know the moment we find a match.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- End A
-       <div *ngIf="!showCaseDetail" class="px-6 py-4 border-t border-gray-200 bg-white flex gap-3 flex-shrink-0">
+    
+    <!-- Who should receive alerts -->
+    <div class="form-section">
+      <label class="block text-xs font-semibold text-gray-700 mb-3">Who should receive the alerts?</label>
+      <div class="space-y-3">
+        <!-- Everyone on project -->
+        <div class="flex items-center gap-3">
+          <input 
+            type="radio" 
+            id="everyone" 
+            name="recipients" 
+            value="everyone"
+            [(ngModel)]="alertData.recipients"
+            class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+          <label for="everyone" class="text-sm font-medium text-gray-900 cursor-pointer">Everyone on the project</label>
+        </div>
+        
+        <!-- Pick recipients -->
+        <div class="flex items-center gap-3">
+          <input 
+            type="radio" 
+            id="selected" 
+            name="recipients" 
+            value="selected"
+            [(ngModel)]="alertData.recipients"
+            class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+          <label for="selected" class="text-sm font-medium text-gray-900 cursor-pointer">Pick who should receive them...</label>
+        </div>
+        
+        <!-- User Selection Area (only show when "selected" is chosen) -->
+        <div *ngIf="alertData.recipients === 'selected'" class="ml-7 mt-4 space-y-3">
+          <div class="text-xs font-semibold text-gray-500 mb-3">ONLY SEND TO...</div>
+          
+          <!-- User 1: Alexander Kelly -->
+          <div class="user-card flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+            <input 
+              type="checkbox" 
+              id="alexander"
+              [(ngModel)]="alertData.selectedUsers.alexander"
+              class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                AK
+              </div>
+              <div>
+                <div class="text-sm font-medium text-gray-900">Alexander Kelly</div>
+                <div class="text-xs text-gray-500">alex.kelly&#64;company.com</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User 2: Sarah Johnson -->
+          <div class="user-card flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+            <input 
+              type="checkbox" 
+              id="sarah"
+              [(ngModel)]="alertData.selectedUsers.sarah"
+              class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                SJ
+              </div>
+              <div>
+                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                <div class="text-xs text-gray-500">sarah.johnson&#64;company.com</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User 3: Michael Davis -->
+          <div class="user-card flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+            <input 
+              type="checkbox" 
+              id="michael"
+              [(ngModel)]="alertData.selectedUsers.michael"
+              class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                MD
+              </div>
+              <div>
+                <div class="text-sm font-medium text-gray-900">Michael Davis</div>
+                <div class="text-xs text-gray-500">michael.davis&#64;company.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Additional Settings Section -->
+    <div class="form-section">
+      <label class="block text-xs font-semibold text-gray-700 mb-3">Additional Settings</label>
+      <div class="space-y-3">
+        <!-- Case Priority Filter -->
+        <div class="p-3 bg-gray-50 rounded-lg">
+          <label class="block text-sm font-medium text-gray-900 mb-2">Priority Level</label>
+          <select [(ngModel)]="alertData.priority" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+            <option value="all">All Priorities</option>
+            <option value="high">High Priority Only</option>
+            <option value="medium">Medium Priority</option>
+            <option value="low">Low Priority</option>
+          </select>
+        </div>
+        
+        <!-- Date Range Filter -->
+        <div class="p-3 bg-gray-50 rounded-lg">
+          <label class="block text-sm font-medium text-gray-900 mb-2">Date Range</label>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="date" [(ngModel)]="alertData.dateFrom" class="p-2 border border-gray-300 rounded-lg text-sm">
+            <input type="date" [(ngModel)]="alertData.dateTo" class="p-2 border border-gray-300 rounded-lg text-sm">
+          </div>
+        </div>
+        
+        <!-- Case Type Filter -->
+        <div class="p-3 bg-gray-50 rounded-lg">
+          <label class="block text-sm font-medium text-gray-900 mb-2">Case Types</label>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="civil" [(ngModel)]="alertData.caseTypes.civil" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+              <label for="civil" class="text-sm text-gray-700">Civil Cases</label>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="criminal" [(ngModel)]="alertData.caseTypes.criminal" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+              <label for="criminal" class="text-sm text-gray-700">Criminal Cases</label>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="family" [(ngModel)]="alertData.caseTypes.family" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+              <label for="family" class="text-sm text-gray-700">Family Law</label>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="checkbox" id="corporate" [(ngModel)]="alertData.caseTypes.corporate" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300 rounded">
+              <label for="corporate" class="text-sm text-gray-700">Corporate Law</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Alert Preferences Section -->
+    <div class="form-section">
+      <label class="block text-xs font-semibold text-gray-700 mb-3">Alert Preferences</label>
+      <div class="space-y-3">
+        <!-- Alert Format -->
+        <div class="p-3 bg-gray-50 rounded-lg">
+          <label class="block text-sm font-medium text-gray-900 mb-2">Alert Format</label>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <input type="radio" id="summary" name="alertFormat" value="summary" [(ngModel)]="alertData.format" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+              <label for="summary" class="text-sm text-gray-700">Brief Summary</label>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="radio" id="detailed" name="alertFormat" value="detailed" [(ngModel)]="alertData.format" class="h-4 w-4 text-[#146B85] focus:ring-[#146B85] border-gray-300">
+              <label for="detailed" class="text-sm text-gray-700">Detailed Report</label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Include Attachments -->
+        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-gray-900">Include Attachments</span>
+            <i class="ri-information-line text-gray-500 cursor-help" title="Include case documents and files in the alert"></i>
+          </div>
+          <button 
+            class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#146B85] focus:ring-offset-2"
+            [class]="alertData.includeAttachments ? 'bg-[#146B85]' : 'bg-gray-300'"
+            (click)="toggleAttachments()">
+            <span class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform"
+                  [class]="alertData.includeAttachments ? 'translate-x-5' : 'translate-x-1'"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+
+  <!-- Panel Footer - Fixed at Bottom (only show for alert creation) -->
+  <div *ngIf="!showCaseDetail" class="panel-footer">
     <button 
       (click)="onCancel()" 
       class="flex-1 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-400">
@@ -157,24 +368,7 @@
       (click)="onSave()" 
       class="flex-1 px-6 py-3 bg-[#146B85] text-white border border-[#146B85] rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-[#0f5462] hover:border-[#0f5462] disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
       [disabled]="!isFormValid()">
-      Save this alert
-    </button>
-  </div>
-
-  </div>
-
-  <!-- Panel Footer - Inside Panel (only show for alert creation) -->
-  <div *ngIf="!showCaseDetail" class="px-6 py-4 border-t border-gray-200 bg-white flex gap-3 flex-shrink-0">
-    <button 
-      (click)="onCancel()" 
-      class="flex-1 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-400">
-      Cancel
-    </button>
-    <button 
-      (click)="onSave()" 
-      class="flex-1 px-6 py-3 bg-[#146B85] text-white border border-[#146B85] rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-[#0f5462] hover:border-[#0f5462] disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
-      [disabled]="!isFormValid()">
-      Save this alert
+      Apply
     </button>
   </div>
 

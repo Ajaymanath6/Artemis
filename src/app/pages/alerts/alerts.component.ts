@@ -95,6 +95,9 @@ export class AlertsComponent implements OnInit {
     // Collapse the main sidebar when create alert is clicked
     this.isSidebarCollapsed = true;
     
+    // Expand the alert panel when create alert is clicked
+    this.isAlertPanelCollapsed = false;
+    
     // Don't update search bar, just trigger the spinner in alertlist layout
     if (this.currentResearchQuestion.trim()) {
       // Start the loading state for alertlist layout
@@ -135,6 +138,27 @@ export class AlertsComponent implements OnInit {
   onSidebarCollapseRequested(): void {
     this.isSidebarCollapsed = true;
     console.log('Main sidebar collapsed from alert layout');
+  }
+
+  // Alert panel collapse request from alert layout
+  onAlertPanelCollapseRequested(): void {
+    this.isAlertPanelCollapsed = !this.isAlertPanelCollapsed; // Toggle instead of just collapse
+    console.log('Alert panel toggled from alert layout:', this.isAlertPanelCollapsed ? 'collapsed' : 'expanded');
+  }
+
+  // Handle history alert selection
+  onHistoryAlertSelected(researchQuestion: string): void {
+    console.log('History alert selected:', researchQuestion);
+    this.currentResearchQuestion = researchQuestion;
+    // Expand the alert panel to show the selected alert
+    this.isAlertPanelCollapsed = false;
+    // Trigger alert panel header update
+    this.shouldUpdateAlertHeader = true;
+    
+    // Reset the trigger after a short delay
+    setTimeout(() => {
+      this.shouldUpdateAlertHeader = false;
+    }, 100);
   }
 
   // Research question tracking

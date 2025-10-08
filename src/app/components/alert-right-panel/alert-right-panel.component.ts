@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CaseData } from '../ui/result-card/result-card.component';
@@ -9,11 +9,12 @@ import { CaseData } from '../ui/result-card/result-card.component';
   templateUrl: './alert-right-panel.component.html',
   styleUrl: './alert-right-panel.component.css'
 })
-export class AlertRightPanelComponent {
+export class AlertRightPanelComponent implements OnChanges {
   @Input() isStatic: boolean = false;
   @Input() showCaseDetail: boolean = false;
   @Input() selectedCase: CaseData | null = null;
   @Input() shouldUpdateHeader: boolean = false;
+  @Input() selectedResearchQuestion: string = '';
   
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
@@ -22,8 +23,32 @@ export class AlertRightPanelComponent {
 
   instantEmailEnabled: boolean = false;
   alertData = {
-    researchQuestion: ''
+    researchQuestion: '',
+    timing: 'immediate', // Default to immediate alerts
+    recipients: 'everyone', // Default to everyone on project
+    selectedUsers: {
+      alexander: false,
+      sarah: false,
+      michael: false
+    },
+    priority: 'all', // Default priority level
+    dateFrom: '', // Start date filter
+    dateTo: '', // End date filter
+    caseTypes: {
+      civil: false,
+      criminal: false,
+      family: false,
+      corporate: false
+    },
+    format: 'summary', // Default alert format
+    includeAttachments: false // Default attachment setting
   };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedResearchQuestion'] && this.selectedResearchQuestion) {
+      this.alertData.researchQuestion = this.selectedResearchQuestion;
+    }
+  }
 
   getHeaderTitle(): string {
     return 'New Alert';
@@ -31,6 +56,10 @@ export class AlertRightPanelComponent {
 
   toggleInstantEmail(): void {
     this.instantEmailEnabled = !this.instantEmailEnabled;
+  }
+
+  toggleAttachments(): void {
+    this.alertData.includeAttachments = !this.alertData.includeAttachments;
   }
 
   onResearchQuestionChange(): void {
@@ -44,6 +73,15 @@ export class AlertRightPanelComponent {
   onSave(): void {
     this.save.emit({
       researchQuestion: this.alertData.researchQuestion,
+      timing: this.alertData.timing,
+      recipients: this.alertData.recipients,
+      selectedUsers: this.alertData.selectedUsers,
+      priority: this.alertData.priority,
+      dateFrom: this.alertData.dateFrom,
+      dateTo: this.alertData.dateTo,
+      caseTypes: this.alertData.caseTypes,
+      format: this.alertData.format,
+      includeAttachments: this.alertData.includeAttachments,
       instantEmail: this.instantEmailEnabled
     });
   }

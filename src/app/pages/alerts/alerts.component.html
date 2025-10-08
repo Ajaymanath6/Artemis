@@ -39,9 +39,12 @@
     [totalCount]="searchState.totalCount"
     [caseCount]="caseCount"
     [shouldUpdateAlertHeader]="shouldUpdateAlertHeader"
+    [selectedResearchQuestion]="currentResearchQuestion"
     (closeAlert)="onCloseAlert()"
     (saveAlert)="onSaveAlert($event)"
     (researchQuestionChanged)="onResearchQuestionChanged($event)"
-    (sidebarCollapseRequested)="onSidebarCollapseRequested()">
+    (sidebarCollapseRequested)="onSidebarCollapseRequested()"
+    (alertPanelCollapseRequested)="onAlertPanelCollapseRequested()"
+    (historyAlertSelected)="onHistoryAlertSelected($event)">
   </app-alertlist-layout>
 </div>

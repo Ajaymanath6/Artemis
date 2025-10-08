@@ -1,5 +1,32 @@
 <!-- Cases Grid Container with Scroll -->
 <div class="cases-grid-container">
+  <!-- Empty State for New Alerts -->
+  <div *ngIf="getFilteredCaseData().length === 0 && activeFilter === 'new'" class="empty-state-container">
+    <div class="text-center py-12 px-6">
+      <div class="mb-4">
+        <i class="ri-notification-off-line text-6xl text-gray-300"></i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-600 mb-2">No New Alerts</h3>
+      <p class="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
+        You're all caught up! No new alerts matching your criteria at the moment.
+      </p>
+    </div>
+  </div>
+
+  <!-- Empty State for Other Filters -->
+  <div *ngIf="getFilteredCaseData().length === 0 && activeFilter !== 'new'" class="empty-state-container">
+    <div class="text-center py-12 px-6">
+      <div class="mb-4">
+        <i class="ri-folder-open-line text-6xl text-gray-300"></i>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-600 mb-2">No Cases Found</h3>
+      <p class="text-sm text-gray-500 mb-6 max-w-sm mx-auto">
+        No cases match the current filter. Try switching to a different view.
+      </p>
+    </div>
+  </div>
+
+  <!-- Cases List -->
   <app-result-card 
     *ngFor="let case of getFilteredCaseData(); let i = index" 
     [caseData]="case"

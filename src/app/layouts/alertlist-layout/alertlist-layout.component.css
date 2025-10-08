@@ -7,13 +7,14 @@
   margin-left: 206px; /* Default sidebar width */
   margin-top: 185px; /* Space for fixed header */
   margin-right: 0; /* No right margin to allow panel to reach edge */
-  padding-right: 24px; /* 24px right padding */
+  padding-left: 8px; /* Reduced left padding - was too much */
+  padding-right: 8px; /* Reduced right padding */
   transition: margin-left 0.3s ease;
   min-height: calc(100vh - 140px); /* Full height minus header */
 }
 
 :host.sidebar-collapsed {
-  margin-left: 4rem; /* 64px - collapsed sidebar width */
+  margin-left: 4rem; /* 64px collapsed sidebar width */
 }
 
 /* Main container - Alert Sidebar + Content + Right Panel */
@@ -61,8 +62,7 @@
   height: 100%;
   overflow: hidden;
   margin-right: 8px; /* 8px gap between sidebar and cases */
-  margin-left: 16px; /* 16px padding from left */
-  padding-left: 16px; /* Additional 16px padding inside */
+  margin-left: 0px; /* No left margin - use host padding instead */
   border: none; /* Remove any borders */
   box-shadow: none; /* Remove any shadows */
   border-radius: 8px; /* Match table corner radius */
@@ -94,6 +94,8 @@
   max-width: none !important; /* Force no max-width restriction */
   width: 100% !important; /* Take full available width */
   flex: 1 !important; /* Take all available space */
+  padding-right: 0 !important; /* Remove right padding to prevent double spacing */
+  margin-right: 0 !important; /* Remove right margin */
 }
 
 /* Cases content should match search bar constraints */

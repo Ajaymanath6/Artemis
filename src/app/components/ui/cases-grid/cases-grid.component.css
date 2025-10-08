@@ -33,20 +33,21 @@
 /* Case Card Item Styling */
 .case-card-item {
   flex-shrink: 0;
-  margin: 0; /* Remove all margins */
+  margin-bottom: 0;
+  margin: 8px; /* Add 8px margin around each card */
   border-radius: 8px;
   transition: all 0.2s ease;
 }
 
 .case-card-item:not(:last-child) {
-  margin-bottom: 0; /* No margin between cards */
+  margin-bottom: 8px; /* Reduced margin between cards */
 }
 
 /* Border Bottom Styling */
 .case-card-item.border-bottom {
   border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 0; /* Remove padding */
-  margin-bottom: 0; /* Remove margin */
+  padding-bottom: 16px;
+  margin-bottom: 16px;
   border-radius: 8px 8px 0 0;
 }
 
@@ -68,15 +69,15 @@
   }
   
   .case-card-item {
-    margin: 0; /* No margin on mobile */
+    margin: 4px; /* Smaller margin on mobile */
   }
   
   .case-card-item:not(:last-child) {
-    margin-bottom: 0; /* No margin between cards */
+    margin-bottom: 4px;
   }
   
   .case-card-item.border-bottom {
-    padding-bottom: 0; /* No padding */
-    margin-bottom: 0; /* No margin */
+    padding-bottom: 4px;
+    margin-bottom: 4px;
   }
 }
