@@ -5,7 +5,7 @@
   flex: 1;
   width: 100%; /* Take full width available */
   margin-left: 206px; /* Default sidebar width */
-  margin-top: 185px; /* Space for fixed header */
+  margin-top: 190px; /* Space for fixed header */
   margin-right: 0; /* No right margin to allow panel to reach edge */
   padding-left: 8px; /* Reduced left padding - was too much */
   padding-right: 8px; /* Reduced right padding */
@@ -452,7 +452,7 @@
 @media (max-width: 1200px) and (min-width: 1025px) {
   :host {
     margin-left: 180px; /* Slightly reduced sidebar margin */
-    margin-top: 160px; /* Slightly reduced header margin */
+    margin-top: 190px; /* Match default header margin - search bar needs full space */
     padding-left: 6px;
     padding-right: 6px;
   }
@@ -462,14 +462,14 @@
 @media (max-width: 1024px) and (min-width: 769px) {
   :host {
     margin-left: 64px; /* Reduced sidebar margin for tablets */
-    margin-top: 140px; /* Reduced header margin for better fit */
+    margin-top: 170px; /* Increased to prevent underflow on larger tablets */
     padding-left: 4px; /* Reduced padding */
     padding-right: 4px;
   }
   
   .alertlist-layout-container {
     flex-direction: row; /* Maintain horizontal layout */
-    min-height: calc(100vh - 140px); /* Adjust for smaller header */
+    min-height: calc(100vh - 170px); /* Adjust for increased header margin */
     overflow-x: auto; /* Allow horizontal scroll if needed */
   }
   
