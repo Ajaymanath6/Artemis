@@ -1,0 +1,23 @@
+/* Result Card Alert Component - Simplified without tooltips and hover actions */
+
+.case-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.case-card:hover {
+  background-color: #f8fafc;
+  border-left-color: #146B85;
+}
+
+/* Bottom border styling */
+.case-card {
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.case-card:last-child {
+  border-bottom: 2px solid #e5e7eb; /* Keep bottom border even on last item */
+}

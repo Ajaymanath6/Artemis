@@ -34,6 +34,9 @@ export class AlertlistLayoutComponent {
   @Output() alertPanelCollapseRequested = new EventEmitter<void>();
   @Output() historyAlertSelected = new EventEmitter<string>();
   @Output() filteredCaseCountChanged = new EventEmitter<number>();
+  @Output() alertSelected = new EventEmitter<AlertData>();
+  @Output() sidebarFilterChanged = new EventEmitter<string>();
+  @Output() expandCases = new EventEmitter<AlertData>();
 
   // Read/Unread state management
   private unreadItems: Set<number> = new Set([1, 2, 4]); // Cases 1, 2, and 4 start as unread
@@ -263,6 +266,9 @@ export class AlertlistLayoutComponent {
     this.activeFilter = filter;
     console.log(`Filter changed to: ${filter}`);
     
+    // Emit filter change for search bar update
+    this.sidebarFilterChanged.emit(filter);
+    
     // Determine what to show based on filter
     if (filter === 'all') {
       this.showingAlerts = true; // Show alert cards in 'all' mode
@@ -348,6 +354,10 @@ export class AlertlistLayoutComponent {
   onAlertClick(alertData: AlertData): void {
     console.log('Alert clicked:', alertData);
     this.selectedAlert = alertData;
+    
+    // Emit alert selection for search bar update
+    this.alertSelected.emit(alertData);
+    
     // DON'T switch main view - keep showing alerts
     // Instead, show cases for this alert in the RIGHT PANEL
     this.showCaseDetail = false; // Show cases list, not individual case detail
@@ -380,6 +390,11 @@ export class AlertlistLayoutComponent {
     console.log('Delete alert:', alertData);
     // Remove alert from saved alerts
     this.savedAlerts = this.savedAlerts.filter(a => a.id !== alertData.id);
+  }
+
+  onExpandCases(alertData: AlertData): void {
+    console.log('Expand cases for alert:', alertData);
+    this.expandCases.emit(alertData);
   }
 
   getFilteredCaseCount(): number {

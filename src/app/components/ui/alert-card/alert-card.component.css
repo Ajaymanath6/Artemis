@@ -9,8 +9,7 @@
 
 .alert-card-container:hover {
   border-color: #d1d5db;
-  /* Removed drop shadow as requested */
-  transform: translateY(-1px);
+  /* No transform or shadow - clean hover effect */
 }
 
 .alert-card-container:active {

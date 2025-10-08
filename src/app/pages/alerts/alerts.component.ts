@@ -26,7 +26,7 @@ export class AlertsComponent implements OnInit {
   
   // Header state - configured for compact search
   projectName: string = 'NY Judgment Tracking';
-  currentSearchQuery: string = '';
+  currentSearchQuery: string = 'All Alerts'; // Default to "All Alerts" since that's the default view
   hasSearched: boolean = true; // Always true to keep search compact
   showCollapseButton: boolean = false;
   
@@ -197,6 +197,36 @@ export class AlertsComponent implements OnInit {
   onFilteredCaseCountChanged(count: number): void {
     this.caseCount = count;
     console.log('Filtered case count updated:', count);
+  }
+
+  // Handle expand cases from alert
+  onExpandCases(alertData: any): void {
+    console.log('Expand cases for alert:', alertData);
+    // Here you can implement expanded view navigation
+  }
+
+  // Handle alert selection to update search query
+  onAlertSelected(alertData: any): void {
+    console.log('Alert selected:', alertData);
+    this.currentSearchQuery = alertData.name;
+  }
+
+  // Handle sidebar filter selection to update search query  
+  onSidebarFilterChanged(filter: string): void {
+    console.log('Sidebar filter changed:', filter);
+    switch(filter) {
+      case 'all':
+        this.currentSearchQuery = 'All Alerts';
+        break;
+      case 'unread':
+        this.currentSearchQuery = 'Unread Cases';
+        break;
+      case 'new':
+        this.currentSearchQuery = 'New Alerts';
+        break;
+      default:
+        this.currentSearchQuery = filter;
+    }
   }
 
   // Research question tracking

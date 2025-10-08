@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CaseData } from '../ui/result-card/result-card.component';
+import { ResultCardAlertComponent } from '../ui/result-card-alert/result-card-alert.component';
 import { AlertData } from '../ui/alert-card/alert-card.component';
 
 @Component({
   selector: 'app-alert-right-panel',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ResultCardAlertComponent],
   templateUrl: './alert-right-panel.component.html',
   styleUrl: './alert-right-panel.component.css'
 })
@@ -24,6 +25,7 @@ export class AlertRightPanelComponent implements OnChanges {
   @Output() researchQuestionChanged = new EventEmitter<string>();
   @Output() backFromCaseDetail = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
+  @Output() expandCases = new EventEmitter<AlertData>();
 
   instantEmailEnabled: boolean = false;
   alertData = {
@@ -55,7 +57,17 @@ export class AlertRightPanelComponent implements OnChanges {
   }
 
   getHeaderTitle(): string {
-    return 'New Alert';
+    if (this.selectedAlert) {
+      return this.selectedAlert.name;
+    }
+    return 'New alert';
+  }
+
+  getHeaderSubtitle(): string {
+    if (this.selectedAlert) {
+      return `${this.selectedAlert.caseCount} cases found`;
+    }
+    return 'Updated 18 min. ago';
   }
 
   toggleInstantEmail(): void {
@@ -134,6 +146,19 @@ export class AlertRightPanelComponent implements OnChanges {
     // Handle case click - could emit an event or show case detail
     console.log('Case clicked in right panel:', caseData);
     // For now, just log - you can implement case detail view later
+  }
+
+  onCaseMarkAsRead(caseId: string): void {
+    // Handle mark as read for case in right panel
+    console.log('Case marked as read in right panel:', caseId);
+    // You can emit an event or update case data
+  }
+
+  onExpandCases(): void {
+    if (this.selectedAlert) {
+      this.expandCases.emit(this.selectedAlert);
+      console.log('Expand cases for alert:', this.selectedAlert.name);
+    }
   }
 
   isFormValid(): boolean {

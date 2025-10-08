@@ -1,0 +1,63 @@
+<!-- Result Card Alert - Simplified without tooltips and hover icons -->
+<div class="case-card cursor-pointer transition-colors border-l-4 border-transparent border-b-2 border-gray-200 relative min-h-24 pb-4"
+     (click)="onCardClick()">
+  <div class="flex items-start justify-between">
+    <div class="flex-1 flex items-start gap-3">
+      
+      <div class="flex-1 min-w-0">
+        <!-- Case Title with Icon -->
+        <div class="flex items-center gap-2 mb-2">
+          <!-- Case Icon aligned with title -->
+          <i [class]="caseData.icon + ' text-[#146B85] text-lg flex-shrink-0'"></i>
+          <h4 class="text-sm font-semibold text-[#146B85] hover:underline cursor-pointer">
+            {{ caseData.title }}
+          </h4>
+          <span *ngIf="caseData.badge" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium" 
+                style="background-color: #E5E7EB; color: #374151;">
+            {{ caseData.badge }}
+          </span>
+        </div>
+        
+        <!-- Case Details - Horizontal Layout -->
+        <div class="text-xs text-gray-600 flex flex-wrap items-center gap-4 mb-3">
+          <div><span class="font-semibold">CASE ID:</span> {{ caseData.caseId }}</div>
+          <div><span class="font-semibold">COURT:</span> {{ caseData.court }}</div>
+          <div><span class="font-semibold">DATE:</span> {{ caseData.date }}</div>
+          <div><span class="font-semibold">TYPE:</span> {{ caseData.type }}</div>
+          <div class="flex items-center gap-2">
+            <span class="font-semibold">STATUS:</span> 
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium" 
+                  style="background-color: #E5E7EB; color: #374151;">
+              {{ caseData.status }}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Badges Section - Simplified without tooltips -->
+        <div class="flex flex-wrap gap-2 mb-2">
+          <!-- Judge Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
+          </span>
+          
+          <!-- Status Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-check-line text-sm mr-2"></i>STATUS
+          </span>
+          
+          <!-- Type Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-file-text-line text-sm mr-2"></i>TYPE
+          </span>
+          
+          <!-- Court Badge -->
+          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700">
+            <i class="ri-government-line text-sm mr-2"></i>COURT
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- No file actions section - removed hover icons -->
+</div>
