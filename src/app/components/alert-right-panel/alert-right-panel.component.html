@@ -1,4 +1,4 @@
-<!-- Alert Panel Container: Header (Fixed) → Body (Scrollable) → Footer (Fixed) -->
+<!-- Alert Panel Container: Header (Fixed) → Body (Scrollable) → Footer (Absolute, Always Visible) -->
 <div class="alert-panel-container w-full bg-white flex flex-col flex-shrink-0 overflow-hidden relative" 
      [class]="isStatic ? 'static w-96 flex-shrink-0 overflow-hidden' : ''">
   
@@ -420,7 +420,7 @@
     </div>
   </div>
 
-  <!-- FOOTER: Fixed at bottom, always visible (buttons) -->  
+  <!-- FOOTER: Absolutely positioned at bottom, ALWAYS visible (never scrolls) -->  
   <div class="panel-footer">
     <button 
       (click)="onCancel()" 
