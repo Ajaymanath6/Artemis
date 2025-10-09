@@ -500,16 +500,13 @@ export class AlertlistLayoutComponent {
     this.selectedAlert = null;
     this.isRightPanelExpanded = false; // Collapse to normal width for creating
     this.showCaseDetail = false; // Ensure we're not showing case detail
+    this.isAlertPanelCollapsed = false; // Make sure panel is visible
     
     // Tell alert right panel to ALWAYS show form (not cases) when creating new alert
     if (this.alertRightPanel) {
       this.alertRightPanel.showAlertCases = false; // Always show form view for new alerts
-      console.log('Set showAlertCases to false - form will be displayed');
-    }
-    
-    // Expand the alert panel if it's collapsed
-    if (this.isAlertPanelCollapsed) {
-      this.alertPanelCollapseRequested.emit(); // This toggles the panel
+      this.alertRightPanel.resetForm(); // Reset form to clear any previous data
+      console.log('Set showAlertCases to false and reset form - form will be displayed');
     }
   }
 
