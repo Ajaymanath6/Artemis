@@ -66,7 +66,7 @@ export class AlertRightPanelComponent implements OnChanges {
       } else {
         // Creating new alert - reset form and show form
         this.showAlertCases = false;
-        this.resetForm();
+        this.resetAlertForm();
       }
     }
   }
@@ -222,23 +222,4 @@ export class AlertRightPanelComponent implements OnChanges {
     console.log('Populated form with alert data:', this.alertData);
   }
 
-  // Reset form to default values for creating new alert
-  private resetForm(): void {
-    this.alertData = {
-      researchQuestion: this.selectedResearchQuestion || '',
-      timing: 'immediate',
-      recipients: 'everyone',
-      selectedUsers: {
-        alexander: false,
-        sarah: false,
-        michael: false
-      },
-      priority: 'all',
-      dateFrom: '',
-      dateTo: '',
-      format: 'summary',
-      includeAttachments: false
-    };
-    console.log('Reset form to defaults');
-  }
 }

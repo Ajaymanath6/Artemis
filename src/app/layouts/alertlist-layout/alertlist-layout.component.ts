@@ -16,6 +16,7 @@ import { AlertData } from '../../components/ui/alert-card/alert-card.component';
 export class AlertlistLayoutComponent {
   // Alert panel state
   @Input() isAlertPanelCollapsed: boolean = false;
+  isRightPanelExpanded: boolean = false; // For 50% width expansion;
   @Input() isSidebarCollapsed: boolean = false;
   
   // Search state inputs
@@ -425,6 +426,7 @@ export class AlertlistLayoutComponent {
   onEditAlert(alertData: AlertData): void {
     console.log('Edit alert:', alertData);
     this.selectedAlert = alertData;
+    this.isRightPanelExpanded = false; // Collapse to normal width for editing
     // Expand alert panel to show edit form
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
@@ -439,6 +441,7 @@ export class AlertlistLayoutComponent {
 
   onExpandCases(alertData: AlertData): void {
     console.log('Expand cases for alert:', alertData);
+    this.isRightPanelExpanded = true; // Expand right panel to 50% width
     this.expandCases.emit(alertData);
   }
 
@@ -480,6 +483,7 @@ export class AlertlistLayoutComponent {
     console.log('Creating new alert...');
     // Clear any selected alert and expand panel to show create form
     this.selectedAlert = null;
+    this.isRightPanelExpanded = false; // Collapse to normal width for creating
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
     }

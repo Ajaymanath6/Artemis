@@ -50,6 +50,11 @@
   grid-template-columns: minmax(200px, 20%) 80%;
 }
 
+/* When right panel is expanded, adjust grid for 50% width (15% - 35% - 50%) */
+.alertlist-layout-container.alertlist-grid.right-panel-expanded {
+  grid-template-columns: minmax(200px, 15%) 35% 50%;
+}
+
 /* Content expansion when panel is collapsed - maximize middle div size */
 .alertlist-layout-container.panel-collapsed .flex-1 {
   justify-content: flex-start; /* Left align instead of center */
