@@ -391,9 +391,9 @@ export class AlertlistLayoutComponent {
     this.showingAlerts = true;
     this.sidebarFilterChanged.emit('all');
     
-    // Show cases for this alert in the RIGHT PANEL
+    // Show cases for this alert in the RIGHT PANEL (normal width - don't auto-expand)
     this.showCaseDetail = false; // Show cases list, not individual case detail
-    this.isRightPanelExpanded = true; // Expand right panel to 50% for better case viewing
+    // Keep current panel width - user can expand manually if needed
     
     // Expand alert panel if collapsed to show the cases
     if (this.isAlertPanelCollapsed) {
