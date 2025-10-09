@@ -195,8 +195,16 @@ export class SideNavComponent implements OnInit {
   }
 
   onItemClick(item: NavItem): void {
-    if (item.children && !this.isCollapsed) {
-      // Toggle expansion for items with children (only when not collapsed)
+    // Special handling for Case Hub - navigate instead of toggling
+    if (item.id === 'project-case-hub' && item.route) {
+      // Track which specific item was clicked
+      this.activeItemId = item.id;
+      // Save active item to localStorage for state persistence
+      this.saveActiveItemState();
+      // Navigate to route
+      this.router.navigate([item.route]);
+    } else if (item.children && !this.isCollapsed && item.id !== 'project-case-hub') {
+      // Toggle expansion for items with children (only when not collapsed, except Case Hub)
       item.isExpanded = !item.isExpanded;
       console.log(`Toggled ${item.label} expansion to:`, item.isExpanded);
     } else if (item.route) {

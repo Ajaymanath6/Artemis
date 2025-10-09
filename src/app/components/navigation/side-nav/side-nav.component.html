@@ -200,15 +200,20 @@
                   <div class="absolute left-6 top-0 bottom-0 w-px bg-gray-300"></div>
                   
                   <li *ngFor="let caseHubItem of child.children">
-                    <button
-                      (click)="onItemClick(caseHubItem)"
-                      class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none relative"
-                      [class]="isActiveItem(caseHubItem) ?
-                        'bg-blue-fill text-brand font-medium' :
-                        'text-text-weak hover:bg-fill hover:text-text-strong'">
-
-                      <span class="ml-8 truncate">{{ caseHubItem.label }}</span>
-                    </button>
+                    <div class="relative ml-3">
+                      <div class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none group"
+                           [class]="isActiveItem(caseHubItem) ?
+                             'bg-blue-fill text-brand font-medium' :
+                             'text-text-weak hover:bg-fill hover:text-text-strong'">
+                        
+                        <!-- Main clickable area -->
+                        <button
+                          (click)="onItemClick(caseHubItem)"
+                          class="flex-1 flex items-center">
+                          <span class="truncate">{{ caseHubItem.label }}</span>
+                        </button>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </div>
