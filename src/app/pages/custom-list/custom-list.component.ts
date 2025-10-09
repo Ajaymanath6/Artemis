@@ -5,9 +5,6 @@ import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { CustomListLayoutComponent } from '../../layouts/custom-list-layout/custom-list-layout.component';
-import { AttorneyHubLayoutComponent } from '../../layouts/attorney-hub-layout/attorney-hub-layout.component';
-import { JudgesHubLayoutComponent } from '../../layouts/judges-hub-layout/judges-hub-layout.component';
-import { PartiesHubLayoutComponent } from '../../layouts/parties-hub-layout/parties-hub-layout.component';
 
 @Component({
   selector: 'app-custom-list',
@@ -17,10 +14,7 @@ import { PartiesHubLayoutComponent } from '../../layouts/parties-hub-layout/part
     SideNavComponent, 
     AppHeaderComponent,
     CasesLayoutComponent,
-    CustomListLayoutComponent,
-    AttorneyHubLayoutComponent,
-    JudgesHubLayoutComponent,
-    PartiesHubLayoutComponent
+    CustomListLayoutComponent
   ],
   templateUrl: './custom-list.component.html',
   styleUrls: ['./custom-list.component.css']
@@ -30,13 +24,10 @@ export class CustomListComponent implements OnInit {
   isSidebarCollapsed: boolean = false;
   
   // Tab management
-  activeTab: string = 'all';
+  activeTab: string = 'cases';
   tabs = [
-    { id: 'all', label: 'All' },
     { id: 'cases', label: 'Cases' },
-    { id: 'attorneys', label: 'Attorneys' },
-    { id: 'judges', label: 'Judges' },
-    { id: 'parties', label: 'Parties' }
+    { id: 'threads', label: 'Threads' }
   ];
 
   // List info

@@ -76,29 +76,21 @@
         <!-- Tab Content -->
         <div class="cases-grid">
           
-          <!-- All Tab Content -->
-          <div *ngIf="activeTab === 'all'">
-            <app-custom-list-layout [listId]="listId"></app-custom-list-layout>
-          </div>
-
           <!-- Cases Tab Content -->
           <div *ngIf="activeTab === 'cases'">
             <app-custom-list-layout [listId]="listId"></app-custom-list-layout>
           </div>
 
-          <!-- Attorneys Tab Content -->
-          <div *ngIf="activeTab === 'attorneys'">
-            <app-attorney-hub-layout></app-attorney-hub-layout>
-          </div>
-
-          <!-- Judges Tab Content -->
-          <div *ngIf="activeTab === 'judges'">
-            <app-judges-hub-layout></app-judges-hub-layout>
-          </div>
-
-          <!-- Parties Tab Content -->
-          <div *ngIf="activeTab === 'parties'">
-            <app-parties-hub-layout></app-parties-hub-layout>
+          <!-- Threads Tab Content -->
+          <div *ngIf="activeTab === 'threads'">
+            <!-- TODO: Create threads layout component -->
+            <div class="empty-state">
+              <div class="empty-content">
+                <i class="ri-chat-thread-line empty-icon"></i>
+                <h3 class="empty-title">No Threads</h3>
+                <p class="empty-description">Thread functionality coming soon.</p>
+              </div>
+            </div>
           </div>
 
         </div>

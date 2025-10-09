@@ -5,9 +5,6 @@ import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { MyFavoritesLayoutComponent } from '../../layouts/my-favorites-layout/my-favorites-layout.component';
-import { AttorneyHubLayoutComponent } from '../../layouts/attorney-hub-layout/attorney-hub-layout.component';
-import { JudgesHubLayoutComponent } from '../../layouts/judges-hub-layout/judges-hub-layout.component';
-import { PartiesHubLayoutComponent } from '../../layouts/parties-hub-layout/parties-hub-layout.component';
 
 @Component({
   selector: 'app-my-favorites',
@@ -17,10 +14,7 @@ import { PartiesHubLayoutComponent } from '../../layouts/parties-hub-layout/part
     SideNavComponent, 
     AppHeaderComponent,
     CasesLayoutComponent,
-    MyFavoritesLayoutComponent,
-    AttorneyHubLayoutComponent,
-    JudgesHubLayoutComponent,
-    PartiesHubLayoutComponent
+    MyFavoritesLayoutComponent
   ],
   templateUrl: './my-favorites.component.html',
   styleUrls: ['./my-favorites.component.css']
@@ -30,13 +24,10 @@ export class MyFavoritesComponent implements OnInit {
   isSidebarCollapsed: boolean = false;
   
   // Tab management
-  activeTab: string = 'all';
+  activeTab: string = 'cases';
   tabs = [
-    { id: 'all', label: 'All' },
     { id: 'cases', label: 'Cases' },
-    { id: 'attorneys', label: 'Attorneys' },
-    { id: 'judges', label: 'Judges' },
-    { id: 'parties', label: 'Parties' }
+    { id: 'threads', label: 'Threads' }
   ];
 
   constructor(private router: Router) {}

@@ -72,7 +72,7 @@ export class SideNavComponent implements OnInit {
             label: 'Case Hub', 
             icon: 'bookmark-line', 
             route: '/case-hub',
-            isExpanded: false,
+            isExpanded: true,
             children: [
               { id: 'my-favorites', label: 'My Favorites', icon: 'heart-line', route: '/my-favorites' },
               { id: 'samples', label: 'Samples', icon: 'file-list-line', route: '/samples' }
