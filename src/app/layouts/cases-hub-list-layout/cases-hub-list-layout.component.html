@@ -1,0 +1,102 @@
+<div class="max-w-4xl mx-auto p-6">
+  
+  <!-- Built-in Lists -->
+  <div class="space-y-4">
+    
+    <!-- My Favorites List Card -->
+    <div class="relative">
+      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
+           (click)="navigateToFavorites()">
+        
+        <!-- List Icon and Details -->
+        <div class="flex items-center flex-1">
+          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="ri-heart-line text-lg" style="color: #dc2626;"></i>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900">My Favorites</h3>
+            <p class="text-sm text-gray-500">Bookmarked cases</p>
+          </div>
+        </div>
+        
+        <!-- 3-dot dropdown button -->
+        <button
+          (click)="$event.stopPropagation()"
+          class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
+          <i class="ri-more-2-line text-lg text-gray-500"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Samples List Card -->
+    <div class="relative">
+      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
+           (click)="navigateToSamples()">
+        
+        <!-- List Icon and Details -->
+        <div class="flex items-center flex-1">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="ri-file-list-line text-lg" style="color: #2563eb;"></i>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900">Samples</h3>
+            <p class="text-sm text-gray-500">Sample cases</p>
+          </div>
+        </div>
+        
+        <!-- 3-dot dropdown button -->
+        <button
+          (click)="$event.stopPropagation()"
+          class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
+          <i class="ri-more-2-line text-lg text-gray-500"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Custom Lists -->
+    <div *ngFor="let list of customLists" class="relative">
+      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
+           (click)="navigateToCustomList(list)">
+        
+        <!-- List Icon and Details -->
+        <div class="flex items-center flex-1">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+            <i class="ri-folder-line text-lg" style="color: #4b5563;"></i>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900">{{ list.name }}</h3>
+            <p class="text-sm text-gray-500">{{ list.itemCount || 0 }} items</p>
+          </div>
+        </div>
+        
+        <!-- 3-dot dropdown button -->
+        <button
+          (click)="onToggleDropdown(list, $event); $event.stopPropagation()"
+          class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
+          <i class="ri-more-2-line text-lg text-gray-500"></i>
+        </button>
+      </div>
+
+      <!-- Dropdown Menu -->
+      <div *ngIf="list.isDropdownOpen" 
+           class="dropdown-overlay"
+           (click)="onCloseDropdowns()">
+        <div class="dropdown-menu" (click)="$event.stopPropagation()">
+          <button
+            (click)="onEditList(list, $event)"
+            class="dropdown-item">
+            <i class="ri-edit-line text-lg mr-3 text-gray-600"></i>
+            <span class="text-gray-700">Edit list</span>
+          </button>
+          <button
+            (click)="onDeleteList(list, $event)"
+            class="dropdown-item delete-item">
+            <i class="ri-delete-bin-line text-lg mr-3 text-red-600"></i>
+            <span class="text-red-600">Delete list</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

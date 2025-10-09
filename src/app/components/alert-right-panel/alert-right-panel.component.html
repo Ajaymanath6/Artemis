@@ -17,6 +17,15 @@
         {{ showCaseDetail ? 'Case Details' : (selectedAlert ? 'Edit Alert' : 'Create Alert') }}
       </h2>
     </div>
+    
+    <!-- Collapse Button (only show when panel is expanded) -->
+    <button 
+        *ngIf="isRightPanelExpanded"
+        (click)="onCollapsePanel()" 
+        class="bg-transparent border-none cursor-pointer p-1 rounded-md text-gray-500 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700"
+        title="Collapse panel">
+        <i class="ri-layout-right-line text-lg"></i>
+    </button>
   </div>
 
   <!-- BODY: Scrollable content area (flex: 1) -->

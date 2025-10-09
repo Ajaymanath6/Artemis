@@ -61,4 +61,9 @@ export class MyFavoritesComponent implements OnInit {
     console.log('Import Case clicked');
     // Add functionality to import case
   }
+
+  // Back button handler
+  onBackClick(): void {
+    this.router.navigate(['/case-hub']);
+  }
 }

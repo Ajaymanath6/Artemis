@@ -9,6 +9,7 @@
 nav {
   min-height: 100vh;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Smooth transitions */
@@ -27,6 +28,7 @@ nav {
 /* Width classes for responsive behavior */
 .w-sidebar {
   width: 206px; /* Fixed width for large desktop screens */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .w-64 {
@@ -112,6 +114,10 @@ nav {
 }
 
 /* Scrollbar styling */
+.overflow-y-auto {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .overflow-y-auto::-webkit-scrollbar {
   width: 4px;
 }
@@ -143,6 +149,7 @@ nav {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%; /* Ensure text respects parent width */
 }
 
 /* Flex utilities */
@@ -160,10 +167,21 @@ button {
   border: none;
   cursor: pointer;
   outline: none;
+  max-width: 100%; /* Ensure buttons don't overflow */
+  overflow: hidden; /* Prevent button content from overflowing */
 }
 
 button:focus {
   outline: none;
+}
+
+/* Ensure flex containers respect parent width */
+.flex {
+  min-width: 0; /* Allow flex items to shrink below their min-content size */
+}
+
+.flex-1 {
+  min-width: 0; /* Allow flex-1 items to shrink properly */
 }
 
 /* Logo styling */
@@ -415,6 +433,26 @@ img {
 
 .border-t-transparent {
   border-top-color: transparent;
+}
+
+/* Case Hub children max width constraint */
+.case-hub-child-item {
+  max-width: 145px;
+  overflow: hidden;
+  margin-left: 36px; /* 24px line position + 12px gap from the vertical line */
+}
+
+.case-hub-child-item > div {
+  padding: 12px; /* 12px padding */
+  border-radius: 8px; /* Rounded corners on both ends */
+}
+
+.case-hub-child-item button {
+  max-width: 100%;
+}
+
+.case-hub-child-item .truncate {
+  max-width: 85px; /* Adjusted for 12px padding */
 }
 
 /* Responsive behavior */

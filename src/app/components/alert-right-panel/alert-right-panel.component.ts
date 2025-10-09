@@ -27,6 +27,7 @@ export class AlertRightPanelComponent implements OnChanges {
   @Output() backFromCaseDetail = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
   @Output() expandCases = new EventEmitter<AlertData>();
+  @Output() collapsePanel = new EventEmitter<void>();
 
   instantEmailEnabled: boolean = false;
   isLoadingCases: boolean = false;
@@ -172,6 +173,11 @@ export class AlertRightPanelComponent implements OnChanges {
       this.expandCases.emit(this.selectedAlert);
       console.log('Expand cases for alert:', this.selectedAlert.name);
     }
+  }
+
+  onCollapsePanel(): void {
+    this.collapsePanel.emit();
+    console.log('Collapse panel clicked');
   }
 
   // Method to start loading cases for an alert

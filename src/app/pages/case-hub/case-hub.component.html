@@ -25,9 +25,16 @@
         <div class="case-meta-content">
           <!-- Case Information Column -->
           <div class="case-info-column">
-            <!-- Research Hub Title -->
-            <h1 class="case-title">Research Hub</h1>
-
+            <!-- Case Hub Title -->
+            <h1 class="case-title">Case Hub</h1>
+            
+            <!-- Add List Button -->
+            <button 
+              (click)="onAddList()"
+              class="action-button items-center gap-2">
+              <i class="ri-add-line text-lg text-gray-700"></i>
+              <span>Add List</span>
+            </button>
           </div>
 
           <!-- Tab Navigation -->
@@ -36,10 +43,12 @@
               <button
                 *ngFor="let tab of tabs"
                 (click)="setActiveTab(tab.id)"
-                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors flex items-center gap-2"
                 [class]="activeTab === tab.id 
                   ? 'border-brand text-brand' 
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
+                <i [class]="'ri-' + tab.icon + ' text-base'" 
+                   [style.color]="activeTab === tab.id ? '#146B85' : '#6b7280'"></i>
                 {{ tab.label }}
               </button>
             </nav>
@@ -54,31 +63,33 @@
       <!-- Results Section -->
       <app-cases-layout [viewMode]="'grid'">
         
-        <!-- Tab Content -->
-        <div class="cases-grid">
-          
-          <!-- Lists Tab Content -->
-          <div *ngIf="activeTab === 'lists'">
-            <app-cases-hub-layout></app-cases-hub-layout>
-          </div>
+        <!-- Lists Tab Content -->
+        <app-cases-hub-list-layout
+          *ngIf="activeTab === 'lists'"
+          [customLists]="customLists"
+          (toggleDropdown)="toggleListDropdown($event.list, $event.event)"
+          (closeDropdowns)="closeAllListDropdowns()"
+          (editList)="editList($event.list, $event.event)"
+          (deleteList)="deleteList($event.list, $event.event)">
+        </app-cases-hub-list-layout>
 
-          <!-- Import Cases Tab Content -->
-          <div *ngIf="activeTab === 'import-cases'">
-            <!-- TODO: Create import cases layout component -->
-            <div class="empty-state">
-              <div class="empty-content">
-                <i class="ri-file-add-line empty-icon"></i>
-                <h3 class="empty-title">Import Cases</h3>
-                <p class="empty-description">Import cases functionality coming soon.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <!-- Import Cases Tab Content -->
+        <app-cases-hub-import-layout
+          *ngIf="activeTab === 'import-cases'">
+        </app-cases-hub-import-layout>
         
       </app-cases-layout>
       
     </div>
   </div>
 </div>
+
+<!-- Save to List Modal -->
+<app-save-to-list-modal
+  [isVisible]="isModalVisible"
+  [itemToSave]="itemToSave"
+  (close)="onModalClose()"
+  (cancel)="onModalCancel()"
+  (save)="onModalSave($event)">
+</app-save-to-list-modal>
   

@@ -17,7 +17,8 @@
         [showUserProfile]="true"
         [showCollapseButton]="isSidebarCollapsed"
         [showBackButton]="!isSidebarCollapsed"
-        (collapseToggle)="onSidebarToggle()">
+        (collapseToggle)="onSidebarToggle()"
+        (backClick)="onBackClick()">
       </app-header>
       
       <!-- Case Meta Section -->

@@ -454,6 +454,12 @@ export class AlertlistLayoutComponent {
     this.expandCases.emit(alertData);
   }
 
+  onCollapsePanel(): void {
+    // Collapse panel back to normal width
+    this.isRightPanelExpanded = false;
+    console.log('Collapse panel: back to normal 20% width');
+  }
+
   getFilteredCaseCount(): number {
     switch (this.activeFilter) {
       case 'all':
@@ -493,12 +499,15 @@ export class AlertlistLayoutComponent {
     // Clear any selected alert and expand panel to show create form
     this.selectedAlert = null;
     this.isRightPanelExpanded = false; // Collapse to normal width for creating
+    this.showCaseDetail = false; // Ensure we're not showing case detail
     
-    // Tell alert right panel to show form (not cases)
+    // Tell alert right panel to ALWAYS show form (not cases) when creating new alert
     if (this.alertRightPanel) {
-      this.alertRightPanel.showAlertCases = false; // Show form view
+      this.alertRightPanel.showAlertCases = false; // Always show form view for new alerts
+      console.log('Set showAlertCases to false - form will be displayed');
     }
     
+    // Expand the alert panel if it's collapsed
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
     }

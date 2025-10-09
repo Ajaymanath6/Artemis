@@ -71,10 +71,10 @@
         <div>
           <button
             (click)="onItemClick(item)"
-            class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors group focus:outline-none"
+            class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors group focus:outline-none"
             [class]="isActiveItem(item) ?
-              'bg-gray-light text-text-strong' :
-              'text-text-strong hover:bg-fill hover:text-brand'"
+              'bg-gray-light text-text-strong font-semibold' :
+              'text-text-strong font-medium hover:bg-fill hover:text-brand'"
             [class.justify-center]="isCollapsed">
 
             <!-- Icon -->
@@ -96,7 +96,7 @@
 
           <!-- Sub-navigation Items (when expanded and not collapsed) -->
           <ul *ngIf="item.children && item.isExpanded && !isCollapsed"
-              class="mt-2 ml-6 space-y-1">
+              class="mt-2 ml-2 space-y-1">
             <li *ngFor="let child of item.children">
               <!-- History item with expandable children -->
               <div *ngIf="child.children && child.id === 'history'" class="relative">
@@ -200,10 +200,10 @@
                   <div class="absolute left-6 top-0 bottom-0 w-px bg-gray-300"></div>
                   
                   <li *ngFor="let caseHubItem of child.children">
-                    <div class="relative ml-3">
-                      <div class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none group"
+                    <div class="relative case-hub-child-item">
+                      <div class="w-full flex items-center text-sm transition-colors focus:outline-none group"
                            [class]="isActiveItem(caseHubItem) ?
-                             'bg-blue-fill text-brand font-medium' :
+                             'bg-blue-fill text-text-strong font-medium' :
                              'text-text-weak hover:bg-fill hover:text-text-strong'">
                         
                         <!-- Main clickable area -->
