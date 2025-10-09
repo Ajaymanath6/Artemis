@@ -207,7 +207,7 @@ export class AlertRightPanelComponent implements OnChanges {
     this.alertData = {
       researchQuestion: alert.name || '', // Use alert name as research question
       timing: alert.timing || 'immediate',
-      recipients: alert.recipients || 'everyone',
+      recipients: typeof alert.recipients === 'number' ? (alert.recipients > 1 ? 'selected' : 'everyone') : (alert.recipients || 'everyone'), // Convert number to string
       selectedUsers: {
         alexander: false,
         sarah: false,
