@@ -448,8 +448,9 @@ export class AlertlistLayoutComponent {
   }
 
   onExpandCases(alertData: AlertData): void {
-    console.log('Expand cases for alert:', alertData);
-    this.isRightPanelExpanded = true; // Expand right panel to 50% width
+    // Toggle expansion: if already expanded, collapse back to normal
+    this.isRightPanelExpanded = !this.isRightPanelExpanded;
+    console.log('Toggle right panel expansion:', this.isRightPanelExpanded ? 'Expanded to 50%' : 'Collapsed to 20%');
     this.expandCases.emit(alertData);
   }
 

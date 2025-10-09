@@ -19,6 +19,7 @@ export class AlertRightPanelComponent implements OnChanges {
   @Input() shouldUpdateHeader: boolean = false;
   @Input() selectedResearchQuestion: string = '';
   @Input() caseData: CaseData[] = [];
+  @Input() isRightPanelExpanded: boolean = false;
   
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();

@@ -123,12 +123,12 @@
             <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
             <p class="text-sm text-gray-600 mt-1">{{ getHeaderSubtitle() }}</p>
           </div>
-          <!-- Expand Icon -->
+          <!-- Expand/Collapse Toggle Icon -->
           <button 
             class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
             (click)="onExpandCases()"
-            title="Expand to see all cases">
-            <i class="ri-expand-diagonal-line text-lg"></i>
+            [title]="isRightPanelExpanded ? 'Collapse panel' : 'Expand to see all cases'">
+            <i [class]="isRightPanelExpanded ? 'ri-compress-line text-lg' : 'ri-expand-diagonal-line text-lg'"></i>
           </button>
         </div>
         
@@ -425,13 +425,13 @@
     <button 
       (click)="onCancel()" 
       class="flex-1 px-6 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-400 mr-2">
-      {{ showCaseDetail || selectedAlert ? 'Close' : 'Cancel' }}
+      {{ (showCaseDetail || showAlertCases) ? 'Close' : 'Cancel' }}
     </button>
     <button 
       (click)="onSave()" 
       class="flex-1 px-6 py-3 bg-[#146B85] text-white border border-[#146B85] rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-[#0f5462] hover:border-[#0f5462] disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed disabled:opacity-60"
-      [disabled]="!showCaseDetail && !selectedAlert && !isFormValid()"
-      *ngIf="!showCaseDetail && !selectedAlert">
+      [disabled]="!isFormValid()"
+      *ngIf="!showCaseDetail && !showAlertCases">
       Apply
     </button>
   </div>
