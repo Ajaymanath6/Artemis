@@ -173,8 +173,53 @@
                 </ul>
               </div>
 
-              <!-- Regular navigation item -->
-              <div *ngIf="!child.children || child.id !== 'history'" class="relative">
+              <!-- Case Hub and other items with children (NOT History) -->
+              <div *ngIf="child.children && child.id !== 'history'" class="relative">
+                <button
+                  (click)="onItemClick(child)"
+                  class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
+                  [class]="isActiveItem(child) ?
+                    'bg-blue-fill text-brand font-medium' :
+                    'text-text-weak hover:bg-fill hover:text-text-strong'">
+
+                  <i 
+                    [class]="'ri-' + child.icon + ' text-base flex-shrink-0'"
+                    [style.color]="isActiveItem(child) ? '#146B85' : '#9CA3AF'">
+                  </i>
+
+                  <span class="ml-3 truncate">{{ child.label }}</span>
+
+                  <!-- Expand/Collapse Arrow for Case Hub and other items -->
+                  <i
+                    [class]="'ri-arrow-' + (child.isExpanded ? 'down' : 'right') + '-s-line text-base ml-auto flex-shrink-0'"
+                    [style.color]="'#9CA3AF'">
+                  </i>
+                </button>
+
+                <!-- Case Hub sub-items (My Favorites, Samples, Custom Lists) -->
+                <ul *ngIf="child.children && child.isExpanded"
+                    class="mt-2 ml-6 space-y-1">
+                  <li *ngFor="let caseHubItem of child.children">
+                    <button
+                      (click)="onItemClick(caseHubItem)"
+                      class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
+                      [class]="isActiveItem(caseHubItem) ?
+                        'bg-blue-fill text-brand font-medium' :
+                        'text-text-weak hover:bg-fill hover:text-text-strong'">
+
+                      <i 
+                        [class]="'ri-' + caseHubItem.icon + ' text-base flex-shrink-0'"
+                        [style.color]="isActiveItem(caseHubItem) ? '#146B85' : '#9CA3AF'">
+                      </i>
+
+                      <span class="ml-3 truncate">{{ caseHubItem.label }}</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Regular navigation item (no children) -->
+              <div *ngIf="!child.children" class="relative">
                 <button
                   (click)="onItemClick(child)"
                   class="w-full flex items-center px-3 py-2 text-sm rounded-lg transition-colors focus:outline-none"
