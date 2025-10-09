@@ -29,6 +29,8 @@ export class AlertCardComponent {
   @Output() editAlert = new EventEmitter<AlertData>();
   @Output() deleteAlert = new EventEmitter<AlertData>();
 
+  isDeleting: boolean = false;
+
   onAlertClick(): void {
     this.alertClick.emit(this.alertData);
   }
@@ -49,6 +51,17 @@ export class AlertCardComponent {
 
   onDeleteAlert(event: Event): void {
     event.stopPropagation(); // Prevent card click
-    this.deleteAlert.emit(this.alertData);
+    
+    // Start deletion process with spinner
+    this.isDeleting = true;
+    
+    // Show spinner for 1.5 seconds, then emit delete event
+    setTimeout(() => {
+      this.deleteAlert.emit(this.alertData);
+      // Keep spinner visible briefly during actual deletion
+      setTimeout(() => {
+        this.isDeleting = false;
+      }, 500);
+    }, 1500);
   }
 }
