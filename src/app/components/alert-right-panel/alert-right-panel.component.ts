@@ -216,6 +216,12 @@ export class AlertRightPanelComponent implements OnChanges {
       priority: 'all',
       dateFrom: '',
       dateTo: '',
+      caseTypes: {
+        civil: false,
+        criminal: false,
+        family: false,
+        corporate: false
+      },
       format: 'summary',
       includeAttachments: false
     };
