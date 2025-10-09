@@ -5,7 +5,7 @@
      [class.border-r]="!isSelected"
      [class.border-t]="!isSelected"
      [class.border-b]="!isSelected"
-     [style.background-color]="isSelected ? '#2f55d90d' : ''"
+     [style.background-color]="isSelected ? '#fcfdfed9' : ''"
      (click)="onAlertClick()">
   
   <!-- Left: Toggle Button -->
@@ -43,7 +43,7 @@
     <!-- Edit Button -->
     <button 
       *ngIf="!alertData.isProcessing"
-      class="action-btn p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+      class="action-btn p-1.5 text-[#146B85] hover:text-[#0f5462] hover:bg-[#146B85] hover:bg-opacity-10 rounded transition-colors"
       (click)="onEditAlert($event)"
       title="Edit alert">
       <i class="ri-edit-line text-sm"></i>
