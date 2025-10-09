@@ -57,15 +57,13 @@ export class AlertRightPanelComponent implements OnChanges {
       this.alertData.researchQuestion = this.selectedResearchQuestion;
     }
     
-    // Handle selectedAlert changes for editing
+    // Handle selectedAlert changes - let parent control showAlertCases
     if (changes['selectedAlert']) {
-      if (this.selectedAlert) {
-        // Editing existing alert - populate form with alert data and show form (not cases)
-        this.showAlertCases = false;
+      if (this.selectedAlert && !this.showAlertCases) {
+        // Only populate form when we're showing form (not cases)
         this.populateFormWithAlertData(this.selectedAlert);
-      } else {
-        // Creating new alert - reset form and show form
-        this.showAlertCases = false;
+      } else if (!this.selectedAlert) {
+        // Creating new alert - reset form
         this.resetAlertForm();
       }
     }

@@ -380,7 +380,7 @@ export class AlertlistLayoutComponent {
 
   // Alert card interaction methods
   onAlertClick(alertData: AlertData): void {
-    console.log('Alert clicked:', alertData);
+    console.log('Alert clicked - showing cases for:', alertData);
     this.selectedAlert = alertData;
     
     // Emit alert selection for search bar update
@@ -393,15 +393,17 @@ export class AlertlistLayoutComponent {
     
     // Show cases for this alert in the RIGHT PANEL
     this.showCaseDetail = false; // Show cases list, not individual case detail
+    this.isRightPanelExpanded = true; // Expand right panel to 50% for better case viewing
     
     // Expand alert panel if collapsed to show the cases
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This will expand the panel
     }
     
-    // Start loading cases with spinner
+    // Tell alert right panel to show cases (not form)
     setTimeout(() => {
       if (this.alertRightPanel) {
+        this.alertRightPanel.showAlertCases = true; // Show cases view
         this.alertRightPanel.startLoadingCases();
         console.log('Started loading cases for alert:', alertData.name);
         
@@ -424,9 +426,15 @@ export class AlertlistLayoutComponent {
   }
 
   onEditAlert(alertData: AlertData): void {
-    console.log('Edit alert:', alertData);
+    console.log('Edit alert - showing form for:', alertData);
     this.selectedAlert = alertData;
     this.isRightPanelExpanded = false; // Collapse to normal width for editing
+    
+    // Tell alert right panel to show form (not cases)
+    if (this.alertRightPanel) {
+      this.alertRightPanel.showAlertCases = false; // Show form view
+    }
+    
     // Expand alert panel to show edit form
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
@@ -480,10 +488,16 @@ export class AlertlistLayoutComponent {
   }
 
   onCreateAlert(): void {
-    console.log('Creating new alert...');
+    console.log('Creating new alert - showing form...');
     // Clear any selected alert and expand panel to show create form
     this.selectedAlert = null;
     this.isRightPanelExpanded = false; // Collapse to normal width for creating
+    
+    // Tell alert right panel to show form (not cases)
+    if (this.alertRightPanel) {
+      this.alertRightPanel.showAlertCases = false; // Show form view
+    }
+    
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
     }
