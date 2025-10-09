@@ -16,7 +16,7 @@
       <app-header 
         [showUserProfile]="true"
         [showCollapseButton]="isSidebarCollapsed"
-        [showBackButton]="false"
+        [showBackButton]="!isSidebarCollapsed"
         (collapseToggle)="onSidebarToggle()">
       </app-header>
       
@@ -28,25 +28,6 @@
             <!-- List Title -->
             <h1 class="case-title">{{ listName }}</h1>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                  <button 
-                    (click)="onAddList()"
-                    class="action-button">
-                    <i class="ri-add-line text-lg mr-2"></i>
-                    Add to list
-                  </button>
-                  <button 
-                    (click)="onImportCase()"
-                    class="action-button">
-                    <i class="ri-file-add-line text-lg mr-2"></i>
-                    Import case
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Tab Navigation -->

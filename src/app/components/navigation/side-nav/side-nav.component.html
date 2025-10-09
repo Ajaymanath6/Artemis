@@ -207,10 +207,8 @@
                         'bg-blue-fill text-brand font-medium' :
                         'text-text-weak hover:bg-fill hover:text-text-strong'">
 
-                      <i 
-                        [class]="'ri-' + caseHubItem.icon + ' text-base flex-shrink-0'"
-                        [style.color]="isActiveItem(caseHubItem) ? '#146B85' : '#9CA3AF'">
-                      </i>
+                      <!-- Line indicator instead of icon -->
+                      <div class="w-4 h-0 border-b border-gray-300 flex-shrink-0"></div>
 
                       <span class="ml-3 truncate">{{ caseHubItem.label }}</span>
                     </button>
