@@ -211,26 +211,27 @@ export class AlertlistLayoutComponent {
     this.savedAlerts.unshift(newAlert);
     console.log('New alert saved with processing state:', newAlert);
     
-    // Simulate processing with status updates
+    // Simulate realistic processing status updates (but no automatic completion)
     setTimeout(() => {
       if (newAlert.isProcessing) {
-        newAlert.processingStatus = 'Fetching results...';
+        newAlert.processingStatus = 'Analyzing search criteria...';
       }
-    }, 1500);
+    }, 2000);
     
     setTimeout(() => {
       if (newAlert.isProcessing) {
-        newAlert.processingStatus = 'Finalizing alert...';
+        newAlert.processingStatus = 'Searching databases...';
       }
-    }, 3000);
-    
-    // Complete processing after 5 seconds
-    setTimeout(() => {
-      newAlert.isProcessing = false;
-      newAlert.processingStatus = undefined;
-      newAlert.caseCount = Math.floor(Math.random() * 15) + 1; // Random case count 1-15
-      console.log('Alert processing completed:', newAlert);
     }, 5000);
+    
+    setTimeout(() => {
+      if (newAlert.isProcessing) {
+        newAlert.processingStatus = 'Processing results...';
+      }
+    }, 10000);
+    
+    // Alert will stay in processing state until manually completed or real backend responds
+    console.log('Alert will remain in processing state until backend completes or manual intervention');
     
     this.saveAlert.emit(alertData);
   }
@@ -481,6 +482,18 @@ export class AlertlistLayoutComponent {
     this.selectedAlert = null;
     if (this.isAlertPanelCollapsed) {
       this.alertPanelCollapseRequested.emit(); // This toggles the panel
+    }
+  }
+
+  // Method to manually complete alert processing (for testing or when backend responds)
+  completeAlertProcessing(alertId: string, finalCaseCount: number): void {
+    const alert = this.savedAlerts.find(a => a.id === alertId);
+    if (alert && alert.isProcessing) {
+      alert.isProcessing = false;
+      alert.processingStatus = undefined;
+      alert.caseCount = finalCaseCount;
+      alert.lastUpdated = 'just now';
+      console.log('Alert processing completed manually:', alert);
     }
   }
 }
