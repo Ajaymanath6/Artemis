@@ -52,6 +52,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/case-hub/case-hub.component').then(m => m.CaseHubComponent)
   },
 
+  // My Favorites page
+  {
+    path: 'my-favorites',
+    loadComponent: () => import('./pages/my-favorites/my-favorites.component').then(m => m.MyFavoritesComponent)
+  },
+
   // Alerts page
   {
     path: 'alerts',

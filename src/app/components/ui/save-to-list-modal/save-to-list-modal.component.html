@@ -1,0 +1,90 @@
+<!-- Save to List Modal -->
+<div class="modal-overlay" (click)="onOverlayClick($event)" *ngIf="isVisible">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h2 class="modal-title">Save to list</h2>
+      <button 
+        (click)="onClose()"
+        class="close-button"
+        type="button">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      
+      <!-- Create New List Option -->
+      <div class="list-option" (click)="selectOption('new')">
+        <div class="option-content">
+          <div class="option-icon">
+            <i class="ri-add-line"></i>
+          </div>
+          <div class="option-text">
+            <span class="option-title">Create a new list</span>
+          </div>
+        </div>
+        <div class="option-radio">
+          <div class="radio-circle" [class.selected]="selectedOption === 'new'">
+            <div *ngIf="selectedOption === 'new'" class="radio-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Favorites Option -->
+      <div class="list-option" (click)="selectOption('favorites')">
+        <div class="option-content">
+          <div class="option-icon">
+            <i class="ri-heart-line"></i>
+          </div>
+          <div class="option-text">
+            <span class="option-title">My favorites</span>
+          </div>
+        </div>
+        <div class="option-radio">
+          <div class="radio-circle" [class.selected]="selectedOption === 'favorites'">
+            <div *ngIf="selectedOption === 'favorites'" class="radio-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Samples Option -->
+      <div class="list-option" (click)="selectOption('samples')">
+        <div class="option-content">
+          <div class="option-icon">
+            <i class="ri-file-list-line"></i>
+          </div>
+          <div class="option-text">
+            <span class="option-title">Samples</span>
+          </div>
+        </div>
+        <div class="option-radio">
+          <div class="radio-circle" [class.selected]="selectedOption === 'samples'">
+            <div *ngIf="selectedOption === 'samples'" class="radio-dot"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button 
+        (click)="onCancel()"
+        class="cancel-button"
+        type="button">
+        Cancel
+      </button>
+      <button 
+        (click)="onDone()"
+        class="done-button"
+        type="button"
+        [disabled]="!selectedOption">
+        Done
+      </button>
+    </div>
+
+  </div>
+</div>

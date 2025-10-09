@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { SaveToListModalComponent } from '../../../components/ui/save-to-list-modal/save-to-list-modal.component';
 
 export interface NavItem {
   id: string;
@@ -16,7 +17,7 @@ export interface NavItem {
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SaveToListModalComponent],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css'
 })
@@ -36,6 +37,10 @@ export class SideNavComponent implements OnInit {
   // Track current search state for synchronized spinner
   @Input() currentSearchQuery: string = '';
   @Input() isSearching: boolean = false;
+
+  // Modal state for save to list
+  isModalVisible: boolean = false;
+  itemToSave: any = null;
 
   constructor(private router: Router) {
     // Default navigation items with appropriate Remix icons
@@ -352,31 +357,20 @@ export class SideNavComponent implements OnInit {
     }
   }
 
-  // Add history item to Case Hub
+  // Add history item to Case Hub (Show Modal)
   addToCaseHub(historyItem: NavItem, event: Event): void {
     event.stopPropagation();
     console.log('Adding to Case Hub:', historyItem.fullTerm || historyItem.label);
     
-    try {
-      // Get existing case hub items
-      let caseHubItems = [];
-      const existingCaseHub = localStorage.getItem('caseHubItems');
-      
-      if (existingCaseHub) {
-        caseHubItems = JSON.parse(existingCaseHub);
-      }
-      
-      // Add new item if not already exists
-      const newItem = historyItem.fullTerm || historyItem.label;
-      if (!caseHubItems.includes(newItem)) {
-        caseHubItems.unshift(newItem);
-        localStorage.setItem('caseHubItems', JSON.stringify(caseHubItems));
-        console.log('Added to Case Hub successfully');
-      }
-      
-    } catch (error) {
-      console.warn('Failed to add to Case Hub:', error);
-    }
+    // Set the item to save and show modal
+    this.itemToSave = {
+      id: historyItem.id,
+      title: historyItem.fullTerm || historyItem.label,
+      label: historyItem.label,
+      fullTerm: historyItem.fullTerm
+    };
+    
+    this.isModalVisible = true;
     
     // Close dropdown
     historyItem.isDropdownOpen = false;
@@ -420,5 +414,36 @@ export class SideNavComponent implements OnInit {
     
     const itemTerm = historyItem.fullTerm || historyItem.label;
     return itemTerm.toLowerCase().trim() === this.currentSearchQuery.toLowerCase().trim();
+  }
+
+  // Modal event handlers
+  onModalClose(): void {
+    this.isModalVisible = false;
+    this.itemToSave = null;
+  }
+
+  onModalCancel(): void {
+    this.isModalVisible = false;
+    this.itemToSave = null;
+  }
+
+  onModalSave(result: any): void {
+    console.log('Modal save result:', result);
+    
+    if (result.action === 'favorites') {
+      // The modal will handle saving to favorites and navigation
+      console.log('Item will be saved to My Favorites');
+    } else if (result.action === 'new') {
+      // Handle create new list
+      console.log('Create new list action');
+      // TODO: Implement create new list functionality
+    } else if (result.action === 'samples') {
+      // Handle add to samples
+      console.log('Add to samples action');
+      // TODO: Implement add to samples functionality
+    }
+    
+    this.isModalVisible = false;
+    this.itemToSave = null;
   }
 }

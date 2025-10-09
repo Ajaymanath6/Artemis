@@ -212,3 +212,12 @@
     </div>
   </div>
 </nav>
+
+<!-- Save to List Modal -->
+<app-save-to-list-modal
+  [isVisible]="isModalVisible"
+  [itemToSave]="itemToSave"
+  (close)="onModalClose()"
+  (cancel)="onModalCancel()"
+  (save)="onModalSave($event)">
+</app-save-to-list-modal>

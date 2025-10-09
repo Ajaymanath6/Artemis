@@ -1,0 +1,110 @@
+<!-- My Favorites Page - Main Container -->
+<div class="case-detail-container">
+  
+  <!-- Left Side: Side Navigation Bar -->
+  <app-side-nav
+    [isCollapsed]="isSidebarCollapsed"
+    (sidebarToggle)="onSidebarToggle()">
+  </app-side-nav>
+  
+  <!-- Right Side: Main Content Container -->
+  <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+    
+    <!-- Top Part: App Header Component Container -->
+    <div class="header-container">
+      <!-- App Header -->
+      <app-header 
+        [showUserProfile]="true"
+        [showCollapseButton]="isSidebarCollapsed"
+        [showBackButton]="false"
+        (collapseToggle)="onSidebarToggle()">
+      </app-header>
+      
+      <!-- Case Meta Section -->
+      <div class="case-meta-section">
+        <div class="case-meta-content">
+          <!-- Case Information Column -->
+          <div class="case-info-column">
+            <!-- My Favorites Title -->
+            <h1 class="case-title">My Favorites</h1>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                  <button 
+                    (click)="onAddList()"
+                    class="action-button">
+                    <i class="ri-add-line text-lg mr-2"></i>
+                    Add to list
+                  </button>
+                  <button 
+                    (click)="onImportCase()"
+                    class="action-button">
+                    <i class="ri-file-add-line text-lg mr-2"></i>
+                    Import case
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Navigation -->
+          <div class="tab-navigation">
+            <nav class="-mb-px flex space-x-8">
+              <button
+                *ngFor="let tab of tabs"
+                (click)="setActiveTab(tab.id)"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
+                [class]="activeTab === tab.id 
+                  ? 'border-brand text-brand' 
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
+                {{ tab.label }}
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area (Cases Layout Style) -->
+    <div class="flex flex-col min-h-screen bg-cases-page">
+      
+      <!-- Results Section -->
+      <app-cases-layout [viewMode]="'grid'">
+        
+        <!-- Tab Content -->
+        <div class="cases-grid">
+          
+          <!-- All Tab Content -->
+          <div *ngIf="activeTab === 'all'">
+            <app-my-favorites-layout></app-my-favorites-layout>
+          </div>
+
+          <!-- Cases Tab Content -->
+          <div *ngIf="activeTab === 'cases'">
+            <app-my-favorites-layout></app-my-favorites-layout>
+          </div>
+
+          <!-- Attorneys Tab Content -->
+          <div *ngIf="activeTab === 'attorneys'">
+            <app-attorney-hub-layout></app-attorney-hub-layout>
+          </div>
+
+          <!-- Judges Tab Content -->
+          <div *ngIf="activeTab === 'judges'">
+            <app-judges-hub-layout></app-judges-hub-layout>
+          </div>
+
+          <!-- Parties Tab Content -->
+          <div *ngIf="activeTab === 'parties'">
+            <app-parties-hub-layout></app-parties-hub-layout>
+          </div>
+
+        </div>
+        
+      </app-cases-layout>
+      
+    </div>
+  </div>
+</div>
