@@ -14,7 +14,7 @@
         <i class="ri-arrow-left-line text-sm"></i>
     </button>
       <h2 class="text-sm font-semibold text-gray-900" style="margin: 0; padding: 0;">
-        {{ showCaseDetail ? 'Case Details' : 'Alerts' }}
+        {{ showCaseDetail ? 'Case Details' : (selectedAlert ? 'Edit Alert' : 'Create Alert') }}
       </h2>
     </div>
   </div>
@@ -106,8 +106,8 @@
       </div>
     </div>
     
-    <!-- Alert Cases View (when selectedAlert is provided) -->
-    <div *ngIf="selectedAlert && !showCaseDetail" class="alert-cases-view relative">
+    <!-- Alert Cases View (when viewing cases for an alert) -->
+    <div *ngIf="selectedAlert && !showCaseDetail && showAlertCases" class="alert-cases-view relative">
       
       <!-- Loading Overlay -->
       <div *ngIf="isLoadingCases" class="alert-cases-loading">
@@ -147,8 +147,8 @@
       </div>
     </div>
 
-    <!-- Alert Form View (default when no selectedAlert) -->
-    <div *ngIf="!selectedAlert && !showCaseDetail">
+    <!-- Alert Form View (creating new alert OR editing existing alert) -->
+    <div *ngIf="!showCaseDetail && !showAlertCases">
         <!-- New Alert Title -->
         <div class="mb-4">
           <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>

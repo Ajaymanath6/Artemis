@@ -29,6 +29,7 @@ export class AlertRightPanelComponent implements OnChanges {
 
   instantEmailEnabled: boolean = false;
   isLoadingCases: boolean = false;
+  showAlertCases: boolean = false; // Controls whether to show alert cases or alert form
   alertData = {
     researchQuestion: '',
     timing: 'immediate', // Default to immediate alerts
@@ -54,6 +55,19 @@ export class AlertRightPanelComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedResearchQuestion'] && this.selectedResearchQuestion) {
       this.alertData.researchQuestion = this.selectedResearchQuestion;
+    }
+    
+    // Handle selectedAlert changes for editing
+    if (changes['selectedAlert']) {
+      if (this.selectedAlert) {
+        // Editing existing alert - populate form with alert data and show form (not cases)
+        this.showAlertCases = false;
+        this.populateFormWithAlertData(this.selectedAlert);
+      } else {
+        // Creating new alert - reset form and show form
+        this.showAlertCases = false;
+        this.resetForm();
+      }
     }
   }
 
@@ -186,5 +200,45 @@ export class AlertRightPanelComponent implements OnChanges {
   selectRecipients(recipients: string): void {
     console.log('Recipients selected:', recipients);
     this.alertData.recipients = recipients;
+  }
+
+  // Populate form with existing alert data for editing
+  private populateFormWithAlertData(alert: AlertData): void {
+    this.alertData = {
+      researchQuestion: alert.name || '', // Use alert name as research question
+      timing: alert.timing || 'immediate',
+      recipients: alert.recipients || 'everyone',
+      selectedUsers: {
+        alexander: false,
+        sarah: false,
+        michael: false
+      },
+      priority: 'all',
+      dateFrom: '',
+      dateTo: '',
+      format: 'summary',
+      includeAttachments: false
+    };
+    console.log('Populated form with alert data:', this.alertData);
+  }
+
+  // Reset form to default values for creating new alert
+  private resetForm(): void {
+    this.alertData = {
+      researchQuestion: this.selectedResearchQuestion || '',
+      timing: 'immediate',
+      recipients: 'everyone',
+      selectedUsers: {
+        alexander: false,
+        sarah: false,
+        michael: false
+      },
+      priority: 'all',
+      dateFrom: '',
+      dateTo: '',
+      format: 'summary',
+      includeAttachments: false
+    };
+    console.log('Reset form to defaults');
   }
 }
