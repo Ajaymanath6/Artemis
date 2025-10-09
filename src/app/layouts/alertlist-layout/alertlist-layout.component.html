@@ -4,7 +4,7 @@
   
   <!-- Column 1: Alert History Sidebar (15%) -->
   <div class="alert-history-sidebar bg-white">
-    <div class="bg-gray-100 border-b border-gray-200 p-4" >
+    <div class="bg-gray-100 border-b border-gray-200 p-4" style="height: 53px; display: flex; align-items: center;">
       <h3 class="text-xs font-semibold text-gray-900" style="margin: 0; padding: 0;">Alerts</h3>
     </div>
     <div style="padding: 16px;">
@@ -57,14 +57,14 @@
     <div class="cases-area-container" 
          [class.max-w-none]="isAlertPanelCollapsed">
       <!-- Content Header -->
-      <div class="bg-gray-100 border-b border-gray-200 p-4 ">
+      <div class="bg-gray-100 border-b border-gray-200 p-4" style="height: 53px; display: flex; align-items: center;">
         <span class="text-sm font-semibold text-gray-900">
           {{ showingAlerts ? 'Alerts: ' + savedAlerts.length : 'Cases: ' + getFilteredCaseCount() }}
         </span>
       </div>
       
       <!-- Content Container - Shows either Alerts or Cases -->
-      <div class="h-full overflow-y-auto relative" style="background-color: #FCFDFED9; padding: 16px; padding-top: 0;">
+      <div class="h-full overflow-y-auto relative" style="background-color: #FCFDFED9; padding: 16px; padding-top: 24px;">
         
         <!-- Creating Alert Loading Overlay -->
         <div *ngIf="isCreatingAlert" class="content-loading-overlay">

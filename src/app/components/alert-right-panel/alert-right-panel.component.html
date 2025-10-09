@@ -3,7 +3,7 @@
      [class]="isStatic ? 'static w-96 flex-shrink-0 overflow-hidden' : ''">
   
   <!-- Panel Header -->
-  <div class="panel-header border-b border-gray-200 bg-gray-100 flex items-center justify-between flex-shrink-0 p-4">
+  <div class="panel-header border-b border-gray-200 bg-gray-100 flex items-center justify-between flex-shrink-0 p-4" style="height: 53px;">
     <div class="flex items-center gap-2">
       <!-- Back Button (only show when in case detail view) -->
     <button 
@@ -196,11 +196,12 @@
           (click)="selectTiming('daily')">
           <div class="flex items-start gap-3">
             <div class="mt-0.5">
-              <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
+              <div class="w-4 h-4 rounded-full border flex items-center justify-center transition-colors"
                    [class.border-[#146B85]]="alertData.timing === 'daily'"
                    [class.border-gray-300]="alertData.timing !== 'daily'"
-                   [class.bg-[#146B85]]="alertData.timing === 'daily'">
-                <div *ngIf="alertData.timing === 'daily'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                   [class.bg-[#146B85]]="alertData.timing === 'daily'"
+                   [class.bg-opacity-20]="alertData.timing === 'daily'">
+                <div *ngIf="alertData.timing === 'daily'" class="w-1.5 h-1.5 bg-[#146B85] rounded-full"></div>
               </div>
             </div>
             <div class="flex-1">
@@ -217,11 +218,12 @@
           (click)="selectTiming('immediate')">
           <div class="flex items-start gap-3">
             <div class="mt-0.5">
-              <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
+              <div class="w-4 h-4 rounded-full border flex items-center justify-center transition-colors"
                    [class.border-[#146B85]]="alertData.timing === 'immediate'"
                    [class.border-gray-300]="alertData.timing !== 'immediate'"
-                   [class.bg-[#146B85]]="alertData.timing === 'immediate'">
-                <div *ngIf="alertData.timing === 'immediate'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                   [class.bg-[#146B85]]="alertData.timing === 'immediate'"
+                   [class.bg-opacity-20]="alertData.timing === 'immediate'">
+                <div *ngIf="alertData.timing === 'immediate'" class="w-1.5 h-1.5 bg-[#146B85] rounded-full"></div>
               </div>
             </div>
             <div class="flex-1">
@@ -243,11 +245,12 @@
           [class]="alertData.recipients === 'everyone' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectRecipients('everyone')">
           <div class="flex items-center gap-3">
-            <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
+            <div class="w-4 h-4 rounded-full border flex items-center justify-center transition-colors"
                  [class.border-[#146B85]]="alertData.recipients === 'everyone'"
                  [class.border-gray-300]="alertData.recipients !== 'everyone'"
-                 [class.bg-[#146B85]]="alertData.recipients === 'everyone'">
-              <div *ngIf="alertData.recipients === 'everyone'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                 [class.bg-[#146B85]]="alertData.recipients === 'everyone'"
+                 [class.bg-opacity-20]="alertData.recipients === 'everyone'">
+              <div *ngIf="alertData.recipients === 'everyone'" class="w-1.5 h-1.5 bg-[#146B85] rounded-full"></div>
             </div>
             <div class="text-sm font-medium text-gray-900">Everyone on the project</div>
           </div>
@@ -259,11 +262,12 @@
           [class]="alertData.recipients === 'selected' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectRecipients('selected')">
           <div class="flex items-center gap-3">
-            <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
+            <div class="w-4 h-4 rounded-full border flex items-center justify-center transition-colors"
                  [class.border-[#146B85]]="alertData.recipients === 'selected'"
                  [class.border-gray-300]="alertData.recipients !== 'selected'"
-                 [class.bg-[#146B85]]="alertData.recipients === 'selected'">
-              <div *ngIf="alertData.recipients === 'selected'" class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                 [class.bg-[#146B85]]="alertData.recipients === 'selected'"
+                 [class.bg-opacity-20]="alertData.recipients === 'selected'">
+              <div *ngIf="alertData.recipients === 'selected'" class="w-1.5 h-1.5 bg-[#146B85] rounded-full"></div>
             </div>
             <div class="text-sm font-medium text-gray-900">Pick who should receive them...</div>
           </div>

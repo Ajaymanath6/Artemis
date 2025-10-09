@@ -192,22 +192,45 @@ export class AlertlistLayoutComponent {
       this.addToHistory(alertData.researchQuestion.trim());
     }
 
-    // Create new saved alert from the form data
+    // Create new saved alert from the form data with processing state
     const newAlert: AlertData = {
       id: (this.savedAlerts.length + 1).toString(),
       name: alertData.researchQuestion.substring(0, 50) + (alertData.researchQuestion.length > 50 ? '...' : ''),
       isActive: true,
-      caseCount: 8, // Default case count
+      caseCount: 0, // Will be updated after processing
       recipients: alertData.recipients === 'everyone' ? 5 : Object.values(alertData.selectedUsers).filter(Boolean).length,
       researchQuestion: alertData.researchQuestion,
       timing: alertData.timing,
       createdDate: 'just now',
-      lastUpdated: 'just now'
+      lastUpdated: 'just now',
+      isProcessing: true,
+      processingStatus: 'Searching for cases...'
     };
 
     // Add to saved alerts
     this.savedAlerts.unshift(newAlert);
-    console.log('New alert saved:', newAlert);
+    console.log('New alert saved with processing state:', newAlert);
+    
+    // Simulate processing with status updates
+    setTimeout(() => {
+      if (newAlert.isProcessing) {
+        newAlert.processingStatus = 'Fetching results...';
+      }
+    }, 1500);
+    
+    setTimeout(() => {
+      if (newAlert.isProcessing) {
+        newAlert.processingStatus = 'Finalizing alert...';
+      }
+    }, 3000);
+    
+    // Complete processing after 5 seconds
+    setTimeout(() => {
+      newAlert.isProcessing = false;
+      newAlert.processingStatus = undefined;
+      newAlert.caseCount = Math.floor(Math.random() * 15) + 1; // Random case count 1-15
+      console.log('Alert processing completed:', newAlert);
+    }, 5000);
     
     this.saveAlert.emit(alertData);
   }

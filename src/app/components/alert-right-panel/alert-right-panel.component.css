@@ -22,6 +22,9 @@
 /* Header - fixed at top */
 .panel-header {
   flex-shrink: 0;
+  height: 53px;
+  min-height: 53px;
+  max-height: 53px;
   background: #f3f4f6;
   border-bottom: 1px solid #e5e7eb;
   position: relative;
