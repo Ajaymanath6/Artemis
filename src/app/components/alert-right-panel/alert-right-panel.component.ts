@@ -179,10 +179,12 @@ export class AlertRightPanelComponent implements OnChanges {
 
   // Methods for interactive card selection
   selectTiming(timing: string): void {
+    console.log('Timing selected:', timing);
     this.alertData.timing = timing;
   }
 
   selectRecipients(recipients: string): void {
+    console.log('Recipients selected:', recipients);
     this.alertData.recipients = recipients;
   }
 }

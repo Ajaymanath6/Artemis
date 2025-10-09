@@ -192,9 +192,7 @@
         <!-- Daily Summary Option -->
         <div 
           class="timing-option-card p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50"
-          [class.border-[#146B85]]="alertData.timing === 'daily'"
-          [class.border-gray-200]="alertData.timing !== 'daily'"
-          [class.bg-[#146B85]/5]="alertData.timing === 'daily'"
+          [class]="alertData.timing === 'daily' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectTiming('daily')">
           <div class="flex items-start gap-3">
             <div class="mt-0.5">
@@ -215,9 +213,7 @@
         <!-- Immediately Option -->
         <div 
           class="timing-option-card p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50"
-          [class.border-[#146B85]]="alertData.timing === 'immediate'"
-          [class.border-gray-200]="alertData.timing !== 'immediate'"
-          [class.bg-[#146B85]/5]="alertData.timing === 'immediate'"
+          [class]="alertData.timing === 'immediate' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectTiming('immediate')">
           <div class="flex items-start gap-3">
             <div class="mt-0.5">
@@ -244,9 +240,7 @@
         <!-- Everyone on project -->
         <div 
           class="recipient-option-card p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50"
-          [class.border-[#146B85]]="alertData.recipients === 'everyone'"
-          [class.border-gray-200]="alertData.recipients !== 'everyone'"
-          [class.bg-[#146B85]/5]="alertData.recipients === 'everyone'"
+          [class]="alertData.recipients === 'everyone' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectRecipients('everyone')">
           <div class="flex items-center gap-3">
             <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
@@ -262,9 +256,7 @@
         <!-- Pick recipients -->
         <div 
           class="recipient-option-card p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-50"
-          [class.border-[#146B85]]="alertData.recipients === 'selected'"
-          [class.border-gray-200]="alertData.recipients !== 'selected'"
-          [class.bg-[#146B85]/5]="alertData.recipients === 'selected'"
+          [class]="alertData.recipients === 'selected' ? 'border-[#146B85] bg-[#146B85] bg-opacity-5' : 'border-gray-200'"
           (click)="selectRecipients('selected')">
           <div class="flex items-center gap-3">
             <div class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors"
