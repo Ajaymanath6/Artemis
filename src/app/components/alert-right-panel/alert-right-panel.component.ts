@@ -176,4 +176,13 @@ export class AlertRightPanelComponent implements OnChanges {
   isFormValid(): boolean {
     return this.alertData.researchQuestion.trim().length > 0;
   }
+
+  // Methods for interactive card selection
+  selectTiming(timing: string): void {
+    this.alertData.timing = timing;
+  }
+
+  selectRecipients(recipients: string): void {
+    this.alertData.recipients = recipients;
+  }
 }

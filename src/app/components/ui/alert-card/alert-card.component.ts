@@ -11,6 +11,8 @@ export interface AlertData {
   timing: string;
   createdDate: string;
   lastUpdated: string;
+  isProcessing?: boolean;
+  processingStatus?: string;
 }
 
 @Component({
@@ -63,5 +65,23 @@ export class AlertCardComponent {
         this.isDeleting = false;
       }, 500);
     }, 1500);
+  }
+
+  // Methods for processing state management
+  startProcessing(status: string = 'Searching...'): void {
+    this.alertData.isProcessing = true;
+    this.alertData.processingStatus = status;
+  }
+
+  updateProcessingStatus(status: string): void {
+    if (this.alertData.isProcessing) {
+      this.alertData.processingStatus = status;
+    }
+  }
+
+  completeProcessing(finalCaseCount: number): void {
+    this.alertData.isProcessing = false;
+    this.alertData.processingStatus = undefined;
+    this.alertData.caseCount = finalCaseCount;
   }
 }

@@ -36,6 +36,13 @@
   animation: spin 1s linear infinite;
 }
 
+/* Processing Spinner Styles */
+.processing-spinner {
+  border: 1px solid #9ca3af; /* Gray border */
+  border-top: 1px solid transparent; /* Transparent top for spinning effect */
+  animation: spin 1s linear infinite;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
