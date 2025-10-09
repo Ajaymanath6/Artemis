@@ -25,28 +25,9 @@
         <div class="case-meta-content">
           <!-- Case Information Column -->
           <div class="case-info-column">
-            <!-- Case Hub Title -->
-            <h1 class="case-title">Case Hub</h1>
+            <!-- Research Hub Title -->
+            <h1 class="case-title">Research Hub</h1>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                  <button 
-                    (click)="onAddList()"
-                    class="action-button">
-                    <i class="ri-add-line text-lg mr-2"></i>
-                    Add to list
-                  </button>
-                  <button 
-                    (click)="onImportCase()"
-                    class="action-button">
-                    <i class="ri-file-add-line text-lg mr-2"></i>
-                    Import case
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Tab Navigation -->
@@ -76,29 +57,21 @@
         <!-- Tab Content -->
         <div class="cases-grid">
           
-          <!-- All Tab Content -->
-          <div *ngIf="activeTab === 'all'">
+          <!-- Lists Tab Content -->
+          <div *ngIf="activeTab === 'lists'">
             <app-cases-hub-layout></app-cases-hub-layout>
           </div>
 
-          <!-- Cases Tab Content -->
-          <div *ngIf="activeTab === 'cases'">
-            <app-cases-hub-layout></app-cases-hub-layout>
-          </div>
-
-          <!-- Attorneys Tab Content -->
-          <div *ngIf="activeTab === 'attorneys'">
-            <app-attorney-hub-layout></app-attorney-hub-layout>
-          </div>
-
-          <!-- Judges Tab Content -->
-          <div *ngIf="activeTab === 'judges'">
-            <app-judges-hub-layout></app-judges-hub-layout>
-          </div>
-
-          <!-- Parties Tab Content -->
-          <div *ngIf="activeTab === 'parties'">
-            <app-parties-hub-layout></app-parties-hub-layout>
+          <!-- Import Cases Tab Content -->
+          <div *ngIf="activeTab === 'import-cases'">
+            <!-- TODO: Create import cases layout component -->
+            <div class="empty-state">
+              <div class="empty-content">
+                <i class="ri-file-add-line empty-icon"></i>
+                <h3 class="empty-title">Import Cases</h3>
+                <p class="empty-description">Import cases functionality coming soon.</p>
+              </div>
+            </div>
           </div>
 
         </div>
