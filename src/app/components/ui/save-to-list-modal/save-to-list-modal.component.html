@@ -4,7 +4,17 @@
     
     <!-- Modal Header -->
     <div class="modal-header">
-      <h2 class="modal-title">Save to list</h2>
+      <div class="header-left">
+        <!-- Back Button (only show in create list form) -->
+        <button 
+          *ngIf="showCreateListForm"
+          (click)="onBackToOptions()"
+          class="back-button"
+          type="button">
+          <i class="ri-arrow-left-line"></i>
+        </button>
+        <h2 class="modal-title">{{ showCreateListForm ? 'Create a new list' : 'Save to list' }}</h2>
+      </div>
       <button 
         (click)="onClose()"
         class="close-button"
@@ -16,55 +26,90 @@
     <!-- Modal Body -->
     <div class="modal-body">
       
-      <!-- Create New List Option -->
-      <div class="list-option" (click)="selectOption('new')">
-        <div class="option-content">
-          <div class="option-icon">
-            <i class="ri-add-line"></i>
+      <!-- List Options View -->
+      <div *ngIf="!showCreateListForm">
+        <!-- Create New List Option -->
+        <div class="list-option" (click)="selectOption('new')">
+          <div class="option-content">
+            <div class="option-icon">
+              <i class="ri-add-line"></i>
+            </div>
+            <div class="option-text">
+              <span class="option-title">Create a new list</span>
+            </div>
           </div>
-          <div class="option-text">
-            <span class="option-title">Create a new list</span>
+          <div class="option-radio">
+            <div class="radio-circle" [class.selected]="selectedOption === 'new'">
+              <div *ngIf="selectedOption === 'new'" class="radio-dot"></div>
+            </div>
           </div>
         </div>
-        <div class="option-radio">
-          <div class="radio-circle" [class.selected]="selectedOption === 'new'">
-            <div *ngIf="selectedOption === 'new'" class="radio-dot"></div>
+
+        <!-- My Favorites Option -->
+        <div class="list-option" (click)="selectOption('favorites')">
+          <div class="option-content">
+            <div class="option-icon">
+              <i class="ri-heart-line"></i>
+            </div>
+            <div class="option-text">
+              <span class="option-title">My favorites</span>
+            </div>
+          </div>
+          <div class="option-radio">
+            <div class="radio-circle" [class.selected]="selectedOption === 'favorites'">
+              <div *ngIf="selectedOption === 'favorites'" class="radio-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Samples Option -->
+        <div class="list-option" (click)="selectOption('samples')">
+          <div class="option-content">
+            <div class="option-icon">
+              <i class="ri-file-list-line"></i>
+            </div>
+            <div class="option-text">
+              <span class="option-title">Samples</span>
+            </div>
+          </div>
+          <div class="option-radio">
+            <div class="radio-circle" [class.selected]="selectedOption === 'samples'">
+              <div *ngIf="selectedOption === 'samples'" class="radio-dot"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- My Favorites Option -->
-      <div class="list-option" (click)="selectOption('favorites')">
-        <div class="option-content">
-          <div class="option-icon">
-            <i class="ri-heart-line"></i>
+      <!-- Create List Form View -->
+      <div *ngIf="showCreateListForm" class="create-list-form">
+        
+        <!-- List Name Input -->
+        <div class="form-group">
+          <label for="listName" class="form-label">List name</label>
+          <input 
+            id="listName"
+            type="text" 
+            class="form-input"
+            [(ngModel)]="listName"
+            (input)="onListNameChange($event)"
+            placeholder="Enter list name"
+            maxlength="100"
+            autocomplete="off">
+          
+          <!-- Character Count -->
+          <div class="form-help">
+            <span class="char-count" [class.error]="listName.length > 100">
+              {{ listName.length }}/100 characters
+            </span>
+            <span class="min-char-note">Minimum 3 characters</span>
           </div>
-          <div class="option-text">
-            <span class="option-title">My favorites</span>
+          
+          <!-- Error Message -->
+          <div *ngIf="listNameError" class="form-error">
+            {{ listNameError }}
           </div>
         </div>
-        <div class="option-radio">
-          <div class="radio-circle" [class.selected]="selectedOption === 'favorites'">
-            <div *ngIf="selectedOption === 'favorites'" class="radio-dot"></div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Samples Option -->
-      <div class="list-option" (click)="selectOption('samples')">
-        <div class="option-content">
-          <div class="option-icon">
-            <i class="ri-file-list-line"></i>
-          </div>
-          <div class="option-text">
-            <span class="option-title">Samples</span>
-          </div>
-        </div>
-        <div class="option-radio">
-          <div class="radio-circle" [class.selected]="selectedOption === 'samples'">
-            <div *ngIf="selectedOption === 'samples'" class="radio-dot"></div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -81,8 +126,8 @@
         (click)="onDone()"
         class="done-button"
         type="button"
-        [disabled]="!selectedOption">
-        Done
+        [disabled]="!selectedOption || (showCreateListForm && listName.trim().length < 3)">
+        {{ showCreateListForm ? 'Create new list' : 'Done' }}
       </button>
     </div>
 

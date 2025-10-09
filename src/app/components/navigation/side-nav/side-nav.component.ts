@@ -67,7 +67,18 @@ export class SideNavComponent implements OnInit {
             children: this.getSearchHistory()
           },
           { id: 'project-tracking', label: 'Tracking', icon: 'time-line', route: '/tracking' },
-          { id: 'project-case-hub', label: 'Case Hub', icon: 'bookmark-line', route: '/case-hub' },
+          { 
+            id: 'project-case-hub', 
+            label: 'Case Hub', 
+            icon: 'bookmark-line', 
+            route: '/case-hub',
+            isExpanded: false,
+            children: [
+              { id: 'my-favorites', label: 'My Favorites', icon: 'heart-line', route: '/my-favorites' },
+              { id: 'samples', label: 'Samples', icon: 'file-list-line', route: '/samples' }
+              // Dynamic lists will be added here programmatically
+            ]
+          },
           { id: 'project-alerts', label: 'Alerts', icon: 'notification-line', route: '/alerts' }
         ]
       }
@@ -86,6 +97,9 @@ export class SideNavComponent implements OnInit {
     // Initialize history items on startup
     this.updateHistoryNavItems();
     
+    // Load dynamic custom lists
+    this.loadCustomLists();
+    
     // Set initial active item based on current route
     this.setActiveItemBasedOnRoute(this.router.url);
     
@@ -93,6 +107,7 @@ export class SideNavComponent implements OnInit {
     setTimeout(() => {
       this.setActiveItemBasedOnRoute(this.router.url);
       this.updateHistoryNavItems(); // Refresh history items
+      this.loadCustomLists(); // Refresh custom lists
       console.log('SideNav forced update - active item:', this.activeItemId);
     }, 100);
 
@@ -434,16 +449,114 @@ export class SideNavComponent implements OnInit {
       // The modal will handle saving to favorites and navigation
       console.log('Item will be saved to My Favorites');
     } else if (result.action === 'new') {
-      // Handle create new list
+      // Handle create new list - modal will handle this
       console.log('Create new list action');
-      // TODO: Implement create new list functionality
     } else if (result.action === 'samples') {
       // Handle add to samples
       console.log('Add to samples action');
       // TODO: Implement add to samples functionality
+    } else if (result.action === 'custom-list') {
+      // Handle custom list creation
+      this.createCustomList(result.listName, this.itemToSave);
     }
     
     this.isModalVisible = false;
     this.itemToSave = null;
+  }
+
+  // Load custom lists from localStorage
+  private loadCustomLists(): void {
+    try {
+      const customLists = localStorage.getItem('customLists');
+      if (customLists) {
+        const lists = JSON.parse(customLists);
+        this.addCustomListsToNavigation(lists);
+      }
+    } catch (error) {
+      console.warn('Failed to load custom lists:', error);
+    }
+  }
+
+  // Add custom lists to Case Hub navigation
+  private addCustomListsToNavigation(customLists: any[]): void {
+    const caseHubItem = this.findCaseHubNavItem();
+    if (caseHubItem && caseHubItem.children) {
+      // Remove existing custom lists (keep only My Favorites and Samples)
+      caseHubItem.children = caseHubItem.children.filter(child => 
+        child.id === 'my-favorites' || child.id === 'samples'
+      );
+      
+      // Add custom lists
+      customLists.forEach(list => {
+        const listId = this.generateListId(list.name);
+        caseHubItem.children!.push({
+          id: listId,
+          label: list.name,
+          icon: 'file-list-3-line',
+          route: `/list/${listId}`
+        });
+      });
+      
+      console.log('Updated Case Hub with custom lists:', caseHubItem.children.length);
+    }
+  }
+
+  // Find Case Hub nav item
+  private findCaseHubNavItem(): NavItem | undefined {
+    const projectItem = this.navItems.find(item => item.id === 'project');
+    if (projectItem && projectItem.children) {
+      return projectItem.children.find(child => child.id === 'project-case-hub');
+    }
+    return undefined;
+  }
+
+  // Create a new custom list
+  private createCustomList(listName: string, item: any): void {
+    try {
+      // Get existing custom lists
+      let customLists = [];
+      const existingLists = localStorage.getItem('customLists');
+      
+      if (existingLists) {
+        customLists = JSON.parse(existingLists);
+      }
+      
+      // Create new list
+      const newList = {
+        id: this.generateListId(listName),
+        name: listName,
+        items: item ? [item] : [],
+        createdDate: new Date().toISOString()
+      };
+      
+      // Add to lists
+      customLists.push(newList);
+      
+      // Save to localStorage
+      localStorage.setItem('customLists', JSON.stringify(customLists));
+      
+      // Create list-specific localStorage entry
+      localStorage.setItem(`list_${newList.id}`, JSON.stringify(newList.items));
+      
+      // Update navigation
+      this.loadCustomLists();
+      
+      // Navigate to the new list
+      this.router.navigate([`/list/${newList.id}`]);
+      
+      console.log('Created custom list:', listName);
+      
+    } catch (error) {
+      console.warn('Failed to create custom list:', error);
+    }
+  }
+
+  // Generate a URL-safe ID from list name
+  private generateListId(listName: string): string {
+    return listName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
   }
 }

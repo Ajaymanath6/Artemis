@@ -58,6 +58,18 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/my-favorites/my-favorites.component').then(m => m.MyFavoritesComponent)
   },
 
+  // Samples page
+  {
+    path: 'samples',
+    loadComponent: () => import('./pages/samples/samples.component').then(m => m.SamplesComponent)
+  },
+
+  // Dynamic Custom Lists
+  {
+    path: 'list/:id',
+    loadComponent: () => import('./pages/custom-list/custom-list.component').then(m => m.CustomListComponent)
+  },
+
   // Alerts page
   {
     path: 'alerts',
