@@ -11,13 +11,28 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
+  <!-- Fixed Header Component -->
+  <app-cases-header
+    [isSidebarCollapsed]="isSidebarCollapsed"
+    [projectName]="projectName"
+    [currentSearchQuery]="currentSearchQuery"
+    [hasSearched]="hasSearched && !isSearchBarExpanded"
+    [showCollapseButton]="showResults && hasSearched && isSearchBarExpanded"
+    (sidebarToggle)="onSidebarToggle()"
+    (projectClick)="onProjectClick()"
+    (searchQueryClick)="onSearchQueryClick()"
+    (search)="onSearch($event)"
+    (expandSearch)="onExpandSearch()"
+    (collapseSearch)="onCollapseSearch()">
+  </app-cases-header>
+  
   <!-- Main Content Area -->
   <div class="flex-1 flex flex-col bg-cases-page" 
            [class.ml-sidebar]="!isSidebarCollapsed" 
            [class.ml-16]="isSidebarCollapsed">
     
     <!-- Header Section -->
-    <div class="bg-white border-b border-gray-200 px-8 py-8">
+    <div class="bg-white px-8 py-8">
       <h1 class="text-3xl font-bold text-gray-900 mb-2">Hello Michael!</h1>
       <p class="text-lg text-gray-600">What would you like to do today?</p>
     </div>
