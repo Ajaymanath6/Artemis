@@ -495,43 +495,70 @@ export class AlertlistLayoutComponent {
   }
 
   onCreateAlert(): void {
-    console.log('=== CREATE ALERT CLICKED ===');
+    console.log('\n╔═══════════════════════════════════════════════════════════════╗');
+    console.log('║                  CREATE ALERT CLICKED                         ║');
+    console.log('╚═══════════════════════════════════════════════════════════════╝\n');
     
-    // STEP 1: Immediately clear all state flags
+    console.log('[Parent] BEFORE state clear:');
+    console.log('  - selectedAlert:', this.selectedAlert?.name || 'null');
+    console.log('  - selectedCase:', this.selectedCase?.title || 'null');
+    console.log('  - showCaseDetail:', this.showCaseDetail);
+    console.log('  - isRightPanelExpanded:', this.isRightPanelExpanded);
+    if (this.alertRightPanel) {
+      console.log('  - alertRightPanel.showAlertCases:', this.alertRightPanel.showAlertCases);
+      console.log('  - alertRightPanel.showCaseDetail:', this.alertRightPanel.showCaseDetail);
+    }
+    
+    // STEP 1: Immediately clear all parent state
     this.selectedAlert = null;
     this.selectedCase = null;
     this.showCaseDetail = false;
     this.isRightPanelExpanded = false;
-    this.isAlertPanelCollapsed = false; // Ensure panel is visible
+    this.isAlertPanelCollapsed = false;
     
-    console.log('Step 1: Cleared parent state');
+    console.log('\n[Parent] AFTER parent state clear:');
+    console.log('  - selectedAlert:', this.selectedAlert);
+    console.log('  - selectedCase:', this.selectedCase);
+    console.log('  - showCaseDetail:', this.showCaseDetail);
     
-    // STEP 2: Force reset child component flags synchronously
+    // STEP 2: Immediately force child state (synchronously)
     if (this.alertRightPanel) {
+      console.log('\n[Parent] Forcing child component state...');
       this.alertRightPanel.showAlertCases = false;
       this.alertRightPanel.showCaseDetail = false;
-      console.log('Step 2: Set child flags - showAlertCases:', this.alertRightPanel.showAlertCases, 'showCaseDetail:', this.alertRightPanel.showCaseDetail);
+      console.log('  - Child showAlertCases set to:', this.alertRightPanel.showAlertCases);
+      console.log('  - Child showCaseDetail set to:', this.alertRightPanel.showCaseDetail);
     }
     
-    // STEP 3: Use setTimeout to ensure change detection has run and reset form
+    // STEP 3: Use forceCreateAlertState method after change detection
     setTimeout(() => {
+      console.log('\n[Parent] Timeout 0ms - calling forceCreateAlertState()');
       if (this.alertRightPanel) {
-        // Force flags again after change detection
-        this.alertRightPanel.showAlertCases = false;
-        this.alertRightPanel.showCaseDetail = false;
-        this.alertRightPanel.resetForm();
-        console.log('Step 3: Final reset - showAlertCases:', this.alertRightPanel.showAlertCases);
+        this.alertRightPanel.forceCreateAlertState();
+        console.log('  - showAlertCases:', this.alertRightPanel.showAlertCases);
+        console.log('  - showCaseDetail:', this.alertRightPanel.showCaseDetail);
       }
     }, 0);
     
-    // STEP 4: Double-check after a longer delay to catch any race conditions
+    // STEP 4: Final safety check
     setTimeout(() => {
+      console.log('\n[Parent] Timeout 100ms - final safety check');
       if (this.alertRightPanel) {
-        this.alertRightPanel.showAlertCases = false;
-        this.alertRightPanel.showCaseDetail = false;
-        console.log('Step 4: Final safety check - Form should now be visible');
+        console.log('  - showAlertCases:', this.alertRightPanel.showAlertCases);
+        console.log('  - showCaseDetail:', this.alertRightPanel.showCaseDetail);
+        console.log('  - selectedAlert:', this.selectedAlert);
+        
+        if (this.alertRightPanel.showAlertCases === true || this.alertRightPanel.showCaseDetail === true) {
+          console.error('⚠️  WARNING: Flags are still wrong! Force correcting...');
+          this.alertRightPanel.showAlertCases = false;
+          this.alertRightPanel.showCaseDetail = false;
+          this.alertRightPanel.forceCreateAlertState();
+        } else {
+          console.log('✅ State is correct - form should be visible');
+        }
       }
-    }, 50);
+      console.log('\n╚═══════════════════════════════════════════════════════════════╝\n');
+    }, 100);
   }
 
   // Method to manually complete alert processing (for testing or when backend responds)

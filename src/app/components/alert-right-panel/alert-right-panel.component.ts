@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CaseData } from '../ui/result-card/result-card.component';
@@ -32,6 +32,8 @@ export class AlertRightPanelComponent implements OnChanges {
   instantEmailEnabled: boolean = false;
   isLoadingCases: boolean = false;
   showAlertCases: boolean = false; // Controls whether to show alert cases or alert form
+
+  constructor(private cdr: ChangeDetectorRef) {}
   alertData = {
     researchQuestion: '',
     timing: 'immediate', // Default to immediate alerts
@@ -55,6 +57,19 @@ export class AlertRightPanelComponent implements OnChanges {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
+    // Log ALL state changes for debugging
+    if (changes['showCaseDetail']) {
+      console.log('[AlertRightPanel] showCaseDetail changed:', changes['showCaseDetail'].previousValue, '→', changes['showCaseDetail'].currentValue);
+    }
+    if (changes['selectedCase']) {
+      console.log('[AlertRightPanel] selectedCase changed:', changes['selectedCase'].previousValue, '→', changes['selectedCase'].currentValue);
+    }
+    if (changes['selectedAlert']) {
+      console.log('[AlertRightPanel] selectedAlert changed:', changes['selectedAlert'].previousValue?.name, '→', changes['selectedAlert'].currentValue?.name);
+    }
+    
+    console.log('[AlertRightPanel] Current state → showAlertCases:', this.showAlertCases, 'showCaseDetail:', this.showCaseDetail, 'selectedAlert:', this.selectedAlert?.name || 'null');
+    
     if (changes['selectedResearchQuestion'] && this.selectedResearchQuestion) {
       this.alertData.researchQuestion = this.selectedResearchQuestion;
     }
@@ -63,9 +78,11 @@ export class AlertRightPanelComponent implements OnChanges {
     if (changes['selectedAlert']) {
       if (this.selectedAlert && !this.showAlertCases) {
         // Only populate form when we're showing form (not cases)
+        console.log('[AlertRightPanel] Populating form with alert data');
         this.populateFormWithAlertData(this.selectedAlert);
       } else if (!this.selectedAlert) {
         // Creating new alert - reset form
+        console.log('[AlertRightPanel] selectedAlert is null - resetting form');
         this.resetAlertForm();
       }
     }
@@ -105,7 +122,28 @@ export class AlertRightPanelComponent implements OnChanges {
 
   // Public method to reset form from parent component
   public resetForm(): void {
+    console.log('[AlertRightPanel] resetForm() called');
+    console.log('[AlertRightPanel] BEFORE reset - showAlertCases:', this.showAlertCases, 'showCaseDetail:', this.showCaseDetail, 'selectedAlert:', this.selectedAlert);
+    
+    this.showAlertCases = false;
+    this.showCaseDetail = false;
     this.resetAlertForm();
+    
+    console.log('[AlertRightPanel] AFTER reset - showAlertCases:', this.showAlertCases, 'showCaseDetail:', this.showCaseDetail);
+    
+    // Force change detection
+    this.cdr.detectChanges();
+    console.log('[AlertRightPanel] Change detection triggered');
+  }
+  
+  // Public method to force state for creating new alert
+  public forceCreateAlertState(): void {
+    console.log('[AlertRightPanel] forceCreateAlertState() called');
+    this.showAlertCases = false;
+    this.showCaseDetail = false;
+    this.resetAlertForm();
+    this.cdr.markForCheck();
+    console.log('[AlertRightPanel] Forced to create alert state');
   }
 
   onSave(): void {
