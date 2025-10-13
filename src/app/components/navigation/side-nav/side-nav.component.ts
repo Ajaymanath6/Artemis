@@ -57,7 +57,7 @@ export class SideNavComponent implements OnInit {
         icon: 'folder-open-fill',
         isExpanded: true,
         children: [
-          { id: 'project-home', label: 'Project Home', icon: 'home-line', route: '/cases' },
+          { id: 'project-home', label: 'Project Home', icon: 'home-line', route: '/project-home' },
           { id: 'project-search', label: 'Search', icon: 'search-line', route: '/cases' },
           {
             id: 'history',

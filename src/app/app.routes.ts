@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // Redirect root to cases page (our main application)
-  { path: '', redirectTo: '/cases', pathMatch: 'full' },
+  // Redirect root to project home page (our main application)
+  { path: '', redirectTo: '/project-home', pathMatch: 'full' },
 
   // Authentication routes
   {
@@ -26,6 +26,12 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
       }
     ]
+  },
+
+  // Project Home page (same as cases but separate)
+  {
+    path: 'project-home',
+    loadComponent: () => import('./pages/project-home/project-home.component').then(m => m.ProjectHomeComponent)
   },
 
   // Cases page
