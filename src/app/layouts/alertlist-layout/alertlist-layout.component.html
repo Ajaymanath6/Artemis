@@ -14,7 +14,6 @@
           (click)="setActiveFilter('all')"
           [class]="getNavButtonClass('all')"
           class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left">
-          <i class="ri-notification-line mr-3"></i>
           All
           <span class="ml-auto bg-gray-200 text-gray-800 text-xs px-2 py-0.5 rounded-full">{{ caseCount }}</span>
         </button>
@@ -22,7 +21,6 @@
           (click)="setActiveFilter('unread')"
           [class]="getNavButtonClass('unread')"
           class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left">
-          <i class="ri-notification-3-line mr-3"></i>
           Unread
           <span *ngIf="getUnreadCount() > 0" class="ml-auto bg-gray-200 text-gray-800 text-xs px-2 py-0.5 rounded-full">{{ getUnreadCount() }}</span>
         </button>
@@ -30,7 +28,6 @@
           (click)="setActiveFilter('new')"
           [class]="getNavButtonClass('new')"
           class="w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left">
-          <i class="ri-notification-2-line mr-3"></i>
           New alerts
           <span *ngIf="getNewCount() > 0" class="ml-auto bg-gray-200 text-gray-800 text-xs px-2 py-0.5 rounded-full">{{ getNewCount() }}</span>
         </button>
