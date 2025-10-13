@@ -1,0 +1,1106 @@
+/* Cases Component Styles */
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Cases page specific background */
+.bg-cases-page {
+  background-color: #F8F8F8;
+}
+
+/* Alert panel now participates in layout flow, so no need for manual width adjustments */
+
+/* Skeleton loading animations */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Skeleton card spacing */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+/* Skeleton elements */
+.w-18 {
+  width: 4.5rem;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.w-20 {
+  width: 5rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-14 {
+  width: 3.5rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-32 {
+  width: 8rem;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-1\/3 {
+  width: 33.333333%;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+.bg-gray-200 {
+  background-color: #e5e7eb;
+}
+
+.bg-gray-300 {
+  background-color: #d1d5db;
+}
+
+/* Layout utilities */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.min-h-\[60vh\] {
+  min-height: 60vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+/* Border utilities */
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Button and badge utilities */
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.bg-brand {
+  background-color: #146B85;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.hover\:bg-gray-200:hover {
+  background-color: #e5e7eb;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Icon utilities */
+.h-24 {
+  height: 6rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* Spacing utilities */
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+/* Text utilities */
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.max-w-sm {
+  max-width: 24rem;
+}
+
+/* Header styling */
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+/* Search bar container */
+.max-w-md {
+  max-width: 28rem;
+}
+
+/* Content area */
+.bg-white {
+  background-color: white;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-stroke-weak {
+  border-color: #e5e7eb;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Margin for fixed sidebar */
+.ml-sidebar {
+  margin-left: 206px; /* Default sidebar width */
+}
+
+.ml-16 {
+  margin-left: 4rem; /* 64px - collapsed sidebar width */
+}
+
+/* Fixed positioning utilities */
+.fixed {
+  position: fixed;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+/* Fixed card height */
+.h-52 {
+  height: 13rem; /* 208px - close to 205px requested */
+}
+
+/* Result card brand colors */
+.text-brand {
+  color: #146B85;
+}
+
+.bg-brand-light {
+  background-color: rgba(20, 107, 133, 0.1);
+}
+
+.bg-brand-lighter {
+  background-color: rgba(20, 107, 133, 0.15);
+}
+
+/* Grid layout utilities */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+/* Color utilities for tags */
+.bg-blue-100 {
+  background-color: #dbeafe;
+}
+
+.text-blue-800 {
+  color: #1e40af;
+}
+
+.bg-purple-100 {
+  background-color: #f3e8ff;
+}
+
+.text-purple-800 {
+  color: #6b21a8;
+}
+
+.bg-green-100 {
+  background-color: #dcfce7;
+}
+
+.text-green-800 {
+  color: #166534;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.text-gray-800 {
+  color: #1f2937;
+}
+
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.text-gray-900 {
+  color: #111827;
+}
+
+/* Hover effects */
+.hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.hover\:bg-gray-200:hover {
+  background-color: #e5e7eb;
+}
+
+/* Typography */
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+/* Spacing utilities */
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Border utilities */
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-l {
+  border-left-width: 1px;
+}
+
+.border-gray-100 {
+  border-color: #f3f4f6;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+/* Padding utilities */
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Spacing utilities */
+.space-y-1 > * + * {
+  margin-top: 0.25rem;
+}
+
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Layout utilities */
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Additional utilities for new card layout */
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* Flex column for vertical badges */
+.flex-col {
+  flex-direction: column;
+}
+
+/* Background opacity utilities */
+.bg-opacity-80 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.hover\:bg-opacity-80:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Transition all properties */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Hover background white */
+.hover\:bg-white:hover {
+  background-color: white;
+}
+
+/* Gray badge colors */
+.bg-gray-200 {
+  background-color: #e5e7eb;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+/* Additional utilities for new layout */
+.gap-4 {
+  gap: 1rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.text-gray-900 {
+  color: #111827;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* Tooltip styles */
+.relative {
+  position: relative;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.bottom-full {
+  bottom: 100%;
+}
+
+.left-1\/2 {
+  left: 50%;
+}
+
+.transform {
+  transform: var(--tw-transform);
+}
+
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x, 0), var(--tw-translate-y, 0)) rotate(var(--tw-rotate, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1));
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.bg-gray-800 {
+  background-color: #1f2937;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+/* White tooltip styles */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.text-gray-800 {
+  color: #1f2937;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+.min-h-24 {
+  min-height: 6rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.group-hover\:opacity-100:hover {
+  opacity: 1;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-gray-300 {
+  color: #d1d5db;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.group {
+  /* Group utility for hover effects */
+}
+
+/* Card background colors */
+.bg-zinc-200 {
+  background-color: rgba(252, 253, 254, 0.85); /* Very light gray, almost white - 5% lighter */
+}
+
+/* Additional utilities for data section */
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Additional padding utilities for tooltips */
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Dynamic height and overflow utilities */
+.min-h-fit {
+  min-height: fit-content;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+/* Hover and cursor utilities */
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Typography utilities */
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* Top padding for fixed header */
+.pt-header-height {
+  padding-top: 12rem; /* 192px - space for fixed header + compact search bar */
+}
+
+/* Top padding for fixed header when search bar is expanded */
+.pt-header-height-expanded {
+  padding-top: 20.1875rem; /* 323px - space for fixed header + expanded search bar (increased by 35px) */
+}
+
+/* Empty state minimum height and centering */
+.min-h-empty-state {
+  min-height: calc(100vh - 12rem); /* Full viewport height minus header height */
+}
+
+/* Empty state minimum height when search bar is expanded */
+.min-h-empty-state-expanded {
+  min-height: calc(100vh - 18rem); /* Full viewport height minus expanded header height */
+}
+
+/* Additional flex utilities for centering */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* File Actions Badge Styles */
+.file-actions-badge {
+  width: 42px; /* Smaller default size */
+  height: 24px; /* Smaller default size */
+}
+
+/* Default badge dimensions and styling */
+.default-file-badge {
+  width: 42px; /* Smaller default size */
+  height: 24px; /* Smaller default size */
+  background-color: rgba(249, 250, 251, 0.9); /* Light white background */
+}
+
+/* Expanded badge maintains original size */
+.expanded-file-badge {
+  width: 50px;
+  height: 28px;
+}
+
+/* Wider default badge for double digit file counts */
+.default-file-badge-wide {
+  width: 50px; /* Wider for double digit counts */
+  height: 24px;
+  background-color: rgba(249, 250, 251, 0.9);
+}
+
+/* Expanded wide badge for double digit counts */
+.expanded-file-badge-wide {
+  width: 58px; /* Wider for double digit counts */
+  height: 28px;
+}
+
+/* Icon sizing for badge actions */
+.ri-time-line,
+.ri-price-tag-3-line,
+.ri-file-text-fill {
+  font-size: 1.125rem; /* 18px - appropriate size for the small badges */
+}
+
+/* Tooltip styling improvements */
+.group\/tracker:hover .group-hover\/tracker\:opacity-100,
+.group\/tag:hover .group-hover\/tag\:opacity-100 {
+  z-index: 60;
+}
+
+/* Group hover variants */
+.group\/badge,
+.group\/tracker,
+.group\/tag {
+  position: relative;
+}
+
+/* Badge hover effects - light gray to indicate they're interactive */
+.case-card-badges span.cursor-pointer {
+  transition: background-color 0.2s ease;
+}
+
+.case-card-badges span.cursor-pointer:hover {
+  background-color: #f3f4f6; /* Light gray - more visible than before */
+}
+
+/* Hover effects for badges with group hover tooltips (cards 2-9) */
+.case-card-badges span.group\/badge:hover,
+.case-card-badges span.group\/badge2:hover,
+.case-card-badges span.group\/badge4:hover,
+.case-card-badges span.group\/badge5:hover,
+.case-card-badges span.group\/badge6:hover,
+.case-card-badges span.group\/badge7:hover,
+.case-card-badges span.group\/badge8:hover,
+.case-card-badges span.group\/badge9:hover {
+  background-color: #f3f4f6; /* Light gray - more visible hover effect */
+}
+
+/* Consistent card padding */
+.case-card {
+  /* Padding now handled by Tailwind p-6 class in HTML */
+}
+
+/* Ensure consistent spacing */
+.case-card-content {
+  margin-bottom: 1rem; /* 16px consistent bottom margin */
+}
+
+/* Title section spacing - 4px bottom margin */
+.case-card-title {
+  margin-bottom: 0.25rem !important; /* 4px */
+  line-height: 1.25; /* Tighter line height to control wrapping spacing */
+}
+
+.case-card-title h3 {
+  margin: 0 !important; /* Remove default h3 margins */
+  line-height: 1.25 !important; /* Consistent line height for title text */
+}
+
+/* Override tailwind leading-tight class for case titles */
+.case-card-title .leading-tight {
+  line-height: 1.25 !important;
+}
+
+/* Case details section spacing - 18px bottom margin */
+.case-card-details {
+  margin-bottom: 1.125rem !important; /* 18px */
+  margin-top: 0 !important; /* Ensure no extra top margin */
+}
+
+/* Badges section - ensure proper spacing from case details */
+.case-card-badges {
+  margin-top: 0 !important; /* No extra top margin - rely on case-card-details margin-bottom */
+}
+
+/* Custom spacing for case title - 8px gap between icon and title */
+.case-card-title {
+  gap: 8px !important;
+}
+
+/* Global space-x-1 for other elements */
+.space-x-1 > * + * {
+  margin-left: 0.25rem; /* 4px */
+}
+
+/* Limit results section height and add scroll */
+#results-section {
+  max-height: calc(100vh - 300px); /* Adjust based on header height */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+/* Custom scrollbar for webkit browsers */
+#results-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+#results-section::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+#results-section::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+#results-section::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
