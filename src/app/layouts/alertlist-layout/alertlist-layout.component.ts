@@ -495,32 +495,43 @@ export class AlertlistLayoutComponent {
   }
 
   onCreateAlert(): void {
-    console.log('Creating new alert - showing form...');
+    console.log('=== CREATE ALERT CLICKED ===');
     
-    // FIRST: Reset the child component flags immediately (before clearing parent data)
+    // STEP 1: Immediately clear all state flags
+    this.selectedAlert = null;
+    this.selectedCase = null;
+    this.showCaseDetail = false;
+    this.isRightPanelExpanded = false;
+    this.isAlertPanelCollapsed = false; // Ensure panel is visible
+    
+    console.log('Step 1: Cleared parent state');
+    
+    // STEP 2: Force reset child component flags synchronously
     if (this.alertRightPanel) {
-      this.alertRightPanel.showAlertCases = false; // Must be false to show form
-      console.log('STEP 1: Set showAlertCases to false immediately');
+      this.alertRightPanel.showAlertCases = false;
+      this.alertRightPanel.showCaseDetail = false;
+      console.log('Step 2: Set child flags - showAlertCases:', this.alertRightPanel.showAlertCases, 'showCaseDetail:', this.alertRightPanel.showCaseDetail);
     }
     
-    // SECOND: Clear all parent component state
-    this.selectedAlert = null; // Clear any selected alert
-    this.selectedCase = null; // Clear any selected case
-    this.isRightPanelExpanded = false; // Collapse to normal width for creating
-    this.showCaseDetail = false; // Ensure we're not showing case detail
-    this.isAlertPanelCollapsed = false; // Make sure panel is visible
-    
-    console.log('STEP 2: Cleared parent state - selectedAlert:', this.selectedAlert, 'showCaseDetail:', this.showCaseDetail);
-    
-    // THIRD: Use setTimeout to reset form after change detection
+    // STEP 3: Use setTimeout to ensure change detection has run and reset form
     setTimeout(() => {
       if (this.alertRightPanel) {
-        this.alertRightPanel.showAlertCases = false; // Ensure it's still false
-        this.alertRightPanel.resetForm(); // Reset form to clear any previous data
-        console.log('STEP 3: Reset form completed');
-        console.log('Final state - showCaseDetail:', this.showCaseDetail, 'showAlertCases:', this.alertRightPanel.showAlertCases);
+        // Force flags again after change detection
+        this.alertRightPanel.showAlertCases = false;
+        this.alertRightPanel.showCaseDetail = false;
+        this.alertRightPanel.resetForm();
+        console.log('Step 3: Final reset - showAlertCases:', this.alertRightPanel.showAlertCases);
       }
     }, 0);
+    
+    // STEP 4: Double-check after a longer delay to catch any race conditions
+    setTimeout(() => {
+      if (this.alertRightPanel) {
+        this.alertRightPanel.showAlertCases = false;
+        this.alertRightPanel.showCaseDetail = false;
+        console.log('Step 4: Final safety check - Form should now be visible');
+      }
+    }, 50);
   }
 
   // Method to manually complete alert processing (for testing or when backend responds)

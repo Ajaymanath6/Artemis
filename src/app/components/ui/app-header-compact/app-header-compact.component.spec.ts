@@ -21,3 +21,5 @@ describe('AppHeaderCompactComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

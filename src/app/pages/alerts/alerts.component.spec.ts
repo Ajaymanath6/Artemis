@@ -93,3 +93,5 @@ describe('AlertsComponent', () => {
     expect(component.isAlertPanelOpen).toBeFalsy();
   });
 });
+
+
