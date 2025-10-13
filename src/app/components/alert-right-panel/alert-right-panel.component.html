@@ -43,9 +43,8 @@
           <div class="font-bold text-yellow-800">Active View:</div>
           <div *ngIf="showCaseDetail && selectedCase" class="text-blue-600 font-bold">→ Case Detail View</div>
           <div *ngIf="selectedAlert && !showCaseDetail && showAlertCases" class="text-blue-600 font-bold">→ Alert Cases View</div>
-          <div *ngIf="!showCaseDetail && !showAlertCases" class="text-green-600 font-bold">→ Alert Form View ✓</div>
-          <div *ngIf="!showCaseDetail && !showAlertCases && !selectedAlert && !selectedCase" class="text-purple-600 font-bold">(Create New Alert)</div>
-          <div *ngIf="!(showCaseDetail && selectedCase) && !(selectedAlert && !showCaseDetail && showAlertCases) && !(!showCaseDetail && !showAlertCases)" class="text-red-600 font-bold">⚠️ BLANK (No conditions match!)</div>
+          <div *ngIf="!showCaseDetail && !(selectedAlert && showAlertCases)" class="text-green-600 font-bold">→ Alert Form View ✓ (FALLBACK)</div>
+          <div *ngIf="!showCaseDetail && !(selectedAlert && showAlertCases) && !selectedAlert" class="text-purple-600 font-bold">(Create New Alert)</div>
         </div>
       </div>
     </div>
@@ -175,8 +174,8 @@
       </div>
     </div>
 
-    <!-- Alert Form View (creating new alert OR editing existing alert) -->
-    <div *ngIf="!showCaseDetail && !showAlertCases">
+    <!-- Alert Form View (DEFAULT/FALLBACK - always show unless explicitly showing case detail or alert cases) -->
+    <div *ngIf="!showCaseDetail && !(selectedAlert && showAlertCases)">
         <!-- New Alert Title -->
         <div class="mb-4">
           <h3 class="text-lg font-semibold text-gray-900">{{ getHeaderTitle() }}</h3>
