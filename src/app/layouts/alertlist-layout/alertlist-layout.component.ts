@@ -495,69 +495,36 @@ export class AlertlistLayoutComponent {
   }
 
   onCreateAlert(): void {
-    console.log('\n╔═══════════════════════════════════════════════════════════════╗');
-    console.log('║                  CREATE ALERT CLICKED                         ║');
-    console.log('╚═══════════════════════════════════════════════════════════════╝\n');
-    
-    console.log('[Parent] BEFORE state clear:');
-    console.log('  - selectedAlert:', this.selectedAlert?.name || 'null');
-    console.log('  - selectedCase:', this.selectedCase?.title || 'null');
-    console.log('  - showCaseDetail:', this.showCaseDetail);
-    console.log('  - isRightPanelExpanded:', this.isRightPanelExpanded);
-    if (this.alertRightPanel) {
-      console.log('  - alertRightPanel.showAlertCases:', this.alertRightPanel.showAlertCases);
-      console.log('  - alertRightPanel.showCaseDetail:', this.alertRightPanel.showCaseDetail);
-    }
-    
-    // STEP 1: Immediately clear all parent state
+    // Clear all parent state
     this.selectedAlert = null;
     this.selectedCase = null;
     this.showCaseDetail = false;
     this.isRightPanelExpanded = false;
     this.isAlertPanelCollapsed = false;
     
-    console.log('\n[Parent] AFTER parent state clear:');
-    console.log('  - selectedAlert:', this.selectedAlert);
-    console.log('  - selectedCase:', this.selectedCase);
-    console.log('  - showCaseDetail:', this.showCaseDetail);
-    
-    // STEP 2: Immediately force child state (synchronously)
+    // Immediately force child state
     if (this.alertRightPanel) {
-      console.log('\n[Parent] Forcing child component state...');
       this.alertRightPanel.showAlertCases = false;
       this.alertRightPanel.showCaseDetail = false;
-      console.log('  - Child showAlertCases set to:', this.alertRightPanel.showAlertCases);
-      console.log('  - Child showCaseDetail set to:', this.alertRightPanel.showCaseDetail);
     }
     
-    // STEP 3: Use forceCreateAlertState method after change detection
+    // Use forceCreateAlertState method after change detection
     setTimeout(() => {
-      console.log('\n[Parent] Timeout 0ms - calling forceCreateAlertState()');
       if (this.alertRightPanel) {
         this.alertRightPanel.forceCreateAlertState();
-        console.log('  - showAlertCases:', this.alertRightPanel.showAlertCases);
-        console.log('  - showCaseDetail:', this.alertRightPanel.showCaseDetail);
       }
     }, 0);
     
-    // STEP 4: Final safety check
+    // Final safety check
     setTimeout(() => {
-      console.log('\n[Parent] Timeout 100ms - final safety check');
       if (this.alertRightPanel) {
-        console.log('  - showAlertCases:', this.alertRightPanel.showAlertCases);
-        console.log('  - showCaseDetail:', this.alertRightPanel.showCaseDetail);
-        console.log('  - selectedAlert:', this.selectedAlert);
-        
         if (this.alertRightPanel.showAlertCases === true || this.alertRightPanel.showCaseDetail === true) {
-          console.error('⚠️  WARNING: Flags are still wrong! Force correcting...');
+          // Force correct if still wrong
           this.alertRightPanel.showAlertCases = false;
           this.alertRightPanel.showCaseDetail = false;
           this.alertRightPanel.forceCreateAlertState();
-        } else {
-          console.log('✅ State is correct - form should be visible');
         }
       }
-      console.log('\n╚═══════════════════════════════════════════════════════════════╝\n');
     }, 100);
   }
 

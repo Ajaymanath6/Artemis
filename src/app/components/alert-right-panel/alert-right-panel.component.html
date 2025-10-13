@@ -31,24 +31,6 @@
   <!-- BODY: Scrollable content area (flex: 1) -->
   <div class="panel-content flex-1 overflow-y-auto p-4">
     
-    <!-- DEBUG STATE PANEL (Remove after fixing) -->
-    <div class="mb-4 p-3 bg-yellow-50 border-2 border-yellow-300 rounded-lg text-xs font-mono">
-      <div class="font-bold text-yellow-800 mb-2">🐛 DEBUG STATE:</div>
-      <div class="space-y-1 text-gray-700">
-        <div>showCaseDetail: <span class="font-bold" [class.text-red-600]="showCaseDetail" [class.text-green-600]="!showCaseDetail">{{ showCaseDetail }}</span></div>
-        <div>showAlertCases: <span class="font-bold" [class.text-red-600]="showAlertCases" [class.text-green-600]="!showAlertCases">{{ showAlertCases }}</span></div>
-        <div>selectedAlert: <span class="font-bold">{{ selectedAlert?.name || 'null' }}</span></div>
-        <div>selectedCase: <span class="font-bold">{{ selectedCase?.title || 'null' }}</span></div>
-        <div class="mt-2 pt-2 border-t border-yellow-300">
-          <div class="font-bold text-yellow-800">Active View:</div>
-          <div *ngIf="showCaseDetail && selectedCase" class="text-blue-600 font-bold">→ Case Detail View</div>
-          <div *ngIf="selectedAlert && !showCaseDetail && showAlertCases" class="text-blue-600 font-bold">→ Alert Cases View</div>
-          <div *ngIf="!showCaseDetail && !(selectedAlert && showAlertCases)" class="text-green-600 font-bold">→ Alert Form View ✓ (FALLBACK)</div>
-          <div *ngIf="!showCaseDetail && !(selectedAlert && showAlertCases) && !selectedAlert" class="text-purple-600 font-bold">(Create New Alert)</div>
-        </div>
-      </div>
-    </div>
-    
     <!-- Case Detail View -->
     <div *ngIf="showCaseDetail && selectedCase" class="case-detail-view">
       <!-- Case Title -->
