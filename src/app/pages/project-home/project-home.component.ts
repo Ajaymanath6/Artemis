@@ -1,14 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
-import { CasesHeaderComponent } from '../../components/ui/cases-header/cases-header.component';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
+import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-project-home',
   standalone: true,
-  imports: [CommonModule, CasesLayoutComponent, CasesHeaderComponent, SideNavComponent],
+  imports: [CommonModule, SideNavComponent, AppHeaderComponent],
   templateUrl: './project-home.component.html',
   styleUrls: ['./project-home.component.css']
 })
