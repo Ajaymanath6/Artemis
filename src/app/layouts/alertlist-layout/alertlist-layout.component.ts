@@ -496,18 +496,31 @@ export class AlertlistLayoutComponent {
 
   onCreateAlert(): void {
     console.log('Creating new alert - showing form...');
-    // Clear any selected alert and expand panel to show create form
-    this.selectedAlert = null;
+    
+    // FIRST: Reset the child component flags immediately (before clearing parent data)
+    if (this.alertRightPanel) {
+      this.alertRightPanel.showAlertCases = false; // Must be false to show form
+      console.log('STEP 1: Set showAlertCases to false immediately');
+    }
+    
+    // SECOND: Clear all parent component state
+    this.selectedAlert = null; // Clear any selected alert
+    this.selectedCase = null; // Clear any selected case
     this.isRightPanelExpanded = false; // Collapse to normal width for creating
     this.showCaseDetail = false; // Ensure we're not showing case detail
     this.isAlertPanelCollapsed = false; // Make sure panel is visible
     
-    // Tell alert right panel to ALWAYS show form (not cases) when creating new alert
-    if (this.alertRightPanel) {
-      this.alertRightPanel.showAlertCases = false; // Always show form view for new alerts
-      this.alertRightPanel.resetForm(); // Reset form to clear any previous data
-      console.log('Set showAlertCases to false and reset form - form will be displayed');
-    }
+    console.log('STEP 2: Cleared parent state - selectedAlert:', this.selectedAlert, 'showCaseDetail:', this.showCaseDetail);
+    
+    // THIRD: Use setTimeout to reset form after change detection
+    setTimeout(() => {
+      if (this.alertRightPanel) {
+        this.alertRightPanel.showAlertCases = false; // Ensure it's still false
+        this.alertRightPanel.resetForm(); // Reset form to clear any previous data
+        console.log('STEP 3: Reset form completed');
+        console.log('Final state - showCaseDetail:', this.showCaseDetail, 'showAlertCases:', this.alertRightPanel.showAlertCases);
+      }
+    }, 0);
   }
 
   // Method to manually complete alert processing (for testing or when backend responds)

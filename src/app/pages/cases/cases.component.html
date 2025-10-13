@@ -127,48 +127,78 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Active</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative" 
-                      (click)="toggleFirstCardTooltip('judge', $event)">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
-                       [class.opacity-100]="firstCardTooltips['judge']"
-                       [class.opacity-0]="!firstCardTooltips['judge']"
-                       [class.pointer-events-none]="!firstCardTooltips['judge']">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <span class="cursor-pointer relative" (click)="toggleFirstCardTooltip('attorney', $event)">
+                  <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                    <div class="flex items-center gap-1.5">
+                      <i class="ri-user-line text-sm"></i>
+                      <span>Attorney</span>
+                    </div>
+                    <div class="h-4 w-px bg-gray-400"></div>
+                    <span class="text-[11px] font-semibold text-gray-600">2016-03-08</span>
+                  </div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                       [class.opacity-100]="firstCardTooltips['attorney']"
+                       [class.opacity-0]="!firstCardTooltips['attorney']"
+                       [class.pointer-events-none]="!firstCardTooltips['attorney']">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
-                      (click)="toggleFirstCardTooltip('status', $event)">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
-                       [class.opacity-100]="firstCardTooltips['status']"
-                       [class.opacity-0]="!firstCardTooltips['status']"
-                       [class.pointer-events-none]="!firstCardTooltips['status']">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="cursor-pointer relative" (click)="toggleFirstCardTooltip('docket', $event)">
+                  <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                    <div class="flex items-center gap-1.5">
+                      <i class="ri-file-list-3-line text-sm"></i>
+                      <span>Docket</span>
+                    </div>
+                    <div class="h-4 w-px bg-gray-400"></div>
+                    <span class="text-[11px] font-semibold text-gray-600">2016-03-08</span>
+                  </div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                       [class.opacity-100]="firstCardTooltips['docket']"
+                       [class.opacity-0]="!firstCardTooltips['docket']"
+                       [class.pointer-events-none]="!firstCardTooltips['docket']">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
-                      (click)="toggleFirstCardTooltip('type', $event)">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
-                       [class.opacity-100]="firstCardTooltips['type']"
-                       [class.opacity-0]="!firstCardTooltips['type']"
-                       [class.pointer-events-none]="!firstCardTooltips['type']">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="cursor-pointer relative" (click)="toggleFirstCardTooltip('defendant', $event)">
+                  <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                    <div class="flex items-center gap-1.5">
+                      <i class="ri-user-forbid-line text-sm"></i>
+                      <span>Defendant</span>
+                    </div>
+                    <div class="h-4 w-px bg-gray-400"></div>
+                    <span class="text-[11px] font-semibold text-gray-600">2016-03-08</span>
+                  </div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                       [class.opacity-100]="firstCardTooltips['defendant']"
+                       [class.opacity-0]="!firstCardTooltips['defendant']"
+                       [class.pointer-events-none]="!firstCardTooltips['defendant']">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative"
-                      (click)="toggleFirstCardTooltip('court', $event)">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 min-h-32 w-80"
-                       [class.opacity-100]="firstCardTooltips['court']"
-                       [class.opacity-0]="!firstCardTooltips['court']"
-                       [class.pointer-events-none]="!firstCardTooltips['court']">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="cursor-pointer relative group/documents1">
+                  <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                    <div class="flex items-center gap-1.5">
+                      <i class="ri-folder-line text-sm"></i>
+                      <span>Documents</span>
+                    </div>
+                    <div class="h-4 w-px bg-gray-400"></div>
+                    <span class="text-[11px] font-semibold text-gray-600">8-29-2025</span>
+                  </div>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents1:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents1:pointer-events-auto">
+                    
+                    <!-- Document Name with Icon (clickable) -->
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Petition - 2522-AC - MRM Management LLC v Lucretia Hall John Doe</span>
+                    </a>
+                    
+                    <!-- Description -->
+                    <p class="text-sm text-gray-700">
+                      Residential insurance compliance case regarding tenant obligations.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -227,32 +257,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">In Progress</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate2">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2017-01-15
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2017-01-15</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket2 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2017-01-15</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge2">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant2 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2017-01-15</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant2:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents2 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2017-01-15</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents2:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents2:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Commercial Contract Dispute - State Manufacturing Entity</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Contract breach case involving manufacturing obligations.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -309,32 +368,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Closed</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate3">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2018-09-22
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate3:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney3 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2018-09-22</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney3:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket3 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2018-09-22</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket3:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant3 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2018-09-22</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant3:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents3 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2018-09-22</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents3:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents3:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-gray-900 mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Motion for Summary Judgment - Administrative Appeal</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Zoning and land use case challenging municipal planning commission.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -390,32 +478,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Pending</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge4">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate4">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2019-03-07
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge4">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney4 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2019-03-07</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge4">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket4 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2019-03-07</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge4">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant4 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2019-03-07</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant4:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents4 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2019-03-07</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents4:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents4:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Probate Petition - Estate Distribution Contest</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Family trust dispute involving beneficiary rights and contested assets.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -472,32 +589,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Arbitration</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge5">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate5">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2020-11-14
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge5">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney5 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2020-11-14</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge5">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket5 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2020-11-14</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge5">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant5 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2020-11-14</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant5:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents5 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2020-11-14</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents5:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents5:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-gray-900 mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Labor Dispute Arbitration Filing - Union Contract Violation</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Employment dispute concerning collective bargaining violations.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -554,32 +700,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Settlement</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge6">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate6">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2021-06-03
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge6">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney6 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2021-06-03</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge6">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket6 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2021-06-03</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge6">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant6 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2021-06-03</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant6:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents6 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2021-06-03</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents6:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents6:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Settlement Agreement Motion - Healthcare Coverage Dispute</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Healthcare litigation involving insurance coverage denials.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -636,32 +811,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Appeal Filed</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge7">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate7">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2022-08-18
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge7">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney7 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2022-08-18</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge7">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket7 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2022-08-18</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge7">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant7 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2022-08-18</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant7:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents7 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2022-08-18</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents7:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents7:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-gray-900 mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Patent Infringement Appeal Brief - Federal Circuit</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Federal intellectual property appeal challenging patent validity.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -718,32 +922,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Investigation</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge8">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate8">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2023-04-29
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge8">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney8 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-04-29</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge8">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket8 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-04-29</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge8">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant8 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-04-29</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant8:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents8 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-04-29</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents8:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents8:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Environmental Impact Assessment - EPA Compliance Filing</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      EPA enforcement action concerning industrial emissions violations.
+                    </p>
                   </div>
                 </span>
               </div>
@@ -800,32 +1033,61 @@
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Class Action</span></div>
               </div>
               <div class="flex flex-wrap gap-4 case-card-badges">
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge9">
-                  <i class="ri-scales-3-line text-sm mr-2"></i>JUDGE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-scales-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">JUDGE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Presiding judge responsible for overseeing this legal case and making judicial decisions throughout the proceedings.</div>
+                <!-- Date Badge -->
+                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate9">
+                  <i class="ri-calendar-line text-sm mr-2"></i>2023-12-12
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badgedate9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-calendar-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DATE FILED</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">The date when this case was officially filed with the court.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge9">
-                  <i class="ri-check-line text-sm mr-2"></i>STATUS
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">STATUS</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Current procedural status indicating the stage and progress of the legal case within the court system.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney9 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i><span>Attorney</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-12-12</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">ATTORNEY</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and representation for parties involved in the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge9">
-                  <i class="ri-file-text-line text-sm mr-2"></i>TYPE
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-file-text-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">TYPE</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Legal classification determining the nature of the dispute, such as civil, criminal, or administrative proceedings.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket9 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i><span>Docket</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-12-12</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DOCKET</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and actions taken during the course of the case.</div>
                   </div>
                 </span>
-                <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge9">
-                  <i class="ri-government-line text-sm mr-2"></i>COURT
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-                    <div class="flex items-center mb-3"><i class="ri-government-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COURT</div></div>
-                    <div class="text-gray-600 leading-relaxed text-sm">Judicial authority and jurisdiction level where the case is being heard, determining applicable rules and procedures.</div>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant9 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i><span>Defendant</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-12-12</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant9:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+                    <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">DEFENDANT</div></div>
+                    <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings, required to respond to the claims or charges.</div>
+                  </div>
+                </span>
+                <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/documents9 h-[28px]">
+                  <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i><span>Documents</span>
+                  </div>
+                  <div class="h-4 w-px bg-gray-400"></div>
+                  <span class="text-[11px] font-semibold text-gray-600">2023-12-12</span>
+                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents9:opacity-100 transition-all duration-300 delay-150 z-[99999] w-[420px] pointer-events-none group-hover/documents9:pointer-events-auto">
+                    <a href="#" class="flex items-start gap-2 text-sm font-semibold text-gray-900 mb-2 hover:underline" onclick="return false;">
+                      <i class="ri-folder-line text-sm mt-0.5"></i>
+                      <span>Class Action Certification Motion - Financial Services</span>
+                    </a>
+                    <p class="text-sm text-gray-700">
+                      Consumer protection class action challenging mortgage servicing.
+                    </p>
                   </div>
                 </span>
               </div>
