@@ -2,12 +2,11 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
-import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 
 @Component({
   selector: 'app-project-home',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, AppHeaderComponent],
+  imports: [CommonModule, SideNavComponent],
   templateUrl: './project-home.component.html',
   styleUrls: ['./project-home.component.css']
 })
