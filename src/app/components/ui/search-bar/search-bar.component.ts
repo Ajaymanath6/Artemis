@@ -51,6 +51,14 @@ interface OtherFilters {
   caseStatus: string;
 }
 
+interface FilterChip {
+  id: string;
+  type: 'document' | 'party' | 'attorney' | 'judge' | 'case' | 'other';
+  label: string; // e.g., "Document", "Party", "Attorney"
+  value: string; // e.g., "Petition for Probate", "Wilson LLC"
+  icon: string; // Icon class
+}
+
 interface ExpandedSections {
   case: boolean;
   judge: boolean;
@@ -87,6 +95,7 @@ export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
   @Output() expand = new EventEmitter<void>(); // Emit when expanding search bar
   @Output() collapse = new EventEmitter<void>(); // Emit when collapsing search bar
+  @Output() filterSearch = new EventEmitter<{filterType: string, filterValue: string}>(); // Emit when filter search is applied
   @Input() isCollapsed: boolean = false; // Allow parent to control collapsed state
   @Input() searchQuery: string = ''; // Allow parent to set search query
   @Input() showCollapseButton: boolean = false; // Show collapse button when results are visible
@@ -102,6 +111,9 @@ export class SearchBarComponent {
     { id: 'judges', label: 'Judges', icon: 'scales-line' },
     { id: 'parties', label: 'Parties', icon: 'team-line' }
   ];
+
+  // Active filter chips displayed in search bar
+  activeFilterChips: FilterChip[] = [];
   
   selectedSearchType: SearchType = this.searchTypes[0]; // Default to Cases
   
@@ -174,7 +186,90 @@ export class SearchBarComponent {
   }
 
   onSearch(): void {
+    // Check if there are active filter chips first
+    if (this.activeFilterChips.length > 0) {
+      // Use the first chip (priority order: Document > Party > Attorney > Judge)
+      const chip = this.activeFilterChips[0];
+      console.log(`🔍 Search with ${chip.label.toUpperCase()} filter chip - will show "${chip.label}" snippets`);
+      console.log('Active chip:', chip);
+      
+      this.filterSearch.emit({
+        filterType: chip.type,
+        filterValue: chip.value
+      });
+      
+      this.isSearching = true;
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
+      return;
+    }
+    
+    // Check if any filters are applied directly (fallback)
+    const hasDocumentFilter = this.documentFilters.documentName && this.documentFilters.documentName.trim();
+    const hasPartyFilter = this.partyFilters.partyName && this.partyFilters.partyName.trim();
+    const hasAttorneyFilter = this.attorneyFilters.attorneyName && this.attorneyFilters.attorneyName.trim();
+    const hasJudgeFilter = this.judgeFilters.judgeName && this.judgeFilters.judgeName.trim();
+    
+    // If document filter is applied, trigger filter search with snippets
+    if (hasDocumentFilter) {
+      console.log('🔍 Search with DOCUMENT filter - will show "Matching Document" snippets');
+      this.filterSearch.emit({
+        filterType: 'document',
+        filterValue: this.documentFilters.documentName
+      });
+      this.isSearching = true;
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
+      return;
+    }
+    
+    // If party filter is applied
+    if (hasPartyFilter) {
+      console.log('🔍 Search with PARTY filter - will show "Matching Party" snippets');
+      this.filterSearch.emit({
+        filterType: 'party',
+        filterValue: this.partyFilters.partyName
+      });
+      this.isSearching = true;
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
+      return;
+    }
+    
+    // If attorney filter is applied
+    if (hasAttorneyFilter) {
+      console.log('🔍 Search with ATTORNEY filter - will show "Matching Attorney" snippets');
+      this.filterSearch.emit({
+        filterType: 'attorney',
+        filterValue: this.attorneyFilters.attorneyName
+      });
+      this.isSearching = true;
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
+      return;
+    }
+    
+    // If judge filter is applied
+    if (hasJudgeFilter) {
+      console.log('🔍 Search with JUDGE filter - will show "Matching Judge" snippets');
+      this.filterSearch.emit({
+        filterType: 'judge',
+        filterValue: this.judgeFilters.judgeName
+      });
+      this.isSearching = true;
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 2000);
+      return;
+    }
+    
+    // Otherwise, regular search (no filters, no snippets)
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
+      console.log('📋 Regular direct search (no filters applied) - NO snippets');
       this.isSearching = true;
       this.search.emit(this.searchQuery);
       
@@ -303,8 +398,11 @@ export class SearchBarComponent {
       caseStatus: ''
     };
     
+    // Clear filter chips
+    this.activeFilterChips = [];
+    
     this.updateActiveFilterCount();
-    console.log('All filters cleared');
+    console.log('🗑️ All filters and chips cleared');
   }
   
   updateActiveFilterCount(): void {
@@ -355,7 +453,7 @@ export class SearchBarComponent {
   applyFilters(): void {
     this.updateActiveFilterCount();
     
-    console.log('Applying advanced filters:', {
+    console.log('✅ Filters applied (not searching yet - user must click search arrow):', {
       anywhereSearch: this.anywhereSearch,
       caseFilters: this.caseFilters,
       judgeFilters: this.judgeFilters,
@@ -366,9 +464,154 @@ export class SearchBarComponent {
       activeFilterCount: this.activeFilterCount
     });
     
+    // Create filter chips for active filters
+    this.activeFilterChips = [];
+    
+    // Document filter chip
+    if (this.documentFilters.documentName && this.documentFilters.documentName.trim()) {
+      this.activeFilterChips.push({
+        id: 'document-' + Date.now(),
+        type: 'document',
+        label: 'Document',
+        value: this.documentFilters.documentName,
+        icon: 'ri-folder-line'
+      });
+    }
+    
+    // Party filter chip
+    if (this.partyFilters.partyName && this.partyFilters.partyName.trim()) {
+      this.activeFilterChips.push({
+        id: 'party-' + Date.now(),
+        type: 'party',
+        label: 'Party',
+        value: this.partyFilters.partyName,
+        icon: 'ri-team-line'
+      });
+    }
+    
+    // Attorney filter chip
+    if (this.attorneyFilters.attorneyName && this.attorneyFilters.attorneyName.trim()) {
+      this.activeFilterChips.push({
+        id: 'attorney-' + Date.now(),
+        type: 'attorney',
+        label: 'Attorney',
+        value: this.attorneyFilters.attorneyName,
+        icon: 'ri-user-line'
+      });
+    }
+    
+    // Judge filter chip
+    if (this.judgeFilters.judgeName && this.judgeFilters.judgeName.trim()) {
+      this.activeFilterChips.push({
+        id: 'judge-' + Date.now(),
+        type: 'judge',
+        label: 'Judge',
+        value: this.judgeFilters.judgeName,
+        icon: 'ri-scales-line'
+      });
+    }
+    
+    // Case filter chip
+    if (this.caseFilters.caseName && this.caseFilters.caseName.trim()) {
+      this.activeFilterChips.push({
+        id: 'case-' + Date.now(),
+        type: 'case',
+        label: 'Case Name',
+        value: this.caseFilters.caseName,
+        icon: 'ri-folder-open-line'
+      });
+    }
+    
+    console.log('🎯 Created filter chips:', this.activeFilterChips);
+    
+    // Clear the search query input when using filters (only show chips, not text in search bar)
+    if (this.activeFilterChips.length > 0) {
+      this.searchQuery = '';
+      console.log('🧹 Cleared search query - showing only filter chips');
+    }
+    
+    // Just close the panel - don't trigger search yet
+    // User must click the search arrow button to actually search
     this.isFilterPanelOpen = false;
-    // Frontend prototype - no backend integration
-    // In a real application, this would trigger a search with the applied filters
+    console.log('💡 Filter panel closed. Click search arrow to search with these filters.');
+  }
+
+  // Remove a filter chip
+  removeFilterChip(chipId: string): void {
+    const chip = this.activeFilterChips.find(c => c.id === chipId);
+    if (!chip) return;
+    
+    console.log('🗑️ Removing filter chip:', chip);
+    
+    // Clear the corresponding filter
+    switch (chip.type) {
+      case 'document':
+        this.documentFilters.documentName = '';
+        break;
+      case 'party':
+        this.partyFilters.partyName = '';
+        break;
+      case 'attorney':
+        this.attorneyFilters.attorneyName = '';
+        break;
+      case 'judge':
+        this.judgeFilters.judgeName = '';
+        break;
+      case 'case':
+        this.caseFilters.caseName = '';
+        break;
+    }
+    
+    // Remove chip from array
+    this.activeFilterChips = this.activeFilterChips.filter(c => c.id !== chipId);
+    
+    // Update filter count
+    this.updateActiveFilterCount();
+    
+    console.log('✅ Filter chip removed. Active chips:', this.activeFilterChips);
+  }
+  
+  // Click on chip to edit - re-open filter panel
+  editFilterChip(chip: FilterChip): void {
+    console.log('✏️ Editing filter chip:', chip);
+    
+    // First, collapse all sections
+    this.expandedSections = {
+      case: false,
+      judge: false,
+      attorney: false,
+      party: false,
+      document: false,
+      other: false
+    };
+    
+    // Then expand only the clicked chip's section
+    switch (chip.type) {
+      case 'document':
+        this.expandedSections.document = true;
+        console.log('📄 Opening Document filter section with value:', chip.value);
+        break;
+      case 'party':
+        this.expandedSections.party = true;
+        console.log('👤 Opening Party filter section with value:', chip.value);
+        break;
+      case 'attorney':
+        this.expandedSections.attorney = true;
+        console.log('⚖️ Opening Attorney filter section with value:', chip.value);
+        break;
+      case 'judge':
+        this.expandedSections.judge = true;
+        console.log('🏛️ Opening Judge filter section with value:', chip.value);
+        break;
+      case 'case':
+        this.expandedSections.case = true;
+        console.log('📁 Opening Case filter section with value:', chip.value);
+        break;
+    }
+    
+    // Open the filter panel
+    this.isFilterPanelOpen = true;
+    console.log('✅ Filter panel opened with', chip.label, 'section expanded');
   }
 
   // Close dropdown when clicking outside

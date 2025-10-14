@@ -29,6 +29,7 @@ export class CasesHeaderComponent {
   @Output() search = new EventEmitter<string>();
   @Output() expandSearch = new EventEmitter<void>();
   @Output() collapseSearch = new EventEmitter<void>();
+  @Output() filterSearch = new EventEmitter<{filterType: string, filterValue: string}>(); // Filter-based search
   
   // Alert output
   @Output() createAlert = new EventEmitter<void>();
@@ -47,6 +48,11 @@ export class CasesHeaderComponent {
 
   onSearch(query: string): void {
     this.search.emit(query);
+  }
+
+  onFilterSearch(filterData: {filterType: string, filterValue: string}): void {
+    console.log('Cases Header: Filter search triggered', filterData);
+    this.filterSearch.emit(filterData);
   }
 
   onExpandSearch(): void {

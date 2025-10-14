@@ -27,6 +27,7 @@
             [showCollapseButton]="showCollapseButton"
             [showBackButton]="showBackButton"
             (search)="onSearch($event)"
+            (filterSearch)="onFilterSearch($event)"
             (expand)="onExpandSearch()"
             (collapse)="onCollapseSearch()">
           </app-search-bar>

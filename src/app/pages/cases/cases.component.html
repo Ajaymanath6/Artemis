@@ -1,7 +1,7 @@
 <!-- Cases Page with Layout -->
-<div class="min-h-screen flex flex-col">
+<div class="h-screen flex overflow-hidden">
   
-  <!-- Side Navigation - Fixed Full Height -->
+  <!-- Left Column: Side Navigation -->
   <app-side-nav
     #sideNav
     [isCollapsed]="isSidebarCollapsed"
@@ -11,31 +11,31 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-  <!-- Fixed Header Component -->
-  <app-cases-header
-    [isSidebarCollapsed]="isSidebarCollapsed"
-    [projectName]="projectName"
-    [currentSearchQuery]="currentSearchQuery"
-    [hasSearched]="hasSearched && !isSearchBarExpanded"
-    [showCollapseButton]="showResults && hasSearched && isSearchBarExpanded"
-    (sidebarToggle)="onSidebarToggle()"
-    (projectClick)="onProjectClick()"
-    (searchQueryClick)="onSearchQueryClick()"
-    (search)="onSearch($event)"
-    (expandSearch)="onExpandSearch()"
-    (collapseSearch)="onCollapseSearch()">
-  </app-cases-header>
-  
-  <!-- Main Content Area -->
-  <div class="flex-1 flex flex-col bg-cases-page" 
-           [class.ml-sidebar]="!isSidebarCollapsed" 
-           [class.ml-16]="isSidebarCollapsed"
-           [class.pt-header-height]="!isSearchBarExpanded"
-           [class.pt-header-height-expanded]="isSearchBarExpanded">
-  
+  <!-- Right Column: Main Content Area -->
+  <div class="flex-1 flex flex-col overflow-hidden min-w-0">
+    
+    <!-- Sticky Header at Top -->
+    <app-cases-header
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      [projectName]="projectName"
+      [currentSearchQuery]="currentSearchQuery"
+      [hasSearched]="hasSearched && !isSearchBarExpanded"
+      [showCollapseButton]="showResults && hasSearched && isSearchBarExpanded"
+      (sidebarToggle)="onSidebarToggle()"
+      (projectClick)="onProjectClick()"
+      (searchQueryClick)="onSearchQueryClick()"
+      (search)="onSearch($event)"
+      (filterSearch)="onFilterSearch($event.filterType, $event.filterValue)"
+      (expandSearch)="onExpandSearch()"
+      (collapseSearch)="onCollapseSearch()">
+    </app-cases-header>
+    
+    <!-- Content Area Below Header -->
+    <div class="flex-1 overflow-hidden bg-cases-page min-w-0" 
+         [style.padding-top]="isSearchBarExpanded ? '330px' : '164px'">
 
     <!-- Empty State (when no search performed) -->
-    <div *ngIf="!hasSearched && !isSearchBarExpanded" class="flex-1 bg-cases-page flex items-center justify-center min-h-empty-state">
+    <div *ngIf="!hasSearched && !isSearchBarExpanded" class="flex bg-cases-page items-center justify-center" style="min-height: calc(100vh - 200px);">
       <div class="max-w-2xl w-full space-y-4 px-8">
         
         <!-- Button 1: Search for cases -->
@@ -132,7 +132,7 @@
           <div *ngIf="!isSearching && showResults" id="results-section" class="space-y-0" (click)="closeAllFirstCardTooltips()">
             
             <!-- Result Card 1 -->
-            <div class="border-b border-gray-200 case-card bg-white transition-all min-h-fit overflow-visible relative group p-6 pt-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(1)" class="border-b border-gray-200 case-card bg-white transition-all min-h-fit overflow-visible relative group p-6 pt-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight underline cursor-pointer"
@@ -147,6 +147,16 @@
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Civil</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Active</span></div>
               </div>
+              
+              <!-- Match Reason Snippet - Only show for DOCUMENT filter searches -->
+              <div *ngIf="isFilterBasedSearch && currentFilterType === 'document'" class="flex items-start gap-2 px-3 py-2 bg-teal-50 border-l-2 border-[#146B85] rounded mb-3 match-reason-snippet">
+                <i class="ri-search-line text-[#146B85] text-sm mt-0.5 flex-shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                  <span class="text-xs font-medium text-gray-700">Matching Document:</span>
+                  <span class="text-xs text-gray-900 ml-1">Motion for Summary Judgment - Civil Rights Case</span>
+                </div>
+              </div>
+              
               <div class="flex flex-wrap gap-4 case-card-badges">
                 <span class="cursor-pointer relative" (click)="toggleFirstCardTooltip('attorney', $event)">
                   <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
@@ -210,15 +220,15 @@
                   </div>
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents1:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents1:pointer-events-auto">
                     
-                    <!-- Document Name with Icon (clickable) -->
+                    <!-- Document Name with Icon (clickable) - MATCHES snippet -->
                     <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
                       <i class="ri-folder-line text-sm mt-0.5"></i>
-                      <span>Petition - 2522-AC - MRM Management LLC v Lucretia Hall John Doe</span>
+                      <span>Motion for Summary Judgment - Civil Rights Case</span>
                     </a>
                     
                     <!-- Description -->
                     <p class="text-sm text-gray-700">
-                      Residential insurance compliance case regarding tenant obligations.
+                      Civil rights case involving residential insurance compliance and tenant obligations.
                     </p>
                   </div>
                 </span>
@@ -262,7 +272,7 @@
             </div>
 
             <!-- Result Card 2 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(2)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -277,6 +287,16 @@
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Commercial</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">In Progress</span></div>
               </div>
+              
+              <!-- Match Reason Snippet - Only show for DOCUMENT filter searches -->
+              <div *ngIf="isFilterBasedSearch && currentFilterType === 'document'" class="flex items-start gap-2 px-3 py-2 bg-teal-50 border-l-2 border-[#146B85] rounded mb-3 match-reason-snippet">
+                <i class="ri-search-line text-[#146B85] text-sm mt-0.5 flex-shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                  <span class="text-xs font-medium text-gray-700">Matching Document:</span>
+                  <span class="text-xs text-gray-900 ml-1">Motion to Compel Discovery - Manufacturing Contract</span>
+                </div>
+              </div>
+              
               <div class="flex flex-wrap gap-4 case-card-badges">
                 <!-- Date Badge -->
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate2">
@@ -328,10 +348,10 @@
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents2:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents2:pointer-events-auto">
                     <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
                       <i class="ri-folder-line text-sm mt-0.5"></i>
-                      <span>Commercial Contract Dispute - State Manufacturing Entity</span>
+                      <span>Motion to Compel Discovery - Manufacturing Contract</span>
                     </a>
                     <p class="text-sm text-gray-700">
-                      Contract breach case involving manufacturing obligations.
+                      Commercial contract breach case involving state manufacturing entity obligations and discovery disputes.
                     </p>
                   </div>
                 </span>
@@ -373,7 +393,7 @@
             </div>
 
             <!-- Result Card 3 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(3)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -388,6 +408,16 @@
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Administrative</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Closed</span></div>
               </div>
+              
+              <!-- Match Reason Snippet - Only show for PARTY filter searches -->
+              <div *ngIf="isFilterBasedSearch && currentFilterType === 'party'" class="flex items-start gap-2 px-3 py-2 bg-teal-50 border-l-2 border-[#146B85] rounded mb-3 match-reason-snippet">
+                <i class="ri-search-line text-[#146B85] text-sm mt-0.5 flex-shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                  <span class="text-xs font-medium text-gray-700">Matching Party:</span>
+                  <span class="text-xs text-gray-900 ml-1">Wilson Estates LLC (Plaintiff)</span>
+                </div>
+              </div>
+              
               <div class="flex flex-wrap gap-4 case-card-badges">
                 <!-- Date Badge -->
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate3">
@@ -483,7 +513,8 @@
               </div>
             </div>
 
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <!-- Result Card 4 -->
+            <div *ngIf="shouldShowCard(4)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -498,6 +529,16 @@
                 <div class="flex items-center space-x-2"><i class="ri-file-list-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span><span class="font-medium">Probate</span></div>
                 <div class="flex items-center space-x-2"><i class="ri-time-line text-gray-400"></i><span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span><span class="font-medium">Pending</span></div>
               </div>
+              
+              <!-- Match Reason Snippet - Only show for DOCUMENT filter searches -->
+              <div *ngIf="isFilterBasedSearch && currentFilterType === 'document'" class="flex items-start gap-2 px-3 py-2 bg-teal-50 border-l-2 border-[#146B85] rounded mb-3 match-reason-snippet">
+                <i class="ri-search-line text-[#146B85] text-sm mt-0.5 flex-shrink-0"></i>
+                <div class="flex-1 min-w-0">
+                  <span class="text-xs font-medium text-gray-700">Matching Document:</span>
+                  <span class="text-xs text-gray-900 ml-1">Petition for Probate - Estate Distribution Contest</span>
+                </div>
+              </div>
+              
               <div class="flex flex-wrap gap-4 case-card-badges">
                 <!-- Date Badge -->
                 <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badgedate4">
@@ -549,10 +590,10 @@
                   <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents4:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents4:pointer-events-auto">
                     <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline" onclick="return false;">
                       <i class="ri-folder-line text-sm mt-0.5"></i>
-                      <span>Probate Petition - Estate Distribution Contest</span>
+                      <span>Petition for Probate - Estate Distribution Contest</span>
                     </a>
                     <p class="text-sm text-gray-700">
-                      Family trust dispute involving beneficiary rights and contested assets.
+                      Family trust dispute involving beneficiary rights and contested estate distribution.
                     </p>
                   </div>
                 </span>
@@ -594,7 +635,7 @@
             </div>
 
             <!-- Result Card 5 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(5)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -705,7 +746,7 @@
             </div>
 
             <!-- Result Card 6 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(6)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -816,7 +857,7 @@
             </div>
 
             <!-- Result Card 7 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(7)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -927,7 +968,7 @@
             </div>
 
             <!-- Result Card 8 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(8)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -1038,7 +1079,7 @@
             </div>
 
             <!-- Result Card 9 -->
-            <div class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
+            <div *ngIf="shouldShowCard(9)" class="border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group p-6 border rounded-lg" style="padding-top: 22px;">
               <div class="flex items-start case-card-title">
                 <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
                 <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer"
@@ -1152,6 +1193,9 @@
 
     </app-cases-layout>
     
+    </div>
+    
   </div>
+  
 </div>
 

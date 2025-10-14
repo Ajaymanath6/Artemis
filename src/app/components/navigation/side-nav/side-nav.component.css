@@ -43,21 +43,9 @@ nav {
   height: 100vh;
 }
 
-/* Fixed positioning utilities */
-.fixed {
-  position: fixed;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.top-0 {
-  top: 0;
-}
-
-.z-40 {
-  z-index: 40;
+/* Flex positioning utilities */
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 /* Center content when collapsed */
@@ -458,14 +446,6 @@ img {
 /* Responsive behavior */
 @media (max-width: 768px) {
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 40;
-    transform: translateX(-100%);
-  }
-  
-  nav.mobile-open {
-    transform: translateX(0);
+    /* Mobile styles if needed */
   }
 }

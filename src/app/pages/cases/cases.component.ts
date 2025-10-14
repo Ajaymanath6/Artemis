@@ -27,6 +27,18 @@ export class CasesComponent implements OnInit, AfterViewInit {
   currentSearchQuery: string = '';
   viewMode: 'grid' | 'table' = 'grid';
   showResults: boolean = false;
+  isFilterBasedSearch: boolean = false; // Track if search used filters (shows match snippets)
+  currentFilterType: string = ''; // Track which filter was used (document, party, attorney, judge)
+  
+  // Card visibility map - defines which cards show for which filter types
+  // Card numbers: 1=first card (index 0), 2=second card (index 1), etc.
+  cardMatchesFilter: { [key: string]: number[] } = {
+    'document': [1, 2, 4], // Cards 1, 2, 4 have document snippets
+    'party': [3], // Card 3 has party snippet
+    'attorney': [], // No cards currently have attorney snippets
+    'judge': [], // No cards currently have judge snippets
+    'direct': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] // Direct search shows all cards
+  };
   
   
   // Tooltip visibility for first card badges (click-based)
@@ -89,6 +101,9 @@ export class CasesComponent implements OnInit, AfterViewInit {
     console.log('Searching cases for:', query);
     this.currentSearchQuery = query; // Update the current search query
     
+    // Direct search bar query = title match only, no filter
+    this.isFilterBasedSearch = false; // Direct search shows only matching titles
+    
     // Add to search history if query is not empty
     if (query.trim()) {
       console.log('Attempting to add to search history:', query.trim());
@@ -125,6 +140,49 @@ export class CasesComponent implements OnInit, AfterViewInit {
       this.showResults = true;
       // Save updated state after search completes
       this.saveSearchState();
+    }, 1500);
+  }
+
+  // Method to trigger filter-based search (e.g., search by document name, attorney, etc.)
+  // This should be called when user applies advanced filters
+  // 
+  // USAGE EXAMPLE (from filter UI component):
+  // - User opens "Advanced Search" modal
+  // - User selects "Search by: Document Name"
+  // - User types "Probate Petition"
+  // - On submit, call: this.casesComponent.onFilterSearch('document', 'Probate Petition')
+  // - Results will show match snippets explaining why each case appears
+  onFilterSearch(filterType: string, filterValue: string): void {
+    console.log(`✅ Filter search triggered: ${filterType} = ${filterValue}`);
+    
+    this.currentSearchQuery = filterValue;
+    this.isFilterBasedSearch = true; // Filter search shows match snippets
+    this.currentFilterType = filterType; // Track which type of filter (document, party, etc.)
+    
+    console.log(`🔍 Will show "${filterType}" match snippets for this filter-based search`);
+    
+    // Add to search history
+    if (filterValue.trim()) {
+      if (this.sideNav) {
+        this.sideNav.addToSearchHistory(filterValue.trim());
+      }
+    }
+    
+    this.isSearching = true;
+    this.hasSearched = true;
+    this.showResults = false;
+    this.isSearchBarExpanded = false; // Collapse search bar to show results immediately!
+    
+    // Save search state
+    this.saveSearchState();
+    
+    // Simulate search with loading, then show results automatically
+    setTimeout(() => {
+      this.isSearching = false;
+      this.showResults = true;
+      // Save updated state after search completes
+      this.saveSearchState();
+      console.log(`✅ Filter search complete - results displayed with ${filterType} snippets`);
     }, 1500);
   }
 
@@ -198,6 +256,72 @@ export class CasesComponent implements OnInit, AfterViewInit {
     return 'AMBER LAUREL BAPTISTE VS MICHAEL LEWIS GOGUEN';
   }
 
+  // Generate dynamic snippet text based on search query
+  // This ensures the snippet includes the actual word the user typed
+  getMatchingDocumentSnippet(cardIndex: number): string {
+    const query = this.currentSearchQuery.trim().toLowerCase();
+    
+    // Different document snippets for different cards that include the search term
+    if (query.includes('motion')) {
+      const snippets = [
+        `Motion for Summary Judgment - Civil Procedure`,
+        `Motion to Dismiss - Procedural Challenge`,
+        `Motion for Preliminary Injunction - Emergency Relief`,
+        `Motion to Compel Discovery - Document Production`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else if (query.includes('petition')) {
+      const snippets = [
+        `Petition - 2522-AC - MRM Management LLC v Lucretia Hall John Doe`,
+        `Petition for Writ of Mandamus - Administrative Review`,
+        `Petition for Declaratory Relief - Rights Determination`,
+        `Probate Petition - Estate Distribution Contest`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else if (query.includes('brief')) {
+      const snippets = [
+        `Appellate Brief - Summary Judgment Review`,
+        `Brief in Support of Motion - Legal Arguments`,
+        `Reply Brief - Counter-Arguments and Analysis`,
+        `Amicus Brief - Third Party Perspective`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else if (query.includes('complaint')) {
+      const snippets = [
+        `Original Complaint - Civil Action Filed`,
+        `Amended Complaint - Updated Claims`,
+        `Cross-Complaint - Counterclaims Asserted`,
+        `Third-Party Complaint - Additional Defendants`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else if (query.includes('order')) {
+      const snippets = [
+        `Court Order - Discovery Scheduling`,
+        `Order Granting Motion - Judgment Entered`,
+        `Order Denying Relief - Procedural Ruling`,
+        `Final Order - Case Disposition`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else if (query.includes('agreement')) {
+      const snippets = [
+        `Settlement Agreement - Dispute Resolution`,
+        `Stipulation and Agreement - Parties Consent`,
+        `Agreement on Discovery - Procedural Terms`,
+        `Joint Agreement - Cooperative Filing`
+      ];
+      return snippets[cardIndex % snippets.length];
+    } else {
+      // Default fallback snippets that include generic document types
+      const snippets = [
+        `Petition - 2522-AC - MRM Management LLC v Lucretia Hall John Doe`,
+        `Commercial Contract Dispute - State Manufacturing Entity`,
+        `Motion for Summary Judgment - Administrative Appeal`,
+        `Probate Petition - Estate Distribution Contest`
+      ];
+      return snippets[cardIndex % snippets.length];
+    }
+  }
+
   // Save search state to localStorage
   private saveSearchState(): void {
     const searchState = {
@@ -206,6 +330,8 @@ export class CasesComponent implements OnInit, AfterViewInit {
       showResults: this.showResults,
       isSearchBarExpanded: this.isSearchBarExpanded,
       viewMode: this.viewMode,
+      isFilterBasedSearch: this.isFilterBasedSearch,
+      currentFilterType: this.currentFilterType,
       timestamp: Date.now()
     };
     
@@ -241,6 +367,8 @@ export class CasesComponent implements OnInit, AfterViewInit {
           this.showResults = searchState.showResults || false;
           this.isSearchBarExpanded = searchState.isSearchBarExpanded || false;
           this.viewMode = searchState.viewMode || 'grid';
+          this.isFilterBasedSearch = searchState.isFilterBasedSearch || false;
+          this.currentFilterType = searchState.currentFilterType || '';
           this.isSearching = false; // Make sure not stuck in searching state
           
           console.log('Search state restored successfully:', {
@@ -248,7 +376,9 @@ export class CasesComponent implements OnInit, AfterViewInit {
             hasSearched: this.hasSearched,
             showResults: this.showResults,
             isExpanded: this.isSearchBarExpanded,
-            viewMode: this.viewMode
+            viewMode: this.viewMode,
+            isFilterBased: this.isFilterBasedSearch,
+            filterType: this.currentFilterType
           });
         } else {
           // Clear old state
@@ -276,6 +406,8 @@ export class CasesComponent implements OnInit, AfterViewInit {
     this.isSearchBarExpanded = false;
     this.viewMode = 'grid';
     this.isSearching = false;
+    this.isFilterBasedSearch = false; // Reset filter flag
+    this.currentFilterType = ''; // Reset filter type
     
     // Clear all tooltip states
     Object.keys(this.firstCardTooltips).forEach(key => {
@@ -339,6 +471,29 @@ export class CasesComponent implements OnInit, AfterViewInit {
     // Toggle the clicked tooltip
     this.firstCardFileActionTooltips[tooltipKey] = !this.firstCardFileActionTooltips[tooltipKey];
     console.log(`First card file action tooltip ${tooltipKey}:`, this.firstCardFileActionTooltips[tooltipKey]);
+  }
+
+  // Check if a card should be visible based on current filter
+  shouldShowCard(cardNumber: number): boolean {
+    // If no search performed, don't show cards
+    if (!this.hasSearched) {
+      return false;
+    }
+    
+    // If filter-based search, check if card matches the filter type
+    if (this.isFilterBasedSearch && this.currentFilterType) {
+      const matchingCards = this.cardMatchesFilter[this.currentFilterType as keyof typeof this.cardMatchesFilter] || [];
+      const shouldShow = matchingCards.includes(cardNumber);
+      
+      if (!shouldShow) {
+        console.log(`🚫 Card ${cardNumber} hidden - doesn't match ${this.currentFilterType} filter`);
+      }
+      
+      return shouldShow;
+    }
+    
+    // Direct search (no filter) - show all cards
+    return true;
   }
 
 }

@@ -1078,29 +1078,20 @@
   margin-left: 0.25rem; /* 4px */
 }
 
-/* Limit results section height and add scroll */
+/* Results section - scrolling handled by cases-layout component */
 #results-section {
-  max-height: calc(100vh - 300px); /* Adjust based on header height */
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #d1d5db #f3f4f6;
+  /* Cards scrolling is managed by the cases-layout component below the divider */
 }
 
-/* Custom scrollbar for webkit browsers */
-#results-section::-webkit-scrollbar {
-  width: 6px;
+/* Match Reason Snippet Styling */
+.bg-teal-50 {
+  background-color: rgba(240, 253, 250, 0.8); /* Very light teal/cyan background */
 }
 
-#results-section::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 3px;
+.match-reason-snippet {
+  transition: background-color 0.2s ease;
 }
 
-#results-section::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-}
-
-#results-section::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+.match-reason-snippet:hover {
+  background-color: rgba(240, 253, 250, 1); /* Slightly more opaque on hover */
 }

@@ -24,9 +24,39 @@
   <!-- Collapsed Search Bar -->
   <div *ngIf="isSearchCollapsed" class="p-3">
     <div class="bg-white border border-stroke-weak rounded-lg px-3 py-2">
-      <div class="flex items-center justify-between">
-        <span class="text-gray-700 cursor-pointer text-sm" (click)="expandSearchBar()">{{ searchQuery || 'Search...' }}</span>
-        <div class="flex items-center space-x-2">
+      <div class="flex items-center justify-between gap-2">
+        <!-- Left side - Filter chips and search text -->
+        <div class="flex items-center gap-1.5 flex-1 min-w-0">
+          <!-- Filter Chips Display - Smaller size for collapsed view -->
+          <div *ngIf="activeFilterChips.length > 0" class="flex flex-wrap gap-1.5">
+            <div *ngFor="let chip of activeFilterChips" 
+                 class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 transition-colors hover:bg-gray-200 flex-shrink-0">
+              <!-- Chip Icon -->
+              <i [class]="chip.icon + ' text-xs'"></i>
+              
+              <!-- Chip Label and Value -->
+              <span class="cursor-pointer" (click)="expandSearchBar(); editFilterChip(chip)">
+                <span class="font-semibold">{{ chip.label }}:</span> {{ chip.value }}
+              </span>
+              
+              <!-- Remove Button -->
+              <button 
+                (click)="removeFilterChip(chip.id)"
+                class="ml-0.5 hover:bg-gray-300 rounded-full p-0.5 transition-colors focus:outline-none"
+                title="Remove filter">
+                <i class="ri-close-line text-xs"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Search text -->
+          <span class="text-gray-700 cursor-pointer text-sm truncate" (click)="expandSearchBar()">
+            {{ searchQuery || 'Search...' }}
+          </span>
+        </div>
+        
+        <!-- Right side - Action buttons -->
+        <div class="flex items-center space-x-2 flex-shrink-0">
           <div *ngIf="isSearching" class="animate-spin rounded-full h-4 w-4 border-b-2 border-brand"></div>
           <button *ngIf="showBackButton" (click)="expandSearchBar()" class="text-gray-500 hover:bg-gray-100 rounded p-1 transition-colors">
             <i class="ri-arrow-go-back-fill text-base"></i>
@@ -44,9 +74,32 @@
     <!-- Search Input Area -->
     <div class="bg-white border border-stroke-weak rounded-lg">
       
-      <!-- Top Section - Search Input -->
-      <div class="flex items-center px-4 py-4">
-        <div class="flex-1 relative">
+      <!-- Top Section - Search Input with Inline Chips -->
+      <div class="flex items-center px-4 py-4 gap-2">
+        <!-- Filter Chips Display - Inline with search input -->
+        <div *ngIf="activeFilterChips.length > 0" class="flex flex-wrap gap-2">
+          <div *ngFor="let chip of activeFilterChips" 
+               class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 transition-colors hover:bg-gray-200 flex-shrink-0">
+            <!-- Chip Icon -->
+            <i [class]="chip.icon + ' text-sm'"></i>
+            
+            <!-- Chip Label and Value -->
+            <span class="cursor-pointer" (click)="editFilterChip(chip)">
+              <span class="font-semibold">{{ chip.label }}:</span> {{ chip.value }}
+            </span>
+            
+            <!-- Remove Button -->
+            <button 
+              (click)="removeFilterChip(chip.id)"
+              class="ml-0.5 hover:bg-gray-300 rounded-full p-0.5 transition-colors focus:outline-none"
+              title="Remove filter">
+              <i class="ri-close-line text-sm"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Search Input -->
+        <div class="flex-1 relative min-w-0">
           <input
             type="text"
             [(ngModel)]="searchQuery"
@@ -146,12 +199,12 @@
             </span>
           </button>
 
-          <!-- Search Button -->
+          <!-- Search Button - Enabled if there's a query OR active filter chips -->
           <button 
-            [disabled]="!searchQuery || searchQuery.trim().length === 0"
+            [disabled]="(!searchQuery || searchQuery.trim().length === 0) && activeFilterChips.length === 0"
             (click)="onSearch()"
             class="w-9 h-9 rounded-lg transition-colors flex items-center justify-center ml-3"
-            [style.background-color]="searchQuery && searchQuery.trim().length > 0 ? '#146B85' : 'rgba(20, 120, 133, 0.5)'">
+            [style.background-color]="(searchQuery && searchQuery.trim().length > 0) || activeFilterChips.length > 0 ? '#146B85' : 'rgba(20, 120, 133, 0.5)'">
             <i class="ri-arrow-right-long-line text-white text-lg"></i>
           </button>
         </div>

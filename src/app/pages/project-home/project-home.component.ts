@@ -2,12 +2,13 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
+import { HomeHeaderComponent } from '../../components/home-header/home-header.component';
 import { AnnouncementsRecentLayoutComponent } from '../../layouts/announcements-recent-layout/announcements-recent-layout.component';
 
 @Component({
   selector: 'app-project-home',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, AnnouncementsRecentLayoutComponent],
+  imports: [CommonModule, SideNavComponent, HomeHeaderComponent, AnnouncementsRecentLayoutComponent],
   templateUrl: './project-home.component.html',
   styleUrls: ['./project-home.component.css']
 })
