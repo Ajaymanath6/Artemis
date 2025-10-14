@@ -12,12 +12,12 @@
   </app-side-nav>
   
   <!-- Main Content Area -->
-  <div class="flex-1 flex flex-col bg-white" 
+  <div class="flex-1 flex flex-col h-screen overflow-hidden" 
            [class.ml-sidebar]="!isSidebarCollapsed" 
            [class.ml-16]="isSidebarCollapsed">
     
-    <!-- Custom Header Section with Hello Michael, User Profile, and Action Buttons -->
-    <div class="bg-white px-8 py-6">
+    <!-- Custom Header Section with Hello Michael, User Profile, and Action Buttons - FIXED -->
+    <div class="bg-white px-8 py-6 flex-shrink-0">
       <!-- Top Row: Collapse Button, Hello Michael, User Profile -->
       <div class="flex items-center justify-between mb-8">
         <!-- Left: Collapse Button (when sidebar is collapsed) -->
@@ -82,6 +82,9 @@
       </div>
     </div>
     
+    <!-- Scrollable Content Container -->
+    <div class="flex-1 overflow-y-auto">
+    
     <!-- Announcements Section -->
     <div class="flex-1 bg-cases-page px-8 py-8">
       <!-- Announcements Divider -->
@@ -115,19 +118,39 @@
           </div>
           
           <!-- Right Side: Illustration -->
-          <div class="flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-8" style="min-height: 250px;">
-            <div class="text-center">
-              <!-- AI/Search Illustration -->
+          <div class="flex items-center justify-center bg-gradient-to-br from-teal-50 via-blue-50 to-indigo-100 rounded-lg p-8" style="min-height: 250px;">
+            <div class="text-center w-full">
+              <!-- Modern Legal Tech Illustration -->
               <div class="relative">
-                <div class="absolute inset-0 bg-[#146B85] opacity-10 rounded-full blur-3xl"></div>
-                <div class="relative">
-                  <i class="ri-robot-2-line text-8xl text-[#146B85] mb-4 block"></i>
-                  <div class="flex items-center justify-center gap-2">
-                    <i class="ri-search-line text-3xl text-gray-600"></i>
-                    <i class="ri-arrow-right-line text-2xl text-gray-400"></i>
-                    <i class="ri-file-text-line text-3xl text-gray-600"></i>
+                <!-- Background Glow Effect -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-32 h-32 bg-[#146B85] opacity-10 rounded-full blur-3xl"></div>
+                </div>
+                
+                <!-- Main Icon Group -->
+                <div class="relative z-10">
+                  <!-- Main Search Icon with Circle Background -->
+                  <div class="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6 relative">
+                    <i class="ri-search-2-line text-5xl text-[#146B85]"></i>
+                    <!-- Sparkle Effects -->
+                    <i class="ri-sparkling-2-fill text-lg text-yellow-400 absolute top-2 right-2"></i>
+                    <i class="ri-sparkling-2-fill text-sm text-yellow-400 absolute bottom-3 left-1"></i>
                   </div>
-                  <p class="text-sm font-medium text-gray-700 mt-4">AI-Powered Search</p>
+                  
+                  <!-- Supporting Icons -->
+                  <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow">
+                      <i class="ri-file-list-line text-2xl text-gray-600"></i>
+                    </div>
+                    <div class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow">
+                      <i class="ri-user-3-line text-2xl text-gray-600"></i>
+                    </div>
+                    <div class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow">
+                      <i class="ri-scales-3-line text-2xl text-gray-600"></i>
+                    </div>
+                  </div>
+                  
+                  <p class="text-sm font-semibold text-gray-700">Discover. Analyze. Track.</p>
                 </div>
               </div>
             </div>
@@ -236,6 +259,8 @@
         
       </div>
     </div>
+    
+    </div><!-- End Scrollable Content Container -->
     
   </div>
 </div>
