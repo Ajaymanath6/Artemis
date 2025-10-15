@@ -132,6 +132,13 @@ export class CasesComponent implements OnInit, AfterViewInit {
     }, 1500);
   }
 
+  // Handle history item search from sidebar
+  onHistorySearch(searchTerm: string): void {
+    console.log('History search triggered for:', searchTerm);
+    // Trigger a regular search with the history term
+    this.onSearch(searchTerm);
+  }
+
   // Method to trigger filter-based search (e.g., search by document name, attorney, etc.)
   // This should be called when user applies advanced filters
   // 

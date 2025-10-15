@@ -1,8 +1,46 @@
-<!-- My Favorites Layout Content -->
-<div class="favorites-content-wrapper" [ngClass]="isSidebarCollapsed ? '' : 'px-8'">
+<!-- Main Container with Flex Layout -->
+<div class="h-full flex flex-col">
   
-  <!-- Favorite Cases Grid -->
-  <div class="favorites-grid">
+  <!-- Results Controls - Fixed/Sticky Header (No Scroll) -->
+  <div class="flex-shrink-0 bg-favorites-page border-b border-gray-200 pb-4 pt-6 sticky top-0 z-10">
+    <div class="max-w-4xl mx-auto px-8">
+      <div class="flex items-center justify-between">
+        <!-- Results Text -->
+        <div class="flex items-center space-x-2">
+          <span class="text-gray-700 font-semibold">Results</span>
+        </div>
+        
+        <!-- Right Side Controls -->
+        <div class="flex items-center space-x-3">
+          
+          <!-- View Toggle Buttons -->
+          <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <button 
+              (click)="onToggleViewMode('grid')"
+              class="px-3 py-2 flex items-center space-x-2 transition-colors"
+              [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+              <i class="ri-layout-grid-line text-base"></i>
+              <span class="text-sm font-medium">Grid</span>
+            </button>
+            <button 
+              (click)="onToggleViewMode('table')"
+              class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+              [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+              <i class="ri-layout-row-line text-base"></i>
+              <span class="text-sm font-medium">Table</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Cards Content Area - Scrollable Below Divider -->
+  <div class="flex-1 overflow-y-auto pt-6 pb-8 min-h-0">
+    <div class="max-w-4xl mx-auto px-8">
+      
+      <!-- Favorite Cases Grid -->
+      <div class="favorites-grid">
     <div *ngFor="let case of favoriteCases" 
          class="favorite-card" 
          (click)="onCaseClick(case)">
@@ -52,13 +90,16 @@
     </div>
   </div>
 
-  <!-- Empty State when no favorite cases -->
-  <div *ngIf="favoriteCases.length === 0" class="empty-state">
-    <div class="empty-content">
-      <i class="ri-heart-line empty-icon"></i>
-      <h3 class="empty-title">No Favorite Cases</h3>
-      <p class="empty-description">You haven't added any cases to your favorites yet. Start adding cases from your search results to see them here.</p>
+      <!-- Empty State when no favorite cases -->
+      <div *ngIf="favoriteCases.length === 0" class="empty-state">
+        <div class="empty-content">
+          <i class="ri-heart-line empty-icon"></i>
+          <h3 class="empty-title">No Favorite Cases</h3>
+          <p class="empty-description">You haven't added any cases to your favorites yet. Start adding cases from your search results to see them here.</p>
+        </div>
+      </div>
+      
     </div>
   </div>
-
+  
 </div>

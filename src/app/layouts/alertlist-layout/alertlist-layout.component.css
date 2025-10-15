@@ -45,10 +45,9 @@
   overflow: hidden;
 }
 
-/* When panel is collapsed, adjust grid to 2 columns - middle takes remaining space */
+/* When panel is collapsed, adjust grid to 2 columns */
 .alertlist-layout-container.alertlist-grid.panel-collapsed {
-  grid-template-columns: minmax(200px, 15%) 1fr;
-  gap: 16px 0; /* Remove right gap when panel is collapsed */
+  grid-template-columns: minmax(200px, 20%) 80%;
 }
 
 /* When right panel is expanded, adjust grid for 50% width (15% - 35% - 50%) */
@@ -132,23 +131,6 @@
   padding: 0; /* Remove all padding */
   margin: 0;
   overflow: hidden;
-}
-
-/* When panel is collapsed, center content should expand to full width */
-.alertlist-grid.panel-collapsed .main-content-area {
-  justify-content: flex-start; /* Align to start instead of center */
-}
-
-/* When panel is collapsed, remove max-width constraints on inner content */
-.alertlist-grid.panel-collapsed .main-content-area .max-w-7xl {
-  max-width: none !important; /* Remove max-width constraint */
-  width: 100% !important; /* Take full available width */
-}
-
-/* When panel is collapsed, expand cases area container */
-.alertlist-grid.panel-collapsed .cases-area-container {
-  max-width: none !important;
-  width: 100% !important;
 }
 
 /* Grid Layout: Alert Panel Area (Column 3) - 20% */

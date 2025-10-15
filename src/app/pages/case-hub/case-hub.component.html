@@ -1,5 +1,5 @@
 <!-- Case Hub Page - Main Container -->
-<div class="case-detail-container">
+<div class="case-detail-container ">
   
   <!-- Left Side: Side Navigation Bar -->
   <app-side-nav
@@ -42,7 +42,7 @@
           </div>
 
           <!-- Tab Navigation -->
-          <div class="tab-navigation" style="padding-top: 24px;">
+          <div class="tab-navigation">
             <nav class="-mb-px flex space-x-8">
               <button
                 *ngFor="let tab of tabs"
@@ -61,40 +61,17 @@
       </div>
     </div>
 
-    <!-- Main Content Area (Cases Layout Style) -->
-    <div class="flex flex-col min-h-screen bg-cases-page">
-      
-      <!-- Results Section -->
-      <app-cases-layout [viewMode]="'grid'" [isSidebarCollapsed]="isSidebarCollapsed">
-        
-        <!-- Lists Tab Content -->
-        <app-cases-hub-list-layout
-          *ngIf="activeTab === 'lists'"
-          [customLists]="customLists"
-          [isSidebarCollapsed]="isSidebarCollapsed"
-          (toggleDropdown)="toggleListDropdown($event.list, $event.event)"
-          (closeDropdowns)="closeAllListDropdowns()"
-          (editList)="editList($event.list, $event.event)"
-          (deleteList)="deleteList($event.list, $event.event)">
-        </app-cases-hub-list-layout>
-
-        <!-- Import Cases Tab Content -->
-        <app-cases-hub-import-layout
-          *ngIf="activeTab === 'import-cases'">
-        </app-cases-hub-import-layout>
-        
-      </app-cases-layout>
-      
+    <!-- Case Hub List Layout with 32px padding and full height -->
+    <div style="padding: 0 32px; height: calc(100vh - 200px); overflow: hidden;">
+      <app-cases-hub-list-layout
+        [customLists]="customLists"
+        [isSidebarCollapsed]="isSidebarCollapsed"
+        (toggleDropdown)="toggleListDropdown($event.list, $event.event)"
+        (closeDropdowns)="closeAllListDropdowns()"
+        (editList)="editList($event.list, $event.event)"
+        (deleteList)="deleteList($event.list, $event.event)">
+      </app-cases-hub-list-layout>
     </div>
+
   </div>
 </div>
-
-<!-- Save to List Modal -->
-<app-save-to-list-modal
-  [isVisible]="isModalVisible"
-  [itemToSave]="itemToSave"
-  (close)="onModalClose()"
-  (cancel)="onModalCancel()"
-  (save)="onModalSave($event)">
-</app-save-to-list-modal>
-  

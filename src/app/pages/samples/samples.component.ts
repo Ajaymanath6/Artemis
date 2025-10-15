@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
-import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { SamplesLayoutComponent } from '../../layouts/samples-layout/samples-layout.component';
 
 @Component({
@@ -13,7 +12,6 @@ import { SamplesLayoutComponent } from '../../layouts/samples-layout/samples-lay
     CommonModule, 
     SideNavComponent, 
     AppHeaderComponent,
-    CasesLayoutComponent,
     SamplesLayoutComponent
   ],
   templateUrl: './samples.component.html',
@@ -49,17 +47,6 @@ export class SamplesComponent implements OnInit {
   setActiveTab(tabId: string): void {
     this.activeTab = tabId;
     console.log('Active tab set to:', tabId);
-  }
-
-  // Action button methods
-  onAddList(): void {
-    console.log('Add List clicked');
-    // Add functionality to create new list
-  }
-
-  onImportCase(): void {
-    console.log('Import Case clicked');
-    // Add functionality to import case
   }
 
   // Back button handler

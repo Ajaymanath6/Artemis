@@ -17,7 +17,16 @@ export class CasesHubListLayoutComponent {
   @Output() editList = new EventEmitter<{list: any, event: Event}>();
   @Output() deleteList = new EventEmitter<{list: any, event: Event}>();
 
+  // View mode state
+  viewMode: 'grid' | 'table' = 'grid';
+
   constructor(private router: Router) {}
+
+  // View mode toggle
+  onToggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
 
   onToggleDropdown(list: any, event: Event): void {
     this.toggleDropdown.emit({list, event});

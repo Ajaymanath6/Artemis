@@ -26,6 +26,7 @@ export class SideNavComponent implements OnInit {
   @Input() isCollapsed: boolean = false;
   @Output() itemClick = new EventEmitter<NavItem>();
   @Output() sidebarToggle = new EventEmitter<void>();
+  @Output() historySearch = new EventEmitter<string>(); // Emit search term for history items
   
   // Dropdown state for language selection
   isLanguageDropdownOpen: boolean = false;
@@ -195,6 +196,18 @@ export class SideNavComponent implements OnInit {
   }
 
   onItemClick(item: NavItem): void {
+    // Special handling for history items - trigger search
+    if (item.id?.startsWith('history-') && item.fullTerm) {
+      console.log('History item clicked, triggering search for:', item.fullTerm);
+      // Navigate to cases page
+      this.router.navigate(['/cases']);
+      // Emit the search term to trigger search in cases component
+      setTimeout(() => {
+        this.historySearch.emit(item.fullTerm!);
+      }, 100); // Small delay to ensure navigation completes first
+      return;
+    }
+    
     // Special handling for Case Hub - navigate instead of toggling
     if (item.id === 'project-case-hub' && item.route) {
       // Track which specific item was clicked

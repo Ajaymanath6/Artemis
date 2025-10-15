@@ -61,6 +61,12 @@ export class MyFavoritesLayoutComponent implements OnInit {
     }
   }
 
+  // View mode toggle
+  onToggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
+
   onCaseClick(caseItem: FavoriteCase): void {
     console.log('Favorite case clicked:', caseItem.title);
     // Navigate to case detail or perform action

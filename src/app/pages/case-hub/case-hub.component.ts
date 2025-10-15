@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
-import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { CasesHubListLayoutComponent } from '../../layouts/cases-hub-list-layout/cases-hub-list-layout.component';
-import { CasesHubImportLayoutComponent } from '../../layouts/cases-hub-import-layout/cases-hub-import-layout.component';
-import { SaveToListModalComponent } from '../../components/ui/save-to-list-modal/save-to-list-modal.component';
 
 @Component({
   selector: 'app-case-hub',
@@ -15,10 +12,7 @@ import { SaveToListModalComponent } from '../../components/ui/save-to-list-modal
     CommonModule, 
     SideNavComponent, 
     AppHeaderComponent,
-    CasesLayoutComponent,
-    CasesHubListLayoutComponent,
-    CasesHubImportLayoutComponent,
-    SaveToListModalComponent
+    CasesHubListLayoutComponent
   ],
   templateUrl: './case-hub.component.html',
   styleUrls: ['./case-hub.component.css']
@@ -36,10 +30,6 @@ export class CaseHubComponent implements OnInit {
 
   // Custom Lists management
   customLists: any[] = [];
-
-  // Modal state
-  isModalVisible: boolean = false;
-  itemToSave: any = null;
 
   constructor(private router: Router) {}
 
@@ -65,42 +55,7 @@ export class CaseHubComponent implements OnInit {
   // Action button methods
   onAddList(): void {
     console.log('Add List clicked');
-    this.itemToSave = {
-      id: 'new-list',
-      title: 'New List',
-      label: 'Create New List'
-    };
-    this.isModalVisible = true;
-  }
-
-  // Modal event handlers
-  onModalClose(): void {
-    this.isModalVisible = false;
-    this.itemToSave = null;
-  }
-
-  onModalCancel(): void {
-    this.isModalVisible = false;
-    this.itemToSave = null;
-  }
-
-  onModalSave(result: any): void {
-    console.log('Modal save result:', result);
-    
-    if (result.action === 'custom-list') {
-      // Create new custom list
-      const newList = {
-        id: Date.now().toString(),
-        name: result.listName,
-        itemCount: 0,
-        isDropdownOpen: false
-      };
-      this.customLists.push(newList);
-      console.log('New list created:', result.listName);
-    }
-    
-    this.isModalVisible = false;
-    this.itemToSave = null;
+    // TODO: Implement add list functionality
   }
 
   // Custom Lists management methods

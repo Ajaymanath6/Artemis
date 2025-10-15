@@ -78,6 +78,12 @@ export class SamplesLayoutComponent implements OnInit {
     }
   }
 
+  // View mode toggle
+  onToggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
+  }
+
   onCaseClick(caseItem: SampleCase): void {
     console.log('Sample case clicked:', caseItem.title);
     // Navigate to case detail or perform action

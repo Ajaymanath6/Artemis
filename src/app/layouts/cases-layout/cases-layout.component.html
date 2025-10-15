@@ -1,49 +1,46 @@
 <!-- Cases Layout - Main Content Container -->
-<div class="cases-layout-container">
+<div class="h-full flex flex-col bg-cases-page">
   
-  <!-- Main Content Area -->
-  <div class="main-cases-content">
-    <div class="flex-1 bg-cases-page flex flex-col h-full">
-        <div class="w-full flex flex-col h-full centered-content">
-        
-        <!-- Results Controls - Fixed Header (No Scroll) -->
-        <div class="flex items-center justify-between border-b border-gray-200 pb-4 pt-6 flex-shrink-0 bg-cases-page" [ngClass]="isSidebarCollapsed ? '' : 'px-8'">
-          <!-- Results Text -->
-          <div class="flex items-center space-x-2">
-            <span class="text-gray-700 font-semibold">Results</span>
-          </div>
-          
-          <!-- Right Side Controls -->
-          <div class="flex items-center space-x-3">
-            
-            <!-- View Toggle Buttons -->
-            <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-              <button 
-                (click)="onToggleViewMode('grid')"
-                class="px-3 py-2 flex items-center space-x-2 transition-colors"
-                [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-                <i class="ri-layout-grid-line text-base"></i>
-                <span class="text-sm font-medium">Grid</span>
-              </button>
-              <button 
-                (click)="onToggleViewMode('table')"
-                class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-                [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-                <i class="ri-layout-row-line text-base"></i>
-                <span class="text-sm font-medium">Table</span>
-              </button>
-            </div>
-          </div>
+  <!-- Results Controls - Fixed Header (No Scroll) -->
+  <div class="flex-shrink-0 bg-cases-page border-b border-gray-200 pb-4 pt-6">
+    <div class="max-w-7xl mx-auto" style="padding-left: 44px; padding-right: 44px;">
+      <div class="flex items-center justify-between">
+        <!-- Results Text -->
+        <div class="flex items-center space-x-2">
+          <span class="text-gray-700 font-semibold">Results</span>
         </div>
         
-        <!-- Cards Content Area - Scrollable Below Divider -->
-        <div class="flex-1 overflow-y-auto pb-0 pt-6 min-h-0" [ngClass]="isSidebarCollapsed ? 'px-0' : 'px-8'">
-          <!-- Content will be projected here -->
-          <ng-content></ng-content>
+        <!-- Right Side Controls -->
+        <div class="flex items-center space-x-3">
+          
+          <!-- View Toggle Buttons -->
+          <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <button 
+              (click)="onToggleViewMode('grid')"
+              class="px-3 py-2 flex items-center space-x-2 transition-colors"
+              [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+              <i class="ri-layout-grid-line text-base"></i>
+              <span class="text-sm font-medium">Grid</span>
+            </button>
+            <button 
+              (click)="onToggleViewMode('table')"
+              class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+              [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+              <i class="ri-layout-row-line text-base"></i>
+              <span class="text-sm font-medium">Table</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
+  
+  <!-- Cards Content Area - Scrollable Below Divider -->
+  <div class="flex-1 overflow-y-auto pt-6 pb-8 min-h-0">
+    <div class="max-w-7xl mx-auto" style="padding-left: 44px; padding-right: 44px;">
+      <!-- Content will be projected here -->
+      <ng-content></ng-content>
+    </div>
+  </div>
 
 </div>

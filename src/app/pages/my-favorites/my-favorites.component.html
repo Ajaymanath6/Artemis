@@ -49,36 +49,12 @@
       </div>
     </div>
 
-    <!-- Main Content Area (Cases Layout Style) -->
-    <div class="flex flex-col min-h-screen bg-cases-page">
-      
-      <!-- Results Section -->
-      <app-cases-layout [viewMode]="'grid'" [isSidebarCollapsed]="isSidebarCollapsed">
-        
-        <!-- Tab Content -->
-        <div class="cases-grid">
-          
-          <!-- Cases Tab Content -->
-          <div *ngIf="activeTab === 'cases'">
-            <app-my-favorites-layout [isSidebarCollapsed]="isSidebarCollapsed"></app-my-favorites-layout>
-          </div>
-
-          <!-- Threads Tab Content -->
-          <div *ngIf="activeTab === 'threads'">
-            <!-- TODO: Create threads layout component -->
-            <div class="empty-state">
-              <div class="empty-content">
-                <i class="ri-chat-thread-line empty-icon"></i>
-                <h3 class="empty-title">No Threads</h3>
-                <p class="empty-description">Thread functionality coming soon.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        
-      </app-cases-layout>
-      
+    <!-- My Favorites Layout with 32px padding and full height -->
+    <div style="padding: 0 32px; height: calc(100vh - 200px); overflow: hidden;">
+      <app-my-favorites-layout
+        [isSidebarCollapsed]="isSidebarCollapsed">
+      </app-my-favorites-layout>
     </div>
+
   </div>
 </div>

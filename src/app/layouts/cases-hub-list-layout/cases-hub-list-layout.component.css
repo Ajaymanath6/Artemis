@@ -3,6 +3,11 @@
   display: block;
 }
 
+/* Background color */
+.bg-cases-page {
+  background-color: #f8f8f8;
+}
+
 /* Dropdown Overlay */
 .dropdown-overlay {
   position: fixed;
