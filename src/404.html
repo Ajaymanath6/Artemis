@@ -6,12 +6,12 @@
   <script>
     // Handle GitHub Pages routing by redirecting to the correct path
     var path = location.pathname + location.search + location.hash;
-    // Remove the repository name from the path since we're redirecting to root
-    path = path.replace('/Artemis', '') || '/dashboard';
+    // Remove the repository name and browser path from the path
+    path = path.replace('/Artemis/browser', '').replace('/Artemis', '') || '/dashboard';
     // Store for Angular to handle
     sessionStorage.setItem('redirect', path);
-    // Redirect to the root
-    window.location.href = '/Artemis/';
+    // Redirect to the browser subfolder
+    window.location.href = '/Artemis/browser/';
   </script>
 </head>
 <body>

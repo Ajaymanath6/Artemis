@@ -1,5 +1,5 @@
 <!-- Samples Page - Main Container -->
-<div class="case-detail-container" style="background-color: #f8f8f8;">
+<div class="case-detail-container" style="background-color: #f9fafb;">
   
   <!-- Left Side: Side Navigation Bar -->
   <app-side-nav
@@ -16,7 +16,7 @@
       <app-header 
         [showUserProfile]="true"
         [showCollapseButton]="isSidebarCollapsed"
-        [showBackButton]="!isSidebarCollapsed"
+        [showBackButton]="true"
         (collapseToggle)="onSidebarToggle()"
         (backClick)="onBackClick()">
       </app-header>
