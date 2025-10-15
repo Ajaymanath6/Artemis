@@ -127,7 +127,7 @@ export class DocketHistoryLayoutComponent {
 
   getActionIcon(actionType: string): string {
     const iconMap: { [key: string]: string } = {
-      'Added': 'ri-add-circle-fill',
+      'Added': 'ri-add-large-line',
       'Removed': 'ri-close-large-line', 
       'Changed': 'ri-refresh-line'
     };

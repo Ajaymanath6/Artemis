@@ -105,6 +105,10 @@
 .action-icon i {
   font-size: 18px;
   color: #6b7280;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Color indicators for action types */
@@ -297,6 +301,10 @@
   
   .action-icon i {
     font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .event-title {
