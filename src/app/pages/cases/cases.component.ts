@@ -67,26 +67,15 @@ export class CasesComponent implements OnInit, AfterViewInit {
     console.log('Navigation state:', navigation?.extras?.state);
     console.log('Should preserve state:', shouldPreserveState);
     
-    // Simplified logic:
-    // If coming from case detail (preserveSearchState = true) OR if there's saved state, restore it
-    // Only clear on actual page refresh
+    // ONLY restore state when explicitly coming back from case detail
+    // Default behavior: always show empty state
     
-    if (shouldPreserveState) {
+    if (shouldPreserveState === true) {
       console.log('Explicitly preserving search state from case detail...');
       this.restoreSearchState();
     } else {
-      // Check if this is a page refresh or direct navigation
-      const currentUrl = this.router.url;
-      const referrer = document.referrer;
-      const isDirectNavigation = !referrer || !referrer.includes(window.location.origin);
-      
-      if (isDirectNavigation) {
-        console.log('Direct navigation/refresh - showing empty state');
-        this.clearSearchState();
-      } else {
-        console.log('Internal navigation - attempting to restore search state');
-        this.restoreSearchState();
-      }
+      console.log('No preserve flag - showing empty state by default');
+      this.clearSearchState();
     }
   }
 

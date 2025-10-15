@@ -24,6 +24,7 @@ interface SampleCase {
 })
 export class SamplesLayoutComponent implements OnInit {
   @Input() viewMode: 'grid' | 'table' = 'grid';
+  @Input() isSidebarCollapsed: boolean = false;
 
   sampleCases: SampleCase[] = [];
 

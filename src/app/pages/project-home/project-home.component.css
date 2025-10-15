@@ -3,7 +3,29 @@
 :host {
   display: block;
   height: 100vh;
+}
+
+/* Main Container - Flex Layout */
+.case-detail-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Main Content Container - Right Side */
+.main-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 206px; /* Default sidebar width */
+  transition: margin-left 0.3s ease;
+  height: 100vh;
   overflow: hidden;
+}
+
+.main-content-container.sidebar-collapsed {
+  margin-left: 4rem; /* 64px - collapsed sidebar width */
 }
 
 /* Cases page specific background */

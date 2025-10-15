@@ -28,17 +28,21 @@
             <!-- Case Hub Title -->
             <h1 class="case-title">Case Hub</h1>
             
-            <!-- Add List Button -->
-            <button 
-              (click)="onAddList()"
-              class="action-button items-center gap-2">
-              <i class="ri-add-line text-lg text-gray-700"></i>
-              <span>Add List</span>
-            </button>
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <div class="flex items-center space-x-2">
+                <button 
+                  (click)="onAddList()"
+                  class="action-button">
+                  <i class="ri-add-line text-lg mr-2"></i>
+                  Add List
+                </button>
+              </div>
+            </div>
           </div>
 
           <!-- Tab Navigation -->
-          <div class="tab-navigation">
+          <div class="tab-navigation" style="padding-top: 24px;">
             <nav class="-mb-px flex space-x-8">
               <button
                 *ngFor="let tab of tabs"
@@ -61,12 +65,13 @@
     <div class="flex flex-col min-h-screen bg-cases-page">
       
       <!-- Results Section -->
-      <app-cases-layout [viewMode]="'grid'">
+      <app-cases-layout [viewMode]="'grid'" [isSidebarCollapsed]="isSidebarCollapsed">
         
         <!-- Lists Tab Content -->
         <app-cases-hub-list-layout
           *ngIf="activeTab === 'lists'"
           [customLists]="customLists"
+          [isSidebarCollapsed]="isSidebarCollapsed"
           (toggleDropdown)="toggleListDropdown($event.list, $event.event)"
           (closeDropdowns)="closeAllListDropdowns()"
           (editList)="editList($event.list, $event.event)"

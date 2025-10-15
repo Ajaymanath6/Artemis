@@ -11,7 +11,7 @@
   display: flex;
   flex: 1;
   height: 100%;
-  max-height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -27,8 +27,7 @@
 /* Content centering */
 .centered-content {
   max-width: 1200px;
-  margin: 0;
-  width: 100%;
+  margin: 0 auto;
 }
 
 /* Scrollable container */
@@ -39,25 +38,6 @@
 .overflow-y-auto {
   overflow-y: auto;
   scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for cards section */
-.overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 3px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
 }
 
 /* Scrollable content area below divider */

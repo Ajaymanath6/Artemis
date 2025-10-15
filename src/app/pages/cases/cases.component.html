@@ -34,40 +34,6 @@
     <div class="flex-1 overflow-hidden bg-cases-page min-w-0" 
          [style.padding-top]="isSearchBarExpanded ? '330px' : '164px'">
 
-    <!-- Empty State (when no search performed) -->
-    <div *ngIf="!hasSearched && !isSearchBarExpanded" class="flex bg-cases-page items-center justify-center" style="min-height: calc(100vh - 200px);">
-      <div class="max-w-2xl w-full space-y-4 px-8">
-        
-        <!-- Button 1: Search for cases -->
-        <button class="w-full flex items-start gap-4 p-6 bg-white border-2 border-gray-300 rounded-lg hover:border-[#146B85] hover:bg-gray-50 transition-all text-left">
-          <i class="ri-search-line text-3xl text-[#146B85] mt-1"></i>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">Search for cases</h3>
-            <p class="text-sm text-gray-600">Using natural language or filters.</p>
-        </div>
-        </button>
-
-        <!-- Button 2: Find profiles and analytics -->
-        <button class="w-full flex items-start gap-4 p-6 bg-white border-2 border-gray-300 rounded-lg hover:border-[#146B85] hover:bg-gray-50 transition-all text-left">
-          <i class="ri-user-line text-3xl text-[#146B85] mt-1"></i>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">Find profiles and analytics</h3>
-            <p class="text-sm text-gray-600">For attorneys and law firms.</p>
-          </div>
-        </button>
-
-        <!-- Button 3: Check your trackings -->
-        <button class="w-full flex items-start gap-4 p-6 bg-white border-2 border-gray-300 rounded-lg hover:border-[#146B85] hover:bg-gray-50 transition-all text-left">
-          <i class="ri-time-line text-3xl text-[#146B85] mt-1"></i>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-gray-900 mb-1">Check your trackings</h3>
-            <p class="text-sm text-gray-600">Never miss an update.</p>
-          </div>
-        </button>
-
-      </div>
-        </div>
-
     <!-- Results Section (scrollable) -->
     <app-cases-layout 
       *ngIf="hasSearched"

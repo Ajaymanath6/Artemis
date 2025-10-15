@@ -18,12 +18,12 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 0;
+    margin-left: 206px; /* Default sidebar width */
     transition: margin-left 0.3s ease;
   }
   
   .main-content-container.sidebar-collapsed {
-    margin-left: 0;
+    margin-left: 4rem; /* 64px - collapsed sidebar width */
   }
   
   /* Header Container - Top Part */

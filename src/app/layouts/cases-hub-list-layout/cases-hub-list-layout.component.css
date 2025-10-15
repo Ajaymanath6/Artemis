@@ -1,3 +1,8 @@
+/* Main Container */
+:host {
+  display: block;
+}
+
 /* Dropdown Overlay */
 .dropdown-overlay {
   position: fixed;

@@ -22,6 +22,7 @@ interface FavoriteCase {
 })
 export class MyFavoritesLayoutComponent implements OnInit {
   @Input() viewMode: 'grid' | 'table' = 'grid';
+  @Input() isSidebarCollapsed: boolean = false;
 
   favoriteCases: FavoriteCase[] = [];
 

@@ -14,8 +14,7 @@
   margin-top: 0;
   isolation: isolate;
   max-width: 1200px;
-  margin: 0 auto;
-  margin-left: 32px;
+  margin: 0 auto 0 32px;
   padding: 0;
 }
 

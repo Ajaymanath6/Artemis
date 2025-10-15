@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./announcements-recent-layout.component.css']
 })
 export class AnnouncementsRecentLayoutComponent {
+  @Input() isSidebarCollapsed: boolean = false;
+  
   // This component handles the scrollable announcements and recent activity sections
 }
 

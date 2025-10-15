@@ -53,14 +53,14 @@
     <div class="flex flex-col min-h-screen bg-cases-page">
       
       <!-- Results Section -->
-      <app-cases-layout [viewMode]="'grid'">
+      <app-cases-layout [viewMode]="'grid'" [isSidebarCollapsed]="isSidebarCollapsed">
         
         <!-- Tab Content -->
         <div class="cases-grid">
           
           <!-- Cases Tab Content -->
           <div *ngIf="activeTab === 'cases'">
-            <app-my-favorites-layout></app-my-favorites-layout>
+            <app-my-favorites-layout [isSidebarCollapsed]="isSidebarCollapsed"></app-my-favorites-layout>
           </div>
 
           <!-- Threads Tab Content -->

@@ -48,8 +48,8 @@ export class SideNavComponent implements OnInit {
       {
         id: 'all-projects',
         label: 'All Projects',
-        icon: 'folders-line',
-        route: '/dashboard'
+        icon: 'folders-line'
+        // No route - clicking does nothing
       },
       {
         id: 'project',

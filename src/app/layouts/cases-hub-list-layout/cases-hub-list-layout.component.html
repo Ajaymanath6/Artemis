@@ -1,17 +1,18 @@
-<div class="max-w-4xl p-6 pl-8">
+<div class="max-w-4xl mx-auto px-8 pb-6">
   
   <!-- Built-in Lists -->
   <div class="space-y-4">
     
     <!-- My Favorites List Card -->
     <div class="relative">
-      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
-           (click)="navigateToFavorites()">
+      <div 
+        (click)="navigateToFavorites()"
+        class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer">
         
         <!-- List Icon and Details -->
         <div class="flex items-center flex-1">
           <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-            <i class="ri-heart-line text-lg" style="color: #dc2626;"></i>
+            <i class="ri-heart-line text-lg text-red-600"></i>
           </div>
           <div>
             <h3 class="font-medium text-gray-900">My Favorites</h3>
@@ -21,7 +22,6 @@
         
         <!-- 3-dot dropdown button -->
         <button
-          (click)="$event.stopPropagation()"
           class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
           <i class="ri-more-2-line text-lg text-gray-500"></i>
         </button>
@@ -30,13 +30,14 @@
 
     <!-- Samples List Card -->
     <div class="relative">
-      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
-           (click)="navigateToSamples()">
+      <div 
+        (click)="navigateToSamples()"
+        class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer">
         
         <!-- List Icon and Details -->
         <div class="flex items-center flex-1">
           <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-            <i class="ri-file-list-line text-lg" style="color: #2563eb;"></i>
+            <i class="ri-file-list-line text-lg text-blue-600"></i>
           </div>
           <div>
             <h3 class="font-medium text-gray-900">Samples</h3>
@@ -46,7 +47,6 @@
         
         <!-- 3-dot dropdown button -->
         <button
-          (click)="$event.stopPropagation()"
           class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
           <i class="ri-more-2-line text-lg text-gray-500"></i>
         </button>
@@ -55,13 +55,12 @@
 
     <!-- Custom Lists -->
     <div *ngFor="let list of customLists" class="relative">
-      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group cursor-pointer"
-           (click)="navigateToCustomList(list)">
+      <div class="w-full flex items-center p-4 bg-white border border-gray-200 rounded-lg transition-colors hover:bg-gray-50 group">
         
         <!-- List Icon and Details -->
         <div class="flex items-center flex-1">
           <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
-            <i class="ri-folder-line text-lg" style="color: #4b5563;"></i>
+            <i class="ri-folder-line text-lg text-gray-600"></i>
           </div>
           <div>
             <h3 class="font-medium text-gray-900">{{ list.name }}</h3>
@@ -71,7 +70,7 @@
         
         <!-- 3-dot dropdown button -->
         <button
-          (click)="onToggleDropdown(list, $event); $event.stopPropagation()"
+          (click)="onToggleDropdown(list, $event)"
           class="p-2 rounded-lg hover:bg-gray-200 transition-colors opacity-0 group-hover:opacity-100">
           <i class="ri-more-2-line text-lg text-gray-500"></i>
         </button>

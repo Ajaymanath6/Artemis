@@ -35,11 +35,7 @@ export class CaseHubComponent implements OnInit {
   ];
 
   // Custom Lists management
-  customLists: any[] = [
-    { id: '1', name: 'Important Cases', itemCount: 5, isDropdownOpen: false },
-    { id: '2', name: 'Medical Malpractice', itemCount: 3, isDropdownOpen: false },
-    { id: '3', name: 'Corporate Law', itemCount: 7, isDropdownOpen: false }
-  ];
+  customLists: any[] = [];
 
   // Modal state
   isModalVisible: boolean = false;
@@ -75,11 +71,6 @@ export class CaseHubComponent implements OnInit {
       label: 'Create New List'
     };
     this.isModalVisible = true;
-  }
-
-  onImportCase(): void {
-    console.log('Import Case clicked');
-    // Add functionality to import case
   }
 
   // Modal event handlers

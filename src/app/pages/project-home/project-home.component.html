@@ -1,7 +1,7 @@
 <!-- Project Home Page -->
-<div class="h-screen flex overflow-hidden">
+<div class="case-detail-container">
   
-  <!-- Left Column: Side Navigation -->
+  <!-- Left Side: Side Navigation Bar -->
   <app-side-nav
     #sideNav
     [isCollapsed]="isSidebarCollapsed"
@@ -11,8 +11,8 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-  <!-- Right Column: Main Content Area -->
-  <div class="flex-1 flex flex-col overflow-hidden min-w-0">
+  <!-- Right Side: Main Content Container -->
+  <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
     
     <!-- Sticky Header at Top -->
     <app-home-header 
@@ -21,8 +21,11 @@
     </app-home-header>
     
     <!-- Scrollable Content Area Below Header -->
-    <div class="flex-1 overflow-hidden min-w-0">
-      <app-announcements-recent-layout class="block h-full w-full"></app-announcements-recent-layout>
+    <div class="flex-1 overflow-y-auto bg-cases-page">
+      <app-announcements-recent-layout 
+        [isSidebarCollapsed]="isSidebarCollapsed"
+        class="block h-full w-full">
+      </app-announcements-recent-layout>
     </div>
     
   </div>

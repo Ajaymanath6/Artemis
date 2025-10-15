@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CasesHubListLayoutComponent {
   @Input() customLists: any[] = [];
+  @Input() isSidebarCollapsed: boolean = false;
   @Output() toggleDropdown = new EventEmitter<{list: any, event: Event}>();
   @Output() closeDropdowns = new EventEmitter<void>();
   @Output() editList = new EventEmitter<{list: any, event: Event}>();
