@@ -28,37 +28,26 @@
       <div class="relative">
         <button
           (click)="toggleUserMenu()"
-          class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-          <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-            <app-phosphor-icon
-              name="user"
-              [size]="16"
-              weight="bold"
-              color="#6B7280">
-            </app-phosphor-icon>
-          </div>
-          <div class="hidden md:block text-left">
+          class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="text-left">
             <p class="text-sm font-medium text-gray-900">Ajay</p>
             <p class="text-xs text-gray-600">ajaym&#64;unicourt.com</p>
           </div>
-          <i class="ri-arrow-down-s-line hidden md:block text-gray-600"></i>
+          <i class="ri-arrow-down-s-line text-gray-600"></i>
         </button>
 
         <!-- User Menu Dropdown -->
         <div *ngIf="isUserMenuOpen" 
              class="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
           <div class="py-2">
-            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
-              <app-phosphor-icon name="user" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+            <a href="#" class="px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 block">
               Profile
             </a>
-            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
-              <app-phosphor-icon name="gear" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+            <a href="#" class="px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 block">
               Settings
             </a>
             <hr class="my-2 border-gray-200">
-            <button (click)="onSignOut()" class="w-full flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
-              <app-phosphor-icon name="sign-out" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+            <button (click)="onSignOut()" class="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
               Sign Out
             </button>
           </div>
