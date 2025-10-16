@@ -342,4 +342,19 @@ export class ProjectHomeComponent implements OnInit, AfterViewInit {
     console.log(`First card file action tooltip ${tooltipKey}:`, this.firstCardFileActionTooltips[tooltipKey]);
   }
 
+  // Action button handlers
+  onSearchForCases() {
+    this.router.navigate(['/cases']);
+  }
+
+  onFindProfiles() {
+    // TODO: Navigate to profiles page
+    console.log('Find profiles clicked');
+  }
+
+  onCheckTrackings() {
+    // TODO: Navigate to trackings page
+    console.log('Check trackings clicked');
+  }
+
 }
