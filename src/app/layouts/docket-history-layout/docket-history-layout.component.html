@@ -243,7 +243,7 @@
             
             <!-- Attorney Text -->
             <div class="py-2">
-              <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was added for Hayden Griffin Haby, <span class="font-bold">III</span> - </span>
+              <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
               <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
             </div>
           </div>
@@ -255,7 +255,7 @@
             
             <!-- Attorney Text -->
             <div class="py-2">
-              <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead Attorney was added for Hayden Griffin Haby, <span class="font-bold">III</span> - </span>
+              <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead Attorney was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
               <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
             </div>
           </div>
@@ -267,7 +267,7 @@
             
             <!-- Attorney Text -->
             <div class="py-2">
-              <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was added for Hayden Griffin Haby, <span class="font-bold">III</span> - </span>
+              <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
               <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
             </div>
           </div>
@@ -301,12 +301,18 @@
         </div>
         
         <!-- Docket Entry Addition -->
-        <div class="flex items-start gap-2 px-3 rounded" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-          <!-- Add Icon -->
-          <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+        <div class="flex items-start gap-3">
+          <!-- Date Badge -->
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
           
-          <!-- Docket Text -->
-          <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050 Tracking No: Z000093295; Amount Owed: $0.00</span>
+          <!-- Entry Content -->
+          <div class="flex items-start gap-2 px-3 rounded flex-1" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Docket Text -->
+            <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050 Tracking No: Z000093295; Amount Owed: $0.00</span>
+          </div>
         </div>
       </div>
     </div>
@@ -372,41 +378,159 @@
     </div>
     
     <div class="docket-history-list">
-      <div *ngFor="let event of filteredDocketHistory; let i = index" class="docket-history-card">
+      <!-- Custom Card with Case Details -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-file-text-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Case details</span>
+        </div>
         
-        <!-- Horizontal Layout: Date Badge on Left, Content on Right -->
-        <div class="card-content-horizontal">
-          <!-- Date Badge - Light Gray -->
-          <div class="date-badge-container">
-            <span class="date-badge">{{ event.date }}</span>
+        <!-- Case Title and Change Indicator -->
+        <div class="flex items-start gap-3">
+          <span class="text-sm font-medium text-gray-700">Case Title</span>
+          
+          <!-- Change Indicator Box -->
+          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
+            <!-- Changed Icon -->
+            <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+            
+            <!-- From Text -->
+            <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
+            
+            <!-- Arrow -->
+            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
+            
+            <!-- To Text with Blue Background -->
+            <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parties Card -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-team-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Parties</span>
+        </div>
+        
+        <!-- Party Additions -->
+        <div class="space-y-2">
+          <!-- Party 1 -->
+          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
+            
+            <!-- Party Name and Role -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+              <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+            </div>
           </div>
           
-          <!-- Content Area -->
-          <div class="content-area">
-            <!-- Action Icon -->
-            <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
-              <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
-            </div>
+          <!-- Party 2 -->
+          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
             
-            <!-- Description -->
-            <div class="event-description">
-              <p>{{ event.description }}</p>
-              
-              <!-- Change Details (only for Changed items) -->
-              <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
-                <div class="change-item">
-                  <span class="change-label">From:</span>
-                  <span class="change-from">{{ event.changeDetails.from }}</span>
-                </div>
-                <div class="change-item">
-                  <span class="change-label">To:</span>
-                  <span class="change-to">{{ event.changeDetails.to }}</span>
-                </div>
-              </div>
+            <!-- Party Name and Role -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+              <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Attorney Card -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-briefcase-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Attorney</span>
+        </div>
         
+        <!-- Attorney Additions -->
+        <div class="space-y-2">
+          <!-- Attorney 1 -->
+          <div class="flex items-start gap-2 px-3 rounded" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Attorney Text -->
+            <div class="py-2">
+              <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+              <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+            </div>
+          </div>
+          
+          <!-- Attorney 2 -->
+          <div class="flex items-start gap-2 px-3 rounded" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Attorney Text -->
+            <div class="py-2">
+              <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead Attorney was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+              <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+            </div>
+          </div>
+          
+          <!-- Attorney 3 -->
+          <div class="flex items-start gap-2 px-3 rounded" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Attorney Text -->
+            <div class="py-2">
+              <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+              <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents Card -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-file-list-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Documents</span>
+        </div>
+        
+        <!-- Document Addition -->
+        <div class="flex items-start gap-2 px-3 rounded" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+          <!-- Add Icon -->
+          <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+          
+          <!-- Document Text -->
+          <span class="text-xs text-gray-700 py-2">SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED. SUMMONS ON COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22-SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED. SUMMONS ON COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22</span>
+        </div>
+      </div>
+
+      <!-- Docket Entries Card -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-article-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
+        </div>
+        
+        <!-- Docket Entry Addition -->
+        <div class="flex items-start gap-3">
+          <!-- Date Badge -->
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
+          
+          <!-- Entry Content -->
+          <div class="flex items-start gap-2 px-3 rounded flex-1" style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Docket Text -->
+            <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050 Tracking No: Z000093295; Amount Owed: $0.00</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
