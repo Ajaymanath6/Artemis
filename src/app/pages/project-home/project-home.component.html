@@ -11,10 +11,10 @@
     (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
   
-  <!-- Right Side: Main Content Container -->
-  <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
+  <!-- Right Side: Main Content Container - Scrollable -->
+  <div class="main-content-container overflow-y-auto" [class.sidebar-collapsed]="isSidebarCollapsed">
     
-    <!-- Sticky Header at Top -->
+    <!-- Header at Top -->
     <app-home-header 
       [isSidebarCollapsed]="isSidebarCollapsed"
       (sidebarToggle)="onSidebarToggle()">
@@ -27,8 +27,8 @@
       </div>
     </div>
     
-    <!-- Scrollable Content Area Below Header -->
-    <div class="flex-1 overflow-y-auto bg-cases-page">
+    <!-- Content Area Below Header -->
+    <div class="bg-cases-page">
       <app-announcements-recent-layout 
         [isSidebarCollapsed]="isSidebarCollapsed"
         class="block w-full">
