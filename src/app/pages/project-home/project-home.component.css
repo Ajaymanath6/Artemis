@@ -21,7 +21,7 @@
   margin-left: 206px; /* Default sidebar width */
   transition: margin-left 0.3s ease;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .main-content-container.sidebar-collapsed {
