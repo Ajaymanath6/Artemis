@@ -92,117 +92,210 @@
                   <span class="change-label">To:</span>
                   <span class="change-to">{{ event.changeDetails.to }}</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
 
-    <!-- Variant 2: Inline Diff Highlighting (GitHub-style) -->
-    <div class="mt-12 border-t border-gray-300 pt-8">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Variant 2: Inline Diff Highlighting</h3>
-      <p class="text-sm text-gray-600 mb-6">Character-level highlighting showing only what changed</p>
+    <!-- Second Results Section -->
+    <!-- Results Controls with Action Filters -->
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 mt-8">
+      <!-- Results Text and Action Filters -->
+      <div class="flex items-center space-x-6">
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700 font-semibold">Results</span>
+        </div>
+        
+        <!-- Action Filter Buttons -->
+        <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <button 
+            (click)="setActionFilter('all')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors"
+            [class]="actionFilter === 'all' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <span class="text-sm font-medium">All</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Added')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Added' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-add-large-line text-sm mr-1" style="color: #16a34a;"></i>
+            <span class="text-sm font-medium">Added</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Removed')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Removed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-close-large-line text-sm mr-1" style="color: #dc2626;"></i>
+            <span class="text-sm font-medium">Removed</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Changed')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Changed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-refresh-line text-sm mr-1" style="color: #2F55D9;"></i>
+            <span class="text-sm font-medium">Changed</span>
+          </button>
+        </div>
+      </div>
       
-      <div class="docket-history-list">
-        <!-- Example Changed Event with Inline Diff -->
-        <div class="docket-history-card">
-          <div class="card-content-horizontal">
-            <div class="date-badge-container">
-              <span class="date-badge">2025-06-23</span>
+      <!-- View Toggle Buttons -->
+      <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <button 
+          (click)="toggleViewMode('grid')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors"
+          [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-grid-line text-base"></i>
+          <span class="text-sm font-medium">Grid</span>
+        </button>
+        <button 
+          (click)="toggleViewMode('table')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+          [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-row-line text-base"></i>
+          <span class="text-sm font-medium">Table</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="docket-history-list">
+      <div *ngFor="let event of filteredDocketHistory; let i = index" class="docket-history-card">
+        
+        <!-- Horizontal Layout: Date Badge on Left, Content on Right -->
+        <div class="card-content-horizontal">
+          <!-- Date Badge - Light Gray -->
+          <div class="date-badge-container">
+            <span class="date-badge">{{ event.date }}</span>
+          </div>
+          
+          <!-- Content Area -->
+          <div class="content-area">
+            <!-- Action Icon -->
+            <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
+              <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
             </div>
-            <div class="content-area">
-              <div class="action-icon changed-bg">
-                <i class="ri-refresh-line changed"></i>
-              </div>
-              <div class="event-description">
-                <p>Case name updated with additional details</p>
-                <div class="change-details mt-3">
-                  <div class="change-item-inline">
-                    <span class="text-sm text-gray-700">Capital One Na Successor By Merger To Discover <span class="bg-green-100 text-green-800 px-1 rounded font-medium">Vs.</span> Ellis, John <span class="bg-green-100 text-green-800 px-1 rounded font-medium">Jgh</span></span>
-                  </div>
+            
+            <!-- Description -->
+            <div class="event-description">
+              <p>{{ event.description }}</p>
+              
+              <!-- Change Details (only for Changed items) -->
+              <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
+                <div class="change-item">
+                  <span class="change-label">From:</span>
+                  <span class="change-from">{{ event.changeDetails.from }}</span>
+                </div>
+                <div class="change-item">
+                  <span class="change-label">To:</span>
+                  <span class="change-to">{{ event.changeDetails.to }}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 
-    <!-- Variant 3: Inline with Icons and Annotations -->
-    <div class="mt-12 border-t border-gray-300 pt-8">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Variant 3: Inline with Icons and Annotations</h3>
-      <p class="text-sm text-gray-600 mb-6">Using visual markers (+/-) to indicate additions and removals</p>
+    <!-- Third Results Section -->
+    <!-- Results Controls with Action Filters -->
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 mt-8">
+      <!-- Results Text and Action Filters -->
+      <div class="flex items-center space-x-6">
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700 font-semibold">Results</span>
+        </div>
+        
+        <!-- Action Filter Buttons -->
+        <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <button 
+            (click)="setActionFilter('all')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors"
+            [class]="actionFilter === 'all' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <span class="text-sm font-medium">All</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Added')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Added' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-add-large-line text-sm mr-1" style="color: #16a34a;"></i>
+            <span class="text-sm font-medium">Added</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Removed')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Removed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-close-large-line text-sm mr-1" style="color: #dc2626;"></i>
+            <span class="text-sm font-medium">Removed</span>
+          </button>
+          <button 
+            (click)="setActionFilter('Changed')"
+            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+            [class]="actionFilter === 'Changed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+            <i class="ri-refresh-line text-sm mr-1" style="color: #2F55D9;"></i>
+            <span class="text-sm font-medium">Changed</span>
+          </button>
+        </div>
+      </div>
       
-      <div class="docket-history-list">
-        <!-- Example Changed Event with Icons -->
-        <div class="docket-history-card">
-          <div class="card-content-horizontal">
-            <div class="date-badge-container">
-              <span class="date-badge">2025-09-24</span>
+      <!-- View Toggle Buttons -->
+      <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <button 
+          (click)="toggleViewMode('grid')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors"
+          [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-grid-line text-base"></i>
+          <span class="text-sm font-medium">Grid</span>
+        </button>
+        <button 
+          (click)="toggleViewMode('table')"
+          class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
+          [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
+          <i class="ri-layout-row-line text-base"></i>
+          <span class="text-sm font-medium">Table</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="docket-history-list">
+      <div *ngFor="let event of filteredDocketHistory; let i = index" class="docket-history-card">
+        
+        <!-- Horizontal Layout: Date Badge on Left, Content on Right -->
+        <div class="card-content-horizontal">
+          <!-- Date Badge - Light Gray -->
+          <div class="date-badge-container">
+            <span class="date-badge">{{ event.date }}</span>
+          </div>
+          
+          <!-- Content Area -->
+          <div class="content-area">
+            <!-- Action Icon -->
+            <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
+              <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
             </div>
-            <div class="content-area">
-              <div class="action-icon changed-bg">
-                <i class="ri-refresh-line changed"></i>
-              </div>
-              <div class="event-description">
-                <p>Memorandum filing status updated from draft to final submission</p>
-                <div class="change-details mt-3">
-                  <div class="change-item-inline">
-                    <span class="text-sm text-gray-700">
-                      Status: <span class="bg-red-50 text-red-700 px-2 py-1 rounded inline-flex items-center gap-1"><i class="ri-subtract-line text-xs"></i>Draft</span>
-                      <i class="ri-arrow-right-line text-gray-400 mx-2"></i>
-                      <span class="bg-green-50 text-green-700 px-2 py-1 rounded inline-flex items-center gap-1"><i class="ri-add-line text-xs"></i>Final Submission</span>
-                    </span>
-                  </div>
+            
+            <!-- Description -->
+            <div class="event-description">
+              <p>{{ event.description }}</p>
+              
+              <!-- Change Details (only for Changed items) -->
+              <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
+                <div class="change-item">
+                  <span class="change-label">From:</span>
+                  <span class="change-from">{{ event.changeDetails.from }}</span>
+                </div>
+                <div class="change-item">
+                  <span class="change-label">To:</span>
+                  <span class="change-to">{{ event.changeDetails.to }}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
-
-    <!-- Variant 4: Side-by-Side with Strikethrough -->
-    <div class="mt-12 border-t border-gray-300 pt-8">
-      <h3 class="text-lg font-semibold text-gray-900 mb-4">Variant 4: Side-by-Side Comparison with Strikethrough</h3>
-      <p class="text-sm text-gray-600 mb-6">Two-column view showing before and after with visual indicators</p>
-      
-      <div class="docket-history-list">
-        <!-- Example Changed Event with Side-by-Side -->
-        <div class="docket-history-card">
-          <div class="card-content-horizontal">
-            <div class="date-badge-container">
-              <span class="date-badge">2025-06-23</span>
-            </div>
-            <div class="content-area">
-              <div class="action-icon changed-bg">
-                <i class="ri-refresh-line changed"></i>
-              </div>
-              <div class="event-description">
-                <p>Financial assessment amount updated</p>
-                <div class="change-details mt-3">
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-red-50 border border-red-200 rounded p-3">
-                      <div class="text-xs font-semibold text-red-700 mb-1 flex items-center gap-1">
-                        <i class="ri-subtract-line"></i> REMOVED
-                      </div>
-                      <p class="text-sm text-gray-700">
-                        Assessment: <span class="line-through text-red-600">$80.00</span>
-                      </p>
-                    </div>
-                    <div class="bg-green-50 border border-green-200 rounded p-3">
-                      <div class="text-xs font-semibold text-green-700 mb-1 flex items-center gap-1">
-                        <i class="ri-add-line"></i> ADDED
-                      </div>
-                      <p class="text-sm text-gray-700">
-                        Assessment: <span class="font-semibold text-green-600">$90.00</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>

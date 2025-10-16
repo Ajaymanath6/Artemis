@@ -28,12 +28,20 @@
       <div class="relative">
         <button
           (click)="toggleUserMenu()"
-          class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-          <div class="text-left">
+          class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <app-phosphor-icon
+              name="user"
+              [size]="16"
+              weight="bold"
+              color="#6B7280">
+            </app-phosphor-icon>
+          </div>
+          <div class="hidden md:block text-left">
             <p class="text-sm font-medium text-gray-900">Ajay</p>
             <p class="text-xs text-gray-600">ajaym&#64;unicourt.com</p>
           </div>
-          <i class="ri-arrow-down-s-line text-gray-600"></i>
+          <i class="ri-arrow-down-s-line hidden md:block text-gray-600"></i>
         </button>
 
         <!-- User Menu Dropdown -->
