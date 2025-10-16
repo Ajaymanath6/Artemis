@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
 import { HomeHeaderComponent } from '../../components/home-header/home-header.component';
 import { AnnouncementsRecentLayoutComponent } from '../../layouts/announcements-recent-layout/announcements-recent-layout.component';
+import { SearchBarComponent } from '../../components/ui/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-project-home',
   standalone: true,
-  imports: [CommonModule, SideNavComponent, HomeHeaderComponent, AnnouncementsRecentLayoutComponent],
+  imports: [CommonModule, SideNavComponent, HomeHeaderComponent, AnnouncementsRecentLayoutComponent, SearchBarComponent],
   templateUrl: './project-home.component.html',
   styleUrls: ['./project-home.component.css']
 })

@@ -19,15 +19,51 @@
 
     <!-- Right: User Profile -->
     <div class="flex items-center space-x-3">
+      <!-- Notification Icon -->
       <button class="p-2 rounded-lg hover:bg-gray-50 transition-colors">
         <i class="ri-notification-line text-xl text-gray-600"></i>
       </button>
-      <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-        <div class="w-8 h-8 bg-[#146B85] rounded-full flex items-center justify-center">
-          <span class="text-white text-sm font-semibold">A</span>
+      
+      <!-- User Profile -->
+      <div class="relative">
+        <button
+          (click)="toggleUserMenu()"
+          class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="w-8 h-8 bg-[#146B85] rounded-full flex items-center justify-center">
+            <app-phosphor-icon
+              name="user"
+              [size]="16"
+              weight="bold"
+              color="white">
+            </app-phosphor-icon>
+          </div>
+          <div class="hidden md:block text-left">
+            <p class="text-sm font-medium text-gray-900">Ajay</p>
+            <p class="text-xs text-gray-600">ajaym&#64;unicourt.com</p>
+          </div>
+          <i class="ri-arrow-down-s-line hidden md:block text-gray-600"></i>
+        </button>
+
+        <!-- User Menu Dropdown -->
+        <div *ngIf="isUserMenuOpen" 
+             class="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
+          <div class="py-2">
+            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
+              <app-phosphor-icon name="user" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+              Profile
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
+              <app-phosphor-icon name="gear" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+              Settings
+            </a>
+            <hr class="my-2 border-gray-200">
+            <button (click)="onSignOut()" class="w-full flex items-center px-4 py-2 text-sm text-gray-900 hover:bg-gray-50">
+              <app-phosphor-icon name="sign-out" [size]="16" weight="regular" color="currentColor" className="mr-3"></app-phosphor-icon>
+              Sign Out
+            </button>
+          </div>
         </div>
-        <i class="ri-arrow-down-s-line text-gray-600"></i>
-      </button>
+      </div>
     </div>
   </div>
 
@@ -62,4 +98,9 @@
     </button>
     
   </div>
+
+  <!-- Overlay to close dropdowns -->
+  <div *ngIf="isUserMenuOpen" 
+       (click)="closeMenus()"
+       class="fixed inset-0 z-40"></div>
 </div>
