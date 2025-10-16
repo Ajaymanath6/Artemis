@@ -161,41 +161,30 @@
     </div>
     
     <div class="docket-history-list">
-      <div *ngFor="let event of filteredDocketHistory; let i = index" class="docket-history-card">
-        
-        <!-- Horizontal Layout: Date Badge on Left, Content on Right -->
-        <div class="card-content-horizontal">
-          <!-- Date Badge - Light Gray -->
-          <div class="date-badge-container">
-            <span class="date-badge">{{ event.date }}</span>
-          </div>
-          
-          <!-- Content Area -->
-          <div class="content-area">
-            <!-- Action Icon -->
-            <div class="action-icon" [class.added-bg]="event.actionType === 'Added'" [class.removed-bg]="event.actionType === 'Removed'" [class.changed-bg]="event.actionType === 'Changed'">
-              <i [class]="getActionIcon(event.actionType)" [class.added]="event.actionType === 'Added'" [class.removed]="event.actionType === 'Removed'" [class.changed]="event.actionType === 'Changed'"></i>
-            </div>
-            
-            <!-- Description -->
-            <div class="event-description">
-              <p>{{ event.description }}</p>
-              
-              <!-- Change Details (only for Changed items) -->
-              <div *ngIf="event.actionType === 'Changed' && event.changeDetails" class="change-details">
-                <div class="change-item">
-                  <span class="change-label">From:</span>
-                  <span class="change-from">{{ event.changeDetails.from }}</span>
-                </div>
-                <div class="change-item">
-                  <span class="change-label">To:</span>
-                  <span class="change-to">{{ event.changeDetails.to }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- Custom Card with Case Details -->
+      <div class="docket-history-card">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ri-file-text-line text-lg" style="color: #2F55D9;"></i>
+          <span class="text-sm font-semibold text-gray-900">Case details</span>
         </div>
         
+        <!-- Case Title and Change Indicator -->
+        <div class="flex items-start gap-3">
+          <span class="text-sm font-medium text-gray-700">Case Title</span>
+          
+          <!-- Change Indicator Box -->
+          <div class="flex items-center gap-2 px-3" style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
+            <!-- From Text -->
+            <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
+            
+            <!-- Arrow -->
+            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
+            
+            <!-- To Text with Brand Background -->
+            <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #146B85;">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
+          </div>
+        </div>
       </div>
     </div>
 
