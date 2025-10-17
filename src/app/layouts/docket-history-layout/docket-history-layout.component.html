@@ -1,7 +1,7 @@
 <!-- Docket History Layout Content -->
 <div class="docket-history-content-wrapper">
   <div class="docket-history-section">
-
+    
     <!-- Results Section - Sticky -->
     <!-- Results Controls with Action Filters -->
     <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 sticky top-0 z-10">
@@ -10,7 +10,7 @@
         <div class="flex items-center space-x-4">
           <span class="text-gray-700 font-semibold">Results</span>
         </div>
-
+        
         <!-- Action Filter Buttons -->
         <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button (click)="setActionFilter('all')" class="px-3 py-2 flex items-center space-x-2 transition-colors"
@@ -37,7 +37,7 @@
           </button>
         </div>
       </div>
-
+      
       <!-- View Toggle Buttons -->
       <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
         <button (click)="toggleViewMode('grid')" class="px-3 py-2 flex items-center space-x-2 transition-colors"
@@ -53,10 +53,10 @@
         </button>
       </div>
     </div>
-
+    
     <!-- All Cards in One Section with Light Background - Scrollable -->
     <div class="bg-gray-100 rounded-lg p-6 overflow-y-auto custom-scrollbar" style="max-height: calc(100vh - 150px);">
-      <div class="docket-history-list">
+    <div class="docket-history-list">
         <!-- Card 1: Case Details - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
           <!-- Card Header -->
@@ -64,12 +64,12 @@
             <i class="ri-file-text-line text-lg text-gray-900"></i>
             <span class="text-sm font-semibold text-gray-900">Case details</span>
           </div>
-
+          
           <!-- Status Label -->
           <div class="mb-4">
             <span class="text-xs font-semibold text-gray-500 uppercase">CASE DETAILS CHANGED</span>
-          </div>
-
+            </div>
+            
           <!-- Case Title and Change Indicator -->
           <div class="flex items-start gap-3">
             <span class="text-sm font-medium text-gray-700">Case Title</span>
@@ -94,220 +94,223 @@
             </div>
           </div>
         </div>
-
+        
         <!-- Card 1b: Case Details - CHANGED (with added words) -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
-          <!-- Card Header -->
+        <!-- Card Header -->
           <div class="flex items-center gap-2 mb-2">
-            <i class="ri-file-text-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Case details</span>
-          </div>
+          <i class="ri-file-text-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Case details</span>
+        </div>
 
           <!-- Status Label -->
           <div class="mb-4">
             <span class="text-xs font-semibold text-gray-500 uppercase">CASE DETAILS CHANGED</span>
           </div>
-
-          <!-- Case Title and Change Indicator -->
-          <div class="flex items-start gap-3">
-            <span class="text-sm font-medium text-gray-700">Case Title</span>
-
-            <!-- Change Indicator Box -->
+        
+        <!-- Case Title and Change Indicator -->
+        <div class="flex items-start gap-3">
+          <span class="text-sm font-medium text-gray-700">Case Title</span>
+          
+          <!-- Change Indicator Box -->
             <div class="flex items-center gap-2 px-3 rounded"
               style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-              <!-- Changed Icon -->
-              <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-
-              <!-- From Text with added words highlighted in green -->
-              <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span style="background-color: #dcfce7; padding: 2px 4px; border-radius: 3px;">vs.</span> ELLIS, JOHN <span style="background-color: #dcfce7; padding: 2px 4px; border-radius: 3px;">JGH</span></span>
-
-              <!-- Arrow -->
-              <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
-
+            <!-- Changed Icon -->
+            <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+            
+              <!-- From Text with added words highlighted in brighter green -->
+              <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span
+                  style="background-color: #86efac; padding: 2px 4px; border-radius: 3px;">vs.</span> ELLIS, JOHN <span
+                  style="background-color: #86efac; padding: 2px 4px; border-radius: 3px;">JGH</span></span>
+            
+            <!-- Arrow -->
+            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
+            
               <!-- To Text with plain white text -->
-              <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
+              <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL
+                ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- Card 2: Parties - ADDED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-team-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Parties</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES ADDED</span>
-          </div>
-
-          <!-- Party Additions -->
-          <div class="space-y-2">
-            <!-- Party 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-team-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Parties</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES ADDED</span>
+        </div>
+        
+        <!-- Party Additions -->
+        <div class="space-y-2">
+          <!-- Party 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-                  <!-- Add Icon -->
-                  <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Add Icon -->
+                <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
-
-            <!-- Party 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+          </div>
+          
+          <!-- Party 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-                  <!-- Add Icon -->
-                  <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Add Icon -->
+                <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 3: Attorney - ADDED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-briefcase-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Attorney</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY ADDED</span>
-          </div>
-
-          <!-- Attorney Additions -->
-          <div class="space-y-2">
-            <!-- Attorney 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-briefcase-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Attorney</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY ADDED</span>
+        </div>
+        
+        <!-- Attorney Additions -->
+        <div class="space-y-2">
+          <!-- Attorney 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-                  <!-- Add Icon -->
-                  <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Add Icon -->
+                <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was
                       added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> -
                     </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
-
-            <!-- Attorney 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+          </div>
+          
+          <!-- Attorney 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-                  <!-- Add Icon -->
-                  <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Add Icon -->
+                <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead
                       Attorney was added for Hayden <span class="font-bold">Griffin Haby</span>, <span
                         class="font-bold">III</span> - </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
-
-            <!-- Attorney 3 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+          </div>
+          
+          <!-- Attorney 3 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-                  <!-- Add Icon -->
-                  <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Add Icon -->
+                <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was
                       added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> -
                     </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 4: Documents - ADDED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-file-list-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Documents</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS ADDED</span>
-          </div>
-
-          <!-- Document Addition -->
-          <div class="flex items-start gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-file-list-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Documents</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS ADDED</span>
+        </div>
+        
+        <!-- Document Addition -->
+        <div class="flex items-start gap-2">
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-              <!-- Add Icon -->
-              <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
-
-              <!-- Document Text -->
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Document Text -->
               <span class="text-xs text-gray-700 py-2">SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED. SUMMONS ON
                 COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22-SUMMONS ON COMPLAINT BY CERTIFIED MAIL
                 ISSUED. SUMMONS ON COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22</span>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- Card 5: Docket Entries - ADDED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-article-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES ADDED</span>
-          </div>
-
-          <!-- Docket Entry Addition -->
-          <div class="flex items-start gap-3">
-            <!-- Date Badge -->
-            <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
-
-            <!-- Entry Content -->
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-article-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES ADDED</span>
+        </div>
+        
+        <!-- Docket Entry Addition -->
+        <div class="flex items-start gap-3">
+          <!-- Date Badge -->
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
+          
+          <!-- Entry Content -->
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
-              <!-- Add Icon -->
-              <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
-
-              <!-- Docket Text -->
+            <!-- Add Icon -->
+            <i class="ri-add-large-line text-sm flex-shrink-0 mt-2" style="color: #16a34a;"></i>
+            
+            <!-- Docket Text -->
               <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED
                 MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050
                 Tracking No: Z000093295; Amount Owed: $0.00</span>
@@ -317,22 +320,22 @@
 
         <!-- Card 6: Case Details - REMOVED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
-          <!-- Card Header -->
+        <!-- Card Header -->
           <div class="flex items-center gap-2 mb-2">
-            <i class="ri-file-text-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Case details</span>
-          </div>
+          <i class="ri-file-text-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Case details</span>
+        </div>
 
           <!-- Status Label -->
           <div class="mb-4">
             <span class="text-xs font-semibold text-gray-500 uppercase">CASE DETAILS REMOVED</span>
           </div>
-
-          <!-- Case Title and Change Indicator -->
-          <div class="flex items-start gap-3">
-            <span class="text-sm font-medium text-gray-700">Case Title</span>
-
-            <!-- Change Indicator Box -->
+        
+        <!-- Case Title and Change Indicator -->
+        <div class="flex items-start gap-3">
+          <span class="text-sm font-medium text-gray-700">Case Title</span>
+          
+          <!-- Change Indicator Box -->
             <div class="flex items-center gap-2 px-3 rounded"
               style="height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
               <!-- Removed Icon -->
@@ -342,262 +345,263 @@
               <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN
                 JGH</span>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- Card 7: Parties - REMOVED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-team-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Parties</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES REMOVED</span>
-          </div>
-
-          <!-- Party Removals -->
-          <div class="space-y-2">
-            <!-- Party 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-team-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Parties</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES REMOVED</span>
+        </div>
+        
+        <!-- Party Removals -->
+        <div class="space-y-2">
+          <!-- Party 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-                  <!-- Minus Icon -->
-                  <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Minus Icon -->
+                <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
-
-            <!-- Party 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+          </div>
+          
+          <!-- Party 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-                  <!-- Minus Icon -->
-                  <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Minus Icon -->
+                <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 8: Attorney - REMOVED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-briefcase-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Attorney</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY REMOVED</span>
-          </div>
-
-          <!-- Attorney Removals -->
-          <div class="space-y-2">
-            <!-- Attorney 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-briefcase-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Attorney</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY REMOVED</span>
+        </div>
+        
+        <!-- Attorney Removals -->
+        <div class="space-y-2">
+          <!-- Attorney 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-                  <!-- Minus Icon -->
-                  <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Minus Icon -->
+                <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was
                       removed for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span>
                       - </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
-
-            <!-- Attorney 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+          </div>
+          
+          <!-- Attorney 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-                  <!-- Minus Icon -->
-                  <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Minus Icon -->
+                <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead
                       Attorney was removed for Hayden <span class="font-bold">Griffin Haby</span>, <span
                         class="font-bold">III</span> - </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
-
-            <!-- Attorney 3 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-start gap-2">
+          </div>
+          
+          <!-- Attorney 3 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-start gap-2">
                 <div class="inline-flex items-start gap-2 px-3 rounded"
                   style="min-height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-                  <!-- Minus Icon -->
-                  <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
-
-                  <!-- Attorney Text -->
-                  <div class="py-2">
+                <!-- Minus Icon -->
+                <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
+                
+                <!-- Attorney Text -->
+                <div class="py-2">
                     <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was
                       removed for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span>
                       - </span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                   </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 9: Documents - REMOVED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-file-list-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Documents</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS REMOVED</span>
-          </div>
-
-          <!-- Document Removal -->
-          <div class="flex items-start gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-file-list-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Documents</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS REMOVED</span>
+        </div>
+        
+        <!-- Document Removal -->
+        <div class="flex items-start gap-2">
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-              <!-- Minus Icon -->
-              <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
-
-              <!-- Document Text -->
+            <!-- Minus Icon -->
+            <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
+            
+            <!-- Document Text -->
               <span class="text-xs text-gray-700 py-2">SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED. SUMMONS ON
                 COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22-SUMMONS ON COMPLAINT BY CERTIFIED MAIL
                 ISSUED. SUMMONS ON COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22</span>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- Card 10: Docket Entries - REMOVED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-article-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES REMOVED</span>
-          </div>
-
-          <!-- Docket Entry Removal -->
-          <div class="flex items-start gap-3">
-            <!-- Date Badge -->
-            <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
-
-            <!-- Entry Content -->
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-article-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES REMOVED</span>
+        </div>
+        
+        <!-- Docket Entry Removal -->
+        <div class="flex items-start gap-3">
+          <!-- Date Badge -->
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
+          
+          <!-- Entry Content -->
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
-              <!-- Minus Icon -->
-              <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
-
-              <!-- Docket Text -->
+            <!-- Minus Icon -->
+            <i class="ri-subtract-line text-sm flex-shrink-0 mt-2" style="color: #dc2626;"></i>
+            
+            <!-- Docket Text -->
               <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED
                 MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050
                 Tracking No: Z000093295; Amount Owed: $0.00</span>
-            </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 11: Parties - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-team-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Parties</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES CHANGED</span>
-          </div>
-
-          <!-- Party Changes -->
-          <div class="space-y-2">
-            <!-- Party 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-team-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Parties</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES CHANGED</span>
+        </div>
+        
+        <!-- Party Changes -->
+        <div class="space-y-2">
+          <!-- Party 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-                  <!-- Changed Icon -->
-                  <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Changed Icon -->
+                <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
-
-            <!-- Party 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
-              <div class="flex items-center gap-2">
+          </div>
+          
+          <!-- Party 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-                  <!-- Changed Icon -->
-                  <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-
-                  <!-- Party Name and Role -->
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
-                  </div>
+                <!-- Changed Icon -->
+                <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+                
+                <!-- Party Name and Role -->
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 12: Attorney - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-briefcase-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Attorney</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY CHANGED</span>
-          </div>
-
-          <!-- Attorney Changes - One Column Layout -->
-          <div class="space-y-2">
-            <!-- Attorney 1 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-briefcase-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Attorney</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">ATTORNEY CHANGED</span>
+        </div>
+        
+        <!-- Attorney Changes - One Column Layout -->
+        <div class="space-y-2">
+          <!-- Attorney 1 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
               <div class="inline-flex items-center gap-2 px-3 rounded"
                 style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
                 <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
@@ -605,12 +609,14 @@
                 <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
                 <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CLAY
                   KENNETH KELLER</span>
-                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded">Norm change</span>
               </div>
+              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
-
-            <!-- Attorney 2 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
+          </div>
+          
+          <!-- Attorney 2 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
               <div class="inline-flex items-center gap-2 px-3 rounded"
                 style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
                 <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
@@ -618,12 +624,14 @@
                 <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
                 <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">SARAH
                   ELIZABETH JOHNSON</span>
-                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded">Norm change</span>
               </div>
+              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
-
-            <!-- Attorney 3 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
+          </div>
+          
+          <!-- Attorney 3 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
               <div class="inline-flex items-center gap-2 px-3 rounded"
                 style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
                 <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
@@ -631,12 +639,14 @@
                 <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
                 <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">JENNIFER
                   MARIE DAVIS</span>
-                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded">Norm change</span>
               </div>
+              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
-
-            <!-- Attorney 4 -->
-            <div class="p-1 rounded" style="background-color: #f9fafb;">
+          </div>
+          
+          <!-- Attorney 4 -->
+          <div class="p-1 rounded" style="background-color: #f9fafb;">
+            <div class="flex items-center gap-2">
               <div class="inline-flex items-center gap-2 px-3 rounded"
                 style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
                 <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
@@ -644,65 +654,66 @@
                 <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
                 <span class="text-xs font-bold text-white px-2 py-1 rounded"
                   style="background-color: #2F55D9;">CHRISTOPHER ALAN BROWN</span>
-                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded">Norm change</span>
               </div>
+              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
           </div>
         </div>
+      </div>
 
         <!-- Card 13: Documents - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-file-list-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Documents</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS CHANGED</span>
-          </div>
-
-          <!-- Document Change -->
-          <div class="flex items-start gap-2">
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-file-list-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Documents</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCUMENTS CHANGED</span>
+        </div>
+        
+        <!-- Document Change -->
+        <div class="flex items-start gap-2">
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-              <!-- Changed Icon -->
-              <i class="ri-refresh-line text-sm flex-shrink-0 mt-2" style="color: #2F55D9;"></i>
-
-              <!-- Document Text -->
+            <!-- Changed Icon -->
+            <i class="ri-refresh-line text-sm flex-shrink-0 mt-2" style="color: #2F55D9;"></i>
+            
+            <!-- Document Text -->
               <span class="text-xs text-gray-700 py-2">SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED. SUMMONS ON
                 COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22-SUMMONS ON COMPLAINT BY CERTIFIED MAIL
                 ISSUED. SUMMONS ON COMPLAINT BY CERTIFIED MAIL Sent on: 09/22/2025 10:37:57.22</span>
             </div>
-          </div>
         </div>
+      </div>
 
         <!-- Card 14: Docket Entries - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
-          <!-- Card Header -->
-          <div class="flex items-center gap-2 mb-2">
-            <i class="ri-article-line text-lg text-gray-900"></i>
-            <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
-          </div>
-
-          <!-- Status Label -->
-          <div class="mb-4">
-            <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES CHANGED</span>
-          </div>
-
-          <!-- Docket Entry Change -->
-          <div class="flex items-start gap-3">
-            <!-- Date Badge -->
-            <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
-
-            <!-- Entry Content -->
+        <!-- Card Header -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-article-line text-lg text-gray-900"></i>
+          <span class="text-sm font-semibold text-gray-900">Docket Entries</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">DOCKET ENTRIES CHANGED</span>
+        </div>
+        
+        <!-- Docket Entry Change -->
+        <div class="flex items-start gap-3">
+          <!-- Date Badge -->
+          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">2025-06-23</span>
+          
+          <!-- Entry Content -->
             <div class="inline-flex items-start gap-2 px-3 rounded"
               style="min-height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-              <!-- Changed Icon -->
-              <i class="ri-refresh-line text-sm flex-shrink-0 mt-2" style="color: #2F55D9;"></i>
-
-              <!-- Docket Text -->
+            <!-- Changed Icon -->
+            <i class="ri-refresh-line text-sm flex-shrink-0 mt-2" style="color: #2F55D9;"></i>
+            
+            <!-- Docket Text -->
               <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED
                 MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050
                 Tracking No: Z000093295; Amount Owed: $0.00</span>
