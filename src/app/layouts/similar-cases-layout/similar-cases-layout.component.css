@@ -31,7 +31,7 @@
 .similar-cases-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
 }
 
 /* Case cards - Same styling as cases page */
