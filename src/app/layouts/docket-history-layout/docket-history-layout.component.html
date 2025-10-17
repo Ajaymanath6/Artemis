@@ -2,7 +2,7 @@
 <div class="docket-history-content-wrapper">
   <div class="docket-history-section">
     
-    <!-- First Results Section -->
+    <!-- Results Section -->
     <!-- Results Controls with Action Filters -->
     <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
       <!-- Results Text and Action Filters -->
@@ -62,9 +62,10 @@
       </div>
     </div>
     
+    <!-- All Cards in One Section -->
     <div class="docket-history-list">
-      <!-- Custom Card with Case Details -->
-      <div class="docket-history-card">
+      <!-- Card 1: Case Details - CHANGED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-file-text-line text-lg text-gray-900"></i>
@@ -97,8 +98,8 @@
         </div>
       </div>
 
-      <!-- Parties Card -->
-      <div class="docket-history-card">
+      <!-- Card 2: Parties - ADDED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-team-line text-lg text-gray-900"></i>
@@ -146,8 +147,8 @@
         </div>
       </div>
 
-      <!-- Attorney Card -->
-      <div class="docket-history-card">
+      <!-- Card 3: Attorney - ADDED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-briefcase-line text-lg text-gray-900"></i>
@@ -211,8 +212,8 @@
         </div>
       </div>
 
-      <!-- Documents Card -->
-      <div class="docket-history-card">
+      <!-- Card 4: Documents - ADDED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-file-list-line text-lg text-gray-900"></i>
@@ -236,8 +237,8 @@
         </div>
       </div>
 
-      <!-- Docket Entries Card -->
-      <div class="docket-history-card">
+      <!-- Card 5: Docket Entries - ADDED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Added'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-article-line text-lg text-gray-900"></i>
@@ -264,75 +265,18 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Third Results Section -->
-    <!-- Results Controls with Action Filters -->
-    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 mt-8">
-      <!-- Results Text and Action Filters -->
-      <div class="flex items-center space-x-6">
-        <div class="flex items-center space-x-4">
-          <span class="text-gray-700 font-semibold">Results</span>
-        </div>
-        
-        <!-- Action Filter Buttons -->
-        <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button 
-            (click)="setActionFilter('all')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors"
-            [class]="actionFilter === 'all' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <span class="text-sm font-medium">All</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Added')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Added' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-add-large-line text-sm mr-1" style="color: #16a34a;"></i>
-            <span class="text-sm font-medium">Added</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Removed')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Removed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-close-large-line text-sm mr-1" style="color: #dc2626;"></i>
-            <span class="text-sm font-medium">Removed</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Changed')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Changed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-refresh-line text-sm mr-1" style="color: #2F55D9;"></i>
-            <span class="text-sm font-medium">Changed</span>
-          </button>
-        </div>
-      </div>
-      
-      <!-- View Toggle Buttons -->
-      <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <button 
-          (click)="toggleViewMode('grid')"
-          class="px-3 py-2 flex items-center space-x-2 transition-colors"
-          [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-          <i class="ri-layout-grid-line text-base"></i>
-          <span class="text-sm font-medium">Grid</span>
-        </button>
-        <button 
-          (click)="toggleViewMode('table')"
-          class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-          [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-          <i class="ri-layout-row-line text-base"></i>
-          <span class="text-sm font-medium">Table</span>
-        </button>
-      </div>
-    </div>
-    
-    <div class="docket-history-list">
-      <!-- Custom Card with Case Details -->
-      <div class="docket-history-card">
+      <!-- Card 6: Case Details - REMOVED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
         <!-- Card Header -->
-        <div class="flex items-center gap-2 mb-4">
+        <div class="flex items-center gap-2 mb-2">
           <i class="ri-file-text-line text-lg text-gray-900"></i>
           <span class="text-sm font-semibold text-gray-900">Case details</span>
+        </div>
+        
+        <!-- Status Label -->
+        <div class="mb-4">
+          <span class="text-xs font-semibold text-gray-500 uppercase">CASE DETAILS REMOVED</span>
         </div>
         
         <!-- Case Title and Change Indicator -->
@@ -340,24 +284,18 @@
           <span class="text-sm font-medium text-gray-700">Case Title</span>
           
           <!-- Change Indicator Box -->
-          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-            <!-- Changed Icon -->
-            <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
+            <!-- Removed Icon -->
+            <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
             
-            <!-- From Text -->
+            <!-- Text -->
             <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
-            
-            <!-- Arrow -->
-            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
-            
-            <!-- To Text with Blue Background -->
-            <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
           </div>
         </div>
       </div>
 
-      <!-- Parties Card -->
-      <div class="docket-history-card">
+      <!-- Card 7: Parties - REMOVED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-team-line text-lg text-gray-900"></i>
@@ -405,8 +343,8 @@
         </div>
       </div>
 
-      <!-- Attorney Card -->
-      <div class="docket-history-card">
+      <!-- Card 8: Attorney - REMOVED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-briefcase-line text-lg text-gray-900"></i>
@@ -429,7 +367,7 @@
                 
                 <!-- Attorney Text -->
                 <div class="py-2">
-                  <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+                  <span class="text-xs text-gray-700"><span class="font-bold">Cory M. Curtis</span> - Pro Hac Vice was removed for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
                   <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
@@ -445,7 +383,7 @@
                 
                 <!-- Attorney Text -->
                 <div class="py-2">
-                  <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead Attorney was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+                  <span class="text-xs text-gray-700"><span class="font-bold">Dante A. Marinucci</span> - Lead Attorney was removed for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
                   <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
@@ -461,7 +399,7 @@
                 
                 <!-- Attorney Text -->
                 <div class="py-2">
-                  <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was added for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
+                  <span class="text-xs text-gray-700"><span class="font-bold">John R. Smith</span> - Co-Counsel was removed for Hayden <span class="font-bold">Griffin Haby</span>, <span class="font-bold">III</span> - </span>
                   <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
                 </div>
               </div>
@@ -470,8 +408,8 @@
         </div>
       </div>
 
-      <!-- Documents Card -->
-      <div class="docket-history-card">
+      <!-- Card 9: Documents - REMOVED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-file-list-line text-lg text-gray-900"></i>
@@ -495,8 +433,8 @@
         </div>
       </div>
 
-      <!-- Docket Entries Card -->
-      <div class="docket-history-card">
+      <!-- Card 10: Docket Entries - REMOVED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Removed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-article-line text-lg text-gray-900"></i>
@@ -523,105 +461,9 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Fourth Results Section - All Changed Variants -->
-    <!-- Results Controls with Action Filters -->
-    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 mt-8">
-      <!-- Results Text and Action Filters -->
-      <div class="flex items-center space-x-6">
-        <div class="flex items-center space-x-4">
-          <span class="text-gray-700 font-semibold">Results</span>
-        </div>
-        
-        <!-- Action Filter Buttons -->
-        <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <button 
-            (click)="setActionFilter('all')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors"
-            [class]="actionFilter === 'all' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <span class="text-sm font-medium">All</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Added')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Added' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-add-large-line text-sm mr-1" style="color: #16a34a;"></i>
-            <span class="text-sm font-medium">Added</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Removed')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Removed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-close-large-line text-sm mr-1" style="color: #dc2626;"></i>
-            <span class="text-sm font-medium">Removed</span>
-          </button>
-          <button 
-            (click)="setActionFilter('Changed')"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-            [class]="actionFilter === 'Changed' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <i class="ri-refresh-line text-sm mr-1" style="color: #2F55D9;"></i>
-            <span class="text-sm font-medium">Changed</span>
-          </button>
-        </div>
-      </div>
-      
-      <!-- View Toggle Buttons -->
-      <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <button 
-          (click)="toggleViewMode('grid')"
-          class="px-3 py-2 flex items-center space-x-2 transition-colors"
-          [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-          <i class="ri-layout-grid-line text-base"></i>
-          <span class="text-sm font-medium">Grid</span>
-        </button>
-        <button 
-          (click)="toggleViewMode('table')"
-          class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
-          [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-          <i class="ri-layout-row-line text-base"></i>
-          <span class="text-sm font-medium">Table</span>
-        </button>
-      </div>
-    </div>
-    
-    <div class="docket-history-list">
-      <!-- Case Details Card - Changed -->
-      <div class="docket-history-card">
-        <!-- Card Header -->
-        <div class="flex items-center gap-2 mb-2">
-          <i class="ri-file-text-line text-lg text-gray-900"></i>
-          <span class="text-sm font-semibold text-gray-900">Case details</span>
-        </div>
-        
-        <!-- Status Label -->
-        <div class="mb-4">
-          <span class="text-xs font-semibold text-gray-500 uppercase">CASE DETAILS CHANGED</span>
-        </div>
-        
-        <!-- Case Title and Change Indicator -->
-        <div class="flex items-start gap-3">
-          <span class="text-sm font-medium text-gray-700">Case Title</span>
-          
-          <!-- Change Indicator Box -->
-          <div class="flex items-center gap-2 px-3 rounded" style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-            <!-- Changed Icon -->
-            <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-            
-            <!-- From Text -->
-            <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
-            
-            <!-- Arrow -->
-            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
-            
-            <!-- To Text with Blue Background -->
-            <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Parties Card - Changed -->
-      <div class="docket-history-card">
+      <!-- Card 11: Parties - CHANGED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-team-line text-lg text-gray-900"></i>
@@ -669,8 +511,8 @@
         </div>
       </div>
 
-      <!-- Attorney Card - Changed -->
-      <div class="docket-history-card">
+      <!-- Card 12: Attorney - CHANGED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-briefcase-line text-lg text-gray-900"></i>
@@ -730,8 +572,8 @@
         </div>
       </div>
 
-      <!-- Documents Card - Changed -->
-      <div class="docket-history-card">
+      <!-- Card 13: Documents - CHANGED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-file-list-line text-lg text-gray-900"></i>
@@ -755,8 +597,8 @@
         </div>
       </div>
 
-      <!-- Docket Entries Card - Changed -->
-      <div class="docket-history-card">
+      <!-- Card 14: Docket Entries - CHANGED -->
+      <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
           <i class="ri-article-line text-lg text-gray-900"></i>
