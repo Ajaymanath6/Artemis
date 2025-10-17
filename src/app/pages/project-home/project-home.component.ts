@@ -344,17 +344,28 @@ export class ProjectHomeComponent implements OnInit, AfterViewInit {
 
   // Action button handlers
   onSearchForCases() {
+    console.log('Search for cases clicked - navigating to cases page');
     this.router.navigate(['/cases']);
   }
 
   onFindProfiles() {
-    // TODO: Navigate to profiles page
-    console.log('Find profiles clicked');
+    console.log('Find profiles clicked - navigating to cases page');
+    this.router.navigate(['/cases']);
   }
 
   onCheckTrackings() {
-    // TODO: Navigate to trackings page
-    console.log('Check trackings clicked');
+    console.log('Check trackings clicked - navigating to cases page');
+    this.router.navigate(['/cases']);
+  }
+
+  // Handle search from search bar
+  onSearchFromBar(query: string) {
+    console.log('Search from bar:', query);
+    // Navigate to cases page with the search query
+    // The cases page will handle the search and display results
+    this.router.navigate(['/cases'], {
+      queryParams: { q: query }
+    });
   }
 
 }

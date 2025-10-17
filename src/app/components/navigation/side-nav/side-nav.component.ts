@@ -125,27 +125,34 @@ export class SideNavComponent implements OnInit {
   private setActiveItemBasedOnRoute(url: string): void {
     console.log('Setting active item for URL:', url);
     
-    if (url === '/cases' || url.startsWith('/case/')) {
-      // For both cases page and case detail pages, try to restore saved active item
+    // Extract path without query parameters
+    const path = url.split('?')[0];
+    
+    if (path === '/cases') {
+      // Cases page should always show Search as active
+      this.activeItemId = 'project-search';
+      console.log('Set active item for cases page: project-search');
+    } else if (path.startsWith('/case/')) {
+      // For case detail pages, try to restore saved active item
       const savedActiveItem = this.restoreActiveItemState();
       if (savedActiveItem === 'project-search') {
         this.activeItemId = 'project-search';
-        console.log('Restored active item: project-search');
+        console.log('Restored active item for case detail: project-search');
       } else {
-        // Default to project-home for cases-related pages
+        // Default to project-home for case detail pages if no saved state
         this.activeItemId = 'project-home';
-        console.log('Default active item: project-home');
+        console.log('Default active item for case detail: project-home');
       }
-    } else if (url === '/dashboard') {
+    } else if (path === '/dashboard') {
       this.activeItemId = 'all-projects';
       console.log('Set active item for dashboard: all-projects');
-    } else if (url === '/case-hub') {
+    } else if (path === '/case-hub') {
       this.activeItemId = 'project-case-hub';
       console.log('Set active item for case hub: project-case-hub');
-    } else if (url === '/alerts') {
+    } else if (path === '/alerts') {
       this.activeItemId = 'project-alerts';
       console.log('Set active item for alerts: project-alerts');
-    } else if (url.startsWith('/judge/')) {
+    } else if (path.startsWith('/judge/')) {
       // For judge detail pages, restore or default to project-home
       const savedActiveItem = this.restoreActiveItemState();
       this.activeItemId = savedActiveItem || 'project-home';
@@ -241,10 +248,13 @@ export class SideNavComponent implements OnInit {
     
     if (!item.route) return false;
     
+    // Get the current URL without query parameters for route matching
+    const currentPath = this.router.url.split('?')[0];
+    
     // Check if we're on the correct route OR on a related route (like case detail)
-    const isOnRoute = this.router.url === item.route;
-    const isOnCaseDetailPage = this.router.url.startsWith('/case/');
-    const isOnJudgeDetailPage = this.router.url.startsWith('/judge/');
+    const isOnRoute = currentPath === item.route || this.router.url === item.route;
+    const isOnCaseDetailPage = currentPath.startsWith('/case/');
+    const isOnJudgeDetailPage = currentPath.startsWith('/judge/');
     
     // For cases-related items (project-home, project-search), they should be active on both /cases and /case/ pages
     if (item.route === '/cases') {

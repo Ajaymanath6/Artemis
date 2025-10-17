@@ -21,39 +21,53 @@
     </app-home-header>
 
     <!-- Search Bar Section -->
-    <div class="pt-6 bg-white flex justify-center">
-      <div style="width: 50vw;">
-        <app-search-bar></app-search-bar>
+    <div class="pt-6 bg-white flex justify-center px-4 sm:px-6 md:px-8 lg:px-12">
+      <div class="w-full max-w-6xl" 
+           [ngClass]="{
+             'lg:w-full xl:w-11/12': !isSidebarCollapsed,
+             'sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12': isSidebarCollapsed
+           }">
+        <app-search-bar (search)="onSearchFromBar($event)"></app-search-bar>
       </div>
     </div>
 
     <!-- Action Buttons Below Search Bar -->
-    <div class="pt-6 pb-6 bg-white flex justify-center">
-      <div class="flex gap-4" style="width: 50vw;">
+    <div class="pt-6 pb-6 bg-white flex justify-center px-4 sm:px-6 md:px-8 lg:px-12">
+      <div class="flex gap-4 w-full max-w-6xl" 
+           [ngClass]="{
+             'lg:w-full xl:w-11/12': !isSidebarCollapsed,
+             'sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12': isSidebarCollapsed
+           }">
         
         <!-- Button 1: Search for cases -->
-        <button (click)="onSearchForCases()" class="flex items-start gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
-          <i class="ri-search-line text-[#146B85] flex-shrink-0" style="font-size: 32px;"></i>
-          <div class="text-left">
-            <h3 class="text-base font-semibold text-gray-900">Search for cases</h3>
+        <button (click)="onSearchForCases()" class="flex flex-col items-start p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
+          <div class="text-left w-full">
+            <h3 class="text-base font-semibold text-gray-900 flex items-center justify-between">
+              <span>Search for cases</span>
+              <i class="ri-arrow-right-line text-base text-gray-900"></i>
+            </h3>
             <p class="text-sm text-gray-600 mt-1">Using natural language or filters.</p>
           </div>
         </button>
         
         <!-- Button 2: Find profiles and analytics -->
-        <button (click)="onFindProfiles()" class="flex items-start gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
-          <i class="ri-user-line text-[#146B85] flex-shrink-0" style="font-size: 32px;"></i>
-          <div class="text-left">
-            <h3 class="text-base font-semibold text-gray-900">Find profiles and analytics</h3>
+        <button (click)="onFindProfiles()" class="flex flex-col items-start p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
+          <div class="text-left w-full">
+            <h3 class="text-base font-semibold text-gray-900 flex items-center justify-between">
+              <span>Find profiles and analytics</span>
+              <i class="ri-arrow-right-line text-base text-gray-900"></i>
+            </h3>
             <p class="text-sm text-gray-600 mt-1">For attorneys and law firms.</p>
           </div>
         </button>
         
         <!-- Button 3: Check your trackings -->
-        <button (click)="onCheckTrackings()" class="flex items-start gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
-          <i class="ri-time-line text-[#146B85] flex-shrink-0" style="font-size: 32px;"></i>
-          <div class="text-left">
-            <h3 class="text-base font-semibold text-gray-900">Check your trackings</h3>
+        <button (click)="onCheckTrackings()" class="flex flex-col items-start p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-100 outline-none transition-all cursor-pointer flex-1">
+          <div class="text-left w-full">
+            <h3 class="text-base font-semibold text-gray-900 flex items-center justify-between">
+              <span>Check your trackings</span>
+              <i class="ri-arrow-right-line text-base text-gray-900"></i>
+            </h3>
             <p class="text-sm text-gray-600 mt-1">Never miss an update.</p>
           </div>
         </button>
@@ -62,10 +76,10 @@
     </div>
     
     <!-- Content Area Below Header -->
-    <div class="bg-white">
+    <div class="bg-white flex justify-center px-4 sm:px-6 md:px-8 lg:px-12">
       <app-announcements-recent-layout 
         [isSidebarCollapsed]="isSidebarCollapsed"
-        class="block w-full">
+        class="block w-full max-w-6xl">
       </app-announcements-recent-layout>
     </div>
     

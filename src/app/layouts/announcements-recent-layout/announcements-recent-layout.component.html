@@ -2,7 +2,11 @@
 <div class="bg-white w-full flex flex-col items-center">
   
   <!-- Announcements Section -->
-  <div class="py-8" style="width: 50vw;">
+  <div class="py-8 w-full"
+       [ngClass]="{
+         'lg:w-full xl:w-11/12': !isSidebarCollapsed,
+         'sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12': isSidebarCollapsed
+       }">
     <!-- Announcements Divider -->
     <div class="mb-6">
       <h2 class="text-lg font-semibold text-gray-900">Announcements</h2>
@@ -76,7 +80,11 @@
   </div>
   
   <!-- Your Latest Activity Section -->
-  <div class="py-6" style="width: 50vw;">
+  <div class="py-6 w-full"
+       [ngClass]="{
+         'lg:w-full xl:w-11/12': !isSidebarCollapsed,
+         'sm:w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 2xl:w-7/12': isSidebarCollapsed
+       }">
     <!-- Divider -->
     <div class="border-t border-gray-200 mb-6"></div>
     

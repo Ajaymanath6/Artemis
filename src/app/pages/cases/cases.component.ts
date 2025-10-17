@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CasesLayoutComponent } from '../../layouts/cases-layout/cases-layout.component';
 import { CasesHeaderComponent } from '../../components/ui/cases-header/cases-header.component';
 import { SideNavComponent, NavItem } from '../../components/navigation/side-nav/side-nav.component';
@@ -55,28 +55,45 @@ export class CasesComponent implements OnInit, AfterViewInit {
     tag: false
   };
   
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     console.log('Cases component ngOnInit');
     
-    // Check if we should restore search state
-    const navigation = this.router.getCurrentNavigation();
-    const shouldPreserveState = navigation?.extras?.state?.['preserveSearchState'];
+    // Check navigation state using Location.getState() - this persists after navigation completes
+    const navigationState = this.location.getState() as any;
+    const shouldPreserveState = navigationState?.preserveSearchState;
     
-    console.log('Navigation state:', navigation?.extras?.state);
+    console.log('Navigation state from location:', navigationState);
     console.log('Should preserve state:', shouldPreserveState);
     
-    // ONLY restore state when explicitly coming back from case detail
-    // Default behavior: always show empty state
-    
+    // If coming back from case detail, restore state immediately
     if (shouldPreserveState === true) {
-      console.log('Explicitly preserving search state from case detail...');
+      console.log('✅ Explicitly preserving search state from case detail...');
       this.restoreSearchState();
-    } else {
-      console.log('No preserve flag - showing empty state by default');
-      this.clearSearchState();
+      return; // Exit early, don't check query params
     }
+    
+    // Check for query parameter from project-home search
+    this.route.queryParams.subscribe(params => {
+      const searchQuery = params['q'];
+      if (searchQuery) {
+        console.log('✅ Search query from project-home:', searchQuery);
+        // Automatically perform search with the query
+        this.currentSearchQuery = searchQuery;
+        this.onSearch(searchQuery);
+        // Don't continue to clearSearchState - query parameter takes priority
+        return;
+      }
+      
+      // No query parameter and no preserve flag - clear state
+      console.log('ℹ️ No query param and no preserve flag - clearing state');
+      this.clearSearchState();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -367,7 +384,7 @@ export class CasesComponent implements OnInit, AfterViewInit {
           this.currentFilterType = searchState.currentFilterType || '';
           this.isSearching = false; // Make sure not stuck in searching state
           
-          console.log('Search state restored successfully:', {
+          console.log('✅ Search state restored successfully:', {
             query: this.currentSearchQuery,
             hasSearched: this.hasSearched,
             showResults: this.showResults,
@@ -377,19 +394,17 @@ export class CasesComponent implements OnInit, AfterViewInit {
             filterType: this.currentFilterType
           });
         } else {
-          // Clear old state
+          // State expired - clear localStorage but keep current state
           localStorage.removeItem('casesSearchState');
-          console.log('Search state expired and cleared');
-          this.clearSearchState();
+          console.log('⚠️ Search state expired - keeping current component state');
         }
       } else {
-        console.log('No saved search state found');
-        this.clearSearchState();
+        console.log('⚠️ No saved search state found in localStorage - keeping current component state');
       }
     } catch (error) {
-      console.warn('Failed to restore search state:', error);
+      console.warn('❌ Failed to restore search state:', error);
       localStorage.removeItem('casesSearchState');
-      this.clearSearchState();
+      // Don't clear state on error - keep whatever is in component
     }
   }
 
