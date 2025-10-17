@@ -38,7 +38,6 @@
 .case-card {
   padding: 1.5rem;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
 .case-card-title {
@@ -65,7 +64,7 @@
 
 /* Brand colors */
 .text-brand {
-  color: #146B85;
+  color: #146b85;
 }
 
 .bg-zinc-200 {
@@ -81,20 +80,20 @@
   .similar-cases-content-wrapper {
     padding: 0 16px;
   }
-  
+
   .section-title {
     font-size: 20px;
     margin-bottom: 20px;
   }
-  
+
   .case-card {
     padding: 1rem;
   }
-  
+
   .case-card-title h3 {
     font-size: 14px;
   }
-  
+
   .similarity-score-badge {
     font-size: 10px;
   }
