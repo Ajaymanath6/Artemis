@@ -1,56 +1,70 @@
-# Deploy to GitHub Pages - Quick Reference
+# Deploy to GitHub Pages - Simple Guide
 
-## Commands to Deploy Changes
+## 🎯 TWO EASY OPTIONS
 
-Whenever you make changes to your Angular app, follow these steps:
+### **Option 1: Use Normal Git Commands** (AUTOMATIC BUILD)
 
-### Step 1: Commit Your Source Code Changes
+Just use regular git commands - **the build happens automatically!**
+
 ```bash
 cd /home/mis/AI/Artemis\(AJAY\ version\)/angular-flowbite-project
 git add .
-git commit -m "Your commit message describing the changes"
+git commit -m "Your changes"
+git push
 ```
 
-### Step 2: Build the Project
+That's it! The pre-push hook automatically builds your project before pushing. ✨
+
+---
+
+### **Option 2: One-Command Deploy Script**
+
+Run this single command to do everything:
+
 ```bash
+cd /home/mis/AI/Artemis\(AJAY\ version\)/angular-flowbite-project && ./deploy.sh
+```
+
+This will:
+1. Add all changes
+2. Commit them
+3. Build the project
+4. Commit the build
+5. Push everything to GitHub
+
+---
+
+## 🤔 Which Option to Use?
+
+- **Option 1** (git push): Best for regular development workflow
+- **Option 2** (deploy.sh): Best when you want one command to do everything
+
+---
+
+## ✅ What's Set Up
+
+- ✅ **Pre-push hook**: Automatically builds before every `git push`
+- ✅ **Deploy script**: One command to commit, build, and push
+- ✅ **No manual building**: Never worry about `npm run build` again!
+
+---
+
+## 🌐 Your Live Site
+
+**URL:** https://ajaymanath6.github.io/Artemis/
+
+**Tip:** Changes appear in 1-2 minutes after pushing
+
+---
+
+## 🚫 Old Method (Not Needed Anymore!)
+
+~~You DON'T need to do this anymore:~~
+```bash
+# ❌ This is automated now!
 npm run build
-```
-
-### Step 3: Commit and Push the Built Files
-```bash
 git add docs/
-git commit -m "Rebuild for GitHub Pages deployment"
-git push origin main
+git commit -m "Rebuild"
 ```
 
----
-
-## All-in-One Command Sequence
-
-Copy and paste this entire block to deploy everything at once:
-
-```bash
-cd /home/mis/AI/Artemis\(AJAY\ version\)/angular-flowbite-project && \
-git add . && \
-git commit -m "Update source code" && \
-npm run build && \
-git add docs/ && \
-git commit -m "Rebuild for GitHub Pages" && \
-git push origin main
-```
-
----
-
-## What Each Step Does
-
-1. **Commit source code** - Saves your `.ts`, `.html`, `.css` files to git
-2. **npm run build** - Compiles your Angular app into the `docs/` folder
-3. **Commit & push docs/** - Updates the live GitHub Pages site
-
-## Important Notes
-
-- GitHub Pages serves from the `docs/` folder
-- Changes won't appear on your live site until you rebuild and push `docs/`
-- Wait 1-2 minutes after pushing for changes to appear on the live site
-- Your live site URL: https://ajaymanath6.github.io/Artemis/
-
+Just use `git push` and it happens automatically! 🎉
