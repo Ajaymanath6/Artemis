@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <!-- All Cards in One Section with Light Background - Scrollable -->
-    <div class="bg-gray-100 rounded-lg p-6 overflow-y-auto custom-scrollbar" style="max-height: calc(100vh - 150px);">
-      <div class="docket-history-list">
+    <!-- All Cards in One Section with Light Background -->
+    <div class="bg-gray-100 rounded-lg p-6">
+    <div class="docket-history-list">
         <!-- Card 1: Case Details - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
           <!-- Card Header -->
@@ -546,44 +546,44 @@
             <span class="text-xs font-semibold text-gray-500 uppercase">PARTIES CHANGED</span>
           </div>
 
-        <!-- Party Changes -->
-        <div class="space-y-2">
-          <!-- Party 1 -->
-          <div class="p-1 rounded" style="background-color: #f9fafb;">
-            <div class="flex items-center gap-2">
+          <!-- Party Changes -->
+          <div class="space-y-2">
+            <!-- Party 1 -->
+            <div class="p-1 rounded" style="background-color: #f9fafb;">
+              <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-                <!-- Changed Icon -->
-                <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-                
-                <!-- Party Name and Role -->
-                <div class="flex items-center gap-2">
-                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <!-- Changed Icon -->
+                  <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+
+                  <!-- Party Name and Role -->
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  </div>
                 </div>
+                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
               </div>
-              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
-          </div>
-          
-          <!-- Party 2 -->
-          <div class="p-1 rounded" style="background-color: #f9fafb;">
-            <div class="flex items-center gap-2">
+
+            <!-- Party 2 -->
+            <div class="p-1 rounded" style="background-color: #f9fafb;">
+              <div class="flex items-center gap-2">
                 <div class="inline-flex items-center gap-2 px-3 rounded"
                   style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-                <!-- Changed Icon -->
-                <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
-                
-                <!-- Party Name and Role -->
-                <div class="flex items-center gap-2">
-                  <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
-                  <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  <!-- Changed Icon -->
+                  <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+
+                  <!-- Party Name and Role -->
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-700">Hayden Griffin Haby, III -</span>
+                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Defendant</span>
+                  </div>
                 </div>
+                <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
               </div>
-              <span class="text-xs text-gray-700 bg-white px-3 py-1 rounded border border-gray-200">Norm change</span>
             </div>
           </div>
-        </div>
         </div>
 
         <!-- Card 12: Attorney - CHANGED -->
