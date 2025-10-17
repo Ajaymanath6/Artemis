@@ -62,9 +62,10 @@
       </div>
     </div>
     
-    <!-- All Cards in One Section -->
-    <div class="docket-history-list">
-      <!-- Card 1: Case Details - CHANGED -->
+    <!-- All Cards in One Section with Light Background -->
+    <div class="bg-gray-50 rounded-lg p-6">
+      <div class="docket-history-list">
+        <!-- Card 1: Case Details - CHANGED -->
       <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
         <!-- Card Header -->
         <div class="flex items-center gap-2 mb-2">
@@ -624,6 +625,7 @@
             <span class="text-xs text-gray-700 py-2">Docket Text: Issue Date: 09/22/2025 Service: SUMMONS BY CERTIFIED MAIL Method: E-CERTIFIED MAIL (w/ ERR) Cost Per: $0.00 ELLIS, JOHN 565 RANDY LN MONROE, OH 45050 Tracking No: Z000093295; Amount Owed: $0.00</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
