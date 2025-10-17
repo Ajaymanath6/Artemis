@@ -2,9 +2,9 @@
 <div class="docket-history-content-wrapper">
   <div class="docket-history-section">
 
-    <!-- Results Section -->
+    <!-- Results Section - Sticky -->
     <!-- Results Controls with Action Filters -->
-    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6 sticky top-0 bg-white z-10">
       <!-- Results Text and Action Filters -->
       <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-4">
@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <!-- All Cards in One Section with Light Background -->
-    <div class="bg-gray-50 rounded-lg p-6">
-      <div class="docket-history-list">
+    <!-- All Cards in One Section with Light Background - Scrollable -->
+    <div class="bg-gray-50 rounded-lg p-6 overflow-y-auto" style="max-height: calc(100vh - 120px);">
+    <div class="docket-history-list">
         <!-- Card 1: Case Details - CHANGED -->
         <div *ngIf="actionFilter === 'all' || actionFilter === 'Changed'" class="docket-history-card">
           <!-- Card Header -->
@@ -74,22 +74,24 @@
           <div class="flex items-start gap-3">
             <span class="text-sm font-medium text-gray-700">Case Title</span>
 
-          <!-- Change Indicator Box -->
-          <div class="flex items-center gap-2 px-3 rounded"
-            style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
-            <!-- Changed Icon -->
-            <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
+            <!-- Change Indicator Box -->
+            <div class="flex items-center gap-2 px-3 rounded"
+              style="height: 36px; background-color: #EFF6FF; border-left: 2px solid #2F55D9;">
+              <!-- Changed Icon -->
+              <i class="ri-refresh-line text-sm" style="color: #2F55D9;"></i>
 
-            <!-- From Text with removed words highlighted -->
-            <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;">vs.</span> ELLIS, JOHN <span style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;">JGH</span></span>
+              <!-- From Text with removed words highlighted -->
+              <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span
+                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;">vs.</span> ELLIS, JOHN <span
+                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;">JGH</span></span>
 
-            <!-- Arrow -->
-            <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
+              <!-- Arrow -->
+              <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
 
-            <!-- To Text with Blue Background -->
-            <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL
-              ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
-          </div>
+              <!-- To Text with Blue Background -->
+              <span class="text-xs font-bold text-white px-2 py-1 rounded" style="background-color: #2F55D9;">CAPITAL
+                ONE NA SUCCESSOR BY MERGER TO DISCOVER ELLIS, JOHN</span>
+            </div>
           </div>
         </div>
 
@@ -301,8 +303,8 @@
               <!-- Removed Icon -->
               <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
 
-              <!-- Text with removed words highlighted -->
-              <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span style="background-color: #fca5a5; padding: 2px 4px; border-radius: 3px;">vs.</span> ELLIS, JOHN <span style="background-color: #fca5a5; padding: 2px 4px; border-radius: 3px;">JGH</span></span>
+              <!-- Text without highlighting -->
+              <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER vs. ELLIS, JOHN JGH</span>
             </div>
           </div>
         </div>
