@@ -121,7 +121,7 @@
 }
 
 .action-icon i.changed {
-  color: #2F55D9; /* Updated blue */
+  color: #2f55d9; /* Updated blue */
 }
 
 /* Event Info */
@@ -247,7 +247,7 @@
 
 .change-to {
   font-size: 13px;
-  color: #2F55D9; /* Updated blue */
+  color: #2f55d9; /* Updated blue */
   font-weight: 500;
 }
 
@@ -277,7 +277,7 @@
 }
 
 .detail-item.clickable:hover {
-  color: #146B85;
+  color: #146b85;
 }
 
 /* Responsive design */
@@ -285,20 +285,20 @@
   .docket-history-content-wrapper {
     padding: 0 16px;
   }
-  
+
   .docket-history-card {
     padding: 16px;
   }
-  
+
   .card-header {
     gap: 12px;
   }
-  
+
   .action-icon {
     width: 32px;
     height: 32px;
   }
-  
+
   .action-icon i {
     font-size: 18px;
     line-height: 1;
@@ -306,22 +306,22 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .event-title {
     font-size: 15px;
   }
-  
+
   .event-meta {
     gap: 12px;
     font-size: 12px;
   }
-  
+
   .event-title-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .action-type {
     align-self: flex-start;
   }
@@ -331,13 +331,13 @@
   .docket-history-card {
     padding: 14px;
   }
-  
+
   .event-details {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .detail-item {
     font-size: 12px;
   }
@@ -345,12 +345,12 @@
 
 /* Focus states for accessibility */
 .docket-history-card:focus {
-  outline: 2px solid #146B85;
+  outline: 2px solid #146b85;
   outline-offset: 2px;
 }
 
 .detail-item.clickable:focus {
-  outline: 1px solid #146B85;
+  outline: 1px solid #146b85;
   outline-offset: 2px;
   border-radius: 2px;
 }
