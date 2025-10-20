@@ -1,25 +1,22 @@
 <!-- Related Cases Layout Content -->
 <div class="related-cases-content-wrapper">
   <div class="related-cases-section">
-    
+
     <!-- Results Controls - Same as Cases Page -->
     <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
       <!-- Results Text -->
       <div class="flex items-center space-x-2">
         <span class="text-gray-700 font-semibold">Results</span>
       </div>
-      
+
       <!-- View Toggle Buttons -->
       <div class="flex items-center bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <button 
-          (click)="toggleViewMode('grid')"
-          class="px-3 py-2 flex items-center space-x-2 transition-colors"
+        <button (click)="toggleViewMode('grid')" class="px-3 py-2 flex items-center space-x-2 transition-colors"
           [class]="viewMode === 'grid' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
           <i class="ri-layout-grid-line text-base"></i>
           <span class="text-sm font-medium">Grid</span>
         </button>
-        <button 
-          (click)="toggleViewMode('table')"
+        <button (click)="toggleViewMode('table')"
           class="px-3 py-2 flex items-center space-x-2 transition-colors border-l border-gray-200"
           [class]="viewMode === 'table' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
           <i class="ri-layout-row-line text-base"></i>
@@ -27,17 +24,18 @@
         </button>
       </div>
     </div>
-    
+
     <div class="related-cases-list">
       <!-- Related Case Cards - Same as Cases Page -->
-      <div *ngFor="let relatedCase of relatedCases" class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
+      <div *ngFor="let relatedCase of relatedCases"
+        class="rounded-lg border-t border-b border-gray-200 case-card bg-zinc-200 hover:bg-white transition-all min-h-fit overflow-visible relative group">
         <div class="flex items-start case-card-title">
           <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
           <h3 class="text-base font-semibold text-brand leading-tight hover:underline cursor-pointer">
             {{ relatedCase.title }}
           </h3>
         </div>
-        
+
         <div class="flex flex-wrap gap-6 text-sm text-gray-700 case-card-details">
           <div class="flex items-center space-x-2">
             <i class="ri-hashtag text-gray-400"></i>
@@ -65,57 +63,73 @@
             <span class="font-medium">{{ relatedCase.status }}</span>
           </div>
         </div>
-        
+
         <div class="flex flex-wrap gap-4 case-card-badges">
-          <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
             <i class="ri-link-line text-sm mr-2"></i>{{ relatedCase.relationshipType }}
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-              <div class="flex items-center mb-3"><i class="ri-link-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">RELATIONSHIP TYPE</div></div>
-              <div class="text-gray-600 leading-relaxed text-sm">Indicates how this case is related to the current case through common parties, legal issues, or procedural connections.</div>
+            <div
+              class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+              <div class="flex items-center mb-3"><i class="ri-link-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">RELATIONSHIP TYPE</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Indicates how this case is related to the current case
+                through common parties, legal issues, or procedural connections.</div>
             </div>
           </span>
-          <span *ngFor="let element of relatedCase.commonElements" class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
+          <span *ngFor="let element of relatedCase.commonElements"
+            class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/badge">
             <i class="ri-check-line text-sm mr-2"></i>{{ element }}
-            <div class="absolute bottom-full right-0 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
-              <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i><div class="font-semibold uppercase text-sm">COMMON ELEMENT</div></div>
-              <div class="text-gray-600 leading-relaxed text-sm">Shared characteristics, parties, or legal aspects that create a connection between this case and the current case.</div>
+            <div
+              class="absolute bottom-full right-0 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none z-50 min-h-32 w-80">
+              <div class="flex items-center mb-3"><i class="ri-check-line text-base mr-2 text-gray-600"></i>
+                <div class="font-semibold uppercase text-sm">COMMON ELEMENT</div>
+              </div>
+              <div class="text-gray-600 leading-relaxed text-sm">Shared characteristics, parties, or legal aspects that
+                create a connection between this case and the current case.</div>
             </div>
           </span>
         </div>
-        
-            <!-- File Actions Badge - Same as Cases Page -->
-            <div class="absolute bottom-4 right-4">
-              <!-- Default Badge (not on hover) -->
-              <div class="group-hover:hidden flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm default-file-badge">
-                <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
-                <span class="text-xs text-gray-700 font-medium">{{ relatedCase.commonElements.length }}</span>
-              </div>
-              
-              <!-- Expanded Badge (on hover) -->
-              <div class="hidden group-hover:flex items-center space-x-1">
-                <!-- File Count Badge -->
-                <div class="flex items-center bg-white border border-gray-300 rounded-md px-2 py-1 shadow-sm expanded-file-badge">
-                  <i class="ri-file-text-fill text-gray-600 text-sm mr-1"></i>
-                  <span class="text-xs text-gray-700 font-medium">{{ relatedCase.commonElements.length }}</span>
-                </div>
-                
-                <!-- Set Tracker Button -->
-                <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tracker">
-                  <i class="ri-time-line text-gray-600 text-lg"></i>
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tracker:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-                    Set Tracker
-                  </div>
-                </button>
-                
-                <!-- Add Tag Button -->
-                <button class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tag">
-                  <i class="ri-price-tag-3-line text-gray-600 text-lg"></i>
-                  <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tag:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-                    Add Tag
-                  </div>
-                </button>
-              </div>
+
+        <!-- File Actions Badge - Same as Cases Page -->
+        <div class="absolute bottom-4 right-4">
+          <!-- Default Badge (not on hover) -->
+          <div
+            class="group-hover:hidden flex items-center bg-gray-50 border border-gray-200 rounded-md px-2 py-1 shadow-sm default-file-badge">
+            <i class="ri-file-text-fill text-gray-600 text-xs mr-1"></i>
+            <span class="text-xs text-gray-700 font-medium">{{ relatedCase.commonElements.length }}</span>
+          </div>
+
+          <!-- Expanded Badge (on hover) -->
+          <div class="hidden group-hover:flex items-center space-x-1">
+            <!-- File Count Badge -->
+            <div
+              class="flex items-center bg-white border border-gray-300 rounded-md px-2 py-1 shadow-sm expanded-file-badge">
+              <i class="ri-file-text-fill text-gray-600 text-sm mr-1"></i>
+              <span class="text-xs text-gray-700 font-medium">{{ relatedCase.commonElements.length }}</span>
             </div>
+
+            <!-- Set Tracker Button -->
+            <button
+              class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tracker">
+              <i class="ri-time-line text-gray-600 text-lg"></i>
+              <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tracker:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                Set Tracker
+              </div>
+            </button>
+
+            <!-- Add Tag Button -->
+            <button
+              class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative group/tag">
+              <i class="ri-price-tag-3-line text-gray-600 text-lg"></i>
+              <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover/tag:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                Add Tag
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
