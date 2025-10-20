@@ -54,7 +54,7 @@ export class MyFavoritesLayoutComponent implements OnInit {
             type: 'Administrative',
             documentCount: 5,
             addedDate: new Date().toISOString(),
-            caseNumber: 'ADM778912'
+            caseNumber: 'ADM778912',
           },
           {
             id: '2',
@@ -66,7 +66,7 @@ export class MyFavoritesLayoutComponent implements OnInit {
             type: 'Civil',
             documentCount: 8,
             addedDate: new Date().toISOString(),
-            caseNumber: 'FAV234567'
+            caseNumber: 'FAV234567',
           },
           {
             id: '3',
@@ -78,8 +78,8 @@ export class MyFavoritesLayoutComponent implements OnInit {
             type: 'Employment',
             documentCount: 12,
             addedDate: new Date().toISOString(),
-            caseNumber: 'FAV890123'
-          }
+            caseNumber: 'FAV890123',
+          },
         ];
       }
     } catch (error) {

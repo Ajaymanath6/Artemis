@@ -23,7 +23,7 @@ interface CustomListItem {
   standalone: true,
   imports: [CommonModule, CaseCardComponent],
   templateUrl: './custom-list-layout.component.html',
-  styleUrl: './custom-list-layout.component.css'
+  styleUrl: './custom-list-layout.component.css',
 })
 export class CustomListLayoutComponent implements OnInit {
   @Input() viewMode: 'grid' | 'table' = 'grid';
@@ -32,14 +32,14 @@ export class CustomListLayoutComponent implements OnInit {
   customListItems: CustomListItem[] = [];
   listName: string = 'Custom List';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     console.log('Custom List Layout initialized');
-    
+
     // Get list ID from parent or route
     if (!this.listId) {
-      this.route.parent?.paramMap.subscribe(params => {
+      this.route.parent?.paramMap.subscribe((params) => {
         this.listId = params.get('id') || '';
         this.loadCustomListItems();
       });
@@ -59,13 +59,15 @@ export class CustomListLayoutComponent implements OnInit {
         const customLists = localStorage.getItem('customLists');
         if (customLists) {
           const lists = JSON.parse(customLists);
-          const currentList = lists.find((list: any) => this.generateListId(list.name) === this.listId);
+          const currentList = lists.find(
+            (list: any) => this.generateListId(list.name) === this.listId,
+          );
           if (currentList) {
             this.customListItems = currentList.items || [];
             this.listName = currentList.name;
           }
         }
-        
+
         // Add default sample data if no items exist
         if (this.customListItems.length === 0) {
           this.customListItems = [
@@ -80,7 +82,7 @@ export class CustomListLayoutComponent implements OnInit {
               status: 'Active',
               type: 'Civil',
               documentCount: 7,
-              caseNumber: 'CUS123456'
+              caseNumber: 'CUS123456',
             },
             {
               id: '2',
@@ -93,7 +95,7 @@ export class CustomListLayoutComponent implements OnInit {
               status: 'Pending',
               type: 'Federal',
               documentCount: 9,
-              caseNumber: 'CUS789012'
+              caseNumber: 'CUS789012',
             },
             {
               id: '3',
@@ -106,8 +108,8 @@ export class CustomListLayoutComponent implements OnInit {
               status: 'Under Review',
               type: 'Appeals',
               documentCount: 11,
-              caseNumber: 'CUS345678'
-            }
+              caseNumber: 'CUS345678',
+            },
           ];
         }
       }
@@ -133,29 +135,43 @@ export class CustomListLayoutComponent implements OnInit {
   onRemoveItem(item: CustomListItem, event: Event): void {
     event.stopPropagation();
     console.log('Removing from custom list:', item.title);
-    
+
     // Remove from local array
-    this.customListItems = this.customListItems.filter(c => c.id !== item.id);
-    
+    this.customListItems = this.customListItems.filter((c) => c.id !== item.id);
+
     // Update localStorage
     try {
-      localStorage.setItem(`list_${this.listId}`, JSON.stringify(this.customListItems));
-      
+      localStorage.setItem(
+        `list_${this.listId}`,
+        JSON.stringify(this.customListItems),
+      );
+
       // Also update the main customLists entry
       const customLists = localStorage.getItem('customLists');
       if (customLists) {
         const lists = JSON.parse(customLists);
-        const listIndex = lists.findIndex((list: any) => this.generateListId(list.name) === this.listId);
+        const listIndex = lists.findIndex(
+          (list: any) => this.generateListId(list.name) === this.listId,
+        );
         if (listIndex !== -1) {
           lists[listIndex].items = this.customListItems;
           localStorage.setItem('customLists', JSON.stringify(lists));
         }
       }
-      
+
       console.log('Updated custom list items in localStorage');
     } catch (error) {
-      console.warn('Failed to update custom list items in localStorage:', error);
+      console.warn(
+        'Failed to update custom list items in localStorage:',
+        error,
+      );
     }
+  }
+
+  // View mode toggle
+  onToggleViewMode(mode: 'grid' | 'table'): void {
+    this.viewMode = mode;
+    console.log('View mode changed to:', mode);
   }
 
   // Method to refresh items (can be called from parent components)

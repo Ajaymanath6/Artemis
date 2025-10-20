@@ -22,7 +22,7 @@ interface SampleCase {
   standalone: true,
   imports: [CommonModule, CaseCardComponent],
   templateUrl: './samples-layout.component.html',
-  styleUrl: './samples-layout.component.css'
+  styleUrl: './samples-layout.component.css',
 })
 export class SamplesLayoutComponent implements OnInit {
   @Input() viewMode: 'grid' | 'table' = 'grid';
@@ -30,7 +30,7 @@ export class SamplesLayoutComponent implements OnInit {
 
   sampleCases: SampleCase[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     console.log('Samples Layout initialized');
@@ -49,7 +49,8 @@ export class SamplesLayoutComponent implements OnInit {
           {
             id: '1',
             title: 'SAMPLE CONTRACT DISPUTE VS DEMO CORPORATION',
-            description: 'A representative example of a commercial contract dispute involving breach of terms.',
+            description:
+              'A representative example of a commercial contract dispute involving breach of terms.',
             projectName: 'NY Judgment Tracking',
             addedDate: new Date().toISOString(),
             court: 'Commercial Court',
@@ -58,12 +59,13 @@ export class SamplesLayoutComponent implements OnInit {
             status: 'Sample',
             type: 'Commercial',
             documentCount: 8,
-            caseNumber: 'COM123456'
+            caseNumber: 'COM123456',
           },
           {
             id: '2',
             title: 'SAMPLE EMPLOYMENT LAW CASE VS TECH COMPANY',
-            description: 'Example employment law case demonstrating workplace rights and discrimination claims.',
+            description:
+              'Example employment law case demonstrating workplace rights and discrimination claims.',
             projectName: 'NY Judgment Tracking',
             addedDate: new Date().toISOString(),
             court: 'Labor Relations Court',
@@ -72,12 +74,13 @@ export class SamplesLayoutComponent implements OnInit {
             status: 'Sample',
             type: 'Employment',
             documentCount: 12,
-            caseNumber: 'EMP789012'
+            caseNumber: 'EMP789012',
           },
           {
             id: '3',
             title: 'SAMPLE PERSONAL INJURY VS INSURANCE CO',
-            description: 'Example personal injury case showing liability and damages claims process.',
+            description:
+              'Example personal injury case showing liability and damages claims process.',
             projectName: 'NY Judgment Tracking',
             addedDate: new Date().toISOString(),
             court: 'Superior Court',
@@ -86,8 +89,8 @@ export class SamplesLayoutComponent implements OnInit {
             status: 'Sample',
             type: 'Personal Injury',
             documentCount: 15,
-            caseNumber: 'PI345678'
-          }
+            caseNumber: 'PI345678',
+          },
         ];
       }
     } catch (error) {
@@ -110,10 +113,10 @@ export class SamplesLayoutComponent implements OnInit {
   onRemoveSample(caseItem: SampleCase, event: Event): void {
     event.stopPropagation();
     console.log('Removing from samples:', caseItem.title);
-    
+
     // Remove from local array
-    this.sampleCases = this.sampleCases.filter(c => c.id !== caseItem.id);
-    
+    this.sampleCases = this.sampleCases.filter((c) => c.id !== caseItem.id);
+
     // Update localStorage
     try {
       localStorage.setItem('sampleCases', JSON.stringify(this.sampleCases));
