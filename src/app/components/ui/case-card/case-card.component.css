@@ -8,6 +8,8 @@
   padding: 1.5rem;
   transition: all 0.3s ease;
   position: relative;
+  height: 146px; /* Fixed height to match Cases layout */
+  overflow: visible;
 }
 
 .case-card:hover {
@@ -20,14 +22,16 @@
 /* Case Card Title */
 .case-card-title {
   gap: 8px !important;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem !important; /* 4px - match Cases layout */
+  line-height: 1.25; /* Tighter line height */
 }
 
 .case-card-title h3 {
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.25 !important; /* Match Cases layout */
   color: #146b85;
   text-decoration: underline;
+  margin: 0 !important; /* Remove default margins */
 }
 
 .case-card-title h3:hover {
@@ -36,7 +40,8 @@
 
 /* Case Card Details */
 .case-card-details {
-  margin-bottom: 1rem;
+  margin-bottom: 1.125rem !important; /* 18px - match Cases layout */
+  margin-top: 0 !important; /* No extra top margin */
   gap: 1.5rem;
 }
 
@@ -48,6 +53,7 @@
 
 /* Case Card Badges */
 .case-card-badges {
+  margin-top: 0 !important; /* No extra top margin */
   margin-bottom: 2.5rem;
   gap: 1rem;
 }
