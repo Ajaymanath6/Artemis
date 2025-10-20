@@ -5,7 +5,15 @@ interface DocketHistoryEvent {
   id: string;
   date: string;
   time: string;
-  eventType: 'Filing' | 'Motion' | 'Hearing' | 'Order' | 'Settlement' | 'Judgment' | 'Appeal' | 'Document';
+  eventType:
+    | 'Filing'
+    | 'Motion'
+    | 'Hearing'
+    | 'Order'
+    | 'Settlement'
+    | 'Judgment'
+    | 'Appeal'
+    | 'Document';
   actionType: 'Added' | 'Removed' | 'Changed';
   title: string;
   description: string;
@@ -23,7 +31,7 @@ interface DocketHistoryEvent {
   selector: 'app-docket-history-layout',
   imports: [CommonModule],
   templateUrl: './docket-history-layout.component.html',
-  styleUrl: './docket-history-layout.component.css'
+  styleUrl: './docket-history-layout.component.css',
 })
 export class DocketHistoryLayoutComponent {
   @Input() caseDetails: any;
@@ -44,41 +52,116 @@ export class DocketHistoryLayoutComponent {
     if (this.dateFilter === 'all') {
       return this.docketHistory;
     }
-    return this.docketHistory.filter(event => event.date === this.dateFilter);
+    return this.docketHistory.filter((event) => event.date === this.dateFilter);
   }
 
   // Get unique dates from docket history
   get availableDates(): string[] {
-    const dates = [...new Set(this.docketHistory.map(event => event.date))];
+    const dates = [...new Set(this.docketHistory.map((event) => event.date))];
     return dates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime()); // Most recent first
   }
 
   // Get counts for a specific date
-  getDateCounts(date: string): { added: number, removed: number, changed: number } {
-    const eventsForDate = this.docketHistory.filter(event => event.date === date);
+  getDateCounts(date: string): {
+    added: number;
+    removed: number;
+    changed: number;
+  } {
+    const eventsForDate = this.docketHistory.filter(
+      (event) => event.date === date,
+    );
     return {
-      added: eventsForDate.filter(event => event.actionType === 'Added').length,
-      removed: eventsForDate.filter(event => event.actionType === 'Removed').length,
-      changed: eventsForDate.filter(event => event.actionType === 'Changed').length
+      added: eventsForDate.filter((event) => event.actionType === 'Added')
+        .length,
+      removed: eventsForDate.filter((event) => event.actionType === 'Removed')
+        .length,
+      changed: eventsForDate.filter((event) => event.actionType === 'Changed')
+        .length,
     };
   }
 
   // Get total counts for all dates
-  get totalCounts(): { added: number, removed: number, changed: number } {
+  get totalCounts(): { added: number; removed: number; changed: number } {
     return {
-      added: this.docketHistory.filter(event => event.actionType === 'Added').length,
-      removed: this.docketHistory.filter(event => event.actionType === 'Removed').length,
-      changed: this.docketHistory.filter(event => event.actionType === 'Changed').length
+      added: this.docketHistory.filter((event) => event.actionType === 'Added')
+        .length,
+      removed: this.docketHistory.filter(
+        (event) => event.actionType === 'Removed',
+      ).length,
+      changed: this.docketHistory.filter(
+        (event) => event.actionType === 'Changed',
+      ).length,
     };
   }
 
   // Format date for display
   formatDateForDisplay(date: string): string {
-    return new Date(date).toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return new Date(date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
     });
+  }
+
+  // Get day name for sidebar
+  getDayName(date: string): string {
+    const today = new Date();
+    const dateObj = new Date(date);
+    const diffTime = Math.abs(today.getTime() - dateObj.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    
+    return dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+  }
+
+  // Get last 10 days for sidebar (including dates with no activity)
+  get last10Days(): string[] {
+    const dates = [];
+    const today = new Date();
+    
+    for (let i = 0; i < 10; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+      dates.push(date.toISOString().split('T')[0]); // Format: YYYY-MM-DD
+    }
+    
+    return dates;
+  }
+
+  // Check if date has any activity
+  hasActivity(date: string): boolean {
+    return this.docketHistory.some(event => event.date === date);
+  }
+
+  // Get mixed actions for a card type on the filtered date
+  getMixedActions(cardType: string): {
+    added: DocketHistoryEvent[];
+    removed: DocketHistoryEvent[];
+    changed: DocketHistoryEvent[];
+  } {
+    const events = this.filteredDocketHistory.filter((event) => {
+      // Map event types to card types
+      if (cardType === 'Case Details') return event.title.includes('Case');
+      if (cardType === 'Parties') return event.title.includes('Parties');
+      if (cardType === 'Attorney') return event.title.includes('Attorney');
+      if (cardType === 'Documents') return event.title.includes('Documents');
+      if (cardType === 'Docket Entries') return event.title.includes('Docket');
+      return false;
+    });
+
+    return {
+      added: events.filter((e) => e.actionType === 'Added'),
+      removed: events.filter((e) => e.actionType === 'Removed'),
+      changed: events.filter((e) => e.actionType === 'Changed'),
+    };
+  }
+
+  // Check if a card type should be shown (has any activity)
+  shouldShowCardType(cardType: string): boolean {
+    const actions = this.getMixedActions(cardType);
+    return actions.added.length > 0 || actions.removed.length > 0 || actions.changed.length > 0;
   }
 
   // Check if action should be visible based on current filters
@@ -86,8 +169,10 @@ export class DocketHistoryLayoutComponent {
     if (this.dateFilter === 'all') {
       return true;
     }
-    const eventsForDate = this.docketHistory.filter(event => event.date === this.dateFilter);
-    return eventsForDate.some(event => event.actionType === actionType);
+    const eventsForDate = this.docketHistory.filter(
+      (event) => event.date === this.dateFilter,
+    );
+    return eventsForDate.some((event) => event.actionType === actionType);
   }
 
   docketHistory: DocketHistoryEvent[] = [
@@ -101,7 +186,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Case Details Added',
       description: 'Case title and parties information added',
       filedBy: 'Court Administrator',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH002',
@@ -112,7 +197,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Parties Added',
       description: 'Hayden Griffin Haby, III - Defendant added to case',
       filedBy: 'Court Clerk',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH003',
@@ -123,7 +208,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Case Details Removed',
       description: 'Previous case title removed due to correction',
       filedBy: 'Court Administrator',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH004',
@@ -137,8 +222,8 @@ export class DocketHistoryLayoutComponent {
       status: 'Completed',
       changeDetails: {
         from: 'CAPITAL ONE NA vs. ELLIS, JOHN',
-        to: 'CAPITAL ONE NA vs. ELLIS, JOHN JGH'
-      }
+        to: 'CAPITAL ONE NA vs. ELLIS, JOHN JGH',
+      },
     },
     {
       id: 'DH005',
@@ -152,10 +237,10 @@ export class DocketHistoryLayoutComponent {
       status: 'Completed',
       changeDetails: {
         from: 'Dante A. Marinucci',
-        to: 'CLAY KENNETH KELLER'
-      }
+        to: 'CLAY KENNETH KELLER',
+      },
     },
-    
+
     // 2025-06-24 Events (1 Added, 2 Removed, 0 Changed)
     {
       id: 'DH006',
@@ -166,7 +251,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Documents Added',
       description: 'SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED',
       filedBy: 'Court Administrator',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH007',
@@ -177,7 +262,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Parties Removed',
       description: 'Duplicate party entries removed',
       filedBy: 'Court Clerk',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH008',
@@ -188,9 +273,9 @@ export class DocketHistoryLayoutComponent {
       title: 'Attorney Removed',
       description: 'Previous attorney representation removed',
       filedBy: 'Court Administrator',
-      status: 'Completed'
+      status: 'Completed',
     },
-    
+
     // 2025-06-25 Events (3 Added, 0 Removed, 1 Changed)
     {
       id: 'DH009',
@@ -201,7 +286,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Attorney Added',
       description: 'New attorney representation added for defendant',
       filedBy: 'Court Clerk',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH010',
@@ -212,7 +297,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Docket Entries Added',
       description: 'New docket entry for service documentation',
       filedBy: 'Court Administrator',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH011',
@@ -223,7 +308,7 @@ export class DocketHistoryLayoutComponent {
       title: 'Documents Added',
       description: 'Additional court documentation filed',
       filedBy: 'Court Clerk',
-      status: 'Completed'
+      status: 'Completed',
     },
     {
       id: 'DH012',
@@ -237,16 +322,16 @@ export class DocketHistoryLayoutComponent {
       status: 'Completed',
       changeDetails: {
         from: 'Original Party Info',
-        to: 'Updated Party Info'
-      }
-    }
+        to: 'Updated Party Info',
+      },
+    },
   ];
 
   getActionIcon(actionType: string): string {
     const iconMap: { [key: string]: string } = {
-      'Added': 'ri-add-large-line',
-      'Removed': 'ri-close-large-line', 
-      'Changed': 'ri-refresh-line'
+      Added: 'ri-add-large-line',
+      Removed: 'ri-close-large-line',
+      Changed: 'ri-refresh-line',
     };
     return iconMap[actionType] || 'ri-information-line';
   }
@@ -264,9 +349,12 @@ export class DocketHistoryLayoutComponent {
   // Get event type label for filter buttons
   getEventTypeLabel(eventType: string): string {
     switch (eventType) {
-      case 'Filing': return 'Docket Entries';
-      case 'Document': return 'Documents';
-      default: return eventType;
+      case 'Filing':
+        return 'Docket Entries';
+      case 'Document':
+        return 'Documents';
+      default:
+        return eventType;
     }
   }
 }

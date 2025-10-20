@@ -1,6 +1,48 @@
 <!-- Docket History Layout Content -->
 <div class="docket-history-content-wrapper">
-  <div class="docket-history-section">
+  
+  <!-- Date Filter Sidebar -->
+  <div class="date-sidebar">
+    <div class="date-sidebar-title">Filter by Date</div>
+    <div class="date-filter-list">
+      
+      <!-- All Dates Option -->
+      <div class="date-filter-item" 
+           [class.active]="dateFilter === 'all'"
+           (click)="setDateFilter('all')">
+        <div class="date-info">
+          <div class="date-text">All Dates</div>
+          <div class="date-day">All Activity</div>
+        </div>
+        <div class="date-counts">
+          <span class="count-badge added">+{{totalCounts.added}}</span>
+          <span class="count-badge removed">-{{totalCounts.removed}}</span>
+          <span class="count-badge changed">~{{totalCounts.changed}}</span>
+        </div>
+      </div>
+
+      <!-- Last 10 Days -->
+      <div *ngFor="let date of last10Days" 
+           class="date-filter-item"
+           [class.active]="dateFilter === date"
+           [style.opacity]="hasActivity(date) ? '1' : '0.5'"
+           (click)="setDateFilter(date)">
+        <div class="date-info">
+          <div class="date-text">{{formatDateForDisplay(date)}}</div>
+          <div class="date-day">{{getDayName(date)}}</div>
+        </div>
+        <div class="date-counts" *ngIf="hasActivity(date)">
+          <span *ngIf="getDateCounts(date).added > 0" class="count-badge added">+{{getDateCounts(date).added}}</span>
+          <span *ngIf="getDateCounts(date).removed > 0" class="count-badge removed">-{{getDateCounts(date).removed}}</span>
+          <span *ngIf="getDateCounts(date).changed > 0" class="count-badge changed">~{{getDateCounts(date).changed}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <div class="docket-history-section">
 
     <!-- Results Section - Sticky -->
     <!-- Results Controls with Action Filters -->
@@ -11,31 +53,11 @@
           <span class="text-gray-700 font-semibold">Results</span>
         </div>
 
-        <!-- Date Filter Buttons -->
-        <div class="flex items-center space-x-2">
-          <!-- All Dates Button -->
-          <button (click)="setDateFilter('all')" 
-            class="px-3 py-2 flex items-center space-x-2 transition-colors rounded-lg border border-gray-200"
-            [class]="dateFilter === 'all' ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <span class="text-sm font-medium">All Dates</span>
-            <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded ml-2">
-              +{{totalCounts.added}} -{{totalCounts.removed}} ~{{totalCounts.changed}}
-            </span>
-          </button>
-          
-          <!-- Individual Date Buttons -->
-          <button *ngFor="let date of availableDates" (click)="setDateFilter(date)"
-            class="px-3 py-2 flex items-center space-x-2 transition-colors rounded-lg border border-gray-200"
-            [class]="dateFilter === date ? 'bg-gray-100 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-700'">
-            <!-- Date Badge (using existing design) -->
-            <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded flex-shrink-0">{{date}}</span>
-            <!-- Counts Badge -->
-            <span class="text-xs px-2 py-1 bg-gray-50 text-gray-600 rounded">
-              <span *ngIf="getDateCounts(date).added > 0" class="text-green-600">+{{getDateCounts(date).added}}</span>
-              <span *ngIf="getDateCounts(date).removed > 0" class="text-red-600 ml-1">-{{getDateCounts(date).removed}}</span>
-              <span *ngIf="getDateCounts(date).changed > 0" class="text-blue-600 ml-1">~{{getDateCounts(date).changed}}</span>
-            </span>
-          </button>
+        <!-- Selected Date Info -->
+        <div class="flex items-center space-x-4">
+          <span class="text-sm text-gray-500">
+            Showing: {{dateFilter === 'all' ? 'All dates' : formatDateForDisplay(dateFilter)}}
+          </span>
         </div>
       </div>
 
@@ -81,8 +103,10 @@
 
               <!-- From Text with removed words highlighted in red with minus icons -->
               <span class="text-xs text-gray-700">CAPITAL ONE NA SUCCESSOR BY MERGER TO DISCOVER <span
-                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;"><i class="ri-subtract-line" style="color: #dc2626; font-size: 10px; margin-right: 2px;"></i>vs.</span> ELLIS, JOHN <span
-                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;"><i class="ri-subtract-line" style="color: #dc2626; font-size: 10px; margin-right: 2px;"></i>JGH</span></span>
+                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;"><i class="ri-subtract-line"
+                    style="color: #dc2626; font-size: 10px; margin-right: 2px;"></i>vs.</span> ELLIS, JOHN <span
+                  style="background-color: #fee2e2; padding: 2px 4px; border-radius: 3px;"><i class="ri-subtract-line"
+                    style="color: #dc2626; font-size: 10px; margin-right: 2px;"></i>JGH</span></span>
 
               <!-- Arrow -->
               <i class="ri-arrow-right-line text-sm" style="color: #2F55D9;"></i>
@@ -124,14 +148,70 @@
               <!-- To Text - Blue background with white text, added words highlighted in green with plus icons -->
               <span class="text-xs font-bold px-2 py-1 rounded" style="background-color: #2F55D9; color: white;">CAPITAL
                 ONE NA SUCCESSOR BY MERGER TO DISCOVER <span
-                  style="background-color: #86efac; color: white; padding: 2px 4px; border-radius: 3px;"><i class="ri-add-large-line" style="font-size: 10px; margin-right: 2px;"></i>vs.</span>
+                  style="background-color: #86efac; color: white; padding: 2px 4px; border-radius: 3px;"><i
+                    class="ri-add-large-line" style="font-size: 10px; margin-right: 2px;"></i>vs.</span>
                 ELLIS, JOHN <span
-                  style="background-color: #86efac; color: white; padding: 2px 4px; border-radius: 3px;"><i class="ri-add-large-line" style="font-size: 10px; margin-right: 2px;"></i>JGH</span></span>
+                  style="background-color: #86efac; color: white; padding: 2px 4px; border-radius: 3px;"><i
+                    class="ri-add-large-line" style="font-size: 10px; margin-right: 2px;"></i>JGH</span></span>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: Parties - ADDED -->
+        <!-- Mixed Card Example: Parties - Shows both Added and Removed -->
+        <div *ngIf="shouldShowCardType('Parties')" class="docket-history-card">
+          <!-- Card Header -->
+          <div class="flex items-center gap-2 mb-2">
+            <i class="ri-team-line text-lg text-gray-900"></i>
+            <span class="text-sm font-semibold text-gray-900">Parties</span>
+          </div>
+          
+          <!-- Mixed Status Labels -->
+          <div class="mb-4 flex flex-wrap gap-2">
+            <span *ngIf="getMixedActions('Parties').added.length > 0" class="text-xs font-semibold text-green-600 uppercase bg-green-50 px-2 py-1 rounded">
+              +{{getMixedActions('Parties').added.length}} ADDED
+            </span>
+            <span *ngIf="getMixedActions('Parties').removed.length > 0" class="text-xs font-semibold text-red-600 uppercase bg-red-50 px-2 py-1 rounded">
+              -{{getMixedActions('Parties').removed.length}} REMOVED
+            </span>
+            <span *ngIf="getMixedActions('Parties').changed.length > 0" class="text-xs font-semibold text-blue-600 uppercase bg-blue-50 px-2 py-1 rounded">
+              ~{{getMixedActions('Parties').changed.length}} CHANGED
+            </span>
+          </div>
+          
+          <!-- Added Parties Section -->
+          <div *ngIf="getMixedActions('Parties').added.length > 0" class="space-y-2 mb-3">
+            <div class="text-xs font-semibold text-green-600 uppercase mb-2">Added Parties:</div>
+            <div *ngFor="let party of getMixedActions('Parties').added" class="p-1 rounded" style="background-color: #f9fafb;">
+              <div class="flex items-center gap-2">
+                <div class="inline-flex items-center gap-2 px-3 rounded" style="height: 32px; background-color: #dcfce7; border-left: 2px solid #16a34a;">
+                  <i class="ri-add-large-line text-sm" style="color: #16a34a;"></i>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-700">{{party.description}}</span>
+                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Party</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Removed Parties Section -->
+          <div *ngIf="getMixedActions('Parties').removed.length > 0" class="space-y-2">
+            <div class="text-xs font-semibold text-red-600 uppercase mb-2">Removed Parties:</div>
+            <div *ngFor="let party of getMixedActions('Parties').removed" class="p-1 rounded" style="background-color: #f9fafb;">
+              <div class="flex items-center gap-2">
+                <div class="inline-flex items-center gap-2 px-3 rounded" style="height: 32px; background-color: #fee2e2; border-left: 2px solid #dc2626;">
+                  <i class="ri-subtract-line text-sm" style="color: #dc2626;"></i>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-700">{{party.description}}</span>
+                    <span class="text-xs italic bg-white px-2 py-0.5 rounded">Party</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Parties - ADDED (Original) -->
         <div *ngIf="shouldShowAction('Added')" class="docket-history-card">
           <!-- Card Header -->
           <div class="flex items-center gap-2 mb-2">
@@ -718,6 +798,7 @@
                 Tracking No: Z000093295; Amount Owed: $0.00</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
