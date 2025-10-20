@@ -1,26 +1,20 @@
 <!-- Case Hub Page - Main Container -->
 <div class="case-detail-container">
-  
+
   <!-- Left Side: Side Navigation Bar -->
-  <app-side-nav
-    [isCollapsed]="isSidebarCollapsed"
-    (sidebarToggle)="onSidebarToggle()">
+  <app-side-nav [isCollapsed]="isSidebarCollapsed" (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
-  
+
   <!-- Right Side: Main Content Container -->
   <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
-    
+
     <!-- Top Part: App Header Component Container -->
     <div class="header-container">
       <!-- App Header -->
-      <app-header 
-        [showUserProfile]="true"
-        [showCollapseButton]="isSidebarCollapsed"
-        [showBackButton]="!isSidebarCollapsed"
-        (collapseToggle)="onSidebarToggle()"
-        (backClick)="onBackClick()">
+      <app-header [showUserProfile]="true" [showCollapseButton]="isSidebarCollapsed"
+        [showBackButton]="!isSidebarCollapsed" (collapseToggle)="onSidebarToggle()" (backClick)="onBackClick()">
       </app-header>
-      
+
       <!-- Case Meta Section -->
       <div class="case-meta-section">
         <div class="case-meta-content">
@@ -34,11 +28,8 @@
           <!-- Tab Navigation -->
           <div class="tab-navigation">
             <nav class="-mb-px flex space-x-8">
-              <button
-                *ngFor="let tab of tabs"
-                (click)="setActiveTab(tab.id)"
-                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
-                [class]="activeTab === tab.id 
+              <button *ngFor="let tab of tabs" (click)="setActiveTab(tab.id)"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors" [class]="activeTab === tab.id 
                   ? 'border-brand text-brand' 
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
                 {{ tab.label }}
@@ -70,4 +61,3 @@
     </div>
   </div>
 </div>
-  

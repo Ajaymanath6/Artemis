@@ -9,23 +9,23 @@ import { CustomListLayoutComponent } from '../../layouts/custom-list-layout/cust
   selector: 'app-custom-list',
   standalone: true,
   imports: [
-    CommonModule, 
-    SideNavComponent, 
+    CommonModule,
+    SideNavComponent,
     AppHeaderComponent,
-    CustomListLayoutComponent
+    CustomListLayoutComponent,
   ],
   templateUrl: './custom-list.component.html',
-  styleUrls: ['./custom-list.component.css']
+  styleUrls: ['./custom-list.component.css'],
 })
 export class CustomListComponent implements OnInit {
   // Sidebar state
   isSidebarCollapsed: boolean = false;
-  
+
   // Tab management
   activeTab: string = 'cases';
   tabs = [
     { id: 'cases', label: 'Cases' },
-    { id: 'threads', label: 'Threads' }
+    { id: 'threads', label: 'Threads' },
   ];
 
   // List info
@@ -34,16 +34,16 @@ export class CustomListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     // Get the list ID from route params
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.listId = params.get('id') || '';
       this.loadListInfo();
     });
-    
+
     console.log('Custom List page initialized');
   }
 
@@ -52,7 +52,9 @@ export class CustomListComponent implements OnInit {
       const customLists = localStorage.getItem('customLists');
       if (customLists) {
         const lists = JSON.parse(customLists);
-        const currentList = lists.find((list: any) => this.generateListId(list.name) === this.listId);
+        const currentList = lists.find(
+          (list: any) => this.generateListId(list.name) === this.listId,
+        );
         if (currentList) {
           this.listName = currentList.name;
         }
