@@ -54,7 +54,7 @@
 /* Case Card Badges */
 .case-card-badges {
   margin-top: 0 !important; /* No extra top margin */
-  margin-bottom: 2.5rem;
+  margin-bottom: 0; /* Remove bottom margin since file actions are absolutely positioned */
   gap: 1rem;
 }
 
