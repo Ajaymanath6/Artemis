@@ -19,11 +19,6 @@ export class CaseCardComponent {
   @Output() caseClick = new EventEmitter<any>();
   @Output() actionClick = new EventEmitter<any>();
   @Output() setTrackerClick = new EventEmitter<any>();
-  @Output() addTagClick = new EventEmitter<any>();
-
-  // Tooltip states
-  tooltips: { [key: string]: boolean } = {};
-  fileActionTooltips: { [key: string]: boolean } = {};
 
   onCaseClick(): void {
     this.caseClick.emit(this.case);
@@ -37,25 +32,5 @@ export class CaseCardComponent {
   onSetTrackerClick(event: Event): void {
     event.stopPropagation();
     this.setTrackerClick.emit(this.case);
-  }
-
-  onAddTagClick(event: Event): void {
-    event.stopPropagation();
-    this.addTagClick.emit(this.case);
-  }
-
-  toggleTooltip(key: string, event: Event): void {
-    event.stopPropagation();
-    this.tooltips[key] = !this.tooltips[key];
-  }
-
-  toggleFileActionTooltip(key: string, event: Event): void {
-    event.stopPropagation();
-    this.fileActionTooltips[key] = !this.fileActionTooltips[key];
-  }
-
-  closeAllTooltips(): void {
-    this.tooltips = {};
-    this.fileActionTooltips = {};
   }
 }
