@@ -1,0 +1,173 @@
+<!-- Case Card -->
+<div class="border-b border-gray-200 case-card bg-white transition-all min-h-fit overflow-visible relative group p-6 pt-6 border rounded-lg cursor-pointer"
+    style="padding-top: 22px;" (click)="onCaseClick()">
+
+    <!-- Case Title -->
+    <div class="flex items-start case-card-title">
+        <i class="ri-scales-3-line text-xl text-brand flex-shrink-0"></i>
+        <h3 class="text-base font-semibold text-brand leading-tight underline cursor-pointer">
+            {{ case?.title || 'Untitled Case' }}
+        </h3>
+    </div>
+
+    <!-- Case Details -->
+    <div class="flex flex-wrap gap-6 text-sm text-gray-700 case-card-details">
+        <div class="flex items-center space-x-2">
+            <i class="ri-hashtag text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">CASE ID:</span>
+            <span class="font-medium">{{ case?.caseNumber || case?.caseId || 'N/A' }}</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <i class="ri-government-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">COURT:</span>
+            <span class="font-medium">{{ case?.court || 'N/A' }}</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <i class="ri-calendar-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">DATE:</span>
+            <span class="font-medium">{{ case?.date || case?.filingDate || 'N/A' }}</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <i class="ri-file-list-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">TYPE:</span>
+            <span class="font-medium">{{ case?.type || 'N/A' }}</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <i class="ri-time-line text-gray-400"></i>
+            <span class="font-bold text-xs uppercase tracking-wide text-gray-500">STATUS:</span>
+            <span class="font-medium">{{ case?.status || 'N/A' }}</span>
+        </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="flex flex-wrap gap-4 case-card-badges">
+        <!-- Attorney Badge -->
+        <span class="cursor-pointer relative" (click)="toggleTooltip('attorney', $event)">
+            <div
+                class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                <div class="flex items-center gap-1.5">
+                    <i class="ri-user-line text-sm"></i>
+                    <span>Attorney</span>
+                </div>
+                <div class="h-4 w-px bg-gray-400"></div>
+                <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
+            </div>
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                [class.opacity-100]="tooltips['attorney']" [class.opacity-0]="!tooltips['attorney']"
+                [class.pointer-events-none]="!tooltips['attorney']">
+                <div class="flex items-center mb-3">
+                    <i class="ri-user-line text-base mr-2 text-gray-600"></i>
+                    <div class="font-semibold uppercase text-sm">ATTORNEY</div>
+                </div>
+                <div class="text-gray-600 leading-relaxed text-sm">Legal representative providing counsel and
+                    representation for parties involved in the case.</div>
+            </div>
+        </span>
+
+        <!-- Docket Badge -->
+        <span class="cursor-pointer relative" (click)="toggleTooltip('docket', $event)">
+            <div
+                class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                <div class="flex items-center gap-1.5">
+                    <i class="ri-file-list-3-line text-sm"></i>
+                    <span>Docket</span>
+                </div>
+                <div class="h-4 w-px bg-gray-400"></div>
+                <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
+            </div>
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                [class.opacity-100]="tooltips['docket']" [class.opacity-0]="!tooltips['docket']"
+                [class.pointer-events-none]="!tooltips['docket']">
+                <div class="flex items-center mb-3">
+                    <i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i>
+                    <div class="font-semibold uppercase text-sm">DOCKET</div>
+                </div>
+                <div class="text-gray-600 leading-relaxed text-sm">Official record of all proceedings, filings, and
+                    actions taken during the course of the case.</div>
+            </div>
+        </span>
+
+        <!-- Defendant Badge -->
+        <span class="cursor-pointer relative" (click)="toggleTooltip('defendant', $event)">
+            <div
+                class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                <div class="flex items-center gap-1.5">
+                    <i class="ri-user-forbid-line text-sm"></i>
+                    <span>Defendant</span>
+                </div>
+                <div class="h-4 w-px bg-gray-400"></div>
+                <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
+            </div>
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 transition-opacity duration-300 z-50 w-80"
+                [class.opacity-100]="tooltips['defendant']" [class.opacity-0]="!tooltips['defendant']"
+                [class.pointer-events-none]="!tooltips['defendant']">
+                <div class="flex items-center mb-3">
+                    <i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i>
+                    <div class="font-semibold uppercase text-sm">DEFENDANT</div>
+                </div>
+                <div class="text-gray-600 leading-relaxed text-sm">Party being sued or accused in the legal proceedings,
+                    required to respond to the claims or charges.</div>
+            </div>
+        </span>
+
+        <!-- Documents Badge -->
+        <span class="cursor-pointer relative group/documents">
+            <div
+                class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+                <div class="flex items-center gap-1.5">
+                    <i class="ri-folder-line text-sm"></i>
+                    <span>Documents</span>
+                </div>
+                <div class="h-4 w-px bg-gray-400"></div>
+                <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
+            </div>
+            <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents:pointer-events-auto">
+                <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline"
+                    onclick="return false;">
+                    <i class="ri-folder-line text-sm mt-0.5"></i>
+                    <span>{{ case?.documentTitle || 'Case Documents' }}</span>
+                </a>
+                <p class="text-sm text-gray-700">
+                    {{ case?.documentDescription || 'Legal documents and filings related to this case.' }}
+                </p>
+            </div>
+        </span>
+    </div>
+
+    <!-- File Actions Badge -->
+    <div class="absolute bottom-2 right-2">
+        <div class="flex items-center space-x-1">
+            <!-- File Count Badge -->
+            <div class="flex items-center bg-white border border-gray-300 rounded-md px-2 py-1 shadow-sm">
+                <i class="ri-file-text-fill text-gray-600 text-sm mr-1"></i>
+                <span class="text-xs text-gray-700 font-medium">{{ case?.documentCount || 3 }}</span>
+            </div>
+
+            <!-- Set Tracker Button -->
+            <button
+                class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative"
+                (click)="onSetTrackerClick($event)">
+                <i class="ri-time-line text-gray-600 text-lg"></i>
+                <div
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-200 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none">
+                    Set Tracker
+                </div>
+            </button>
+
+            <!-- Add Tag / Action Button -->
+            <button *ngIf="showActionButton"
+                class="flex items-center justify-center w-8 h-7 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 transition-colors relative"
+                (click)="onActionClick($event)" [title]="actionTitle">
+                <i [class]="isActionActive ? actionIconFilled : actionIcon" class="text-lg"
+                    [class.text-red-600]="actionIcon === 'ri-heart-line' && isActionActive"
+                    [class.text-blue-600]="actionIcon === 'ri-file-list-line' && isActionActive"
+                    [class.text-gray-600]="!isActionActive"></i>
+                <div
+                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-200 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none">
+                    {{ actionTitle }}
+                </div>
+            </button>
+        </div>
+    </div>
+</div>

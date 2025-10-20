@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CaseCardComponent } from '../../components/ui/case-card/case-card.component';
 
 interface FavoriteCase {
   id: string;
@@ -11,14 +12,15 @@ interface FavoriteCase {
   type?: string;
   documentCount?: number;
   addedDate: string;
+  caseNumber?: string;
 }
 
 @Component({
   selector: 'app-my-favorites-layout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CaseCardComponent],
   templateUrl: './my-favorites-layout.component.html',
-  styleUrl: './my-favorites-layout.component.css'
+  styleUrl: './my-favorites-layout.component.css',
 })
 export class MyFavoritesLayoutComponent implements OnInit {
   @Input() viewMode: 'grid' | 'table' = 'grid';
@@ -26,7 +28,7 @@ export class MyFavoritesLayoutComponent implements OnInit {
 
   favoriteCases: FavoriteCase[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     console.log('My Favorites Layout initialized');
@@ -44,14 +46,39 @@ export class MyFavoritesLayoutComponent implements OnInit {
         this.favoriteCases = [
           {
             id: '1',
-            title: 'SAMPLE CASE VS DEMO CORPORATION',
-            court: 'California Superior Court',
-            date: 'Jan 15, 2024',
+            title: 'WILSON ESTATES LLC VS CITY PLANNING COMMISSION',
+            court: 'Administrative Court - Planning Division',
+            date: '22 September 2018',
             judge: 'Steven Thomas',
-            status: 'Pending',
-            type: 'Civil',
+            status: 'Closed',
+            type: 'Administrative',
             documentCount: 5,
-            addedDate: new Date().toISOString()
+            addedDate: new Date().toISOString(),
+            caseNumber: 'ADM778912'
+          },
+          {
+            id: '2',
+            title: 'FAVORITE CIVIL CASE VS DEFENDANT CORP',
+            court: 'Superior Court of California',
+            date: 'Mar 10, 2024',
+            judge: 'Maria Rodriguez',
+            status: 'Active',
+            type: 'Civil',
+            documentCount: 8,
+            addedDate: new Date().toISOString(),
+            caseNumber: 'FAV234567'
+          },
+          {
+            id: '3',
+            title: 'FAVORITE EMPLOYMENT DISPUTE VS TECH CO',
+            court: 'Federal District Court',
+            date: 'Apr 18, 2024',
+            judge: 'Robert Chen',
+            status: 'Pending',
+            type: 'Employment',
+            documentCount: 12,
+            addedDate: new Date().toISOString(),
+            caseNumber: 'FAV890123'
           }
         ];
       }
@@ -75,10 +102,10 @@ export class MyFavoritesLayoutComponent implements OnInit {
   onRemoveFavorite(caseItem: FavoriteCase, event: Event): void {
     event.stopPropagation();
     console.log('Removing from favorites:', caseItem.title);
-    
+
     // Remove from local array
-    this.favoriteCases = this.favoriteCases.filter(c => c.id !== caseItem.id);
-    
+    this.favoriteCases = this.favoriteCases.filter((c) => c.id !== caseItem.id);
+
     // Update localStorage
     try {
       localStorage.setItem('myFavorites', JSON.stringify(this.favoriteCases));

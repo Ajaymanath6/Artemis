@@ -1,25 +1,20 @@
 <!-- Case Hub Page - Main Container -->
 <div class="case-detail-container" style="background-color: #f9fafb;">
-  
+
   <!-- Left Side: Side Navigation Bar -->
-  <app-side-nav
-    [isCollapsed]="isSidebarCollapsed"
-    (sidebarToggle)="onSidebarToggle()">
+  <app-side-nav [isCollapsed]="isSidebarCollapsed" (sidebarToggle)="onSidebarToggle()">
   </app-side-nav>
-  
+
   <!-- Right Side: Main Content Container -->
   <div class="main-content-container" [class.sidebar-collapsed]="isSidebarCollapsed">
-    
+
     <!-- Top Part: App Header Component Container -->
     <div class="header-container">
       <!-- App Header -->
-      <app-header 
-        [showUserProfile]="true"
-        [showCollapseButton]="isSidebarCollapsed"
-        [showBackButton]="false"
+      <app-header [showUserProfile]="true" [showCollapseButton]="isSidebarCollapsed" [showBackButton]="false"
         (collapseToggle)="onSidebarToggle()">
       </app-header>
-      
+
       <!-- Case Meta Section -->
       <div class="case-meta-section">
         <div class="case-meta-content">
@@ -27,13 +22,11 @@
           <div class="case-info-column">
             <!-- Case Hub Title -->
             <h1 class="case-title">Case Hub</h1>
-            
+
             <!-- Action Buttons -->
             <div class="action-buttons">
               <div class="flex items-center space-x-2">
-                <button 
-                  (click)="onAddList()"
-                  class="action-button">
+                <button (click)="onAddList()" class="action-button">
                   <i class="ri-add-line text-lg mr-2"></i>
                   Add List
                 </button>
@@ -44,15 +37,12 @@
           <!-- Tab Navigation -->
           <div class="tab-navigation">
             <nav class="-mb-px flex space-x-8">
-              <button
-                *ngFor="let tab of tabs"
-                (click)="setActiveTab(tab.id)"
-                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors flex items-center gap-2"
-                [class]="activeTab === tab.id 
+              <button *ngFor="let tab of tabs" (click)="setActiveTab(tab.id)"
+                class="py-2 px-1 border-b-2 font-medium text-sm transition-colors flex items-center gap-2" [class]="activeTab === tab.id 
                   ? 'border-brand text-brand' 
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'">
-                <i [class]="'ri-' + tab.icon + ' text-base'" 
-                   [style.color]="activeTab === tab.id ? '#146B85' : '#6b7280'"></i>
+                <i [class]="'ri-' + tab.icon + ' text-base'"
+                  [style.color]="activeTab === tab.id ? '#146B85' : '#6b7280'"></i>
                 {{ tab.label }}
               </button>
             </nav>
@@ -63,22 +53,15 @@
 
     <!-- Case Hub List Layout with 32px padding and full height -->
     <div style="padding: 0 32px; height: calc(100vh - 200px); overflow: hidden;">
-      <app-cases-hub-list-layout
-        [customLists]="customLists"
-        [isSidebarCollapsed]="isSidebarCollapsed"
-        (toggleDropdown)="toggleListDropdown($event.list, $event.event)"
-        (closeDropdowns)="closeAllListDropdowns()"
-        (editList)="editList($event.list, $event.event)"
-        (deleteList)="deleteList($event.list, $event.event)">
+      <app-cases-hub-list-layout [customLists]="customLists" [isSidebarCollapsed]="isSidebarCollapsed"
+        (toggleDropdown)="toggleListDropdown($event.list, $event.event)" (closeDropdowns)="closeAllListDropdowns()"
+        (editList)="editList($event.list, $event.event)" (deleteList)="deleteList($event.list, $event.event)">
       </app-cases-hub-list-layout>
     </div>
 
   </div>
-  
+
   <!-- Save to List Modal -->
-  <app-save-to-list-modal
-    [isVisible]="isModalVisible"
-    (cancel)="onModalCancel()"
-    (save)="onModalSave($event)">
+  <app-save-to-list-modal [isVisible]="isModalVisible" (cancel)="onModalCancel()" (save)="onModalSave($event)">
   </app-save-to-list-modal>
 </div>

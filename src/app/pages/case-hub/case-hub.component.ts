@@ -10,24 +10,24 @@ import { SaveToListModalComponent } from '../../components/ui/save-to-list-modal
   selector: 'app-case-hub',
   standalone: true,
   imports: [
-    CommonModule, 
-    SideNavComponent, 
+    CommonModule,
+    SideNavComponent,
     AppHeaderComponent,
     CasesHubListLayoutComponent,
-    SaveToListModalComponent
+    SaveToListModalComponent,
   ],
   templateUrl: './case-hub.component.html',
-  styleUrls: ['./case-hub.component.css']
+  styleUrls: ['./case-hub.component.css'],
 })
 export class CaseHubComponent implements OnInit {
   // Sidebar state
   isSidebarCollapsed: boolean = false;
-  
+
   // Tab management
   activeTab: string = 'lists';
   tabs = [
     { id: 'lists', label: 'Lists', icon: 'list-check-2' },
-    { id: 'import-cases', label: 'Import Cases', icon: 'file-add-line' }
+    { id: 'import-cases', label: 'Import Cases', icon: 'file-add-line' },
   ];
 
   // Custom Lists management
@@ -81,11 +81,11 @@ export class CaseHubComponent implements OnInit {
 
   onModalSave(result: any): void {
     console.log('Modal save result:', result);
-    
+
     if (result.action === 'custom-list') {
       this.createCustomList(result.listName);
     }
-    
+
     this.isModalVisible = false;
   }
 
@@ -96,9 +96,9 @@ export class CaseHubComponent implements OnInit {
       name: listName,
       itemCount: 0,
       isDropdownOpen: false,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
-    
+
     this.customLists.push(newList);
     this.saveCustomLists();
     console.log('Custom list created:', newList);
@@ -129,21 +129,21 @@ export class CaseHubComponent implements OnInit {
   // Custom Lists management methods
   toggleListDropdown(list: any, event: Event): void {
     event.stopPropagation();
-    
+
     // Close all other dropdowns first
-    this.customLists.forEach(l => {
+    this.customLists.forEach((l) => {
       if (l.id !== list.id) {
         l.isDropdownOpen = false;
       }
     });
-    
+
     // Toggle the clicked list dropdown
     list.isDropdownOpen = !list.isDropdownOpen;
     console.log('List dropdown toggled for:', list.name, list.isDropdownOpen);
   }
 
   closeAllListDropdowns(): void {
-    this.customLists.forEach(list => {
+    this.customLists.forEach((list) => {
       list.isDropdownOpen = false;
     });
     console.log('All list dropdowns closed');
@@ -152,10 +152,10 @@ export class CaseHubComponent implements OnInit {
   editList(list: any, event: Event): void {
     event.stopPropagation();
     console.log('Edit list clicked for:', list.name);
-    
+
     // Close dropdown
     list.isDropdownOpen = false;
-    
+
     // TODO: Implement edit functionality - could open a modal or navigate to edit page
     // For now, just log the action
     // You could open a modal here or navigate to an edit page
@@ -164,13 +164,17 @@ export class CaseHubComponent implements OnInit {
   deleteList(list: any, event: Event): void {
     event.stopPropagation();
     console.log('Delete list clicked for:', list.name);
-    
+
     // Close dropdown
     list.isDropdownOpen = false;
-    
+
     // Show confirmation and delete
-    if (confirm(`Are you sure you want to delete the list "${list.name}"? This action cannot be undone.`)) {
-      const index = this.customLists.findIndex(l => l.id === list.id);
+    if (
+      confirm(
+        `Are you sure you want to delete the list "${list.name}"? This action cannot be undone.`,
+      )
+    ) {
+      const index = this.customLists.findIndex((l) => l.id === list.id);
       if (index > -1) {
         this.customLists.splice(index, 1);
         console.log('List deleted:', list.name);

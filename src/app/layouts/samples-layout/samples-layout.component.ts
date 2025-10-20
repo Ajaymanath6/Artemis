@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CaseCardComponent } from '../../components/ui/case-card/case-card.component';
 
 interface SampleCase {
   id: string;
@@ -13,12 +14,13 @@ interface SampleCase {
   judge?: string;
   status?: string;
   type?: string;
+  caseNumber?: string;
 }
 
 @Component({
   selector: 'app-samples-layout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CaseCardComponent],
   templateUrl: './samples-layout.component.html',
   styleUrl: './samples-layout.component.css'
 })
@@ -55,7 +57,8 @@ export class SamplesLayoutComponent implements OnInit {
             judge: 'Steven Thomas',
             status: 'Sample',
             type: 'Commercial',
-            documentCount: 8
+            documentCount: 8,
+            caseNumber: 'COM123456'
           },
           {
             id: '2',
@@ -68,7 +71,22 @@ export class SamplesLayoutComponent implements OnInit {
             judge: 'Maria Rodriguez',
             status: 'Sample',
             type: 'Employment',
-            documentCount: 12
+            documentCount: 12,
+            caseNumber: 'EMP789012'
+          },
+          {
+            id: '3',
+            title: 'SAMPLE PERSONAL INJURY VS INSURANCE CO',
+            description: 'Example personal injury case showing liability and damages claims process.',
+            projectName: 'NY Judgment Tracking',
+            addedDate: new Date().toISOString(),
+            court: 'Superior Court',
+            date: 'Mar 10, 2024',
+            judge: 'Robert Chen',
+            status: 'Sample',
+            type: 'Personal Injury',
+            documentCount: 15,
+            caseNumber: 'PI345678'
           }
         ];
       }

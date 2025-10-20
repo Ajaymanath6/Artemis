@@ -1,0 +1,82 @@
+/* Brand color */
+.text-brand {
+  color: #146b85;
+}
+
+/* Case Card */
+.case-card {
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.case-card:hover {
+  background-color: #f9fafb;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Case Card Title */
+.case-card-title {
+  gap: 8px !important;
+  margin-bottom: 1rem;
+}
+
+.case-card-title h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #146b85;
+  text-decoration: underline;
+}
+
+.case-card-title h3:hover {
+  color: #0d4a5e;
+}
+
+/* Case Card Details */
+.case-card-details {
+  margin-bottom: 1rem;
+  gap: 1.5rem;
+}
+
+.case-card-details > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Case Card Badges */
+.case-card-badges {
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+}
+
+/* Tooltip styles */
+.case-card .relative > div[class*="absolute"] {
+  pointer-events: none;
+}
+
+.case-card .relative > div[class*="opacity-100"] {
+  pointer-events: auto;
+}
+
+/* File actions badge */
+.case-card .absolute.bottom-2.right-2 {
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .case-card {
+    padding: 1rem;
+  }
+
+  .case-card-title h3 {
+    font-size: 14px;
+  }
+
+  .case-card-details {
+    gap: 1rem;
+  }
+}

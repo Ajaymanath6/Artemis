@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { CaseCardComponent } from '../../components/ui/case-card/case-card.component';
 
 interface CustomListItem {
   id: string;
@@ -14,12 +15,13 @@ interface CustomListItem {
   judge?: string;
   status?: string;
   type?: string;
+  caseNumber?: string;
 }
 
 @Component({
   selector: 'app-custom-list-layout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CaseCardComponent],
   templateUrl: './custom-list-layout.component.html',
   styleUrl: './custom-list-layout.component.css'
 })
@@ -62,6 +64,51 @@ export class CustomListLayoutComponent implements OnInit {
             this.customListItems = currentList.items || [];
             this.listName = currentList.name;
           }
+        }
+        
+        // Add default sample data if no items exist
+        if (this.customListItems.length === 0) {
+          this.customListItems = [
+            {
+              id: '1',
+              title: 'CUSTOM LIST CASE VS DEFENDANT ONE',
+              description: 'Added to custom list for tracking purposes',
+              addedDate: new Date().toISOString(),
+              court: 'District Court',
+              date: 'Apr 5, 2024',
+              judge: 'Jennifer Walsh',
+              status: 'Active',
+              type: 'Civil',
+              documentCount: 7,
+              caseNumber: 'CUS123456'
+            },
+            {
+              id: '2',
+              title: 'CUSTOM TRACKING CASE VS CORPORATION',
+              description: 'Important case for reference tracking',
+              addedDate: new Date().toISOString(),
+              court: 'Federal Court',
+              date: 'May 12, 2024',
+              judge: 'Michael Davis',
+              status: 'Pending',
+              type: 'Federal',
+              documentCount: 9,
+              caseNumber: 'CUS789012'
+            },
+            {
+              id: '3',
+              title: 'CUSTOM LIST REFERENCE VS ENTITY',
+              description: 'Reference case added to custom tracking list',
+              addedDate: new Date().toISOString(),
+              court: 'Appeals Court',
+              date: 'Jun 8, 2024',
+              judge: 'Sarah Johnson',
+              status: 'Under Review',
+              type: 'Appeals',
+              documentCount: 11,
+              caseNumber: 'CUS345678'
+            }
+          ];
         }
       }
     } catch (error) {
