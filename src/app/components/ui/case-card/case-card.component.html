@@ -42,14 +42,16 @@
     <!-- Badges - Always show all badges, no hover behavior -->
     <div class="flex flex-wrap gap-4 case-card-badges">
         <!-- Attorney Badge -->
-        <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney h-[28px]">
+        <span
+            class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/attorney h-[28px]">
             <div class="flex items-center gap-1.5">
                 <i class="ri-user-line text-sm"></i>
                 <span>Attorney</span>
             </div>
             <div class="h-4 w-px bg-gray-400"></div>
             <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+            <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/attorney:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
                 <div class="flex items-center mb-3"><i class="ri-user-line text-base mr-2 text-gray-600"></i>
                     <div class="font-semibold uppercase text-sm">ATTORNEY</div>
                 </div>
@@ -59,14 +61,16 @@
         </span>
 
         <!-- Docket Badge -->
-        <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket h-[28px]">
+        <span
+            class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/docket h-[28px]">
             <div class="flex items-center gap-1.5">
                 <i class="ri-file-list-3-line text-sm"></i>
                 <span>Docket</span>
             </div>
             <div class="h-4 w-px bg-gray-400"></div>
             <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+            <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/docket:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
                 <div class="flex items-center mb-3"><i class="ri-file-list-3-line text-base mr-2 text-gray-600"></i>
                     <div class="font-semibold uppercase text-sm">DOCKET</div>
                 </div>
@@ -76,14 +80,16 @@
         </span>
 
         <!-- Defendant Badge -->
-        <span class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant h-[28px]">
+        <span
+            class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 cursor-pointer relative group/defendant h-[28px]">
             <div class="flex items-center gap-1.5">
                 <i class="ri-user-forbid-line text-sm"></i>
                 <span>Defendant</span>
             </div>
             <div class="h-4 w-px bg-gray-400"></div>
             <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
+            <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover/defendant:opacity-100 transition-opacity duration-300 pointer-events-none z-50 w-80">
                 <div class="flex items-center mb-3"><i class="ri-user-forbid-line text-base mr-2 text-gray-600"></i>
                     <div class="font-semibold uppercase text-sm">DEFENDANT</div>
                 </div>
@@ -94,7 +100,8 @@
 
         <!-- Documents Badge -->
         <span class="cursor-pointer relative group/documents">
-            <div class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
+            <div
+                class="inline-flex items-center gap-3 px-3 rounded-lg text-xs font-medium bg-gray-200 text-gray-700 h-[28px]">
                 <div class="flex items-center gap-1.5">
                     <i class="ri-folder-line text-sm"></i>
                     <span>Documents</span>
@@ -102,7 +109,8 @@
                 <div class="h-4 w-px bg-gray-400"></div>
                 <span class="text-[11px] font-semibold text-gray-600">{{ case?.date || '2024-01-01' }}</span>
             </div>
-            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents:pointer-events-auto">
+            <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-6 py-4 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover/documents:opacity-100 transition-all duration-300 delay-150 z-[99999] w-80 pointer-events-none group-hover/documents:pointer-events-auto">
                 <a href="#" class="flex items-start gap-2 text-sm font-semibold text-[#146B85] mb-2 hover:underline"
                     onclick="return false;">
                     <i class="ri-folder-line text-sm mt-0.5"></i>
