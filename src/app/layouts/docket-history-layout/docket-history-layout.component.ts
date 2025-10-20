@@ -28,99 +28,216 @@ interface DocketHistoryEvent {
 export class DocketHistoryLayoutComponent {
   @Input() caseDetails: any;
   viewMode: 'grid' | 'table' = 'grid';
-  actionFilter: 'all' | 'Added' | 'Removed' | 'Changed' = 'all';
+  dateFilter: 'all' | string = 'all';
 
   toggleViewMode(mode: 'grid' | 'table'): void {
     this.viewMode = mode;
     console.log('View mode changed to:', mode);
   }
 
-  setActionFilter(filter: 'all' | 'Added' | 'Removed' | 'Changed'): void {
-    this.actionFilter = filter;
-    console.log('Action filter changed to:', filter);
+  setDateFilter(filter: 'all' | string): void {
+    this.dateFilter = filter;
+    console.log('Date filter changed to:', filter);
   }
 
   get filteredDocketHistory(): DocketHistoryEvent[] {
-    if (this.actionFilter === 'all') {
+    if (this.dateFilter === 'all') {
       return this.docketHistory;
     }
-    return this.docketHistory.filter(event => event.actionType === this.actionFilter);
+    return this.docketHistory.filter(event => event.date === this.dateFilter);
+  }
+
+  // Get unique dates from docket history
+  get availableDates(): string[] {
+    const dates = [...new Set(this.docketHistory.map(event => event.date))];
+    return dates.sort((a, b) => new Date(b).getTime() - new Date(a).getTime()); // Most recent first
+  }
+
+  // Get counts for a specific date
+  getDateCounts(date: string): { added: number, removed: number, changed: number } {
+    const eventsForDate = this.docketHistory.filter(event => event.date === date);
+    return {
+      added: eventsForDate.filter(event => event.actionType === 'Added').length,
+      removed: eventsForDate.filter(event => event.actionType === 'Removed').length,
+      changed: eventsForDate.filter(event => event.actionType === 'Changed').length
+    };
+  }
+
+  // Get total counts for all dates
+  get totalCounts(): { added: number, removed: number, changed: number } {
+    return {
+      added: this.docketHistory.filter(event => event.actionType === 'Added').length,
+      removed: this.docketHistory.filter(event => event.actionType === 'Removed').length,
+      changed: this.docketHistory.filter(event => event.actionType === 'Changed').length
+    };
+  }
+
+  // Format date for display
+  formatDateForDisplay(date: string): string {
+    return new Date(date).toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
+  }
+
+  // Check if action should be visible based on current filters
+  shouldShowAction(actionType: 'Added' | 'Removed' | 'Changed'): boolean {
+    if (this.dateFilter === 'all') {
+      return true;
+    }
+    const eventsForDate = this.docketHistory.filter(event => event.date === this.dateFilter);
+    return eventsForDate.some(event => event.actionType === actionType);
   }
 
   docketHistory: DocketHistoryEvent[] = [
+    // 2025-06-23 Events (2 Added, 1 Removed, 2 Changed)
     {
       id: 'DH001',
-      date: '2025-06-25',
+      date: '2025-06-23',
       time: '09:15 AM',
       eventType: 'Filing',
       actionType: 'Added',
-      title: 'Docket Entry Added',
-      description: 'Financial info for BAPTISTE, AMBER LAUREL; Transaction Assessment $90.00',
+      title: 'Case Details Added',
+      description: 'Case title and parties information added',
       filedBy: 'Court Administrator',
       status: 'Completed'
     },
     {
       id: 'DH002',
-      date: '2025-09-26',
-      time: '11:30 AM',
+      date: '2025-06-23',
+      time: '10:30 AM',
       eventType: 'Document',
       actionType: 'Added',
-      title: 'Document Added',
-      description: 'Memorandum of Points and Authorities in Opposition. - Memorandum of Points and Authorities in Opposition MICHAEL GOGUEN\'S OPPOSITION TO AMBER BAPTISTE\'S Comment MICHAEL GOGUEN\'S OPPOSITION TO AMBER BAPTISTE\'S MOTION TO QUASH SUBPOENA SERVED ON NON-PARTY COX COMMUNICATIONS',
-      filedBy: 'MICHAEL GOGUEN',
-      document: 'Memorandum_Opposition.pdf',
+      title: 'Parties Added',
+      description: 'Hayden Griffin Haby, III - Defendant added to case',
+      filedBy: 'Court Clerk',
       status: 'Completed'
     },
     {
       id: 'DH003',
-      date: '2025-06-24',
-      time: '02:30 PM',
+      date: '2025-06-23',
+      time: '11:00 AM',
       eventType: 'Filing',
       actionType: 'Removed',
-      title: 'Docket Entry Removed',
-      description: 'Previous financial assessment removed due to administrative error',
+      title: 'Case Details Removed',
+      description: 'Previous case title removed due to correction',
       filedBy: 'Court Administrator',
       status: 'Completed'
     },
     {
       id: 'DH004',
-      date: '2025-09-25',
-      time: '04:15 PM',
-      eventType: 'Document',
-      actionType: 'Removed',
-      title: 'Document Removed',
-      description: 'Previous version of memorandum removed and replaced with updated filing',
-      filedBy: 'Defense Attorney',
-      status: 'Completed'
+      date: '2025-06-23',
+      time: '02:15 PM',
+      eventType: 'Filing',
+      actionType: 'Changed',
+      title: 'Case Title Changed',
+      description: 'Case title updated to add missing information',
+      filedBy: 'Court Clerk',
+      status: 'Completed',
+      changeDetails: {
+        from: 'CAPITAL ONE NA vs. ELLIS, JOHN',
+        to: 'CAPITAL ONE NA vs. ELLIS, JOHN JGH'
+      }
     },
     {
       id: 'DH005',
       date: '2025-06-23',
-      time: '10:15 AM',
-      eventType: 'Filing',
-      actionType: 'Changed',
-      title: 'Docket Entry Changed',
-      description: 'Financial assessment amount updated from $80.00 to $90.00',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-      changeDetails: {
-        from: 'Assessment: $80.00',
-        to: 'Assessment: $90.00'
-      }
-    },
-    {
-      id: 'DH006',
-      date: '2025-09-24',
       time: '03:45 PM',
       eventType: 'Document',
       actionType: 'Changed',
-      title: 'Document Changed',
-      description: 'Memorandum filing status updated from draft to final submission',
+      title: 'Attorney Changed',
+      description: 'Attorney information updated for defendant',
       filedBy: 'Defense Attorney',
       status: 'Completed',
       changeDetails: {
-        from: 'Status: Draft',
-        to: 'Status: Final Submission'
+        from: 'Dante A. Marinucci',
+        to: 'CLAY KENNETH KELLER'
+      }
+    },
+    
+    // 2025-06-24 Events (1 Added, 2 Removed, 0 Changed)
+    {
+      id: 'DH006',
+      date: '2025-06-24',
+      time: '09:00 AM',
+      eventType: 'Document',
+      actionType: 'Added',
+      title: 'Documents Added',
+      description: 'SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED',
+      filedBy: 'Court Administrator',
+      status: 'Completed'
+    },
+    {
+      id: 'DH007',
+      date: '2025-06-24',
+      time: '11:15 AM',
+      eventType: 'Filing',
+      actionType: 'Removed',
+      title: 'Parties Removed',
+      description: 'Duplicate party entries removed',
+      filedBy: 'Court Clerk',
+      status: 'Completed'
+    },
+    {
+      id: 'DH008',
+      date: '2025-06-24',
+      time: '02:30 PM',
+      eventType: 'Document',
+      actionType: 'Removed',
+      title: 'Attorney Removed',
+      description: 'Previous attorney representation removed',
+      filedBy: 'Court Administrator',
+      status: 'Completed'
+    },
+    
+    // 2025-06-25 Events (3 Added, 0 Removed, 1 Changed)
+    {
+      id: 'DH009',
+      date: '2025-06-25',
+      time: '08:30 AM',
+      eventType: 'Filing',
+      actionType: 'Added',
+      title: 'Attorney Added',
+      description: 'New attorney representation added for defendant',
+      filedBy: 'Court Clerk',
+      status: 'Completed'
+    },
+    {
+      id: 'DH010',
+      date: '2025-06-25',
+      time: '10:00 AM',
+      eventType: 'Document',
+      actionType: 'Added',
+      title: 'Docket Entries Added',
+      description: 'New docket entry for service documentation',
+      filedBy: 'Court Administrator',
+      status: 'Completed'
+    },
+    {
+      id: 'DH011',
+      date: '2025-06-25',
+      time: '01:15 PM',
+      eventType: 'Filing',
+      actionType: 'Added',
+      title: 'Documents Added',
+      description: 'Additional court documentation filed',
+      filedBy: 'Court Clerk',
+      status: 'Completed'
+    },
+    {
+      id: 'DH012',
+      date: '2025-06-25',
+      time: '03:45 PM',
+      eventType: 'Document',
+      actionType: 'Changed',
+      title: 'Parties Changed',
+      description: 'Party information updated for accuracy',
+      filedBy: 'Defense Attorney',
+      status: 'Completed',
+      changeDetails: {
+        from: 'Original Party Info',
+        to: 'Updated Party Info'
       }
     }
   ];
