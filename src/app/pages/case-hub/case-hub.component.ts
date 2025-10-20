@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SideNavComponent } from '../../components/navigation/side-nav/side-nav.component';
 import { AppHeaderComponent } from '../../layouts/app-header/app-header.component';
 import { CasesHubListLayoutComponent } from '../../layouts/cases-hub-list-layout/cases-hub-list-layout.component';
+import { SaveToListModalComponent } from '../../components/ui/save-to-list-modal/save-to-list-modal.component';
 
 @Component({
   selector: 'app-case-hub',
@@ -12,7 +13,8 @@ import { CasesHubListLayoutComponent } from '../../layouts/cases-hub-list-layout
     CommonModule, 
     SideNavComponent, 
     AppHeaderComponent,
-    CasesHubListLayoutComponent
+    CasesHubListLayoutComponent,
+    SaveToListModalComponent
   ],
   templateUrl: './case-hub.component.html',
   styleUrls: ['./case-hub.component.css']
@@ -31,10 +33,14 @@ export class CaseHubComponent implements OnInit {
   // Custom Lists management
   customLists: any[] = [];
 
+  // Modal state
+  isModalVisible: boolean = false;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log('Case Hub page initialized');
+    this.loadCustomLists();
   }
 
   // Navigation methods
@@ -55,7 +61,69 @@ export class CaseHubComponent implements OnInit {
   // Action button methods
   onAddList(): void {
     console.log('Add List clicked');
-    // TODO: Implement add list functionality
+    this.isModalVisible = true;
+    // Auto-select "new" option to show create form
+    setTimeout(() => {
+      const modal = document.querySelector('app-save-to-list-modal');
+      if (modal) {
+        const newButton = modal.querySelector('.list-option') as HTMLElement;
+        if (newButton) {
+          newButton.click();
+        }
+      }
+    }, 100);
+  }
+
+  // Modal handlers
+  onModalCancel(): void {
+    this.isModalVisible = false;
+  }
+
+  onModalSave(result: any): void {
+    console.log('Modal save result:', result);
+    
+    if (result.action === 'custom-list') {
+      this.createCustomList(result.listName);
+    }
+    
+    this.isModalVisible = false;
+  }
+
+  // Create custom list
+  private createCustomList(listName: string): void {
+    const newList = {
+      id: `custom-${Date.now()}`,
+      name: listName,
+      itemCount: 0,
+      isDropdownOpen: false,
+      createdAt: new Date().toISOString()
+    };
+    
+    this.customLists.push(newList);
+    this.saveCustomLists();
+    console.log('Custom list created:', newList);
+  }
+
+  // Load custom lists from localStorage
+  private loadCustomLists(): void {
+    try {
+      const saved = localStorage.getItem('customLists');
+      if (saved) {
+        this.customLists = JSON.parse(saved);
+      }
+    } catch (error) {
+      console.error('Error loading custom lists:', error);
+      this.customLists = [];
+    }
+  }
+
+  // Save custom lists to localStorage
+  private saveCustomLists(): void {
+    try {
+      localStorage.setItem('customLists', JSON.stringify(this.customLists));
+    } catch (error) {
+      console.error('Error saving custom lists:', error);
+    }
   }
 
   // Custom Lists management methods
