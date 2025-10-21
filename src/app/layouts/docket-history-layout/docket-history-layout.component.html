@@ -75,7 +75,7 @@
       </div>
 
       <!-- Section 1: Case Details & Mixed Actions (3 cards) -->
-      <div class="bg-white rounded-lg p-6 mb-4 border border-gray-200">
+      <div *ngIf="shouldShowSection1()" class="bg-white rounded-lg p-6 mb-4 border border-gray-200">
         <div class="docket-history-list">
           <!-- Card 1: Case Details - CHANGED (Removed words) -->
           <div *ngIf="shouldShowAction('Changed')" class="docket-history-card">
@@ -273,7 +273,7 @@
       </div>
 
       <!-- Section 2: Attorneys & Documents (4 cards) -->
-      <div class="bg-white rounded-lg p-6 mb-4 border border-gray-200">
+      <div *ngIf="shouldShowSection2()" class="bg-white rounded-lg p-6 mb-4 border border-gray-200">
         <div class="docket-history-list">
           <!-- Card 3: Attorney - ADDED -->
           <div *ngIf="shouldShowAction('Added')" class="docket-history-card">
@@ -444,7 +444,7 @@
       </div>
 
       <!-- Section 3: Removed & Changed Items (remaining cards) -->
-      <div class="bg-white rounded-lg p-6 border border-gray-200">
+      <div *ngIf="shouldShowSection3()" class="bg-white rounded-lg p-6 border border-gray-200">
         <div class="docket-history-list">
           <!-- Card 7: Parties - REMOVED -->
           <div *ngIf="shouldShowAction('Removed')" class="docket-history-card">

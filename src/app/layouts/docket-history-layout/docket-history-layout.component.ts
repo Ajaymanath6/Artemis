@@ -179,6 +179,21 @@ export class DocketHistoryLayoutComponent {
     return eventsForDate.some((event) => event.actionType === actionType);
   }
 
+  // Check if section 1 should be displayed (Case Details & Mixed Actions)
+  shouldShowSection1(): boolean {
+    return this.shouldShowAction('Changed') || this.shouldShowCardType('Parties');
+  }
+
+  // Check if section 2 should be displayed (Attorneys & Documents) 
+  shouldShowSection2(): boolean {
+    return this.shouldShowAction('Added');
+  }
+
+  // Check if section 3 should be displayed (Removed & Changed Items)
+  shouldShowSection3(): boolean {
+    return this.shouldShowAction('Removed') || this.shouldShowAction('Changed');
+  }
+
   docketHistory: DocketHistoryEvent[] = this.generateRecentDocketHistory();
 
   // Generate sample docket history for recent dates
@@ -186,8 +201,8 @@ export class DocketHistoryLayoutComponent {
     const events: DocketHistoryEvent[] = [];
     const today = new Date();
 
-    // Generate events for the last 8 days (some days with more activity, some with less)
-    for (let i = 0; i < 8; i++) {
+    // Generate events for the last 10 days (some days with more activity, some with less)
+    for (let i = 0; i < 10; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];

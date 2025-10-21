@@ -31,6 +31,10 @@
   margin-right: 16px; /* Add gap from the main content divider */
   overflow-y: auto;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Full viewport height */
+  z-index: 20; /* Higher than main content */
 }
 
 .date-sidebar-title {
