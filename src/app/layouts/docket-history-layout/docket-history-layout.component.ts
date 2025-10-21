@@ -109,10 +109,10 @@ export class DocketHistoryLayoutComponent {
     const dateObj = new Date(date);
     const diffTime = Math.abs(today.getTime() - dateObj.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) return 'Today';
     if (diffDays === 1) return 'Yesterday';
-    
+
     return dateObj.toLocaleDateString('en-US', { weekday: 'short' });
   }
 
@@ -120,19 +120,19 @@ export class DocketHistoryLayoutComponent {
   get last10Days(): string[] {
     const dates = [];
     const today = new Date();
-    
+
     for (let i = 0; i < 10; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
       dates.push(date.toISOString().split('T')[0]); // Format: YYYY-MM-DD
     }
-    
+
     return dates;
   }
 
   // Check if date has any activity
   hasActivity(date: string): boolean {
-    return this.docketHistory.some(event => event.date === date);
+    return this.docketHistory.some((event) => event.date === date);
   }
 
   // Get mixed actions for a card type on the filtered date
@@ -161,7 +161,11 @@ export class DocketHistoryLayoutComponent {
   // Check if a card type should be shown (has any activity)
   shouldShowCardType(cardType: string): boolean {
     const actions = this.getMixedActions(cardType);
-    return actions.added.length > 0 || actions.removed.length > 0 || actions.changed.length > 0;
+    return (
+      actions.added.length > 0 ||
+      actions.removed.length > 0 ||
+      actions.changed.length > 0
+    );
   }
 
   // Check if action should be visible based on current filters
@@ -175,157 +179,64 @@ export class DocketHistoryLayoutComponent {
     return eventsForDate.some((event) => event.actionType === actionType);
   }
 
-  docketHistory: DocketHistoryEvent[] = [
-    // 2025-06-23 Events (2 Added, 1 Removed, 2 Changed)
-    {
-      id: 'DH001',
-      date: '2025-06-23',
-      time: '09:15 AM',
-      eventType: 'Filing',
-      actionType: 'Added',
-      title: 'Case Details Added',
-      description: 'Case title and parties information added',
-      filedBy: 'Court Administrator',
-      status: 'Completed',
-    },
-    {
-      id: 'DH002',
-      date: '2025-06-23',
-      time: '10:30 AM',
-      eventType: 'Document',
-      actionType: 'Added',
-      title: 'Parties Added',
-      description: 'Hayden Griffin Haby, III - Defendant added to case',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-    },
-    {
-      id: 'DH003',
-      date: '2025-06-23',
-      time: '11:00 AM',
-      eventType: 'Filing',
-      actionType: 'Removed',
-      title: 'Case Details Removed',
-      description: 'Previous case title removed due to correction',
-      filedBy: 'Court Administrator',
-      status: 'Completed',
-    },
-    {
-      id: 'DH004',
-      date: '2025-06-23',
-      time: '02:15 PM',
-      eventType: 'Filing',
-      actionType: 'Changed',
-      title: 'Case Title Changed',
-      description: 'Case title updated to add missing information',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-      changeDetails: {
-        from: 'CAPITAL ONE NA vs. ELLIS, JOHN',
-        to: 'CAPITAL ONE NA vs. ELLIS, JOHN JGH',
-      },
-    },
-    {
-      id: 'DH005',
-      date: '2025-06-23',
-      time: '03:45 PM',
-      eventType: 'Document',
-      actionType: 'Changed',
-      title: 'Attorney Changed',
-      description: 'Attorney information updated for defendant',
-      filedBy: 'Defense Attorney',
-      status: 'Completed',
-      changeDetails: {
-        from: 'Dante A. Marinucci',
-        to: 'CLAY KENNETH KELLER',
-      },
-    },
+  docketHistory: DocketHistoryEvent[] = this.generateRecentDocketHistory();
 
-    // 2025-06-24 Events (1 Added, 2 Removed, 0 Changed)
-    {
-      id: 'DH006',
-      date: '2025-06-24',
-      time: '09:00 AM',
-      eventType: 'Document',
-      actionType: 'Added',
-      title: 'Documents Added',
-      description: 'SUMMONS ON COMPLAINT BY CERTIFIED MAIL ISSUED',
-      filedBy: 'Court Administrator',
-      status: 'Completed',
-    },
-    {
-      id: 'DH007',
-      date: '2025-06-24',
-      time: '11:15 AM',
-      eventType: 'Filing',
-      actionType: 'Removed',
-      title: 'Parties Removed',
-      description: 'Duplicate party entries removed',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-    },
-    {
-      id: 'DH008',
-      date: '2025-06-24',
-      time: '02:30 PM',
-      eventType: 'Document',
-      actionType: 'Removed',
-      title: 'Attorney Removed',
-      description: 'Previous attorney representation removed',
-      filedBy: 'Court Administrator',
-      status: 'Completed',
-    },
-
-    // 2025-06-25 Events (3 Added, 0 Removed, 1 Changed)
-    {
-      id: 'DH009',
-      date: '2025-06-25',
-      time: '08:30 AM',
-      eventType: 'Filing',
-      actionType: 'Added',
-      title: 'Attorney Added',
-      description: 'New attorney representation added for defendant',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-    },
-    {
-      id: 'DH010',
-      date: '2025-06-25',
-      time: '10:00 AM',
-      eventType: 'Document',
-      actionType: 'Added',
-      title: 'Docket Entries Added',
-      description: 'New docket entry for service documentation',
-      filedBy: 'Court Administrator',
-      status: 'Completed',
-    },
-    {
-      id: 'DH011',
-      date: '2025-06-25',
-      time: '01:15 PM',
-      eventType: 'Filing',
-      actionType: 'Added',
-      title: 'Documents Added',
-      description: 'Additional court documentation filed',
-      filedBy: 'Court Clerk',
-      status: 'Completed',
-    },
-    {
-      id: 'DH012',
-      date: '2025-06-25',
-      time: '03:45 PM',
-      eventType: 'Document',
-      actionType: 'Changed',
-      title: 'Parties Changed',
-      description: 'Party information updated for accuracy',
-      filedBy: 'Defense Attorney',
-      status: 'Completed',
-      changeDetails: {
-        from: 'Original Party Info',
-        to: 'Updated Party Info',
-      },
-    },
-  ];
+  // Generate sample docket history for recent dates
+  private generateRecentDocketHistory(): DocketHistoryEvent[] {
+    const events: DocketHistoryEvent[] = [];
+    const today = new Date();
+    
+    // Generate events for the last 7 days (some days with more activity, some with less)
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      
+      const eventTypes = ['Filing', 'Document', 'Motion', 'Order'] as const;
+      const actionTypes = ['Added', 'Removed', 'Changed'] as const;
+      const titles = [
+        'Case Details', 'Parties', 'Attorney', 'Documents', 'Docket Entries'
+      ];
+      
+      // Different activity levels for different days
+      let eventCount = 1;
+      if (i === 0) eventCount = 3; // Today - high activity
+      else if (i === 1) eventCount = 2; // Yesterday - medium activity  
+      else if (i === 2) eventCount = 4; // Day before - high activity
+      else if (i % 2 === 0) eventCount = 2; // Some days medium
+      else eventCount = 1; // Some days low
+      
+      for (let j = 0; j < eventCount; j++) {
+        const actionType = actionTypes[Math.floor(Math.random() * actionTypes.length)];
+        const title = titles[Math.floor(Math.random() * titles.length)];
+        const eventType = eventTypes[Math.floor(Math.random() * eventTypes.length)];
+        
+        const event: DocketHistoryEvent = {
+          id: `DH${i}${j}${Date.now()}`,
+          date: dateStr,
+          time: `${9 + j * 2}:${j % 2 === 0 ? '00' : '30'} AM`,
+          eventType: eventType,
+          actionType: actionType,
+          title: `${title} ${actionType}`,
+          description: `${title} ${actionType.toLowerCase()} - Sample event for ${dateStr}`,
+          filedBy: ['Court Administrator', 'Court Clerk', 'Defense Attorney'][Math.floor(Math.random() * 3)],
+          status: 'Completed',
+        };
+        
+        // Add change details for Changed events
+        if (actionType === 'Changed') {
+          event.changeDetails = {
+            from: `Original ${title} Info`,
+            to: `Updated ${title} Info`,
+          };
+        }
+        
+        events.push(event);
+      }
+    }
+    
+    return events;
+  }
 
   getActionIcon(actionType: string): string {
     const iconMap: { [key: string]: string } = {

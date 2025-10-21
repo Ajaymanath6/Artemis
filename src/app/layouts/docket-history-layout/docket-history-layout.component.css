@@ -28,6 +28,7 @@
   background-color: #f9fafb;
   border-right: 1px solid #e5e7eb;
   padding: 16px;
+  margin-right: 16px; /* Add gap from the main content divider */
   overflow-y: auto;
   flex-shrink: 0;
 }
@@ -65,9 +66,9 @@
 }
 
 .date-filter-item.active {
-  background-color: #eff6ff;
-  border-color: #2563eb;
-  color: #2563eb;
+  background-color: #f0f9ff;
+  border-color: #146b85;
+  color: #146b85;
 }
 
 .date-info {
@@ -83,7 +84,7 @@
 }
 
 .date-filter-item.active .date-text {
-  color: #2563eb;
+  color: #146b85;
 }
 
 .date-day {
@@ -116,8 +117,8 @@
 }
 
 .count-badge.changed {
-  background-color: #dbeafe;
-  color: #2563eb;
+  background-color: #e6f4f1;
+  color: #146b85;
 }
 
 /* Main Content Area */
