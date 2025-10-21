@@ -24,10 +24,10 @@
 
 /* Date Sidebar */
 .date-sidebar {
-  width: 280px;
+  width: 240px; /* Reduced from 280px to 240px for more content space */
   background-color: #f9fafb;
   border-right: 1px solid #e5e7eb;
-  padding: 16px;
+  padding: 12px; /* Reduced padding slightly */
   margin-right: 16px; /* Add gap from the main content divider */
   overflow-y: auto;
   flex-shrink: 0;
