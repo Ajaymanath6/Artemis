@@ -181,10 +181,12 @@ export class DocketHistoryLayoutComponent {
 
   // Check if section 1 should be displayed (Case Details & Mixed Actions)
   shouldShowSection1(): boolean {
-    return this.shouldShowAction('Changed') || this.shouldShowCardType('Parties');
+    return (
+      this.shouldShowAction('Changed') || this.shouldShowCardType('Parties')
+    );
   }
 
-  // Check if section 2 should be displayed (Attorneys & Documents) 
+  // Check if section 2 should be displayed (Attorneys & Documents)
   shouldShowSection2(): boolean {
     return this.shouldShowAction('Added');
   }

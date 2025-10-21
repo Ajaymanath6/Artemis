@@ -25,7 +25,7 @@
 /* Date Sidebar */
 .date-sidebar {
   width: 240px; /* Reduced from 280px to 240px for more content space */
-  background-color: #f9fafb;
+  background-color: white;
   border-right: 1px solid #e5e7eb;
   padding: 12px; /* Reduced padding slightly */
   margin-right: 16px; /* Add gap from the main content divider */
@@ -143,7 +143,7 @@
 .docket-history-list {
   display: flex;
   flex-direction: column;
-  gap: 3px; /* Ultra compact - minimal gap between cards */
+  /* gap removed - using Tailwind space-y-3 for better spacing */
 }
 
 /* Docket History Card - Clean, minimal style */
