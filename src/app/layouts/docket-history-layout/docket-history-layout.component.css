@@ -139,7 +139,7 @@
 .docket-history-list {
   display: flex;
   flex-direction: column;
-  gap: 6px; /* Reduced from 12px to 6px for more compact layout */
+  gap: 3px; /* Ultra compact - minimal gap between cards */
 }
 
 /* Docket History Card - Clean, minimal style */
@@ -147,7 +147,7 @@
   background-color: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 8px 16px; /* Further reduced padding for more compact look */
+  padding: 6px 12px; /* Ultra compact padding - just wraps content */
   transition: all 0.2s ease;
 }
 

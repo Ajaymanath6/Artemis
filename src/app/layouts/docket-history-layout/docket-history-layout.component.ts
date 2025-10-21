@@ -185,32 +185,42 @@ export class DocketHistoryLayoutComponent {
   private generateRecentDocketHistory(): DocketHistoryEvent[] {
     const events: DocketHistoryEvent[] = [];
     const today = new Date();
-    
-    // Generate events for the last 7 days (some days with more activity, some with less)
-    for (let i = 0; i < 7; i++) {
+
+    // Generate events for the last 8 days (some days with more activity, some with less)
+    for (let i = 0; i < 8; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
-      
+
       const eventTypes = ['Filing', 'Document', 'Motion', 'Order'] as const;
       const actionTypes = ['Added', 'Removed', 'Changed'] as const;
       const titles = [
-        'Case Details', 'Parties', 'Attorney', 'Documents', 'Docket Entries'
+        'Case Details',
+        'Parties',
+        'Attorney',
+        'Documents',
+        'Docket Entries',
       ];
-      
+
       // Different activity levels for different days
       let eventCount = 1;
-      if (i === 0) eventCount = 3; // Today - high activity
-      else if (i === 1) eventCount = 2; // Yesterday - medium activity  
-      else if (i === 2) eventCount = 4; // Day before - high activity
-      else if (i % 2 === 0) eventCount = 2; // Some days medium
+      if (i === 0)
+        eventCount = 3; // Today - high activity
+      else if (i === 1)
+        eventCount = 2; // Yesterday - medium activity
+      else if (i === 2)
+        eventCount = 4; // Day before - high activity
+      else if (i % 2 === 0)
+        eventCount = 2; // Some days medium
       else eventCount = 1; // Some days low
-      
+
       for (let j = 0; j < eventCount; j++) {
-        const actionType = actionTypes[Math.floor(Math.random() * actionTypes.length)];
+        const actionType =
+          actionTypes[Math.floor(Math.random() * actionTypes.length)];
         const title = titles[Math.floor(Math.random() * titles.length)];
-        const eventType = eventTypes[Math.floor(Math.random() * eventTypes.length)];
-        
+        const eventType =
+          eventTypes[Math.floor(Math.random() * eventTypes.length)];
+
         const event: DocketHistoryEvent = {
           id: `DH${i}${j}${Date.now()}`,
           date: dateStr,
@@ -219,10 +229,12 @@ export class DocketHistoryLayoutComponent {
           actionType: actionType,
           title: `${title} ${actionType}`,
           description: `${title} ${actionType.toLowerCase()} - Sample event for ${dateStr}`,
-          filedBy: ['Court Administrator', 'Court Clerk', 'Defense Attorney'][Math.floor(Math.random() * 3)],
+          filedBy: ['Court Administrator', 'Court Clerk', 'Defense Attorney'][
+            Math.floor(Math.random() * 3)
+          ],
           status: 'Completed',
         };
-        
+
         // Add change details for Changed events
         if (actionType === 'Changed') {
           event.changeDetails = {
@@ -230,11 +242,11 @@ export class DocketHistoryLayoutComponent {
             to: `Updated ${title} Info`,
           };
         }
-        
+
         events.push(event);
       }
     }
-    
+
     return events;
   }
 
